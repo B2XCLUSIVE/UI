@@ -59,7 +59,7 @@ function Header() {
           </div>
         </div>
 
-        <div className="bg-gray-800 hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between">
+        <div className="bg-gray-800 rounded-lg hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between">
           <Link
             className="text-white  rounded-lg text-sm py-1 px-2  hover:bg-primarycolor"
             href={"#"}
