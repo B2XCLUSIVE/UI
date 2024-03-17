@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <section className="w-full md:w-3/4 mx-auto">{children}</section>
+        <section className="w-full mx-auto">{children}</section>
         <Footer />
       </body>
     </html>
