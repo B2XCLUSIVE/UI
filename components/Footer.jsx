@@ -13,7 +13,7 @@ import {
 function Footer() {
   return (
     <>
-      <div className="bg-gray-800 p-8 flex flex-col gap-3">
+      <div className="bg-gray-900 p-8 flex flex-col gap-3">
         <h1 className="text-white text-3xl font-bold text-center">
           B2EXCLUSIVE
         </h1>
