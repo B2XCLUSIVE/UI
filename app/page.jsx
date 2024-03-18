@@ -1,5 +1,6 @@
 import AlbumCover from "@/components/AlbumCover";
 import Event from "@/components/Event";
+import RecentPost from "@/components/RecentPost";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import Image from "next/image";
@@ -103,7 +104,7 @@ export default function Home() {
             <AlbumCover />
           </div>
 
-          <div className="flex items-end justify-between">
+          <div className="flex items-end justify-between mb-10">
             <div className="w-3/4 h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
               <FaBackward className="border w-12 h-12 p-2" />
@@ -122,12 +123,26 @@ export default function Home() {
             <Event />
           </div>
 
-          <div className="flex items-end justify-between">
+          <div className="flex items-end justify-between mb-10">
             <div className="w-3/4 h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
               <FaBackward className="border w-12 h-12 p-2" />
               <FaForward className="border w-12 h-12 p-2" />
             </div>
+          </div>
+
+          {/* RECENT POST SECTION */}
+          <div className="p-4 bg-gray-900 mt-4">
+            <h1 className="font-bold">Recent Post</h1>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 p-4 ">
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
           </div>
         </div>
 
@@ -153,6 +168,10 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-2">
+            <TopPlaylist />
+            <TopPlaylist />
+            <TopPlaylist />
+            <TopPlaylist />
             <TopPlaylist />
           </div>
         </div>
