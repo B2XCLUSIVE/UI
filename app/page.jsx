@@ -114,8 +114,8 @@ export default function Home() {
           <div className="flex items-end justify-between mb-10">
             <div className="w-3/4 h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
-              <FaBackward className="border w-12 h-12 p-2" />
-              <FaForward className="border w-12 h-12 p-2" />
+              <FaBackward className="border w-12 h-12 p-2 text-white" />
+              <FaForward className="border w-12 h-12 p-2 text-white" />
             </div>
           </div>
 
@@ -143,7 +143,7 @@ export default function Home() {
             <h1 className="font-bold">Recent Post</h1>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 p-4 ">
+          <div className="grid md:grid-cols-2 gap-4 p-4 ">
             <RecentPost />
             <RecentPost />
             <RecentPost />
@@ -258,7 +258,7 @@ export default function Home() {
 
         <div>
           <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Music Soul</h1>
+            <h1 className="font-bold">Live Concerts</h1>
           </div>
 
           <div className="bg-gray-700 p-4 mt-4">
@@ -286,7 +286,7 @@ export default function Home() {
 
         <div>
           <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Music Soul</h1>
+            <h1 className="font-bold">New Albums</h1>
           </div>
 
           <div className="bg-gray-700 p-4 mt-4">

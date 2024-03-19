@@ -6,7 +6,7 @@
   background-image: url("/hero.jpeg");
   background-size: cover;
   background-position: center;
-  padding: 5rem;
+  padding: 3rem;
   object-fit: contain;
   display: flex;
   flex-direction: column;

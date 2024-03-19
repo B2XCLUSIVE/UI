@@ -4,7 +4,7 @@ import { FaArrowDown } from "react-icons/fa";
 function Top40() {
   return (
     <>
-      <div className="bg-gray-800 p-4 flex justify-between">
+      <div className="bg-gray-800 p-4 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <div className="w-[200px] h-[100px]">
             <Image
@@ -21,11 +21,11 @@ function Top40() {
           </div>
         </div>
 
-        <div className="flex items-center gap-8 p-4">
+        <div className="hidden md:flex items-center gap-8 p-4">
           <p>Top 40</p>
           <p>10/4/16</p>
-          <FaArrowDown className="text-white" />
         </div>
+        <FaArrowDown className="text-white" />
       </div>
     </>
   );

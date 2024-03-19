@@ -3,8 +3,8 @@ import Image from "next/image";
 function Event() {
   return (
     <>
-      <div className="bg-gray-800 flex gap-4">
-        <div className="h-[100px] w-3/12">
+      <div className="bg-gray-800 flex justify-between">
+        <div className="h-[100px] w-3/12 hidden md:block">
           <Image
             src={"/alb.jpeg"}
             width={1000}
@@ -14,13 +14,13 @@ function Event() {
           />
         </div>
 
-        <div className="flex justify-between w-9/12 p-4 items-center">
-          <div>
+        <div className=" flex  w-full justify-between md:w-9/12 p-4 items-center">
+          <div className="">
             <h1 className="font-bold">Summer Music Festival</h1>
             <p>LeGaga Romania</p>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <h1 className="font-bold">26 August</h1>
             <p>6:45pm</p>
           </div>

@@ -15,14 +15,6 @@ import FlickerFeed from "@/components/FlickrFeed";
 function Footer() {
   return (
     <>
-      <section className="w-full md:w-5/6 mx-auto py-8 flex">
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
-      </section>
       <div className="bg-gray-950 p-8 flex flex-col gap-3">
         <h1 className="text-white text-3xl font-bold text-center">
           B2EXCLUSIVE
