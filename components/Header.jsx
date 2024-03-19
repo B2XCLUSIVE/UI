@@ -71,7 +71,7 @@ function Header() {
           <div className="bg-gray-800 rounded-lg hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between">
             <Link
               className="text-white  rounded-lg text-sm py-1 px-2  hover:bg-primarycolor"
-              href={"#"}
+              href={"/"}
             >
               Home
             </Link>
@@ -84,7 +84,7 @@ function Header() {
 
             <Link
               className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
-              href={"#"}
+              href={"/upcomingevents"}
             >
               Event
             </Link>
