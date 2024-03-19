@@ -2,15 +2,15 @@ function TicketOrder() {
   return (
     <>
       <div className="flex bg-gray-800 justify-between items-center">
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center w-1/4 p-4">
           <p>Gold</p>
         </div>
 
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center w-1/4 p-4">
           <p>$79.99</p>
         </div>
 
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center w-1/4 p-4">
           <select name="" id="">
             <option value="">1</option>
             <option value="">2</option>

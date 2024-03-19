@@ -1,3 +1,4 @@
+import EventOrganisers from "@/components/EventOrganisers";
 import TicketOrder from "@/components/TicketOrder";
 import Image from "next/image";
 import Link from "next/link";
@@ -101,7 +102,7 @@ function SingleEventPage() {
             </div>
           </div>
 
-          <div className="flex gap-8 py-4">
+          <div className="flex gap-8 p-4">
             <div className="w-full h-[300px]">
               <Image
                 src={"/conf.avif"}
@@ -122,7 +123,7 @@ function SingleEventPage() {
             </div>
           </div>
 
-          <div className="py-4 text-gray-500">
+          <div className="py-4 text-gray-500 p-4">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
             debitis labore corrupti, repudiandae ut mollitia saepe obcaecati.
             Provident quos vel neque. Optio iusto nesciunt ratione, velit
@@ -159,7 +160,7 @@ function SingleEventPage() {
             ></iframe>
           </div>
 
-          <div className="py-4 text-gray-500">
+          <div className="py-4 text-gray-500 p-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
             dolorum nemo rem fugit blanditiis optio delectus voluptatibus fuga
             exercitationem unde! Lorem ipsum dolor sit amet consectetur
@@ -172,19 +173,19 @@ function SingleEventPage() {
           </div>
 
           <div className="flex justify-between bg-gray-800">
-            <div className="flex justify-center p-8">
+            <div className="flex justify-center w-1/4 p-8">
               <p>Ticket Type</p>
             </div>
 
-            <div className="flex justify-center p-8">
+            <div className="flex justify-center w-1/4 p-8">
               <p>Price</p>
             </div>
 
-            <div className="flex justify-center p-8">
+            <div className="flex justify-center w-1/4 p-8">
               <p>Qty</p>
             </div>
 
-            <div className="flex justify-center p-8">
+            <div className="flex justify-center w-1/4 p-8">
               <p>Purchase</p>
             </div>
           </div>
@@ -193,6 +194,52 @@ function SingleEventPage() {
           <TicketOrder />
           <TicketOrder />
           <TicketOrder />
+
+          <div className="relative h-[200px] my-4">
+            <Image
+              src={"/conf.avif"}
+              width={1000}
+              height={1000}
+              alt="conf"
+              className="w-full h-full object-cover opacity-5"
+            />
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-between items-center p-20">
+              <div className="flex flex-col items-center">
+                <h1 className="text-4xl font-bold">72</h1>
+                <p>Days</p>
+              </div>
+
+              <p>:</p>
+
+              <div className="flex flex-col items-center">
+                <h1 className="text-4xl font-bold">34</h1>
+                <p>Hours</p>
+              </div>
+
+              <p>:</p>
+
+              <div className="flex flex-col items-center">
+                <h1 className="text-4xl font-bold">27</h1>
+                <p>Minutes</p>
+              </div>
+
+              <p>:</p>
+              <div className="flex flex-col items-center">
+                <h1 className="text-4xl font-bold">10</h1>
+                <p>Seconds</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Organisers of this events</h1>
+          </div>
+
+          <div className="grid grid-cols-3 gap-8 my-4">
+            <EventOrganisers />
+            <EventOrganisers />
+            <EventOrganisers />
+          </div>
         </div>
 
         <div></div>

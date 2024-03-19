@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import {
   FaBlog,
   FaFacebook,
@@ -13,6 +16,10 @@ import {
 } from "react-icons/fa";
 
 function Header() {
+  const [showMenu, setShowMenu] = useState(false);
+  function menushow() {
+    setShowMenu(!showMenu);
+  }
   return (
     <>
       <div className="bg-gray-800 p-3 ">
@@ -64,7 +71,65 @@ function Header() {
                 </div>
               </div>
 
-              <FaHamburger className="md:hidden" />
+              <div className="relative">
+                <FaHamburger className="md:hidden" onClick={menushow} />
+
+                {showMenu ? (
+                  <div className=" z-10 absolute right-0 flex flex-col bg-gray-800 w-[250px] m-2">
+                    <Link
+                      className=" border-b-2 text-white   text-sm p-4  hover:bg-primarycolor"
+                      href={"/"}
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      href={"#"}
+                    >
+                      Blogs
+                    </Link>
+
+                    <Link
+                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      href={"/upcomingevents"}
+                    >
+                      Event
+                    </Link>
+                    <Link
+                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      href={"/artists"}
+                    >
+                      Artists
+                    </Link>
+                    <Link
+                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      href={"#"}
+                    >
+                      Musics
+                    </Link>
+                    <Link
+                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      href={"#"}
+                    >
+                      Videos
+                    </Link>
+                    <Link
+                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      href={"#"}
+                    >
+                      About Us
+                    </Link>
+                    <Link
+                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      href={"#"}
+                    >
+                      Contact Us
+                    </Link>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
 
