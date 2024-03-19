@@ -3,7 +3,7 @@ import Image from "next/image";
 function RecentPost() {
   return (
     <>
-      <div className="bg-gray-900 p-4 flex gap-4  items-center">
+      <div className="bg-gray-800 p-4 flex gap-4  items-center">
         <div className="w-[100px] h-[100px]">
           <Image
             src={"/albumcover.avif"}

@@ -1,6 +1,8 @@
 import AlbumCover from "@/components/AlbumCover";
 import Event from "@/components/Event";
+import FlickerFeed from "@/components/FlickrFeed";
 import RecentPost from "@/components/RecentPost";
+import Top40 from "@/components/Top40";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import Image from "next/image";
@@ -8,9 +10,15 @@ import Link from "next/link";
 import {
   FaBackward,
   FaBook,
+  FaFacebook,
   FaForward,
+  FaInstagram,
+  FaLinkedin,
   FaMicrophone,
   FaMusic,
+  FaPinterest,
+  FaTwitter,
+  FaYoutube,
 } from "react-icons/fa";
 
 export default function Home() {
@@ -94,7 +102,7 @@ export default function Home() {
       <section className="w-full md:w-5/6 mx-auto md:flex p-4 gap-4">
         <div className="w-full md:w-3/4">
           {/* NEW ALBUM SECTION */}
-          <div className="p-4 bg-gray-900 mt-4">
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
             <h1 className="font-bold">New Album Releases</h1>
           </div>
 
@@ -113,7 +121,7 @@ export default function Home() {
           </div>
 
           {/* UPCOMING EVENTS SECTION*/}
-          <div className="p-4 bg-gray-900 mt-4">
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
             <h1 className="font-bold">Upcoming Events</h1>
           </div>
 
@@ -132,7 +140,7 @@ export default function Home() {
           </div>
 
           {/* RECENT POST SECTION */}
-          <div className="p-4 bg-gray-900 mt-4">
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
             <h1 className="font-bold">Recent Post</h1>
           </div>
 
@@ -144,11 +152,23 @@ export default function Home() {
             <RecentPost />
             <RecentPost />
           </div>
+
+          {/* TOP 40 section */}
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Top 40</h1>
+          </div>
+
+          <div className="py-4 flex flex-col gap-4">
+            <Top40 />
+            <Top40 />
+            <Top40 />
+            <Top40 />
+          </div>
         </div>
 
         <div className="w-full md:w-1/4">
           {/* TOP ARTIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4">
+          <div className="p-4 bg-gray-900 my-4 rounded-lg">
             <h1 className="font-bold">Top 10 Artists</h1>
           </div>
 
@@ -163,7 +183,7 @@ export default function Home() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* TOP PLAYLIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4">
+          <div className="p-4 bg-gray-900 my-4 rounded-lg">
             <h1 className="font-bold">Top Playlists</h1>
           </div>
 
@@ -174,7 +194,133 @@ export default function Home() {
             <TopPlaylist />
             <TopPlaylist />
           </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          {/* GET CONNECTED */}
+          <div className="p-4 bg-gray-900 my-4 rounded-lg">
+            <h1 className="font-bold">Get Cnnected</h1>
+          </div>
+
+          <div className="flex justify-between p-4">
+            <FaFacebook className="text-3xl" />
+            <FaTwitter className="text-3xl" />
+            <FaLinkedin className="text-3xl" />
+            <FaYoutube className="text-3xl" />
+            <FaInstagram className="text-3xl" />
+            <FaPinterest className="text-3xl" />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          {/* Recent post section */}
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Recent Post</h1>
+          </div>
+
+          <div className=" flex flex-col gap-1 pt-4 ">
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
         </div>
+      </section>
+
+      <section className="w-full md:w-5/6 mx-auto md:flex md:gap-4">
+        <div>
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Music Soul</h1>
+          </div>
+
+          <div className="bg-gray-700 p-4 mt-4">
+            <div className="h-[200px] relative">
+              <Image
+                src={"/albumcover.jpeg"}
+                width={1000}
+                height={1000}
+                alt="img"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 p-4">
+                <h1 className="font-bold text-2xl">
+                  All red carpet looks 2018 music awards
+                </h1>
+                <p>Arditta Colle -25 July, 2018</p>
+              </div>
+            </div>
+
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
+          </div>
+        </div>
+
+        <div>
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Music Soul</h1>
+          </div>
+
+          <div className="bg-gray-700 p-4 mt-4">
+            <div className="h-[200px] relative">
+              <Image
+                src={"/albumcover.jpeg"}
+                width={1000}
+                height={1000}
+                alt="img"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 p-4">
+                <h1 className="font-bold text-2xl">
+                  All red carpet looks 2018 music awards
+                </h1>
+                <p>Arditta Colle -25 July, 2018</p>
+              </div>
+            </div>
+
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
+          </div>
+        </div>
+
+        <div>
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Music Soul</h1>
+          </div>
+
+          <div className="bg-gray-700 p-4 mt-4">
+            <div className="h-[200px] relative">
+              <Image
+                src={"/albumcover.jpeg"}
+                width={1000}
+                height={1000}
+                alt="img"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 p-4">
+                <h1 className="font-bold text-2xl">
+                  All red carpet looks 2018 music awards
+                </h1>
+                <p>Arditta Colle -25 July, 2018</p>
+              </div>
+            </div>
+
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full md:w-5/6 mx-auto py-8 flex">
+        <FlickerFeed />
+        <FlickerFeed />
+        <FlickerFeed />
+        <FlickerFeed />
+        <FlickerFeed />
+        <FlickerFeed />
       </section>
     </main>
   );

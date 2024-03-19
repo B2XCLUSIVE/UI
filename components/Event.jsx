@@ -3,7 +3,7 @@ import Image from "next/image";
 function Event() {
   return (
     <>
-      <div className="bg-gray-900 flex gap-4">
+      <div className="bg-gray-800 flex gap-4">
         <div className="h-[100px] w-3/12">
           <Image
             src={"/alb.jpeg"}

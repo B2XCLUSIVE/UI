@@ -2,7 +2,7 @@ import Image from "next/image";
 function TopMusic() {
   return (
     <>
-      <div className="bg-gray-900 p-4 flex gap-4 items-center">
+      <div className="bg-gray-800 p-4 flex gap-4 items-center">
         <div className="w-[50px] h-[50px]">
           <Image
             src={"/albumcover.avif"}
