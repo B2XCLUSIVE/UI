@@ -1,6 +1,5 @@
 import AlbumCover from "@/components/AlbumCover";
 import Event from "@/components/Event";
-import FlickerFeed from "@/components/FlickrFeed";
 import RecentPost from "@/components/RecentPost";
 import Top40 from "@/components/Top40";
 import TopMusic from "@/components/TopMusic";
@@ -203,12 +202,12 @@ export default function Home() {
           </div>
 
           <div className="flex justify-between p-4">
-            <FaFacebook className="text-3xl" />
-            <FaTwitter className="text-3xl" />
-            <FaLinkedin className="text-3xl" />
-            <FaYoutube className="text-3xl" />
-            <FaInstagram className="text-3xl" />
-            <FaPinterest className="text-3xl" />
+            <FaFacebook className="text-3xl text-white" />
+            <FaTwitter className="text-3xl text-white" />
+            <FaLinkedin className="text-3xl text-white" />
+            <FaYoutube className="text-3xl text-white" />
+            <FaInstagram className="text-3xl text-white" />
+            <FaPinterest className="text-3xl text-white" />
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
@@ -312,15 +311,6 @@ export default function Home() {
             <RecentPost />
           </div>
         </div>
-      </section>
-
-      <section className="w-full md:w-5/6 mx-auto py-8 flex">
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
-        <FlickerFeed />
       </section>
     </main>
   );

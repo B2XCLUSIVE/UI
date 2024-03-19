@@ -5,6 +5,8 @@ import {
   FaHamburger,
   FaLinkedin,
   FaSoundcloud,
+  FaToggleOff,
+  FaToggleOn,
   FaTwitter,
   FaUser,
   FaYoutube,
@@ -56,9 +58,13 @@ function Header() {
                 <Link href={"#"}>
                   <FaUser />
                 </Link>
+
+                <div>
+                  <FaToggleOn className="text-xl" />
+                </div>
               </div>
 
-              <FaHamburger />
+              <FaHamburger className="md:hidden" />
             </div>
           </div>
 
@@ -74,6 +80,19 @@ function Header() {
               href={"#"}
             >
               Blogs
+            </Link>
+
+            <Link
+              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              href={"#"}
+            >
+              Event
+            </Link>
+            <Link
+              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              href={"/artists"}
+            >
+              Artists
             </Link>
             <Link
               className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
