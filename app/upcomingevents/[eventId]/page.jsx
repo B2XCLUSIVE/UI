@@ -1,3 +1,4 @@
+import Comments from "@/components/Comments";
 import EventOrganisers from "@/components/EventOrganisers";
 import TicketOrder from "@/components/TicketOrder";
 import Image from "next/image";
@@ -6,7 +7,9 @@ import {
   FaClock,
   FaComment,
   FaFacebook,
+  FaInstagram,
   FaLinkedin,
+  FaPinterest,
   FaSoundcloud,
   FaTwitter,
   FaUser,
@@ -27,7 +30,7 @@ function SingleEventPage() {
 
       <section className="w-full md:w-5/6 mx-auto">
         <div className="w-full md:w-4/6">
-          <div className="relative">
+          <div className="relative mt-4">
             <Image
               src={"/conf.avif"}
               width={1000}
@@ -240,9 +243,107 @@ function SingleEventPage() {
             <EventOrganisers />
             <EventOrganisers />
           </div>
+
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Comments</h1>
+          </div>
+
+          <Comments />
+          <Comments />
+
+          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
+            <h1 className="font-bold">Add your comments</h1>
+          </div>
+
+          <form className="p-4">
+            <div className=" md:flex w-full gap-4 my-2">
+              <input
+                type="text"
+                className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                placeholder="firstname"
+              />
+              <input
+                type="phone"
+                className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                placeholder="phonenumber"
+              />
+            </div>
+            <div className="md:flex w-full gap-4 my-2">
+              <input
+                type="email"
+                className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                placeholder="Email Address"
+              />
+              <input
+                type="text"
+                className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                placeholder="website"
+              />
+            </div>
+
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              className="w-full h-[300px] my-2 p-4 bg-slate-800"
+              placeholder="Type your comments"
+            ></textarea>
+
+            <button className="w-full py-4 px-8 bg-primarycolor text-white">
+              Send Comments
+            </button>
+          </form>
         </div>
 
-        <div></div>
+        <div className="w-full md:w-2/6">
+          <div className="p-4 bg-gray-900 my-4 rounded-lg">
+            <h1 className="font-bold">Get Cnnected</h1>
+          </div>
+
+          <div className="flex justify-between p-4">
+            <FaFacebook className="text-3xl text-white" />
+            <FaTwitter className="text-3xl text-white" />
+            <FaLinkedin className="text-3xl text-white" />
+            <FaYoutube className="text-3xl text-white" />
+            <FaInstagram className="text-3xl text-white" />
+            <FaPinterest className="text-3xl text-white" />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          <div className="my-8 bg-gray-800">
+            <div className="p-10 flex justify-center items-center">
+              <div className="w-[50px] h-[50px]">
+                <Image
+                  src={"/alb.jpeg"}
+                  width={1000}
+                  height={1000}
+                  alt="p"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+            </div>
+            <div className="flex justify-center gap-4">
+              <div className="flex flex-col items-center p-4">
+                <p>779</p>
+                <p>concerts</p>
+              </div>
+              <div className="flex flex-col items-center p-4">
+                <p>779</p>
+                <p>concerts</p>
+              </div>
+              <div className="flex flex-col items-center p-4">
+                <p>779</p>
+                <p>concerts</p>
+              </div>
+            </div>
+
+            <button className="w-full py-4 px-8 bg-primarycolor text-white">
+              View Comments
+            </button>
+          </div>
+        </div>
       </section>
     </>
   );
