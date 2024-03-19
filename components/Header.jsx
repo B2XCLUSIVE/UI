@@ -72,7 +72,10 @@ function Header() {
               </div>
 
               <div className="relative">
-                <FaHamburger className="md:hidden" onClick={menushow} />
+                <FaHamburger
+                  className="md:hidden w-[40px] h-[40px] p-2 bg-gray-800"
+                  onClick={menushow}
+                />
 
                 {showMenu ? (
                   <div className=" z-10 absolute right-0 flex flex-col bg-gray-800 w-[250px] m-2">
