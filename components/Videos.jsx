@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaPlay, FaPlayCircle, FaPlus } from "react-icons/fa";
 
 function Videos() {
   return (
     <>
-      <div className="md:flex w-full">
+      <Link href={`/videoshome/1`} className="md:flex w-full">
         <div className="w-full  md:w-1/2 h-[300px] relative">
           <Image
             src={"/alb.jpeg"}
@@ -34,7 +35,7 @@ function Videos() {
             fermentum et metus, sed imperdiet .
           </p>
         </div>
-      </div>
+      </Link>
     </>
   );
 }
