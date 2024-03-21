@@ -1,7 +1,8 @@
 "use client";
 
+import { ThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   FaBlog,
   FaFacebook,
@@ -20,6 +21,8 @@ function Header() {
   function menushow() {
     setShowMenu(!showMenu);
   }
+
+  const { theme, toggle } = useContext(ThemeContext);
   return (
     <>
       <div className="bg-gray-800 p-3 ">
@@ -31,33 +34,78 @@ function Header() {
         </div>
       </div>
 
-      <div className="bg-gray-900 p-8 relative flex flex-col">
+      <div
+        className={
+          theme === "light"
+            ? "bg-gray-950 p-8 relative flex flex-col"
+            : "bg-white p-8 relative flex flex-col"
+        }
+      >
         <div className="w-full md:w-3/4 mx-auto">
           <div className="flex flex-col gap-8 md:flex-row md:gap-0 md:justify-between">
             <div className="flex justify-center items-center gap-3">
-              <p className="text-white text-sm font-bold">Follow us</p>
-              <Link href={"#"} className="text-white text-sm">
+              <p
+                className={`${
+                  theme === "light" ? "text-white" : "text-gray-950"
+                } text-sm font-bold`}
+              >
+                Follow us
+              </p>
+              <Link
+                href={"#"}
+                className={`${
+                  theme === "light" ? "text-white" : "text-gray-950"
+                } text-sm`}
+              >
                 <FaFacebook />
               </Link>
-              <Link href={"#"} className="text-white text-sm">
+              <Link
+                href={"#"}
+                className={`${
+                  theme === "light" ? "text-white" : "text-gray-950"
+                } text-sm`}
+              >
                 <FaTwitter />
               </Link>
-              <Link href={"#"} className="text-white text-sm">
+              <Link
+                href={"#"}
+                className={`${
+                  theme === "light" ? "text-white" : "text-gray-950"
+                } text-sm`}
+              >
                 <FaLinkedin />
               </Link>
-              <Link href={"#"} className="text-white text-sm">
+              <Link
+                href={"#"}
+                className={`${
+                  theme === "light" ? "text-white" : "text-gray-950"
+                } text-sm`}
+              >
                 <FaYoutube />
               </Link>
-              <Link href={"#"} className="text-white text-sm">
+              <Link
+                href={"#"}
+                className={`${
+                  theme === "light" ? "text-white" : "text-gray-950"
+                } text-sm`}
+              >
                 <FaSoundcloud />
               </Link>
             </div>
             <div>
-              <h1 className="text-white text-3xl font-bold text-center">
+              <h1
+                className={` ${
+                  theme === "light" ? "text-white" : "text-gray-950"
+                } text-3xl font-bold text-center `}
+              >
                 B2EXCLUSIVE
               </h1>
             </div>
-            <div className="flex  justify-between md:items-center gap-3 md:justify-normal text-white">
+            <div
+              className={` ${
+                theme === "light" ? "text-white" : "text-gray-950"
+              } flex  justify-between md:items-center gap-3 md:justify-normal `}
+            >
               <div className="flex items-center gap-3">
                 <Link href={"#"}>
                   <FaBlog />
@@ -66,14 +114,20 @@ function Header() {
                   <FaUser />
                 </Link>
 
-                <div>
-                  <FaToggleOn className="text-xl" />
+                <div onClick={toggle}>
+                  {theme === "light" ? (
+                    <FaToggleOn className="text-xl" />
+                  ) : (
+                    <FaToggleOff className="text-xl" />
+                  )}
                 </div>
               </div>
 
               <div className="relative">
                 <FaHamburger
-                  className="md:hidden w-[40px] h-[40px] p-2 bg-gray-800"
+                  className={`md:hidden w-[40px] h-[40px] p-2 ${
+                    theme === "light" ? "text-white" : "text-gray-950"
+                  }`}
                   onClick={menushow}
                 />
 

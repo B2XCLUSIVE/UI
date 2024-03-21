@@ -4,8 +4,10 @@ import RecentPost from "@/components/RecentPost";
 import Top40 from "@/components/Top40";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
+import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import {
   FaBackward,
   FaBook,
