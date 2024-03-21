@@ -28,7 +28,7 @@ function SingleEventPage() {
         </p>
       </section>
 
-      <section className="w-full md:w-5/6 mx-auto">
+      <section className="w-full md:w-5/6 mx-auto md:flex md:gap-8">
         <div className="w-full md:w-4/6">
           <div className="relative mt-4">
             <Image

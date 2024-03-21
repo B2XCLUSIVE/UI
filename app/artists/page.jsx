@@ -36,13 +36,35 @@ function Artists() {
         <Artist />
       </section>
 
-      <div className="flex items-center p-8 justify-between mb-10 w-full md:w-5/6 mx-auto">
-        <div className="w-3/4 h-[3px] bg-primarycolor"></div>
-        <div className="flex gap-4">
-          <FaBackward className="border w-12 h-12 p-2 text-white" />
-          <FaForward className="border w-12 h-12 p-2 text-white" />
+      <section className="md:w-5/6 p-8 mx-auto gap-2 flex justify-center ">
+        <div className="border  p-2 ">
+          <p>PREV</p>
         </div>
-      </div>
+
+        <div className="border  p-2 ">
+          <p>1</p>
+        </div>
+
+        <div className="border  p-2 ">
+          <p>2</p>
+        </div>
+
+        <div className="border  p-2 ">
+          <p>3</p>
+        </div>
+
+        <div className="border  p-2 ">
+          <p>4</p>
+        </div>
+
+        <div className="border  p-2 ">
+          <p>...</p>
+        </div>
+
+        <div className="border  p-2 ">
+          <p>NEXT</p>
+        </div>
+      </section>
     </>
   );
 }

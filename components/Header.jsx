@@ -106,25 +106,25 @@ function Header() {
                     </Link>
                     <Link
                       className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
-                      href={"#"}
+                      href={"/musics"}
                     >
                       Musics
                     </Link>
                     <Link
                       className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
-                      href={"#"}
+                      href={"/videoshome"}
                     >
                       Videos
                     </Link>
                     <Link
                       className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
-                      href={"#"}
+                      href={"/about"}
                     >
                       About Us
                     </Link>
                     <Link
                       className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
-                      href={"#"}
+                      href={"/contact"}
                     >
                       Contact Us
                     </Link>
@@ -170,7 +170,7 @@ function Header() {
             </Link>
             <Link
               className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
-              href={"#"}
+              href={"/videoshome"}
             >
               Videos
             </Link>
