@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full md:w-5/6 mx-auto md:flex p-4 gap-4">
+      <section className="w-full md:w-5/6 mx-auto md:flex p-4 gap-6">
         <div className="w-full md:w-3/4">
           {/* NEW ALBUM SECTION */}
           <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>

@@ -145,7 +145,7 @@ function Header() {
                     </Link>
                     <Link
                       className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
-                      href={"#"}
+                      href={"/blogs"}
                     >
                       Blogs
                     </Link>
@@ -205,7 +205,7 @@ function Header() {
             </Link>
             <Link
               className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
-              href={"#"}
+              href={"blogs"}
             >
               Blogs
             </Link>

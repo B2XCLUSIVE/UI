@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Comments from "@/components/Comments";
 import RecentPost from "@/components/RecentPost";
 import TopMusic from "@/components/TopMusic";
@@ -87,9 +88,7 @@ function VideoId() {
               placeholder="Type your comments"
             ></textarea>
 
-            <button className="w-full py-4 px-8 bg-primarycolor text-white">
-              Send Comments
-            </button>
+            <Button title={"Send Comments"} />
           </form>
         </div>
         <div className=" p-4 md:w-2/5">
