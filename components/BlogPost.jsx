@@ -20,7 +20,7 @@ function BlogPost() {
             />
           </div>
           <div className="p-4 flex flex-col gap-4">
-            <h1 className={`${theme}-text text-2xl font-bold`}>
+            <h1 className={`${theme}-text text-xl font-bold`}>
               Rock &apos;n Roll Really Is The Devil&apos;s Music
             </h1>
             <p className={`${theme}-text`}>
