@@ -25,12 +25,16 @@ function Header() {
   const { theme, toggle } = useContext(ThemeContext);
   return (
     <>
-      <div className="bg-gray-800 p-3 ">
-        <div className="md:w-3/4 mx-auto flex items-center gap-4 text-white flex-nowrap overflow-hidden">
+      <div className={` ${theme}-bg p-4`}>
+        <div
+          className={`md:w-3/4 mx-auto flex items-center gap-4 flex-nowrap overflow-hidden`}
+        >
           <div className="bg-primarycolor p-2 rounded-lg">
-            <p className="text-white text-sm">Breaking news</p>
+            <p className={`${theme}-text text-sm`}>Breaking news</p>
           </div>
-          <p className="text-sm"> Lorem ipsum, dolor sit amet consectetur</p>
+          <p className={`${theme}-text text-sm`}>
+            Lorem ipsum, dolor sit amet consectetur
+          </p>
         </div>
       </div>
 
@@ -190,52 +194,54 @@ function Header() {
             </div>
           </div>
 
-          <div className="bg-gray-800 rounded-lg hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between">
+          <div
+            className={` rounded-lg hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between ${theme}-bg`}
+          >
             <Link
-              className="text-white  rounded-lg text-sm py-1 px-2  hover:bg-primarycolor"
+              className={`${theme}-text  rounded-lg text-sm py-1 px-2  hover:bg-primarycolor`}
               href={"/"}
             >
               Home
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
               href={"#"}
             >
               Blogs
             </Link>
 
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
               href={"/upcomingevents"}
             >
               Event
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
               href={"/artists"}
             >
               Artists
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
               href={"#"}
             >
               Musics
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
               href={"/videoshome"}
             >
               Videos
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
               href={"#"}
             >
               About Us
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
               href={"#"}
             >
               Contact Us

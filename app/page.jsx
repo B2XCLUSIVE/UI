@@ -1,3 +1,4 @@
+"use client";
 import AlbumCover from "@/components/AlbumCover";
 import Event from "@/components/Event";
 import RecentPost from "@/components/RecentPost";
@@ -23,6 +24,7 @@ import {
 } from "react-icons/fa";
 
 export default function Home() {
+  const { theme } = useContext(ThemeContext);
   return (
     <main>
       <section className="herosection">
@@ -103,8 +105,8 @@ export default function Home() {
       <section className="w-full md:w-5/6 mx-auto md:flex p-4 gap-4">
         <div className="w-full md:w-3/4">
           {/* NEW ALBUM SECTION */}
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">New Album Releases</h1>
+          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>New Album Releases</h1>
           </div>
 
           <div className="py-4 flex gap-4">
@@ -122,8 +124,8 @@ export default function Home() {
           </div>
 
           {/* UPCOMING EVENTS SECTION*/}
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Upcoming Events</h1>
+          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Upcoming Events</h1>
           </div>
 
           <div className="flex flex-col gap-4 my-4">
@@ -141,8 +143,8 @@ export default function Home() {
           </div>
 
           {/* RECENT POST SECTION */}
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Recent Post</h1>
+          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Recent Post</h1>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 p-4 ">
@@ -155,8 +157,8 @@ export default function Home() {
           </div>
 
           {/* TOP 40 section */}
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Top 40</h1>
+          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Top 40</h1>
           </div>
 
           <div className="py-4 flex flex-col gap-4">
@@ -169,8 +171,8 @@ export default function Home() {
 
         <div className="w-full md:w-1/4">
           {/* TOP ARTIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Top 10 Artists</h1>
+          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Top 10 Artists</h1>
           </div>
 
           <div className="flex flex-col gap-2">
@@ -184,8 +186,8 @@ export default function Home() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* TOP PLAYLIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Top Playlists</h1>
+          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Top Playlists</h1>
           </div>
 
           <div className="flex flex-col gap-2">
@@ -199,8 +201,8 @@ export default function Home() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* GET CONNECTED */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Get Cnnected</h1>
+          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Get Cnnected</h1>
           </div>
 
           <div className="flex justify-between p-4">
@@ -215,8 +217,8 @@ export default function Home() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* Recent post section */}
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Recent Post</h1>
+          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Recent Post</h1>
           </div>
 
           <div className=" flex flex-col gap-1 pt-4 ">
@@ -231,8 +233,8 @@ export default function Home() {
 
       <section className="w-full md:w-5/6 mx-auto md:flex md:gap-4">
         <div>
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Music Soul</h1>
+          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Music Soul</h1>
           </div>
 
           <div className="bg-gray-700 p-4 mt-4">
@@ -259,8 +261,8 @@ export default function Home() {
         </div>
 
         <div>
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Live Concerts</h1>
+          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>Live Concerts</h1>
           </div>
 
           <div className="bg-gray-700 p-4 mt-4">
@@ -287,8 +289,8 @@ export default function Home() {
         </div>
 
         <div>
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">New Albums</h1>
+          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
+            <h1 className={`font-bold ${theme}-text`}>New Albums</h1>
           </div>
 
           <div className="bg-gray-700 p-4 mt-4">

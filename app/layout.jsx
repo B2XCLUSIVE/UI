@@ -17,8 +17,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`inter.className`}>
         <ThemeContextProvider>
-          <Header />
           <ThemeProvider>
+            <Header />
             <section className="w-full mx-auto">{children}</section>
             <Footer />
           </ThemeProvider>

@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+.light-text {
+  color: #fff;
+}
+
+.light-bg {
+  @apply bg-gray-950;
+}
+
+.dark-text {
+  color: black;
+}
+
+.dark-bg {
+  @apply bg-gray-200;
+}
+
+.dark-bgg {
+  @apply bg-white;
+}
+
+.light-bgg {
+  @apply bg-gray-900;
+}
+
 .herosection {
   background-image: url("/hero.jpeg");
   background-size: cover;
