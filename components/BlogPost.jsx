@@ -3,12 +3,13 @@ import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import { useContext } from "react";
 import Button from "./Button";
+import Link from "next/link";
 
 function BlogPost() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div>
+      <Link href={"/blogs/1"}>
         <div className={`${theme}-bgg`}>
           <div className="w-full h-[300px]">
             <Image
@@ -49,7 +50,7 @@ function BlogPost() {
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 }

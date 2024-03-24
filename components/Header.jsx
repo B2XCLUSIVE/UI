@@ -242,7 +242,7 @@ function Header() {
             </Link>
             <Link
               className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
-              href={"#"}
+              href={"/contact"}
             >
               Contact Us
             </Link>
