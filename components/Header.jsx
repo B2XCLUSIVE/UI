@@ -51,7 +51,7 @@ function Header() {
               <p
                 className={`${
                   theme === "light" ? "text-white" : "text-gray-950"
-                } text-sm font-bold`}
+                } text-sm font-bold `}
               >
                 Follow us
               </p>
@@ -195,7 +195,7 @@ function Header() {
           </div>
 
           <div
-            className={` rounded-lg hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between ${theme}-bg`}
+            className={` rounded-lg hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between ${theme}-head-bg backdrop-blur-lg`}
           >
             <Link
               className={`${theme}-text  rounded-lg text-sm py-1 px-2  hover:bg-primarycolor`}
@@ -236,7 +236,7 @@ function Header() {
             </Link>
             <Link
               className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
-              href={"#"}
+              href={"/about"}
             >
               About Us
             </Link>

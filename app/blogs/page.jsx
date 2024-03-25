@@ -1,6 +1,7 @@
 "use client";
 import BlogPost from "@/components/BlogPost";
 import RecentPost from "@/components/RecentPost";
+import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import { ThemeContext } from "@/context/ThemeContext";
@@ -18,25 +19,55 @@ function Blogs() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="bg-primarycolor p-32 flex flex-col items-center">
-        <h1 className="font-bold text-6xl">Trending Stories</h1>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quidem
-          cum repudiandae praesentium. Molestias, voluptatum eaque debitis culpa
-          exercitationem rerum?
-        </p>
-      </section>
+      <SectionHeader
+        title={"Trending Stories"}
+        desc={
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ad quae dolores? Unde similique beatae aspernatur dolore corporis tempore exercitationem."
+        }
+      />
 
       <section className=" md:w-5/6 p-8 mx-auto md:flex md:gap-8">
-        <div className="p-4 w-full flex flex-col  md:w-3/5 md:grid md:grid-cols-2 gap-4  ">
-          <BlogPost />
-          <BlogPost />
-          <BlogPost />
-          <BlogPost />
-          <BlogPost />
-          <BlogPost />
-          <BlogPost />
-          <BlogPost />
+        <div>
+          <div className="p-4 w-full flex flex-col  md:w-3/5 md:grid md:grid-cols-2 gap-4  ">
+            <BlogPost />
+            <BlogPost />
+            <BlogPost />
+            <BlogPost />
+            <BlogPost />
+            <BlogPost />
+            <BlogPost />
+            <BlogPost />
+          </div>
+
+          <section className=" p-8 mx-auto gap-2 flex justify-center ">
+            <div className="border  p-2 ">
+              <p>PREV</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p>1</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p>2</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p>3</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p>4</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p>...</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p>NEXT</p>
+            </div>
+          </section>
         </div>
         <div className=" p-4 md:w-2/5">
           {/* TOP ARTIST SECTION */}

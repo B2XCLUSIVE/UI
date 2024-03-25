@@ -1,6 +1,10 @@
+import CategoriesHeading from "@/components/CategoriesHeading";
 import Comments from "@/components/Comments";
 import EventOrganisers from "@/components/EventOrganisers";
+import RecentPost from "@/components/RecentPost";
 import TicketOrder from "@/components/TicketOrder";
+import TopMusic from "@/components/TopMusic";
+import TopPlaylist from "@/components/TopPlaylist";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -234,9 +238,7 @@ function SingleEventPage() {
             </div>
           </div>
 
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Organisers of this events</h1>
-          </div>
+          <CategoriesHeading title={"Organisers of this event"} />
 
           <div className="grid grid-cols-3 gap-8 my-4">
             <EventOrganisers />
@@ -244,16 +246,12 @@ function SingleEventPage() {
             <EventOrganisers />
           </div>
 
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Comments</h1>
-          </div>
+          <CategoriesHeading title={"Comments"} />
 
           <Comments />
           <Comments />
 
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Add your comments</h1>
-          </div>
+          <CategoriesHeading title={"AQdd your comments"} />
 
           <form className="p-4">
             <div className=" md:flex w-full gap-4 my-2">
@@ -297,9 +295,7 @@ function SingleEventPage() {
         </div>
 
         <div className="w-full md:w-2/6">
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Get Cnnected</h1>
-          </div>
+          <CategoriesHeading title={"Get Connected"} />
 
           <div className="flex justify-between p-4">
             <FaFacebook className="text-3xl text-white" />
@@ -313,7 +309,7 @@ function SingleEventPage() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           <div className="my-8 bg-gray-800">
-            <div className="p-10 flex justify-center items-center">
+            <div className="p-10 flex flex-col justify-center items-center">
               <div className="w-[50px] h-[50px]">
                 <Image
                   src={"/alb.jpeg"}
@@ -323,6 +319,8 @@ function SingleEventPage() {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
+              <h1>John Does</h1>
+              <p>Organizer</p>
             </div>
             <div className="flex justify-center gap-4">
               <div className="flex flex-col items-center p-4">
@@ -342,6 +340,44 @@ function SingleEventPage() {
             <button className="w-full py-4 px-8 bg-primarycolor text-white">
               View Comments
             </button>
+          </div>
+
+          {/* TOP ARTIST SECTION */}
+          <CategoriesHeading title={"Top 10 Artists"} />
+
+          <div className="flex flex-col gap-2">
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          {/* TOP PLAYLIST SECTION */}
+          <CategoriesHeading title={"Top Playlist"} />
+
+          <div className="flex flex-col gap-2">
+            <TopPlaylist />
+            <TopPlaylist />
+            <TopPlaylist />
+            <TopPlaylist />
+            <TopPlaylist />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          {/* Recent post section */}
+          <CategoriesHeading title={"Recent Post"} />
+
+          <div className=" flex flex-col gap-1 pt-4 ">
+            <RecentPost />
+            <RecentPost />
+            <RecentPost />
           </div>
         </div>
       </section>

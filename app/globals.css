@@ -26,6 +26,14 @@
   @apply bg-gray-900;
 }
 
+.light-head-bg {
+  background-color: #00000022;
+}
+
+.dark-head-bg {
+  background-color: #ffffff22;
+  backdrop-filter: 10px;
+}
 .herosection {
   background-image: url("/hero.jpeg");
   background-size: cover;

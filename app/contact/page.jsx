@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "@/components/SectionHeader";
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
 import { FaEnvelope, FaMap, FaPhone } from "react-icons/fa";
@@ -9,14 +10,12 @@ function Contact() {
   return (
     <>
       <section>
-        <section className="bg-primarycolor p-32 flex flex-col items-center">
-          <h1 className="font-bold text-6xl">Contact us </h1>
-          <p className="text-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-            quidem cum repudiandae praesentium. Molestias, voluptatum eaque
-            debitis culpa exercitationem rerum?
-          </p>
-        </section>
+        <SectionHeader
+          title={"Contact us"}
+          desc={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quide cum repudiandae praesentium. Molestias, voluptatum eaque debitis culpa exercitationem rerum"
+          }
+        />
 
         <section className="w-full p-2 md:w-5/6 md:mx-auto">
           <div className="w-full h-[700px] p-8">
