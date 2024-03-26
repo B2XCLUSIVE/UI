@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
 
 function Artist() {
   return (
     <>
-      <div className="h-[500px] relative">
+      <Link href={"/artists/1"} className="h-[500px] relative">
         <Image
           src={"/albumcover.jpeg"}
           width={1000}
@@ -20,7 +21,7 @@ function Artist() {
 
           <FaPlus className="text-lg text-white" />
         </div>
-      </div>
+      </Link>
     </>
   );
 }

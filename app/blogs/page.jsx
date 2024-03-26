@@ -27,8 +27,8 @@ function Blogs() {
       />
 
       <section className=" md:w-5/6 p-8 mx-auto md:flex md:gap-8">
-        <div>
-          <div className="p-4 w-full flex flex-col  md:w-3/5 md:grid md:grid-cols-2 gap-4  ">
+        <div className="w-full md:w-3/5">
+          <div className="p-4 md:grid md:grid-cols-2 gap-4">
             <BlogPost />
             <BlogPost />
             <BlogPost />

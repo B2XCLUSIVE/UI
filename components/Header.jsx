@@ -15,6 +15,7 @@ import {
   FaUser,
   FaYoutube,
 } from "react-icons/fa";
+import Auth from "./Auth";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -22,10 +23,17 @@ function Header() {
     setShowMenu(!showMenu);
   }
 
+  const [showAuth, setShowAuth] = useState(true);
+
+  const authDisplay = () => {
+    setShowAuth(!showAuth);
+  };
+
   const { theme, toggle } = useContext(ThemeContext);
   return (
     <>
       <div className={` ${theme}-bg p-4`}>
+        {showAuth && <Auth />}
         <div
           className={`md:w-3/4 mx-auto flex items-center gap-4 flex-nowrap overflow-hidden`}
         >
@@ -115,7 +123,7 @@ function Header() {
                   <FaBlog />
                 </Link>
                 <Link href={"#"}>
-                  <FaUser />
+                  <FaUser onClick={authDisplay} />
                 </Link>
 
                 <div onClick={toggle}>
@@ -224,7 +232,7 @@ function Header() {
             </Link>
             <Link
               className={`${theme}-text text-sm py-1 px-2  hover:bg-primarycolor rounded-lg`}
-              href={"#"}
+              href={"/musics"}
             >
               Musics
             </Link>
