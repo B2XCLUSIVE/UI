@@ -23,13 +23,7 @@ function Header() {
     setShowMenu(!showMenu);
   }
 
-  const [showAuth, setShowAuth] = useState(true);
-
-  const authDisplay = () => {
-    setShowAuth(!showAuth);
-  };
-
-  const { theme, toggle } = useContext(ThemeContext);
+  const { theme, toggle, showAuth, authDisplay } = useContext(ThemeContext);
   return (
     <>
       <div className={` ${theme}-bg p-4`}>

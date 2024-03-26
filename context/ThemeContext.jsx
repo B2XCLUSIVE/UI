@@ -18,11 +18,17 @@ export const ThemeContextProvider = ({ children }) => {
   const toggle = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+
+  const [showAuth, setShowAuth] = useState(false);
+
+  const authDisplay = () => {
+    setShowAuth(!showAuth);
+  };
   useEffect(() => {
     localStorage.setItem("theme", theme);
   }, [theme]);
   return (
-    <ThemeContext.Provider value={{ theme, toggle }}>
+    <ThemeContext.Provider value={{ theme, toggle, showAuth, authDisplay }}>
       {children}
     </ThemeContext.Provider>
   );
