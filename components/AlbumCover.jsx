@@ -2,7 +2,7 @@ import Image from "next/image";
 function AlbumCover() {
   return (
     <>
-      <div className="w-1/3 h-[250px] md:h-[400px] relative">
+      <div className=" h-[250px] md:h-[400px] relative">
         <Image
           src={"/albumcover.jpeg"}
           width={1000}

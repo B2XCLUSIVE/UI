@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   FaBlog,
@@ -11,29 +12,32 @@ import {
 } from "react-icons/fa";
 
 import FlickerFeed from "@/components/FlickrFeed";
+import { useContext } from "react";
+import { ThemeContext } from "@/context/ThemeContext";
 
 function Footer() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div className="bg-gray-950 p-8 flex flex-col gap-3">
-        <h1 className="text-white text-3xl font-bold text-center">
+      <div className={`${theme}-bgg p-8 flex flex-col gap-3`}>
+        <h1 className={` ${theme}-text   md:text-3xl font-bold text-center`}>
           B2EXCLUSIVE
         </h1>
 
         <div className="flex justify-center items-center gap-4">
-          <Link href={"#"} className="text-white text-sm">
+          <Link href={"#"} className={`${theme}-text text-sm`}>
             <FaFacebook />
           </Link>
-          <Link href={"#"} className="text-white text-sm">
+          <Link href={"#"} className={`${theme}-text text-sm`}>
             <FaTwitter />
           </Link>
-          <Link href={"#"} className="text-white text-sm">
+          <Link href={"#"} className={`${theme}-text text-sm`}>
             <FaLinkedin />
           </Link>
-          <Link href={"#"} className="text-white text-sm">
+          <Link href={"#"} className={`${theme}-text text-sm`}>
             <FaYoutube />
           </Link>
-          <Link href={"#"} className="text-white text-sm">
+          <Link href={"#"} className={`${theme}-text text-sm`}>
             <FaSoundcloud />
           </Link>
         </div>

@@ -1,12 +1,18 @@
+"use client";
+import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
+import { useContext } from "react";
 import { FaArrowDown } from "react-icons/fa";
 
 function Top40() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div className="bg-gray-800 p-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <div className="w-[200px] h-[100px]">
+      <div
+        className={`${theme}-bgg p-4 md:flex md:justify-between md:items-center`}
+      >
+        <div className="md:flex md:items-center md:gap-4">
+          <div className="md:w-[200px] h-[100px]">
             <Image
               src={"/ol.jpeg"}
               width={1000}
@@ -16,16 +22,25 @@ function Top40() {
             />
           </div>
           <div>
-            <h1 className="font-bold text-2xl">Don’t Wanna Know</h1>
-            <p>Marroon 5ft Kendrick Lamar</p>
+            <h1 className={` ${theme}-text font-bold text-[12px] md:text-2xl`}>
+              Don’t Wanna Know
+            </h1>
+            <p className={`${theme}-text text-[12px] md:text-sm`}>
+              Marroon 5ft Kendrick Lamar
+            </p>
           </div>
         </div>
 
         <div className="hidden md:flex items-center gap-8 p-4">
-          <p>Top 40</p>
-          <p>10/4/16</p>
+          <p className={`${theme}-text`}>Top 40</p>
+          <p className={`${theme}-text`}>10/4/16</p>
         </div>
-        <FaArrowDown className="text-white" />
+        <div className="flex gap-2 items-center py-2 md:py-0">
+          <FaArrowDown className={`${theme}-text`} />
+          <p className={`${theme}-text text-[12px] md:text-sm md:hidden`}>
+            Download
+          </p>
+        </div>
       </div>
     </>
   );

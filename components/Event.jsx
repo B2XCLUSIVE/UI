@@ -1,9 +1,14 @@
+"use client";
 import Image from "next/image";
+import Button from "./Button";
+import { useContext } from "react";
+import { ThemeContext } from "@/context/ThemeContext";
 
 function Event() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div className="bg-gray-800 flex justify-between">
+      <div className={`${theme}-bgg  flex justify-between`}>
         <div className="h-[100px] w-3/12 hidden md:block">
           <Image
             src={"/alb.jpeg"}
@@ -16,8 +21,10 @@ function Event() {
 
         <div className=" flex  w-full justify-between md:w-9/12 p-4 items-center">
           <div className="">
-            <h1 className="font-bold">Summer Music Festival</h1>
-            <p>LeGaga Romania</p>
+            <h1 className={`${theme}-text font-bold text-[14px]`}>
+              Summer Music Festival
+            </h1>
+            <p className={`${theme}-text text-[14px]`}>LeGaga Romania</p>
           </div>
 
           <div className="hidden md:block">
@@ -25,9 +32,7 @@ function Event() {
             <p>6:45pm</p>
           </div>
 
-          <button className="py-4 px-8 bg-primarycolor text-white">
-            Buy Ticket
-          </button>
+          <Button title={"Buy Ticket"} />
         </div>
       </div>
     </>

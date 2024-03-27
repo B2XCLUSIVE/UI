@@ -1,5 +1,6 @@
 "use client";
 import AlbumCover from "@/components/AlbumCover";
+import CategoriesHeading from "@/components/CategoriesHeading";
 import Event from "@/components/Event";
 import RecentPost from "@/components/RecentPost";
 import Top40 from "@/components/Top40";
@@ -27,7 +28,7 @@ export default function Home() {
   const { theme } = useContext(ThemeContext);
   return (
     <main>
-      <section className="herosection">
+      <section className="herosection p-8 md:p-12">
         <p>The B2EXCLUSIVE Blog</p>
         <h1 className="text-4xl font-extrabold text-center">
           Stories, Thoughts <br /> Ideas and More
@@ -105,11 +106,10 @@ export default function Home() {
       <section className="w-full md:w-5/6 mx-auto md:flex p-4 gap-6">
         <div className="w-full md:w-3/4">
           {/* NEW ALBUM SECTION */}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>New Album Releases</h1>
-          </div>
+          <CategoriesHeading title={"New Album releases"} />
 
-          <div className="py-4 flex gap-4">
+          <div className="grid gap-4 grid-cols-2 md:py-4 md:flex md:gap-4">
+            <AlbumCover />
             <AlbumCover />
             <AlbumCover />
             <AlbumCover />
@@ -118,15 +118,17 @@ export default function Home() {
           <div className="flex items-end justify-between mb-10">
             <div className="w-3/4 h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
-              <FaBackward className="border w-12 h-12 p-2 text-white" />
-              <FaForward className="border w-12 h-12 p-2 text-white" />
+              <FaBackward
+                className={`${theme}-text border w-12 h-12 p-2 text-white`}
+              />
+              <FaForward
+                className={`${theme}-text border w-12 h-12 p-2 text-white`}
+              />
             </div>
           </div>
 
           {/* UPCOMING EVENTS SECTION*/}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Upcoming Events</h1>
-          </div>
+          <CategoriesHeading title={"Upcoming Events"} />
 
           <div className="flex flex-col gap-4 my-4">
             <Event />
@@ -137,15 +139,17 @@ export default function Home() {
           <div className="flex items-end justify-between mb-10">
             <div className="w-3/4 h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
-              <FaBackward className="border w-12 h-12 p-2" />
-              <FaForward className="border w-12 h-12 p-2" />
+              <FaBackward
+                className={`${theme}-text border w-12 h-12 p-2 text-white`}
+              />
+              <FaForward
+                className={`${theme}-text border w-12 h-12 p-2 text-white`}
+              />
             </div>
           </div>
 
           {/* RECENT POST SECTION */}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Recent Post</h1>
-          </div>
+          <CategoriesHeading title={"Recent Posts"} />
 
           <div className="grid md:grid-cols-2 gap-4 p-4 ">
             <RecentPost />
@@ -157,11 +161,9 @@ export default function Home() {
           </div>
 
           {/* TOP 40 section */}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Top 40</h1>
-          </div>
+          <CategoriesHeading title={"Top 40"} />
 
-          <div className="py-4 flex flex-col gap-4">
+          <div className="py-4 grid grid-cols-2 md:flex md:flex-col gap-4 ">
             <Top40 />
             <Top40 />
             <Top40 />
@@ -171,11 +173,9 @@ export default function Home() {
 
         <div className="w-full md:w-1/4">
           {/* TOP ARTIST SECTION */}
-          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Top 10 Artists</h1>
-          </div>
+          <CategoriesHeading title={"Top 6 Artists"} />
 
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-3 md:flex md:flex-col gap-2 py-2">
             <TopMusic />
             <TopMusic />
             <TopMusic />
@@ -186,11 +186,10 @@ export default function Home() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* TOP PLAYLIST SECTION */}
-          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Top Playlists</h1>
-          </div>
+          <CategoriesHeading title={"Top Playlists"} />
 
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2 md:flex md:flex-col gap-2 py-2">
+            <TopPlaylist />
             <TopPlaylist />
             <TopPlaylist />
             <TopPlaylist />
@@ -201,43 +200,38 @@ export default function Home() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* GET CONNECTED */}
-          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Get Cnnected</h1>
-          </div>
+          <CategoriesHeading title={"Get Connected"} />
 
           <div className="flex justify-between p-4">
-            <FaFacebook className="text-3xl text-white" />
-            <FaTwitter className="text-3xl text-white" />
-            <FaLinkedin className="text-3xl text-white" />
-            <FaYoutube className="text-3xl text-white" />
-            <FaInstagram className="text-3xl text-white" />
-            <FaPinterest className="text-3xl text-white" />
+            <FaFacebook className={` ${theme}-text text-3xl `} />
+            <FaTwitter className={` ${theme}-text text-3xl `} />
+            <FaLinkedin className={` ${theme}-text text-3xl `} />
+            <FaYoutube className={` ${theme}-text text-3xl `} />
+            <FaInstagram className={` ${theme}-text text-3xl `} />
+            <FaPinterest className={` ${theme}-text text-3xl `} />
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* Recent post section */}
-          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Recent Post</h1>
-          </div>
+          <div className="hidden md:block">
+            <CategoriesHeading title={"Recent Post"} />
 
-          <div className=" flex flex-col gap-1 pt-4 ">
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
+            <div className=" flex flex-col gap-1 pt-4 ">
+              <RecentPost />
+              <RecentPost />
+              <RecentPost />
+            </div>
+            <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
           </div>
-
-          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
         </div>
       </section>
 
-      <section className="w-full md:w-5/6 mx-auto md:flex md:gap-4">
+      <section className="w-full p-4 md:w-5/6 mx-auto md:flex md:gap-4">
         <div>
-          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Music Soul</h1>
-          </div>
+          <CategoriesHeading title={"Music Soul"} />
 
-          <div className="bg-gray-700 p-4 mt-4">
+          <div className={`${theme}-bgg p-4 mt-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -261,11 +255,9 @@ export default function Home() {
         </div>
 
         <div>
-          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>Live Concerts</h1>
-          </div>
+          <CategoriesHeading title={"Live Concerts"} />
 
-          <div className="bg-gray-700 p-4 mt-4">
+          <div className={`${theme}-bgg p-4 mt-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -289,11 +281,9 @@ export default function Home() {
         </div>
 
         <div>
-          <div className={`p-4  my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className={`font-bold ${theme}-text`}>New Albums</h1>
-          </div>
+          <CategoriesHeading title={"New Albums"} />
 
-          <div className="bg-gray-700 p-4 mt-4">
+          <div className={`${theme}-bgg p-4 mt-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}

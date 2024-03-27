@@ -32,11 +32,9 @@ function Header() {
           className={`md:w-3/4 mx-auto flex items-center gap-4 flex-nowrap overflow-hidden`}
         >
           <div className="bg-primarycolor p-2 rounded-lg">
-            <p className={`${theme}-text text-sm`}>Breaking news</p>
+            <p className={`${theme}-text text-[10px]`}>Breaking news</p>
           </div>
-          <p className={`${theme}-text text-sm`}>
-            Lorem ipsum, dolor sit amet consectetur
-          </p>
+          <p className={`${theme}-text text-[10px]`}>Lorem ipsum,</p>
         </div>
       </div>
 
@@ -48,7 +46,7 @@ function Header() {
         }
       >
         <div className="w-full md:w-3/4 mx-auto">
-          <div className="flex flex-col gap-8 md:flex-row md:gap-0 md:justify-between">
+          <div className="flex flex-col gap-6 md:flex-row md:gap-0 md:justify-between">
             <div className="flex justify-center items-center gap-3">
               <p
                 className={`${
@@ -102,7 +100,7 @@ function Header() {
               <h1
                 className={` ${
                   theme === "light" ? "text-white" : "text-gray-950"
-                } text-3xl font-bold text-center `}
+                } md:text-3xl font-bold text-center `}
               >
                 B2EXCLUSIVE
               </h1>
@@ -138,52 +136,54 @@ function Header() {
                 />
 
                 {showMenu ? (
-                  <div className=" z-10 absolute right-0 flex flex-col bg-gray-800 w-[250px] m-2">
+                  <div
+                    className={` z-10 absolute right-0 flex flex-col ${theme}-bgg w-[250px] m-2" `}
+                  >
                     <Link
-                      className="border-b-2 text-white   text-sm p-4  hover:bg-primarycolor"
+                      className={`border-b-2 ${theme}-text   text-sm p-4  hover:bg-primarycolor`}
                       href={"/"}
                     >
                       Home
                     </Link>
                     <Link
-                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
                       href={"/blogs"}
                     >
                       Blogs
                     </Link>
 
                     <Link
-                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
                       href={"/upcomingevents"}
                     >
                       Event
                     </Link>
                     <Link
-                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
                       href={"/artists"}
                     >
                       Artists
                     </Link>
                     <Link
-                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
                       href={"/musics"}
                     >
                       Musics
                     </Link>
                     <Link
-                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
                       href={"/videoshome"}
                     >
                       Videos
                     </Link>
                     <Link
-                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
                       href={"/about"}
                     >
                       About Us
                     </Link>
                     <Link
-                      className=" border-b-2 text-white text-sm p-4  hover:bg-primarycolor"
+                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
                       href={"/contact"}
                     >
                       Contact Us
