@@ -52,7 +52,7 @@ function SingleBlog() {
             </div>
 
             <div className="p-4 md:p-8 flex flex-col gap-5">
-              <h1 className="font-bold text-lg md:text-4xl">
+              <h1 className={`${theme}-text font-bold text-lg md:text-4xl`}>
                 This year concerts conference create a window for concerts
                 groups
               </h1>
@@ -60,13 +60,13 @@ function SingleBlog() {
               <div className="flex gap-3 text-[10px] md:text-sm">
                 <Link href={"#"}>36 Comments</Link>
 
-                <p>|</p>
+                <p className={`${theme}-text`}>|</p>
                 <Link href={"#"}>36 Comments</Link>
-                <p>|</p>
+                <p className={`${theme}-text`}>|</p>
                 <Link href={"#"}>36 Comments</Link>
               </div>
 
-              <p className="md:text-base text-[11px]">
+              <p className={`md:text-base text-[11px] ${theme}-text`}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud nisi ut aliquip ex ea
