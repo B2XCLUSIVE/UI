@@ -1,5 +1,6 @@
 "use client";
 import BlogPost from "@/components/BlogPost";
+import CategoriesHeading from "@/components/CategoriesHeading";
 import RecentPost from "@/components/RecentPost";
 import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
@@ -26,9 +27,9 @@ function Blogs() {
         }
       />
 
-      <section className=" md:w-5/6 p-8 mx-auto md:flex md:gap-8">
+      <section className=" md:w-5/6 md:p-8 mx-auto md:flex md:gap-8">
         <div className="w-full md:w-3/5">
-          <div className="p-4 md:grid md:grid-cols-2 gap-4">
+          <div className="p-4 grid grid-cols-2 gap-4">
             <BlogPost />
             <BlogPost />
             <BlogPost />
@@ -39,7 +40,7 @@ function Blogs() {
             <BlogPost />
           </div>
 
-          <section className=" p-8 mx-auto gap-2 flex justify-center ">
+          <section className=" p-4 md:p-8 mx-auto gap-2 flex justify-center ">
             <div className="border  p-2 ">
               <p>PREV</p>
             </div>
@@ -71,11 +72,9 @@ function Blogs() {
         </div>
         <div className=" p-4 md:w-2/5">
           {/* TOP ARTIST SECTION */}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className="font-bold">Top 10 Artists</h1>
-          </div>
+          <CategoriesHeading title={"Top 10 Artists"} />
 
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2 md:flex md:flex-col gap-2 py-2">
             <TopMusic />
             <TopMusic />
             <TopMusic />
@@ -87,12 +86,9 @@ function Blogs() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* TOP PLAYLIST SECTION */}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className="font-bold">Top Playlists</h1>
-          </div>
+          <CategoriesHeading title={"Top Playlists"} />
 
-          <div className="flex flex-col gap-2">
-            <TopPlaylist />
+          <div className="grid grid-cols-2 md:flex md:flex-col gap-2">
             <TopPlaylist />
             <TopPlaylist />
             <TopPlaylist />
@@ -102,25 +98,21 @@ function Blogs() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* GET CONNECTED */}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className="font-bold">Get Cnnected</h1>
-          </div>
+          <CategoriesHeading title={"Get Connected"} />
 
           <div className="flex justify-between p-4">
-            <FaFacebook className="text-3xl text-white" />
-            <FaTwitter className="text-3xl text-white" />
-            <FaLinkedin className="text-3xl text-white" />
-            <FaYoutube className="text-3xl text-white" />
-            <FaInstagram className="text-3xl text-white" />
-            <FaPinterest className="text-3xl text-white" />
+            <FaFacebook className={`${theme}-text text-3xl `} />
+            <FaTwitter className={`${theme}-text text-3xl `} />
+            <FaLinkedin className={`${theme}-text text-3xl `} />
+            <FaYoutube className={`${theme}-text text-3xl `} />
+            <FaInstagram className={`${theme}-text text-3xl `} />
+            <FaPinterest className={`${theme}-text text-3xl `} />
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* Recent post section */}
-          <div className={`p-4 my-4 rounded-lg ${theme}-bgg`}>
-            <h1 className="font-bold">Recent Post</h1>
-          </div>
+          <CategoriesHeading title={"Recent Posts"} />
 
           <div className=" flex flex-col gap-1 pt-4 ">
             <RecentPost />

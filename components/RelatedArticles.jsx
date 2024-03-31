@@ -3,7 +3,7 @@ import Image from "next/image";
 function RelatedArticles() {
   return (
     <>
-      <div className="w-full h-[300px] relative">
+      <div className="w-full h-[150px] md:h-[300px] relative">
         <Image
           src={"/albumcover.jpeg"}
           width={1000}
@@ -11,11 +11,13 @@ function RelatedArticles() {
           alt="blogd"
           className="w-full h-full object-cover"
         />
-        <div className="text-white absolute bottom-0 left-0 p-4">
-          <h1 className="font-bold text-2xl ">
-            All The Red Carpet Looks 2018 Music Awards
+        <div className="text-white absolute bottom-0 left-0 p-2 md:p-4">
+          <h1 className="font-bold text-sm md:text-2xl ">
+            All The Red Carpet Looks
           </h1>
-          <p>Arditta Colle -25 July, 2018</p>
+          <p className="md:text-base text-[10px]">
+            Arditta Colle -25 July, 2018
+          </p>
         </div>
       </div>
     </>

@@ -17,10 +17,12 @@ function Comments() {
 
         <div className="flex flex-col gap-2">
           <div>
-            <h1 className="font-bold text-md">Brain Deo</h1>
+            <h1 className="font-bold text-md md:text-base text-[12px]">
+              Brain Deo
+            </h1>
             <p>15-10-2024</p>
           </div>
-          <p>
+          <p className="md:text-base text-[10px]">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
             cumque voluptates aperiam tempora nostrum adipisci voluptatem
             numquam dolorem a quisquam?

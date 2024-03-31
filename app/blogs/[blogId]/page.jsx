@@ -36,7 +36,7 @@ function SingleBlog() {
           className={`${theme}-text w-full md:w-5/6 md:mx-auto md:flex md:gap-4`}
         >
           <div className="w-full p-4 md:w-3/5  ">
-            <div className="relative w-full h-[500px]">
+            <div className="relative w-full h-[250px] md:h-[500px]">
               <Image
                 src={"/albumcober.avif"}
                 width={1000}
@@ -44,18 +44,20 @@ function SingleBlog() {
                 alt="blog"
                 className="w-full h-full object-cover"
               />
-              <div className={`${theme}-head-bg p-4 absolute top-5 left-5`}>
+              <div
+                className={`${theme}-head-bg p-2 text-[10px] md:p-4 absolute top-5 left-5`}
+              >
                 <p>13th September, 2024</p>
               </div>
             </div>
 
-            <div className="p-8 flex flex-col gap-5">
-              <h1 className="font-bold text-4xl">
+            <div className="p-4 md:p-8 flex flex-col gap-5">
+              <h1 className="font-bold text-lg md:text-4xl">
                 This year concerts conference create a window for concerts
                 groups
               </h1>
 
-              <div className="flex gap-3">
+              <div className="flex gap-3 text-[10px] md:text-sm">
                 <Link href={"#"}>36 Comments</Link>
 
                 <p>|</p>
@@ -64,7 +66,7 @@ function SingleBlog() {
                 <Link href={"#"}>36 Comments</Link>
               </div>
 
-              <p>
+              <p className="md:text-base text-[11px]">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud nisi ut aliquip ex ea

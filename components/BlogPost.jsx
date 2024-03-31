@@ -11,7 +11,7 @@ function BlogPost() {
     <>
       <Link href={"/blogs/1"}>
         <div className={`${theme}-bgg`}>
-          <div className="w-full h-[300px]">
+          <div className="w-full h-[150px] md:h-[300px]">
             <Image
               src={"/alb.jpeg"}
               width={1000}
@@ -21,15 +21,19 @@ function BlogPost() {
             />
           </div>
           <div className="p-4 flex flex-col gap-4">
-            <h1 className={`${theme}-text text-xl font-bold`}>
-              Rock &apos;n Roll Really Is The Devil&apos;s Music
+            <h1 className={`${theme}-text text-sm md:text-xl font-bold`}>
+              Rock &apos;n Roll Really Is The
             </h1>
-            <p className={`${theme}-text`}>
-              This is Photoshop&apos;s version of Lorem Ipsum. Proin gravida
-              nibh vel velit auctor aliquet.....
+            <p className={`${theme}-text text-[10px] md:text-base`}>
+              This is Photoshop&apos;s version of Lorem Ipsum.
             </p>
-            <div className="flex justify-between items-center">
-              <Button title={"Read More"} />
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+              <Link
+                href={"#"}
+                className="text-primarycolor text-[10px] md:text-base"
+              >
+                Read More
+              </Link>
 
               <div className="flex items-center gap-2">
                 <div className="w-[40px] h-[40px] rounded-full">
@@ -42,9 +46,11 @@ function BlogPost() {
                   />
                 </div>
 
-                <div className={`${theme}-text text-[11px]`}>
-                  <p className="font-bold">Ethern Carris</p>
-                  <p>Author</p>
+                <div className={`${theme}-text text-[10px]`}>
+                  <p className={`${theme}-text font-bold  md:text-base `}>
+                    Ethern Carris
+                  </p>
+                  <p className={`${theme}-text`}>Author</p>
                 </div>
               </div>
             </div>
