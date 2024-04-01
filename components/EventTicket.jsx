@@ -1,12 +1,17 @@
+"use client";
+import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import Button from "./Button";
 
 function EventTicket() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <Link
         href={`upcomingevents/1`}
-        className="flex gap-6 justify-between hover:bg-gray-900 cursor-pointer"
+        className={` ${theme}-text p-4 md:p-0 md:flex gap-6 justify-between  cursor-pointer`}
       >
         <div className="flex gap-6 items-center">
           <div className="w-[250px] h-[100px] border-r-4 border-primarycolor hidden md:block">
@@ -20,24 +25,24 @@ function EventTicket() {
           </div>
 
           <div className="p-4 md:py-4 ">
-            <h1 className="font-bold text-xl">
+            <h1 className={`font-bold text-xl ${theme}-text`}>
               Lorem Ipsum Proin gravida nibh vel velit auctor aliquet
             </h1>
 
             <div className="flex gap-4">
-              <p>Date: 25th July, 2024</p>
-              <p>Phone: 1234567890</p>
+              <p className={`${theme}-text`}>Date: 25th July, 2024</p>
+              <p className={`${theme}-text`}>Phone: 1234567890</p>
             </div>
 
-            <p>
+            <p className={`${theme}-text`}>
               Location: Level 13, 2 Elizabeth St, Melbourne Victoria 3000
               Australia
             </p>
           </div>
         </div>
-        <button className="py-4 px-8 bg-primarycolor text-white">
-          Buy Ticket
-        </button>
+        <div className="p-4">
+          <Button title={"Buy Tickey"} />
+        </div>
       </Link>
     </>
   );

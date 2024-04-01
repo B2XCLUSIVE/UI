@@ -1,12 +1,13 @@
 import EventTicket from "@/components/EventTicket";
+import SectionHeader from "@/components/SectionHeader";
 
 function UpcomingEvent() {
   return (
     <>
-      <section className="bg-primarycolor p-20 flex flex-col items-center">
-        <h1 className="font-bold text-6xl">Events Listsings</h1>
-        <p>Find the latest event that suits your interests</p>
-      </section>
+      <SectionHeader
+        title={"Events Listenings"}
+        desc={"Find the latest events that suits your interest"}
+      />
 
       <section className="p-4 md:w-5/6 md:p-20 mx-auto flex flex-col gap-10">
         <EventTicket />
