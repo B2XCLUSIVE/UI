@@ -10,12 +10,12 @@ function Auth() {
   const { theme, authDisplay } = useContext(ThemeContext);
   return (
     <>
-      <section className="absolute right-0 left-0 top-0 bottom-0 w-full h-min py-8 bg-[#000000d6] z-50 flex justify-center items-center">
-        <div className="md:flex h-full w-4/6 relative">
+      <section className="absolute right-0 left-0 top-0 bottom-0 w-full h-full py-8 bg-[#000000d6] z-50 flex justify-center items-center">
+        <div className="md:flex h-full w-full md:w-4/6 relative">
           <div className="p-2 bg-primarycolor absolute top-0 right-0">
             <FaWindowClose className={`${theme}-text`} onClick={authDisplay} />
           </div>
-          <div className={`${theme}-bgg ${theme}-text p-10 md:w-2/4`}>
+          <div className={`${theme}-bgg ${theme}-text p-10 w-full md:w-2/4`}>
             <div className="py-10">
               <h1 className={`font-bold text-2xl ${theme}-text`}>Sign In</h1>
 
@@ -68,7 +68,7 @@ function Auth() {
             </form>
           </div>
 
-          <div className={`${theme}-bg ${theme}-text p-10 md:w-2/4`}>
+          <div className={`${theme}-bg ${theme}-text p-10 w-full md:w-2/4`}>
             <div className="py-10">
               <h1 className={`${theme}-text font-bold text-2xl`}>
                 Create New Account
