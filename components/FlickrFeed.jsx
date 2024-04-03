@@ -5,7 +5,7 @@ function FlickerFeed() {
     <>
       <div className="w-2/6 h-[200px] bg-[#000]">
         <Image
-          src={"/albumcober.avif"}
+          src={"/albumcover.jpeg"}
           width={1000}
           height={1000}
           alt="allt"

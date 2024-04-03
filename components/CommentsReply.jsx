@@ -41,8 +41,6 @@ function CommentsReply() {
           >
             Reply
           </Link>
-
-          <CommentsReply />
         </div>
       </div>
     </>

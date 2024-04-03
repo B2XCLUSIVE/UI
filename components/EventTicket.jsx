@@ -25,22 +25,26 @@ function EventTicket() {
           </div>
 
           <div className="p-4 md:py-4 ">
-            <h1 className={`font-bold text-xl ${theme}-text`}>
+            <h1 className={`font-bold md:text-xl ${theme}-text`}>
               Lorem Ipsum Proin gravida nibh vel velit auctor aliquet
             </h1>
 
             <div className="flex gap-4">
-              <p className={`${theme}-text`}>Date: 25th July, 2024</p>
-              <p className={`${theme}-text`}>Phone: 1234567890</p>
+              <p className={`${theme}-text md:text-base text-[11px]`}>
+                Date: 25th July, 2024
+              </p>
+              <p className={`${theme}-text md:text-base text-[11px]`}>
+                Phone: 1234567890
+              </p>
             </div>
 
-            <p className={`${theme}-text`}>
+            <p className={`${theme}-text md:text-base text-[11px]`}>
               Location: Level 13, 2 Elizabeth St, Melbourne Victoria 3000
               Australia
             </p>
           </div>
         </div>
-        <div className="p-4">
+        <div className="md:p-4 px-4">
           <Button title={"Buy Tickey"} />
         </div>
       </Link>

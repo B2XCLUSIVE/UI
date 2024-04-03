@@ -12,7 +12,7 @@ function RecentPost() {
       >
         <div className="w-[100px] h-[100px]">
           <Image
-            src={"/albumcover.avif"}
+            src={"/albumcover.jpeg"}
             width={1000}
             height={1000}
             alt="all"

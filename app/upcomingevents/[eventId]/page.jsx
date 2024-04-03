@@ -1,3 +1,4 @@
+"use client";
 import CategoriesHeading from "@/components/CategoriesHeading";
 import Comments from "@/components/Comments";
 import EventOrganisers from "@/components/EventOrganisers";
@@ -5,8 +6,11 @@ import RecentPost from "@/components/RecentPost";
 import TicketOrder from "@/components/TicketOrder";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
+
 import Image from "next/image";
 import Link from "next/link";
+import img1 from "@/public/alb.jpeg";
+
 import {
   FaClock,
   FaComment,
@@ -36,7 +40,7 @@ function SingleEventPage() {
         <div className="w-full md:w-4/6">
           <div className="relative mt-4">
             <Image
-              src={"/conf.avif"}
+              src={img1}
               width={1000}
               height={1000}
               alt="conf"
@@ -112,7 +116,7 @@ function SingleEventPage() {
           <div className="flex gap-8 p-4">
             <div className="w-full h-[300px]">
               <Image
-                src={"/conf.avif"}
+                src={img1}
                 height={1000}
                 width={1000}
                 alt="img"
@@ -121,7 +125,7 @@ function SingleEventPage() {
             </div>
             <div className="w-full h-[300px]">
               <Image
-                src={"/conf.avif"}
+                src={img1}
                 height={1000}
                 width={1000}
                 alt="img"
@@ -162,7 +166,7 @@ function SingleEventPage() {
               width="1000"
               height="1000"
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full object-cover"
             ></iframe>
           </div>
@@ -204,7 +208,7 @@ function SingleEventPage() {
 
           <div className="relative h-[200px] my-4">
             <Image
-              src={"/conf.avif"}
+              src={img1}
               width={1000}
               height={1000}
               alt="conf"
@@ -312,7 +316,7 @@ function SingleEventPage() {
             <div className="p-10 flex flex-col justify-center items-center">
               <div className="w-[50px] h-[50px]">
                 <Image
-                  src={"/alb.jpeg"}
+                  src={img1}
                   width={1000}
                   height={1000}
                   alt="p"

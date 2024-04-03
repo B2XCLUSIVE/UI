@@ -12,7 +12,7 @@ function TopMusic() {
       >
         <div className="md:w-[50px] md:h-[50px]">
           <Image
-            src={"/albumcover.avif"}
+            src={"/albumcover.jpeg"}
             width={1000}
             height={1000}
             alt="music"

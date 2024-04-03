@@ -24,7 +24,7 @@ function Contact() {
               width="1000"
               height="1000"
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full object-cover"
             ></iframe>
           </div>

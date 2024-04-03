@@ -1,3 +1,4 @@
+"use client";
 import EventTicket from "@/components/EventTicket";
 import SectionHeader from "@/components/SectionHeader";
 
@@ -9,7 +10,7 @@ function UpcomingEvent() {
         desc={"Find the latest events that suits your interest"}
       />
 
-      <section className="p-4 md:w-5/6 md:p-20 mx-auto flex flex-col gap-10">
+      <section className="p-4 md:w-5/6 md:p-20 mx-auto flex flex-col md:gap-10 gap-4">
         <EventTicket />
         <EventTicket />
         <EventTicket />

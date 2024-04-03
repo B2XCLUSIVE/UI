@@ -14,7 +14,7 @@ function TopPlaylist() {
         <div className="md:flex md:items-center gap-4">
           <div className="w-full md:w-[50px] h-[50px]">
             <Image
-              src={"/albumcober.avif"}
+              src={"/albumcover.jpeg"}
               width={1000}
               height={1000}
               alt="music"

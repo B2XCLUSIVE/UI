@@ -37,7 +37,7 @@ export default function Home() {
         <p className="text-center">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, non
           optio. Ipsa culpa quibusdam necessitatibus!
-        </p>
+        </p> 
 
         <div className="flex gap-4">
           <Link
@@ -175,8 +175,8 @@ export default function Home() {
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 6 Artists"} />
 
-          <div className="grid grid-cols-3 md:flex md:flex-col gap-2 py-2">
-            <TopMusic />
+          <div className="grid grid-cols-3 md:flex md:flex-col gap-2 py-2"> 
+        <TopMusic />
             <TopMusic />
             <TopMusic />
             <TopMusic />

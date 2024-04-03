@@ -1,229 +1,134 @@
 "use client";
-
 import CategoriesHeading from "@/components/CategoriesHeading";
 import Comments from "@/components/Comments";
-import RecentPost from "@/components/RecentPost";
 import RelatedArticles from "@/components/RelatedArticles";
 import SectionHeader from "@/components/SectionHeader";
-import TopMusic from "@/components/TopMusic";
-import TopPlaylist from "@/components/TopPlaylist";
 import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
-import Link from "next/link";
 import { useContext } from "react";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaPinterest,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaComment, FaHeart, FaShare } from "react-icons/fa";
 
 function SingleBlog() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section>
-        <SectionHeader
-          title={"Single Blog Details"}
-          desc={
-            " Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiquidem cum repudiandae praesentium. Molestias, voluptatum eaquedebitis culpa exercitationem rerum?"
-          }
-        />
+      <SectionHeader title={"This blog"} desc={"The subhead"} />
+      <section className="w-full p-4 md:w-3/4 md:mx-auto ">
+        <div>
+          <div className="py-4">
+            <h1 className={`${theme}-text text-5xl font-bold`}>
+              The Painfully Obvious Reason Why Palestinians Don’t Condemn Hamas
+            </h1>
+            <p className={`${theme}-text`}>
+              A call for Palestine’s freedom is not a call for Israel’s
+              destruction.
+            </p>
+          </div>
 
-        <section
-          className={`${theme}-text w-full md:w-5/6 md:mx-auto md:flex md:gap-4`}
-        >
-          <div className="w-full p-4 md:w-3/5  ">
-            <div className="relative w-full h-[250px] md:h-[500px]">
+          <div className="flex gap-2">
+            <div className="w-[50px] h-[50px] rounded-full">
               <Image
-                src={"/albumcober.avif"}
+                src={"/alb.jpeg"}
                 width={1000}
                 height={1000}
-                alt="blog"
-                className="w-full h-full object-cover"
+                alt="alb"
+                className="w-full h-full object-cover rounded-full"
               />
-              <div
-                className={`${theme}-head-bg p-2 text-[10px] md:p-4 absolute top-5 left-5`}
-              >
-                <p>13th September, 2024</p>
-              </div>
-            </div>
-
-            <div className="p-4 md:p-8 flex flex-col gap-5">
-              <h1 className={`${theme}-text font-bold text-lg md:text-4xl`}>
-                This year concerts conference create a window for concerts
-                groups
-              </h1>
-
-              <div className="flex gap-3 text-[10px] md:text-sm">
-                <Link href={"#"}>36 Comments</Link>
-
-                <p className={`${theme}-text`}>|</p>
-                <Link href={"#"}>36 Comments</Link>
-                <p className={`${theme}-text`}>|</p>
-                <Link href={"#"}>36 Comments</Link>
-              </div>
-
-              <p className={`md:text-base text-[11px] ${theme}-text`}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud nisi ut aliquip ex ea
-                consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est
-                laborum.Duis aute irure dolor in reprehenderit fugiat nulla
-                pariatur.
-              </p>
             </div>
 
             <div>
-              <CategoriesHeading title={"Related Articles"} />
-
-              <div className="grid grid-cols-2 gap-4 p-4">
-                <RelatedArticles />
-                <RelatedArticles />
+              <h1 className={`${theme}-text font-bold text-lg`}>Steve Qj</h1>
+              <div className="flex gap-4">
+                <p className={`${theme}-text`}>5 mins Read</p>
+                <p className={`${theme}-text`}>Two days ago</p>
               </div>
-
-              <CategoriesHeading title={"Comments"} />
-
-              <Comments />
-              <Comments />
-
-              <CategoriesHeading title={"AQdd your comments"} />
-
-              <form className="p-4">
-                <div className=" md:flex w-full gap-4 my-2">
-                  <input
-                    type="text"
-                    className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
-                    placeholder="firstname"
-                  />
-                  <input
-                    type="phone"
-                    className="my-2 md:my-0 p-4 bg-gray-800 w-full"
-                    placeholder="phonenumber"
-                  />
-                </div>
-                <div className="md:flex w-full gap-4 my-2">
-                  <input
-                    type="email"
-                    className="my-2 md:my-0 p-4 bg-gray-800 w-full"
-                    placeholder="Email Address"
-                  />
-                  <input
-                    type="text"
-                    className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
-                    placeholder="website"
-                  />
-                </div>
-
-                <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                  className="w-full h-[300px] my-2 p-4 bg-slate-800"
-                  placeholder="Type your comments"
-                ></textarea>
-
-                <button className="w-full py-4 px-8 bg-primarycolor text-white">
-                  Send Comments
-                </button>
-              </form>
             </div>
           </div>
 
-          <div className="w-full p-4 md:w-2/5">
-            <CategoriesHeading title={"Get Connected"} />
-            <div className="flex justify-between p-4">
-              <FaFacebook className="text-3xl text-white" />
-              <FaTwitter className="text-3xl text-white" />
-              <FaLinkedin className="text-3xl text-white" />
-              <FaYoutube className="text-3xl text-white" />
-              <FaInstagram className="text-3xl text-white" />
-              <FaPinterest className="text-3xl text-white" />
+          <div className="flex items-center justify-between py-4 my-4 border-t border-b border-gray-400">
+            <div className="flex items-center gap-2">
+              <FaHeart className={`${theme}-text`} />
+              <p className={`${theme}-text`}>24k</p>
             </div>
-            <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-            <div className="my-8 bg-gray-800">
-              <div className="p-10 flex flex-col justify-center items-center">
-                <div className="w-[50px] h-[50px]">
-                  <Image
-                    src={"/alb.jpeg"}
-                    width={1000}
-                    height={1000}
-                    alt="p"
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-                <h1>John Does</h1>
-                <p>Organizer</p>
-              </div>
-              <div className="flex justify-center gap-4">
-                <div className="flex flex-col items-center p-4">
-                  <p>779</p>
-                  <p>concerts</p>
-                </div>
-                <div className="flex flex-col items-center p-4">
-                  <p>779</p>
-                  <p>concerts</p>
-                </div>
-                <div className="flex flex-col items-center p-4">
-                  <p>779</p>
-                  <p>concerts</p>
-                </div>
-              </div>
+            <div className="flex items-center gap-2">
+              <FaComment className={`${theme}-text`} />
+              <p className={`${theme}-text`}>100k</p>
+            </div>
 
-              <button className="w-full py-4 px-8 bg-primarycolor text-white">
-                View Comments
-              </button>
-            </div>
-            {/* TOP ARTIST SECTION */}
-            <CategoriesHeading title={"Top 10 Artists"} />
-            <div className="flex flex-col gap-2">
-              <TopMusic />
-              <TopMusic />
-              <TopMusic />
-              <TopMusic />
-              <TopMusic />
-              <TopMusic />
-            </div>
-            <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-            {/* TOP PLAYLIST SECTION */}
-            <CategoriesHeading title={"Top Playlist"} />
-            <div className="flex flex-col gap-2">
-              <TopPlaylist />
-              <TopPlaylist />
-              <TopPlaylist />
-              <TopPlaylist />
-              <TopPlaylist />
-            </div>
-            <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-            {/* GET CONNECTED */}
-            <CategoriesHeading title={"Get Connected"} />
-            <div className="flex justify-between p-4">
-              <FaFacebook className="text-3xl text-white" />
-              <FaTwitter className="text-3xl text-white" />
-              <FaLinkedin className="text-3xl text-white" />
-              <FaYoutube className="text-3xl text-white" />
-              <FaInstagram className="text-3xl text-white" />
-              <FaPinterest className="text-3xl text-white" />
-            </div>
-            <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-            {/* Recent post section */}
-            <CategoriesHeading title={"Recent Post"} />
-            <div className=" flex flex-col gap-1 pt-4 ">
-              <RecentPost />
-              <RecentPost />
-              <RecentPost />
-            </div>
+            <FaShare className={`${theme}-text`} />
           </div>
-        </section>
+
+          <div className="w-full h-[600px]">
+            <Image
+              src={"/alb.jpeg"}
+              width={2000}
+              height={2000}
+              alt="alb"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <p className={`${theme}-text py-4 md:text-lg text-[10px]`}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+            autem corporis quo omnis iusto rem molestias! Repudiandae natus
+            laudantium, pariatur voluptatum adipisci alias. Dolores blanditiis
+            culpa debitis? Pariatur temporibus itaque dolore accusantium nisi,
+            iusto maiores repellat ipsum inventore soluta ratione quibusdam
+            sequi vel adipisci quo veniam consectetur vero eveniet ab quia rem
+            incidunt porro! Ullam nisi quas, quis repellendus eius hic soluta
+            sint laboriosam, possimus quasi fuga nemo. Dolorum optio sunt minima
+            cumque ad consequuntur incidunt animi sed, non, nulla dignissimos
+            vel vitae placeat id praesentium itaque. Quibusdam tempore ab, amet
+            deserunt reprehenderit atque harum autem mollitia molestias est
+            quaerat provident numquam sint voluptatibus sit rem accusamus
+            necessitatibus dolore pariatur. Vitae in nihil ad, assumenda error
+            nemo, ex atque consectetur illum quidem, iure tenetur eius explicabo
+            veritatis! Iste fugit placeat obcaecati maxime vitae, perferendis
+            praesentium optio laborum minima a eum. Delectus harum est ipsa
+            nostrum recusandae, asperiores dolor adipisci modi accusantium
+            aspernatur similique et explicabo assumenda voluptate, fugit
+            laudantium beatae fugiat libero debitis voluptas quia tenetur
+            exercitationem placeat natus rem, iure totam. Inventore tenetur
+            magni adipisci ducimus quia minima dolore? Sunt ea molestiae facere
+            quis quos suscipit quaerat necessitatibus debitis eaque temporibus?
+            Aliquid, officia. Fuga laudantium quasi earum deleniti unde?
+          </p>
+
+          <p className={`${theme}-text py-4 md:text-lg text-[10px]`}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+            autem corporis quo omnis iusto rem molestias! Repudiandae natus
+            laudantium, pariatur voluptatum adipisci alias. Dolores blanditiis
+            culpa debitis? Pariatur temporibus itaque dolore accusantium nisi,
+            iusto maiores repellat ipsum inventore soluta ratione quibusdam
+            sequi vel adipisci quo veniam consectetur vero eveniet ab quia rem
+            incidunt porro! Ullam nisi quas, quis repellendus eius hic soluta
+            sint laboriosam, possimus quasi fuga nemo. Dolorum optio sunt minima
+            cumque ad consequuntur incidunt animi sed, non, nulla dignissimos
+            vel vitae placeat id praesentium itaque. Quibusdam tempore ab, amet
+            deserunt reprehenderit atque harum autem mollitia molestias est
+            quaerat provident numquam sint voluptatibus sit rem accusamus
+            necessitatibus dolore pariatur. Vitae in nihil ad, assumenda error
+            nemo, ex atque consectetur illum quidem, iure tenetur eius explicabo
+            veritatis! Iste fugit placeat obcaecati maxime vitae, perferendis
+            praesentium optio laborum minima a eum. Delectus harum est ipsa
+            nostrum recusandae, asperiores dolor adipisci modi accusantium
+            aspernatur similique et explicabo assumenda voluptate, fugit
+            laudantium beatae fugiat libero debitis voluptas quia tenetur
+            exercitationem placeat natus rem, iure totam. Inventore tenetur
+            magni adipisci ducimus quia minima dolore? Sunt ea molestiae facere
+            quis quos suscipit quaerat necessitatibus debitis eaque temporibus?
+            Aliquid, officia. Fuga laudantium quasi earum deleniti unde?
+          </p>
+        </div>
+
+        <CategoriesHeading title={"Related Articles"} />
+        <div className="grid grid-cols-2 gap-4 py-4">
+          <RelatedArticles />
+          <RelatedArticles />
+        </div>
+
+        <CategoriesHeading title={"Comments"} />
+        <Comments />
       </section>
     </>
   );
