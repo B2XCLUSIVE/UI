@@ -44,7 +44,7 @@ function SingleEventPage() {
               alt="conf"
               className="w-full h-full object-cover opacity-20"
             />
-            <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-between items-center p-44">
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-between items-center p-4 md:p-44">
               <div className="flex flex-col items-center">
                 <h1 className={`${theme}-text text-4xl font-bold`}>72</h1>
                 <p className={`${theme}-text`}>Days</p>
@@ -76,9 +76,9 @@ function SingleEventPage() {
             <CategoriesHeading title={"Upcoming Events"} />
 
             <div
-              className={`flex justify-center gap-8 items-center p-4 ${theme}-bgg rounded-lg `}
+              className={`hidden md:flex md:justify-center gap-8 items-center p-4 ${theme}-bgg rounded-lg `}
             >
-              <div className="flex gap-1">
+              <div className="flex gap-2">
                 <Link href={"#"} className={` text-sm ${theme}-text`}>
                   <FaFacebook />
                 </Link>
@@ -96,7 +96,7 @@ function SingleEventPage() {
                 </Link>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 <FaUser className={` text-sm ${theme}-text`} />
                 <p className={`${theme}-text`}>John Doe</p>
               </div>

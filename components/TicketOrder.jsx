@@ -28,7 +28,7 @@ function TicketOrder() {
         </div>
 
         <div className="flex justify-center p-8">
-          <Button title={"Buy Ticket"} />
+          <Button title={"Buy"} />
         </div>
       </div>
     </>

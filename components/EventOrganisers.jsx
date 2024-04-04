@@ -3,7 +3,7 @@ import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 function EventOrganisers() {
   return (
     <>
-      <div className=" h-[250px] md:h-[400px] relative">
+      <div className=" h-[150px] md:h-[400px] relative">
         <Image
           src={"/albumcover.jpeg"}
           width={1000}
