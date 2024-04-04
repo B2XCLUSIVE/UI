@@ -48,37 +48,37 @@ function Footer() {
           <p>© 2024 B2EXCLUSIVE. All Right Reserved. </p>
           <div className="flex">
             <Link
-              className="text-white  rounded-lg text-sm py-1 px-2  hover:bg-primarycolor"
+              className="text-white  rounded-lg text-[11px] py-1 px-2  hover:bg-primarycolor"
               href={"#"}
             >
               Home
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className="text-white text-[11px] py-1 px-2  hover:bg-primarycolor rounded-lg"
               href={"#"}
             >
               Blogs
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className="text-white text-[11px] py-1 px-2  hover:bg-primarycolor rounded-lg"
               href={"#"}
             >
               Musics
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className="text-white text-[11px] py-1 px-2  hover:bg-primarycolor rounded-lg"
               href={"#"}
             >
               Videos
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className="text-white text-[11px] py-1 px-2  hover:bg-primarycolor rounded-lg"
               href={"#"}
             >
               About Us
             </Link>
             <Link
-              className="text-white text-sm py-1 px-2  hover:bg-primarycolor rounded-lg"
+              className="text-white text-[11px] py-1 px-2  hover:bg-primarycolor rounded-lg"
               href={"#"}
             >
               Contact Us

@@ -4,11 +4,13 @@ import Image from "next/image";
 
 import Button from "./Button";
 import Link from "next/link";
+import { useContext } from "react";
 
 function BlogPost() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div className={`-bgg`}>
+      <Link href={"blogs/1"} className={`${theme}-bgg`}>
         <div className="w-full h-[150px] md:h-[300px]">
           <Image
             src={"/alb.jpeg"}
@@ -19,10 +21,10 @@ function BlogPost() {
           />
         </div>
         <div className="p-4 flex flex-col gap-4">
-          <h1 className={`-text text-sm md:text-xl font-bold`}>
+          <h1 className={`${theme}-text text-sm md:text-xl font-bold`}>
             Rock &apos;n Roll Really Is The
           </h1>
-          <p className={`-text text-[10px] md:text-base`}>
+          <p className={`${theme}-text text-[10px] md:text-base`}>
             This is Photoshop&apos;s version of Lorem Ipsum.
           </p>
           <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
@@ -44,16 +46,16 @@ function BlogPost() {
                 />
               </div>
 
-              <div className={`-text text-[10px]`}>
-                <p className={`-text font-bold  md:text-base `}>
+              <div className={`${theme}-text text-[10px]`}>
+                <p className={`${theme}-text font-bold  md:text-base `}>
                   Ethern Carris
                 </p>
-                <p className={`-text`}>Author</p>
+                <p className={`${theme}-text`}>Author</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 }

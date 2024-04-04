@@ -16,7 +16,7 @@ function SingleBlog() {
       <section className="w-full p-4 md:w-3/4 md:mx-auto ">
         <div>
           <div className="py-4">
-            <h1 className={`${theme}-text text-5xl font-bold`}>
+            <h1 className={`${theme}-text text-4xl md:text-5xl font-bold`}>
               The Painfully Obvious Reason Why Palestinians Don’t Condemn Hamas
             </h1>
             <p className={`${theme}-text`}>
@@ -58,7 +58,7 @@ function SingleBlog() {
             <FaShare className={`${theme}-text`} />
           </div>
 
-          <div className="w-full h-[600px]">
+          <div className="w-full h-[300px] md:h-[600px]">
             <Image
               src={"/alb.jpeg"}
               width={2000}
