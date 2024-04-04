@@ -33,13 +33,13 @@ function ArtistSong() {
           <h1 className={`${theme}-text`}>Album</h1>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 md:block hidden">
           <h1 className={`${theme}-text`}>Record Label</h1>
           <h1 className={`${theme}-text`}>Genre</h1>
         </div>
 
         <div className="flex gap-4 items-center">
-          <h1 className={`${theme}-text`}>21/06/2024</h1>
+          <h1 className={`${theme}-text md:block hidden`}>21/06/2024</h1>
           <FaDownload className={`${theme}-text`} />
         </div>
       </div>

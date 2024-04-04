@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa";
 function Artist() {
   return (
     <>
-      <Link href={"/artists/1"} className="h-[500px] relative">
+      <Link href={"/artists/1"} className=" h-[250px] md:h-[500px] relative">
         <Image
           src={"/albumcover.jpeg"}
           width={1000}

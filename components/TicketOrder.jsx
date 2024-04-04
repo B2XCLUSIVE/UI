@@ -1,13 +1,20 @@
+"use client";
+
+import { ThemeContext } from "@/context/ThemeContext";
+import { useContext } from "react";
+import Button from "./Button";
+
 function TicketOrder() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div className="flex bg-gray-800 justify-between items-center">
+      <div className={`flex ${theme}-bgg justify-between items-center`}>
         <div className="flex justify-center w-1/4 p-4">
-          <p>Gold</p>
+          <p className={`${theme}-text`}>Gold</p>
         </div>
 
         <div className="flex justify-center w-1/4 p-4">
-          <p>$79.99</p>
+          <p className={`${theme}-text`}>$79.99</p>
         </div>
 
         <div className="flex justify-center w-1/4 p-4">
@@ -21,9 +28,7 @@ function TicketOrder() {
         </div>
 
         <div className="flex justify-center p-8">
-          <button className="py-4 px-8 bg-primarycolor text-white">
-            Buy Ticket
-          </button>
+          <Button title={"Buy Ticket"} />
         </div>
       </div>
     </>

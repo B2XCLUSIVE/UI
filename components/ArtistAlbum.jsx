@@ -23,19 +23,21 @@ function ArtistAlbum() {
             />
             <div className="bg-[#0000009d] flex justify-between items-center p-4 absolute left-0 right-0 bottom-0">
               <div>
-                <h1 className="font-bold text-2xl">Behind the Scenes</h1>
+                <h1 className="font-bold text-[14px] md:text-2xl">
+                  Behind the Scenes
+                </h1>
                 <p>Nourmony Ermond Tempour</p>
               </div>
 
-              <FaPlus className="text-lg text-white" />
+              <FaPlus className="text-lg text-white md:block hidden" />
             </div>
           </div>
         </section>
 
         <div
-          className={`${theme}-bgg flex gap-4 items-center justify-between pr-8`}
+          className={`${theme}-bgg p-4 flex gap-4 items-center justify-between pr-8`}
         >
-          <div className={`bg-gray-300 p-4`}>
+          <div className={`bg-gray-300 p-4 md:block hidden`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
                 src={"/alb.jpeg"}
@@ -47,8 +49,8 @@ function ArtistAlbum() {
             </div>
           </div>
           <div className={`${theme}-text flex gap-4 items-center`}>
-            <FaPlay />
-            <FaHamburger />
+            <FaPlay className="md:block hidden" />
+            <FaHamburger className="md:block hidden" />
             <h1 className={`${theme}-text font-bold`}>How deep is your love</h1>
           </div>
 
@@ -58,9 +60,9 @@ function ArtistAlbum() {
         </div>
 
         <div
-          className={`${theme}-bgg flex gap-4 items-center justify-between pr-8`}
+          className={`${theme}-bgg flex p-4 gap-4 items-center justify-between pr-8`}
         >
-          <div className={`bg-gray-300 p-4`}>
+          <div className={`bg-gray-300 p-4 md:block hidden`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
                 src={"/alb.jpeg"}
@@ -72,8 +74,8 @@ function ArtistAlbum() {
             </div>
           </div>
           <div className={`${theme}-text flex gap-4 items-center`}>
-            <FaPlay />
-            <FaHamburger />
+            <FaPlay className="md:block hidden" />
+            <FaHamburger className="md:block hidden" />
             <h1 className={`${theme}-text font-bold`}>How deep is your love</h1>
           </div>
 
@@ -83,9 +85,9 @@ function ArtistAlbum() {
         </div>
 
         <div
-          className={`${theme}-bgg flex gap-4 items-center justify-between pr-8`}
+          className={`${theme}-bgg flex gap-4 items-center p-4 justify-between pr-8`}
         >
-          <div className={`bg-gray-300 p-4`}>
+          <div className={`bg-gray-300 p-4 md:block hidden`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
                 src={"/alb.jpeg"}
@@ -97,8 +99,8 @@ function ArtistAlbum() {
             </div>
           </div>
           <div className={`${theme}-text flex gap-4 items-center`}>
-            <FaPlay />
-            <FaHamburger />
+            <FaPlay className="md:block hidden" />
+            <FaHamburger className="md:block hidden" />
             <h1 className={`${theme}-text font-bold`}>How deep is your love</h1>
           </div>
 
@@ -108,9 +110,9 @@ function ArtistAlbum() {
         </div>
 
         <div
-          className={`${theme}-bgg flex gap-4 items-center justify-between pr-8`}
+          className={`${theme}-bgg p-4 flex gap-4 items-center justify-between pr-8`}
         >
-          <div className={`bg-gray-300 p-4`}>
+          <div className={`bg-gray-300 md:block hidden p-4`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
                 src={"/alb.jpeg"}
@@ -122,8 +124,8 @@ function ArtistAlbum() {
             </div>
           </div>
           <div className={`${theme}-text flex gap-4 items-center`}>
-            <FaPlay />
-            <FaHamburger />
+            <FaPlay className="md:block hidden" />
+            <FaHamburger className="md:block hidden" />
             <h1 className={`${theme}-text font-bold`}>How deep is your love</h1>
           </div>
 

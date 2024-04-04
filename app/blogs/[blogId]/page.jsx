@@ -68,7 +68,7 @@ function SingleBlog() {
             />
           </div>
 
-          <p className={`${theme}-text py-4 md:text-lg text-[10px]`}>
+          <p className={`${theme}-text py-4 md:text-lg text-[14px]`}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
             autem corporis quo omnis iusto rem molestias! Repudiandae natus
             laudantium, pariatur voluptatum adipisci alias. Dolores blanditiis
@@ -94,7 +94,7 @@ function SingleBlog() {
             Aliquid, officia. Fuga laudantium quasi earum deleniti unde?
           </p>
 
-          <p className={`${theme}-text py-4 md:text-lg text-[10px]`}>
+          <p className={`${theme}-text py-4 md:text-lg text-[14px]`}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
             autem corporis quo omnis iusto rem molestias! Repudiandae natus
             laudantium, pariatur voluptatum adipisci alias. Dolores blanditiis

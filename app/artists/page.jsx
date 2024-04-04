@@ -1,31 +1,33 @@
+"use client";
 import Artist from "@/components/Artist";
+import SectionHeader from "@/components/SectionHeader";
+import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
+import { useContext } from "react";
 import { FaBackward, FaForward, FaPlus } from "react-icons/fa";
 
 function Artists() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="bg-primarycolor p-32 flex flex-col items-center">
-        <h1 className="font-bold text-6xl">Artists Blogs</h1>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quidem
-          cum repudiandae praesentium. Molestias, voluptatum eaque debitis culpa
-          exercitationem rerum?
-        </p>
-      </section>
+      <SectionHeader title={"Artists Blogs"} desc={"hsyhhs"} />
 
-      <section className="w-full md:w-5/6 mx-auto py-10">
+      <section className="w-full md:w-5/6 mx-auto py-10 px-8">
         <div>
-          <h1 className="text-4xl font-bold">
+          <h1
+            className={`${theme}-text md:text-left text-center text-4xl font-bold`}
+          >
             Find the most recent music release
           </h1>
-          <p>
+          <p className={`${theme}-text`}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum,
             consequatur.
           </p>
         </div>
       </section>
-      <section className="bg-gray-900 md:w-5/6 p-8 mx-auto md:grid md:grid-cols-4 gap-8">
+      <section
+        className={`${theme}-bgg md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
+      >
         <Artist />
         <Artist />
         <Artist />

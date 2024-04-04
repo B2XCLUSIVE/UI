@@ -11,7 +11,7 @@ function Musics() {
         }
       />
 
-      <section className="w-full p-2 md:w-5/6 md:mx-auto grid grid-cols-3 gap-8">
+      <section className="w-full p-2 md:w-5/6 md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-8">
         <ArtistAlbum />
         <ArtistAlbum />
         <ArtistAlbum />

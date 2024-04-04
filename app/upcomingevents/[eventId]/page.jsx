@@ -23,20 +23,18 @@ import {
   FaUser,
   FaYoutube,
 } from "react-icons/fa";
+import { useContext } from "react";
+import { ThemeContext } from "@/context/ThemeContext";
+import SectionHeader from "@/components/SectionHeader";
+import Button from "@/components/Button";
 
 function SingleEventPage() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="bg-primarycolor p-32 flex flex-col items-center">
-        <h1 className="font-bold text-6xl">Event Details</h1>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quidem
-          cum repudiandae praesentium. Molestias, voluptatum eaque debitis culpa
-          exercitationem rerum?
-        </p>
-      </section>
+      <SectionHeader title={"Event Details"} desc={"event"} />
 
-      <section className="w-full md:w-5/6 mx-auto md:flex md:gap-8">
+      <section className="w-full md:w-5/6 mx-auto md:flex md:gap-8 p-4">
         <div className="w-full md:w-4/6">
           <div className="relative mt-4">
             <Image
@@ -48,67 +46,69 @@ function SingleEventPage() {
             />
             <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-between items-center p-44">
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">72</h1>
-                <p>Days</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>72</h1>
+                <p className={`${theme}-text`}>Days</p>
               </div>
 
-              <p>:</p>
+              <p className={`${theme}-text`}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">34</h1>
-                <p>Hours</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>34</h1>
+                <p className={`${theme}-text`}>Hours</p>
               </div>
 
-              <p>:</p>
+              <p className={`${theme}-text`}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">27</h1>
-                <p>Minutes</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>27</h1>
+                <p className={`${theme}-text`}>Minutes</p>
               </div>
 
-              <p>:</p>
+              <p className={`${theme}-text`}>:</p>
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">10</h1>
-                <p>Seconds</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>10</h1>
+                <p className={`${theme}-text`}>Seconds</p>
               </div>
             </div>
           </div>
 
           <div className="w-full md:w-5/6 mx-auto flex flex-col gap-4 items-center p-4">
-            <h1 className="text-3xl font-bold">Upcoming Events </h1>
+            <CategoriesHeading title={"Upcoming Events"} />
 
-            <div className="flex justify-center gap-8 items-center p-4 bg-gray-800 rounded-lg">
+            <div
+              className={`flex justify-center gap-8 items-center p-4 ${theme}-bgg rounded-lg `}
+            >
               <div className="flex gap-1">
-                <Link href={"#"} className="text-white text-sm">
+                <Link href={"#"} className={` text-sm ${theme}-text`}>
                   <FaFacebook />
                 </Link>
-                <Link href={"#"} className="text-white text-sm">
+                <Link href={"#"} className={` text-sm ${theme}-text`}>
                   <FaTwitter />
                 </Link>
-                <Link href={"#"} className="text-white text-sm">
+                <Link href={"#"} className={` text-sm ${theme}-text`}>
                   <FaLinkedin />
                 </Link>
-                <Link href={"#"} className="text-white text-sm">
+                <Link href={"#"} className={` text-sm ${theme}-text`}>
                   <FaYoutube />
                 </Link>
-                <Link href={"#"} className="text-white text-sm">
+                <Link href={"#"} className={` text-sm ${theme}-text`}>
                   <FaSoundcloud />
                 </Link>
               </div>
 
               <div className="flex items-center gap-1">
-                <FaUser className="text-white text-sm" />
-                <p>John Doe</p>
+                <FaUser className={` text-sm ${theme}-text`} />
+                <p className={`${theme}-text`}>John Doe</p>
               </div>
 
               <div className="flex items-center gap-1">
-                <FaComment className="text-white text-sm" />
-                <p>44 Commnents</p>
+                <FaComment className={` text-sm ${theme}-text`} />
+                <p className={`${theme}-text`}>44 Commnents</p>
               </div>
 
               <div className="flex items-center gap-1">
-                <FaClock className="text-white text-sm" />
-                <p>14 March, 2024</p>
+                <FaClock className={` text-sm ${theme}-text`} />
+                <p className={`${theme}-text`}>14 March, 2024</p>
               </div>
             </div>
           </div>
@@ -179,25 +179,23 @@ function SingleEventPage() {
             delectus voluptatibus fuga exercitationem unde!
           </div>
 
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Buy Tickets to Event</h1>
-          </div>
+          <CategoriesHeading title={"Buy Ticket to Events"} />
 
-          <div className="flex justify-between bg-gray-800">
+          <div className={`flex justify-between ${theme}-bg py-4`}>
             <div className="flex justify-center w-1/4 p-8">
-              <p>Ticket Type</p>
+              <p className={`${theme}-text`}>Ticket Type</p>
             </div>
 
             <div className="flex justify-center w-1/4 p-8">
-              <p>Price</p>
+              <p className={`${theme}-text`}>Price</p>
             </div>
 
             <div className="flex justify-center w-1/4 p-8">
-              <p>Qty</p>
+              <p className={`${theme}-text`}>Qty</p>
             </div>
 
             <div className="flex justify-center w-1/4 p-8">
-              <p>Purchase</p>
+              <p className={`${theme}-text`}>Purchase</p>
             </div>
           </div>
 
@@ -216,28 +214,28 @@ function SingleEventPage() {
             />
             <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-between items-center p-20">
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">72</h1>
-                <p>Days</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>72</h1>
+                <p className={`${theme}-text`}>Days</p>
               </div>
 
-              <p>:</p>
+              <p className={`${theme}-text`}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">34</h1>
-                <p>Hours</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>34</h1>
+                <p className={`${theme}-text`}>Hours</p>
               </div>
 
-              <p>:</p>
+              <p className={`${theme}-text`}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">27</h1>
-                <p>Minutes</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>27</h1>
+                <p className={`${theme}-text`}>Minutes</p>
               </div>
 
-              <p>:</p>
+              <p className={`${theme}-text`}>:</p>
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold">10</h1>
-                <p>Seconds</p>
+                <h1 className={`${theme}-text text-4xl font-bold`}>10</h1>
+                <p className={`${theme}-text`}>Seconds</p>
               </div>
             </div>
           </div>
@@ -261,24 +259,24 @@ function SingleEventPage() {
             <div className=" md:flex w-full gap-4 my-2">
               <input
                 type="text"
-                className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="firstname"
               />
               <input
                 type="phone"
-                className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="phonenumber"
               />
             </div>
             <div className="md:flex w-full gap-4 my-2">
               <input
                 type="email"
-                className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="Email Address"
               />
               <input
                 type="text"
-                className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={` my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="website"
               />
             </div>
@@ -288,13 +286,11 @@ function SingleEventPage() {
               id=""
               cols="30"
               rows="10"
-              className="w-full h-[300px] my-2 p-4 bg-slate-800"
+              className={` ${theme}-bgg w-full h-[300px] my-2 p-4 bg-slate-800`}
               placeholder="Type your comments"
             ></textarea>
 
-            <button className="w-full py-4 px-8 bg-primarycolor text-white">
-              Send Comments
-            </button>
+            <Button title={"Send Comments"} />
           </form>
         </div>
 
@@ -302,17 +298,17 @@ function SingleEventPage() {
           <CategoriesHeading title={"Get Connected"} />
 
           <div className="flex justify-between p-4">
-            <FaFacebook className="text-3xl text-white" />
-            <FaTwitter className="text-3xl text-white" />
-            <FaLinkedin className="text-3xl text-white" />
-            <FaYoutube className="text-3xl text-white" />
-            <FaInstagram className="text-3xl text-white" />
-            <FaPinterest className="text-3xl text-white" />
+            <FaFacebook className={` ${theme}-text text-3xl `} />
+            <FaTwitter className={` ${theme}-text text-3xl `} />
+            <FaLinkedin className={` ${theme}-text text-3xl `} />
+            <FaYoutube className={` ${theme}-text text-3xl `} />
+            <FaInstagram className={` ${theme}-text text-3xl `} />
+            <FaPinterest className={` ${theme}-text text-3xl `} />
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
-          <div className="my-8 bg-gray-800">
+          <div className={`${theme}-bgg my-8 `}>
             <div className="p-10 flex flex-col justify-center items-center">
               <div className="w-[50px] h-[50px]">
                 <Image
@@ -323,21 +319,21 @@ function SingleEventPage() {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              <h1>John Does</h1>
-              <p>Organizer</p>
+              <h1 className={`${theme}-text`}>John Does</h1>
+              <p className={`${theme}-text`}>Organizer</p>
             </div>
             <div className="flex justify-center gap-4">
               <div className="flex flex-col items-center p-4">
-                <p>779</p>
-                <p>concerts</p>
+                <p className={`${theme}-text`}>779</p>
+                <p className={`${theme}-text`}>concerts</p>
               </div>
               <div className="flex flex-col items-center p-4">
-                <p>779</p>
-                <p>concerts</p>
+                <p className={`${theme}-text`}>779</p>
+                <p className={`${theme}-text`}>concerts</p>
               </div>
               <div className="flex flex-col items-center p-4">
-                <p>779</p>
-                <p>concerts</p>
+                <p className={`${theme}-text`}>779</p>
+                <p className={`${theme}-text`}>concerts</p>
               </div>
             </div>
 
@@ -349,7 +345,7 @@ function SingleEventPage() {
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 10 Artists"} />
 
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-3 md:flex md:flex-col gap-2">
             <TopMusic />
             <TopMusic />
             <TopMusic />
@@ -363,15 +359,12 @@ function SingleEventPage() {
           {/* TOP PLAYLIST SECTION */}
           <CategoriesHeading title={"Top Playlist"} />
 
-          <div className="flex flex-col gap-2">
-            <TopPlaylist />
+          <div className=" grid grid-cols-2 md:flex md:flex-col gap-2">
             <TopPlaylist />
             <TopPlaylist />
             <TopPlaylist />
             <TopPlaylist />
           </div>
-
-          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
