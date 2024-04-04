@@ -1,7 +1,12 @@
+"use client";
+import CategoriesHeading from "@/components/CategoriesHeading";
 import RecentPost from "@/components/RecentPost";
+import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import Videos from "@/components/Videos";
+import { ThemeContext } from "@/context/ThemeContext";
+import { useContext } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -12,29 +17,23 @@ import {
 } from "react-icons/fa";
 
 function VideosHome() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="bg-primarycolor p-32 flex flex-col items-center">
-        <h1 className="font-bold text-6xl">All Videos</h1>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quidem
-          cum repudiandae praesentium. Molestias, voluptatum eaque debitis culpa
-          exercitationem rerum?
-        </p>
-      </section>
+      <SectionHeader title={"All videos"} desc={"some"} />
 
       <section className="w-full md:w-5/6 mx-auto py-10">
         <div className="p-6">
-          <h1 className="text-4xl font-bold">
+          <h1 className={`${theme}-text text-4xl font-bold`}>
             Find the most recent video release
           </h1>
-          <p>
+          <p className={`${theme}-text`}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum,
             consequatur.
           </p>
         </div>
       </section>
-      <section className=" md:w-5/6 p-8 mx-auto md:flex md:gap-8">
+      <section className=" md:w-5/6 p-4 md:p-8 mx-auto md:flex md:gap-8">
         <div className="w-full p-4 md:w-3/5 flex flex-col gap-8">
           <Videos />
           <Videos />
@@ -46,11 +45,9 @@ function VideosHome() {
 
         <div className=" p-4 md:w-2/5">
           {/* TOP ARTIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Top 10 Artists</h1>
-          </div>
+          <CategoriesHeading title={"Top 10 Artist"} />
 
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2 py-4 md:flex flex-col gap-2">
             <TopMusic />
             <TopMusic />
             <TopMusic />
@@ -62,12 +59,9 @@ function VideosHome() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* TOP PLAYLIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Top Playlists</h1>
-          </div>
+          <CategoriesHeading title={"Top Playlist"} />
 
-          <div className="flex flex-col gap-2">
-            <TopPlaylist />
+          <div className="grid grid-cols-2 py-4 md:flex flex-col gap-2">
             <TopPlaylist />
             <TopPlaylist />
             <TopPlaylist />
@@ -77,25 +71,21 @@ function VideosHome() {
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* GET CONNECTED */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Get Cnnected</h1>
-          </div>
+          <CategoriesHeading title={"Get Connected"} />
 
           <div className="flex justify-between p-4">
-            <FaFacebook className="text-3xl text-white" />
-            <FaTwitter className="text-3xl text-white" />
-            <FaLinkedin className="text-3xl text-white" />
-            <FaYoutube className="text-3xl text-white" />
-            <FaInstagram className="text-3xl text-white" />
-            <FaPinterest className="text-3xl text-white" />
+            <FaFacebook className={`text-3xl ${theme}-text`} />
+            <FaTwitter className={`text-3xl ${theme}-text`} />
+            <FaLinkedin className={`text-3xl ${theme}-text`} />
+            <FaYoutube className={`text-3xl ${theme}-text`} />
+            <FaInstagram className={`text-3xl ${theme}-text`} />
+            <FaPinterest className={`text-3xl ${theme}-text`} />
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
 
           {/* Recent post section */}
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Recent Post</h1>
-          </div>
+          <CategoriesHeading title={"Recent Posts"} />
 
           <div className=" flex flex-col gap-1 pt-4 ">
             <RecentPost />

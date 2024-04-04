@@ -1,8 +1,12 @@
+"use client";
+import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import { FaPlay, FaPlayCircle, FaPlus } from "react-icons/fa";
 
 function Videos() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <Link href={`/videoshome/1`} className="md:flex w-full">
@@ -19,20 +23,19 @@ function Videos() {
           </div>
         </div>
 
-        <div className="p-8 w-full md:w-1/2">
-          <h1 className="font-bold text-xl">
-            All The Red Carpet Looks From The 2017 Music Awards
+        <div className="md:p-8 p-4 w-full md:w-1/2">
+          <h1 className={`${theme}-text font-bold text-xl`}>
+            All The Red Carpet Looks
           </h1>
 
-          <div className="flex">
-            <p>Arditta Colle -25 July, 2017</p>
-            <p>4 Comments</p>
+          <div className="md:flex">
+            <p className={`${theme}-text`}>Arditta Colle -25 July, 2017</p>
+            <p className={`${theme}-text`}>4 Comments</p>
           </div>
 
           <p className="text-gray-600">
             Sed cursus eget risus non vestibulum. Sed in molestie elit, vitae
-            condimentum justo. Aenean vulputate leo metus, sed imperdiet lorem
-            fermentum et metus, sed imperdiet .
+            condimentum justo....
           </p>
         </div>
       </Link>

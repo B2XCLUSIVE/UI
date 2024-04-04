@@ -9,9 +9,9 @@ function ArtistSong() {
   return (
     <>
       <div
-        className={`${theme}-bgg flex gap-4 items-center justify-between pr-8`}
+        className={`${theme}-bgg flex gap-4 items-center p-4 justify-between pr-8`}
       >
-        <div className={`bg-gray-300 p-4`}>
+        <div className={`bg-gray-300 md:block hidden p-4`}>
           <div className="w-[50px] h-[50px] rounded-full">
             <Image
               src={"/alb.jpeg"}
@@ -30,7 +30,7 @@ function ArtistSong() {
 
         <div className="flex gap-4">
           <h1 className={`${theme}-text`}>Artist</h1>
-          <h1 className={`${theme}-text`}>Album</h1>
+          <h1 className={`${theme}-text md:block hidden`}>Album</h1>
         </div>
 
         <div className="flex gap-4 md:block hidden">
