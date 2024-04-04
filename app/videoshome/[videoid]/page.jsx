@@ -1,8 +1,13 @@
+"use client";
 import Button from "@/components/Button";
+import CategoriesHeading from "@/components/CategoriesHeading";
 import Comments from "@/components/Comments";
 import RecentPost from "@/components/RecentPost";
+import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
+import { ThemeContext } from "@/context/ThemeContext";
+import { useContext } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -13,18 +18,12 @@ import {
 } from "react-icons/fa";
 
 function VideoId() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="bg-primarycolor p-32 flex flex-col items-center">
-        <h1 className="font-bold text-6xl">All Videos</h1>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quidem
-          cum repudiandae praesentium. Molestias, voluptatum eaque debitis culpa
-          exercitationem rerum?
-        </p>
-      </section>
+      <SectionHeader title={"All videos"} desc={"some"} />
 
-      <section className=" md:w-5/6 p-8 mx-auto md:flex md:gap-8">
+      <section className=" md:w-5/6 md:p-8 p-4 mx-auto md:flex md:gap-8">
         <div className="w-full p-4 md:w-3/5 flex flex-col gap-8">
           <div>
             <div className="w-full">
@@ -34,7 +33,7 @@ function VideoId() {
             </div>
 
             <div className="p-4">
-              <h1 className="font-bold text-2xl">
+              <h1 className={`font-bold text-2xl ${theme}-text`}>
                 Proin Gravida Nibh Vel Velit Auctor Aliquet. Aenean Sollicitudin
               </h1>
 
@@ -42,9 +41,7 @@ function VideoId() {
             </div>
           </div>
 
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Comments</h1>
-          </div>
+          <CategoriesHeading title={"Comments"} />
 
           <Comments />
           <Comments />
