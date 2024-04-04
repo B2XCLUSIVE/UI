@@ -15,11 +15,11 @@ function Artists() {
       <section className="w-full md:w-5/6 mx-auto py-10 px-8">
         <div>
           <h1
-            className={`${theme}-text md:text-left text-center text-4xl font-bold`}
+            className={`${theme}-text md:text-left text-center text-lg md:text-4xl font-bold`}
           >
             Find the most recent music release
           </h1>
-          <p className={`${theme}-text`}>
+          <p className={`${theme}-text text-center md:text-left`}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum,
             consequatur.
           </p>
@@ -50,8 +50,8 @@ function Artists() {
         <div className="border  p-2 ">
           <p>2</p>
         </div>
-
         <div className="border  p-2 ">
+          {" "}
           <p>3</p>
         </div>
 
