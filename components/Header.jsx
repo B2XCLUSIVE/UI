@@ -117,6 +117,7 @@ function Header() {
                 <Link href={"#"}>
                   <FaUser onClick={authDisplay} />
                 </Link>
+                <Link href={"/overview"}>My profile</Link>
 
                 <div onClick={toggle}>
                   {theme === "light" ? (

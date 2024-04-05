@@ -1,0 +1,81 @@
+"use client";
+
+const { ThemeContext } = require("@/context/ThemeContext");
+const { useContext } = require("react");
+const {
+  FaArrowLeft,
+  FaChartBar,
+  FaRegChartBar,
+  FaCalendar,
+  FaUser,
+  FaChartPie,
+  FaNotesMedical,
+  FaTools,
+} = require("react-icons/fa");
+import Link from "next/link";
+function SideBar() {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <>
+      <div className={`${theme}-bgg p-4 w-2/12  `}>
+        <div className="flex justify-between">
+          <h1>Menu</h1>
+
+          <FaArrowLeft className={`${theme}-text`} />
+        </div>
+
+        <div className="py-4">
+          <Link
+            href={"#"}
+            className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
+          >
+            <FaChartBar />
+            Dashboard
+          </Link>
+
+          <Link
+            href={"#"}
+            className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
+          >
+            <FaChartPie />
+            Analytics
+          </Link>
+
+          <Link
+            href={"#"}
+            className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
+          >
+            <FaCalendar />
+            Content
+          </Link>
+
+          <Link
+            href={"#"}
+            className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
+          >
+            <FaUser />
+            Followers
+          </Link>
+
+          <Link
+            href={"#"}
+            className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
+          >
+            <FaNotesMedical />
+            Create Post
+          </Link>
+
+          <Link
+            href={"#"}
+            className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
+          >
+            <FaTools />
+            Settings
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default SideBar;
