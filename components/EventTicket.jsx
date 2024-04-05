@@ -1,5 +1,5 @@
 "use client";
-import <div className="flex gap-1"> ThemeContext } from "@/context/ThemeContext";
+import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
