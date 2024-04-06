@@ -17,16 +17,16 @@ function SideBar() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div className={`${theme}-bgg p-4 w-2/12  `}>
+      <div className={`border-r border-gray-500 p-4 w-2/12  `}>
         <div className="flex justify-between">
-          <h1>Menu</h1>
+          <h1 className={`${theme}-text font-bold`}>Menu</h1>
 
           <FaArrowLeft className={`${theme}-text`} />
         </div>
 
         <div className="py-4">
           <Link
-            href={"#"}
+            href={"/overview"}
             className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
           >
             <FaChartBar />
