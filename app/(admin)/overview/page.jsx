@@ -1,6 +1,8 @@
 "use client";
 import Charts from "@/components/Charts";
 import Example from "@/components/Charts";
+import Followers from "@/components/Followers";
+import Post from "@/components/Post";
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
 import { FaBlog, FaComment, FaEye, FaUser } from "react-icons/fa";
@@ -9,7 +11,7 @@ function Overview() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="w-8/12 p-8 flex flex-col gap-4">
+      <section className="w-10/12 p-8 flex flex-col gap-4">
         <h1 className={`${theme}-text text-3xl font-bold my-2`}>Overview</h1>
         <div className="grid grid-cols-4 gap-4">
           <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
@@ -89,23 +91,37 @@ function Overview() {
           <Charts />
         </section>
 
-        <section>
-          <div className="p-4 w-2/6 rounded-lg">
+        <section className="flex gap-4">
+          <div className=" w-2/6 rounded-lg">
             <h1 className={`${theme}-text font-bold`}>Recent 5 followers</h1>
 
-            <div className="border flex justify-between border-gray-600 rounded-lg p-4">
+            <div className="border flex justify-between border-gray-600 rounded-ss rounded-se p-4">
               <h1 className={`${theme}-text font-bold`}>Followers</h1>
               <p className={`${theme}-text font-bold`}>Date</p>
             </div>
 
-            <div className="border flex justify-between border-gray-600 rounded-lg p-4">
-              <div>
-                <div></div>
+            <Followers />
+
+            <Followers />
+            <Followers />
+            <Followers />
+          </div>
+
+          <div className="w-4/6">
+            <h1 className={`${theme}-text font-bold`}>Recent 5 Content</h1>
+
+            <div className="border flex justify-between border-gray-600 rounded-se rounded-ss p-4">
+              <h1 className={`${theme}-text font-bold`}>Post Title</h1>
+              <div className="flex gap-8">
+                <h1 className={`${theme}-text`}>Views</h1>
+                <h1 className={`${theme}-text`}>Date</h1>
               </div>
-
-              <h1 className={`${theme}-text font-bold`}>Followers</h1>
-              <p className={`${theme}-text font-bold`}>Date</p>
             </div>
+
+            <Post />
+            <Post />
+            <Post />
+            <Post />
           </div>
         </section>
       </section>
