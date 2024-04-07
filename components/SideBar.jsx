@@ -42,7 +42,7 @@ function SideBar() {
           </Link>
 
           <Link
-            href={"#"}
+            href={"/contents"}
             className={`${theme}-text flex p-4 hover:bg-primarycolor items-center gap-2`}
           >
             <FaCalendar />
