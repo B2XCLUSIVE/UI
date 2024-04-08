@@ -1,37 +1,43 @@
 "use client";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic"; // Import 'dynamic' from 'next/dynamic' for dynamic component loading
+
+// Load ReactQuill dynamically to avoid server-side rendering issues
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
 
 function CreatePost() {
   const { theme } = useContext(ThemeContext);
-  const toolbaroptions = [
+  const [showQuill, setShowQuill] = useState(false); // State to track when to render ReactQuill
+
+  useEffect(() => {
+    // Set showQuill to true only after the component mounts (on the client-side)
+    setShowQuill(true);
+  }, []);
+
+  const toolbarOptions = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
     ["link", "image", "video", "formula"],
-
     [{ header: 1 }, { header: 2 }], // custom button values
     [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
     [{ script: "sub" }, { script: "super" }], // superscript/subscript
     [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
     [{ direction: "rtl" }], // text direction
-
     [{ size: ["small", false, "large", "huge"] }], // custom dropdown
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
     [{ color: [] }, { background: [] }], // dropdown with defaults from theme
     [{ font: [] }],
     [{ align: [] }],
-
     ["clean"], // remove formatting button
   ];
 
-  const selectedmodule = {
-    toolbar: toolbaroptions,
+  const selectedModules = {
+    toolbar: toolbarOptions,
   };
-
   return (
     <>
       <section className="w-10/12">
@@ -90,7 +96,10 @@ function CreatePost() {
 
           <div className="flex flex-col gap-2">
             <label htmlFor="">Post Descriptions</label>
-            <ReactQuill modules={selectedmodule} theme="snow" />
+            {showQuill && (
+              <ReactQuill modules={selectedModules} theme="snow" />
+            )}{" "}
+            {/* Render ReactQuill only when showQuill is true */}
           </div>
         </form>
       </section>
