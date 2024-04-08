@@ -20,6 +20,7 @@ import {
   FaMicrophone,
   FaMusic,
   FaPinterest,
+  FaSearch,
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
@@ -31,14 +32,16 @@ export default function Home() {
       <section className="herosection p-8 md:p-12">
         <p>The B2EXCLUSIVE Blog</p>
         <h1 className="text-4xl font-extrabold text-center">
-          Stories, Thoughts <br /> Ideas and More
+          Stories, Thoughts Ideas and More
         </h1>
 
-        <p className="text-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, non
-          optio. Ipsa culpa quibusdam necessitatibus!
-        </p> 
-
+        <div className="w-full md:w-5/6 rounded-full flex items-center border border-white">
+          <input
+            type="text"
+            placeholder="Search here"
+            className="w-11/12 bg-transparent p-4 outline-none"
+          />
+        </div>
         <div className="flex gap-4">
           <Link
             className="py-1 px-4 rounded-full border border-white"
@@ -175,8 +178,8 @@ export default function Home() {
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 6 Artists"} />
 
-          <div className="grid grid-cols-3 md:flex md:flex-col gap-2 py-2"> 
-        <TopMusic />
+          <div className="grid grid-cols-3 md:flex md:flex-col gap-2 py-2">
+            <TopMusic />
             <TopMusic />
             <TopMusic />
             <TopMusic />
