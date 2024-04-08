@@ -46,7 +46,9 @@
   gap: 0.5rem;
   color: white;
 }
-
+.ql-editor p {
+  color: black;
+}
 h1 {
   color: white;
 }

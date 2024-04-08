@@ -28,7 +28,7 @@ function CreatePost() {
     ["clean"], // remove formatting button
   ];
 
-  const module = {
+  const selectedmodule = {
     toolbar: toolbaroptions,
   };
 
@@ -90,7 +90,7 @@ function CreatePost() {
 
           <div className="flex flex-col gap-2">
             <label htmlFor="">Post Descriptions</label>
-            <ReactQuill modules={module} theme="snow" />
+            <ReactQuill modules={selectedmodule} theme="snow" />
           </div>
         </form>
       </section>
