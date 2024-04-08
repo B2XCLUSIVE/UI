@@ -10,7 +10,7 @@ function PostContent() {
 
   return (
     <>
-      <div className="w-full p-2 flex items-center border border-gray-600 rounded-se rounded-ss">
+      <div className="w-full p-2 flex items-center border border-gray-100 rounded-se rounded-ss">
         <div className="w-6/12 flex items-center gap-2">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image

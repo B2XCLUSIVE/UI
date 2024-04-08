@@ -77,10 +77,10 @@ export default function Linechart() {
         yAxisId="left"
         type="monotone"
         dataKey="pv"
-        stroke="#8884d8"
+        stroke="#797979"
         activeDot={{ r: 8 }}
       />
-      <Line yAxisId="right" type="monotone" dataKey="uv" stroke="#82ca9d" />
+      <Line yAxisId="right" type="monotone" dataKey="uv" stroke="#FFA500" />
     </LineChart>
   );
 }

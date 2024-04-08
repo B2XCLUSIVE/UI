@@ -8,7 +8,7 @@ function Post() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div className="border flex justify-between border-gray-600  p-2">
+      <div className="border flex justify-between border-gray-100  p-2">
         <div className="flex gap-2 items-center">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image

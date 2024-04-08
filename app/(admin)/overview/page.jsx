@@ -14,7 +14,7 @@ function Overview() {
       <section className="w-10/12 p-8 flex flex-col gap-4">
         <h1 className={`${theme}-text text-3xl font-bold my-2`}>Overview</h1>
         <div className="grid grid-cols-4 gap-4">
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Total Posts</h1>
               <FaBlog className={`${theme}-text`} />
@@ -32,7 +32,7 @@ function Overview() {
             </div>
           </div>
 
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Followers</h1>
               <FaUser className={`${theme}-text`} />
@@ -50,7 +50,7 @@ function Overview() {
             </div>
           </div>
 
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Total Views</h1>
               <FaEye className={`${theme}-text`} />
@@ -68,7 +68,7 @@ function Overview() {
             </div>
           </div>
 
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Total Comments</h1>
               <FaComment className={`${theme}-text`} />
@@ -95,7 +95,7 @@ function Overview() {
           <div className=" w-2/6 rounded-lg">
             <h1 className={`${theme}-text font-bold`}>Recent 5 followers</h1>
 
-            <div className="border flex justify-between border-gray-600 rounded-ss rounded-se p-4">
+            <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
               <h1 className={`${theme}-text font-bold`}>Followers</h1>
               <p className={`${theme}-text font-bold`}>Date</p>
             </div>
@@ -110,7 +110,7 @@ function Overview() {
           <div className="w-4/6">
             <h1 className={`${theme}-text font-bold`}>Recent 5 Content</h1>
 
-            <div className="border flex justify-between border-gray-600 rounded-se rounded-ss p-4">
+            <div className="border flex justify-between border-gray-100 rounded-se rounded-ss p-4">
               <h1 className={`${theme}-text font-bold`}>Post Title</h1>
               <div className="flex gap-8">
                 <h1 className={`${theme}-text`}>Views</h1>

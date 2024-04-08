@@ -10,8 +10,8 @@ function Contents() {
   return (
     <>
       <section className="w-10/12">
-        <h1>Contents (4 of 4 records)</h1>
-        <div className="w-full p-2 flex border border-gray-600 rounded-se rounded-ss">
+        <h1 className={`${theme}-text my-4`}>Contents (4 of 4 records)</h1>
+        <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
           <div className="w-6/12">
             <h1 className={`${theme}-text font-bold`}>Posts</h1>
           </div>

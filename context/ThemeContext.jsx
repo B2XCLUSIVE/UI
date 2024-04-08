@@ -4,9 +4,9 @@ import { createContext, useState } from "react";
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const toggle = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const [showAuth, setShowAuth] = useState(false);

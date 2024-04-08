@@ -23,7 +23,7 @@ function Overview() {
         </div>
 
         <div className="grid grid-cols-4 gap-4">
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Total Posts</h1>
               <FaBlog className={`${theme}-text`} />
@@ -41,7 +41,7 @@ function Overview() {
             </div>
           </div>
 
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Followers</h1>
               <FaUser className={`${theme}-text`} />
@@ -59,7 +59,7 @@ function Overview() {
             </div>
           </div>
 
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Total Views</h1>
               <FaEye className={`${theme}-text`} />
@@ -77,7 +77,7 @@ function Overview() {
             </div>
           </div>
 
-          <div className="p-4 border border-gray-600 flex flex-col justify-between h-[120px] rounded-lg">
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`${theme}-text`}>Total Comments</h1>
               <FaComment className={`${theme}-text`} />
@@ -104,7 +104,7 @@ function Overview() {
           <div className=" w-full rounded-lg">
             <h1 className={`${theme}-text font-bold`}>Recent 5 followers</h1>
 
-            <div className="border flex justify-between border-gray-600 rounded-ss rounded-se p-4">
+            <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
               <h1 className={`${theme}-text font-bold`}>Followers</h1>
               <p className={`${theme}-text font-bold`}>Date</p>
             </div>
