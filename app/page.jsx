@@ -29,31 +29,48 @@ export default function Home() {
   const { theme } = useContext(ThemeContext);
   return (
     <main>
-      <section className="herosection p-8 md:p-12">
-        <p>The B2EXCLUSIVE Blog</p>
-        <h1 className="text-4xl font-extrabold text-center">
+      <section className="herosection p-8 md:p-36 relative">
+        <div className="bg-[#000] opacity-35 w-full h-full absolute top-0 left-0 right-0 bottom-0"></div>
+
+        <h1 className="text-4xl font-extrabold text-center z-10">
           Stories, Thoughts Ideas and More
         </h1>
+        <p className="z-10">
+          Ignite Your Curiosity and Imagination Through Captivating Stories and
+          Inspiring Insights. Explore, Learn, and Discover with Us!
+        </p>
 
-        <div className="w-full md:w-5/6 rounded-full flex items-center border border-white">
+        <div className="w-full md:w-5/6 rounded-full flex items-center z-10 border border-white">
           <input
             type="text"
             placeholder="Search here"
-            className="w-11/12 bg-transparent p-4 outline-none"
+            className="w-11/12 bg-transparent p-4 text-white outline-none"
           />
+          <button className="rounded-full bg-primarycolor flex items-center py-2 gap-1 px-4">
+            <FaSearch /> Search
+          </button>
         </div>
-        <div className="flex gap-4">
+        <div className="flex z-10 gap-4">
           <Link
-            className="py-1 px-4 rounded-full border border-white"
+            className="py-1 text-white flex items-center gap-1 px-4 rounded-full border border-white"
             href={"#"}
           >
-            Continue
+            <FaSearch />
+            Trending Music
           </Link>
           <Link
-            className="py-1 px-4 rounded-full border border-white"
+            className="py-1 text-white flex items-center gap-1 px-4 rounded-full border border-white"
             href={"#"}
           >
-            Explore
+            <FaSearch />
+            Viral Videos
+          </Link>
+          <Link
+            className="py-1 text-white flex items-center gap-1 px-4 rounded-full border border-white"
+            href={"#"}
+          >
+            <FaSearch />
+            Trending Topics
           </Link>
         </div>
       </section>
