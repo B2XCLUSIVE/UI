@@ -29,7 +29,7 @@ function Blogs() {
 
       <section className=" md:w-5/6 md:p-8 mx-auto md:flex md:gap-8">
         <div className="w-full md:w-3/5">
-          <div className="p-4 grid grid-cols-2 gap-4">
+          <div className="p-4 grid gap-4">
             <BlogPost />
             <BlogPost />
             <BlogPost />
@@ -40,47 +40,63 @@ function Blogs() {
             <BlogPost />
           </div>
 
-          <section className=" p-4 md:p-8 mx-auto gap-2 flex justify-center ">
-            <div className="border  p-2 ">
-              <p>PREV</p>
+          <section
+            className={`p-4 md:p-8 mx-auto gap-2 flex justify-center ${theme}-text `}
+          >
+            <div className={`border  p-2 `}>
+              <p className={`${theme}-text`}>PREV</p>
             </div>
 
             <div className="border  p-2 ">
-              <p>1</p>
+              <p className={`${theme}-text`}>1</p>
             </div>
 
             <div className="border  p-2 ">
-              <p>2</p>
+              <p className={`${theme}-text`}>2</p>
             </div>
 
             <div className="border  p-2 ">
-              <p>3</p>
+              <p className={`${theme}-text`}>3</p>
             </div>
 
             <div className="border  p-2 ">
-              <p>4</p>
+              <p className={`${theme}-text`}>4</p>
             </div>
 
             <div className="border  p-2 ">
-              <p>...</p>
+              <p className={`${theme}-text`}>...</p>
             </div>
 
             <div className="border  p-2 ">
-              <p>NEXT</p>
+              <p className={`${theme}-text`}>3</p>
             </div>
           </section>
         </div>
         <div className=" p-4 md:w-2/5">
           {/* TOP ARTIST SECTION */}
-          <CategoriesHeading title={"Top 10 Artists"} />
+          <h1 className={`${theme}-text font-bold`}>
+            Discover more of what matters to you
+          </h1>
 
-          <div className="grid grid-cols-2 md:flex md:flex-col gap-2 py-2">
-            <TopMusic />
-            <TopMusic />
-            <TopMusic />
-            <TopMusic />
-            <TopMusic />
-            <TopMusic />
+          <div className="flex flex-wrap gap-2 py-2">
+            <p className="text-white py-1 font-bold text-[14px]  px-3 bg-primarycolor rounded-full">
+              Music
+            </p>
+            <p className="text-white py-1 font-bold text-[14px]  px-3 bg-primarycolor rounded-full">
+              Trending Blogs
+            </p>
+            <p className="text-white py-1 font-bold text-[14px]  px-3 bg-primarycolor rounded-full">
+              Top Videos
+            </p>
+            <p className="text-white py-1 font-bold text-[14px]  px-3 bg-primarycolor rounded-full">
+              New release
+            </p>
+            <p className="text-white py-1 font-bold text-[14px]  px-3 bg-primarycolor rounded-full">
+              Top Videos
+            </p>
+            <p className="text-white py-1 font-bold text-[14px]  px-3 bg-primarycolor rounded-full">
+              Trending Stories
+            </p>
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>

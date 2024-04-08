@@ -7,20 +7,21 @@ function RecentPost() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <div
-        className={`${theme}-bgg p-3 md:p-4 flex gap-3 md:gap-4  items-center `}
-      >
-        <div className="w-[100px] h-[100px]">
+      <div className={` p-3 md:p-4 flex gap-3 md:gap-4  items-center `}>
+        <div className="w-1/2 rounded-lg h-[100px]">
           <Image
             src={"/albumcover.jpeg"}
             width={1000}
             height={1000}
             alt="all"
-            className="w-full h-full object-cover"
+            className="w-full h-full rounded-lg object-cover"
           />
         </div>
 
-        <div>
+        <div className="flex flex-col items-start">
+          <p className="text-white py-1 font-bold text-[10px]  px-3 bg-blue-500 rounded-full">
+            Trending
+          </p>
           <h1 className={`${theme}-text font-bold text-[14px] md:text-xl`}>
             Red Hot chilly peppers ready to slow down
           </h1>
