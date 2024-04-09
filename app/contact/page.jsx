@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/Button";
 import SectionHeader from "@/components/SectionHeader";
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
@@ -34,28 +35,28 @@ function Contact() {
               <h1 className={`${theme}-text font-bold text-4xl`}>
                 Get In Touch
               </h1>
-              <form className="p-2">
+              <form className="p-4">
                 <div className=" md:flex w-full gap-4 my-2">
                   <input
                     type="text"
-                    className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                    className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                     placeholder="firstname"
                   />
                   <input
                     type="phone"
-                    className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                    className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                     placeholder="phonenumber"
                   />
                 </div>
                 <div className="md:flex w-full gap-4 my-2">
                   <input
                     type="email"
-                    className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                    className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                     placeholder="Email Address"
                   />
                   <input
                     type="text"
-                    className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                    className={` my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                     placeholder="website"
                   />
                 </div>
@@ -65,13 +66,11 @@ function Contact() {
                   id=""
                   cols="30"
                   rows="10"
-                  className="w-full h-[300px] my-2 p-4 bg-slate-800"
+                  className={` ${theme}-bgg w-full h-[300px] my-2 p-4 bg-slate-800`}
                   placeholder="Type your comments"
                 ></textarea>
 
-                <button className="w-full py-4 px-8 bg-primarycolor text-white">
-                  Send Comments
-                </button>
+                <Button title={"Send Comments"} />
               </form>
             </div>
 
