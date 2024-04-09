@@ -34,13 +34,47 @@ function VideosHome() {
         </div>
       </section>
       <section className=" md:w-5/6 p-4 md:p-8 mx-auto md:flex md:gap-8">
-        <div className="w-full p-4 md:w-3/5 flex flex-col gap-8">
-          <Videos />
-          <Videos />
-          <Videos />
-          <Videos />
-          <Videos />
-          <Videos />
+        <div className="w-3/6">
+          <div className="w-full p-4 md:w-full flex flex-col gap-8">
+            <Videos />
+            <Videos />
+            <Videos />
+            <Videos />
+            <Videos />
+            <Videos />
+          </div>
+
+          <section
+            className={`p-4 md:p-8 mx-auto gap-2 flex justify-center ${theme}-text `}
+          >
+            <div className={`border  p-2 `}>
+              <p className={`${theme}-text`}>PREV</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p className={`${theme}-text`}>1</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p className={`${theme}-text`}>2</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p className={`${theme}-text`}>3</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p className={`${theme}-text`}>4</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p className={`${theme}-text`}>...</p>
+            </div>
+
+            <div className="border  p-2 ">
+              <p className={`${theme}-text`}>3</p>
+            </div>
+          </section>
         </div>
 
         <div className=" p-4 md:w-2/5">

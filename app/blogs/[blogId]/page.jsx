@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/Button";
 import CategoriesHeading from "@/components/CategoriesHeading";
 import Comments from "@/components/Comments";
 import RelatedArticles from "@/components/RelatedArticles";
@@ -129,6 +130,44 @@ function SingleBlog() {
 
         <CategoriesHeading title={"Comments"} />
         <Comments />
+
+        <form className="p-4">
+          <div className=" md:flex w-full gap-4 my-2">
+            <input
+              type="text"
+              className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+              placeholder="firstname"
+            />
+            <input
+              type="phone"
+              className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+              placeholder="phonenumber"
+            />
+          </div>
+          <div className="md:flex w-full gap-4 my-2">
+            <input
+              type="email"
+              className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+              placeholder="Email Address"
+            />
+            <input
+              type="text"
+              className={` my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+              placeholder="website"
+            />
+          </div>
+
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            className={` ${theme}-bgg w-full h-[300px] my-2 p-4 bg-slate-800`}
+            placeholder="Type your comments"
+          ></textarea>
+
+          <Button title={"Send Comments"} />
+        </form>
       </section>
     </>
   );

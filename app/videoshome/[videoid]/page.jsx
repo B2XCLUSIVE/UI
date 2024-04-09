@@ -8,14 +8,19 @@ import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
+import Image from "next/image";
 import {
+  FaComment,
   FaFacebook,
+  FaHeart,
   FaInstagram,
   FaLinkedin,
   FaPinterest,
+  FaShare,
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import RelatedArticles from "@/components/RelatedArticles";
 
 function VideoId() {
   const { theme } = useContext(ThemeContext);
@@ -32,13 +37,61 @@ function VideoId() {
               </video>
             </div>
 
-            <div className="p-4">
-              <h1 className={`font-bold text-2xl ${theme}-text`}>
-                Proin Gravida Nibh Vel Velit Auctor Aliquet. Aenean Sollicitudin
+            <div className="py-4">
+              <h1 className={`${theme}-text text-4xl md:text-5xl font-bold`}>
+                The Painfully Obvious Reason Why Palestinians Don’t Condemn
+                Hamas
               </h1>
-
-              <div></div>
+              <p className={`${theme}-text`}>
+                A call for Palestine’s freedom is not a call for Israel’s
+                destruction.
+              </p>
             </div>
+
+            <div className="flex gap-2">
+              <div className="w-[50px] h-[50px] rounded-full">
+                <Image
+                  src={"/alb.jpeg"}
+                  width={1000}
+                  height={1000}
+                  alt="alb"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+
+              <div>
+                <h1 className={`${theme}-text font-bold text-lg`}>Steve Qj</h1>
+                <div className="flex gap-4">
+                  <p className={`${theme}-text`}>5 mins Read</p>
+                  <p className={`${theme}-text`}>Two days ago</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between py-4 my-4 border-t border-b border-gray-400">
+              <div className="flex items-center gap-2">
+                <FaHeart className={`${theme}-text`} />
+                <p className={`${theme}-text`}>24k</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaComment className={`${theme}-text`} />
+                <p className={`${theme}-text`}>100k</p>
+              </div>
+
+              <FaShare className={`${theme}-text`} />
+            </div>
+
+            <p className={`${theme}-text`}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+              amet consequuntur officiis atque sequi ex enim, nihil voluptates!
+              Fuga, hic!
+            </p>
+          </div>
+
+          <CategoriesHeading title={"Related Videos"} />
+          <div className="grid grid-cols-2 gap-4 py-4">
+            <RelatedArticles />
+            <RelatedArticles />
           </div>
 
           <CategoriesHeading title={"Comments"} />
@@ -46,32 +99,29 @@ function VideoId() {
           <Comments />
           <Comments />
 
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Add your comments</h1>
-          </div>
-
+          <CategoriesHeading title={"Add your comments"} />
           <form className="p-4">
             <div className=" md:flex w-full gap-4 my-2">
               <input
                 type="text"
-                className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="firstname"
               />
               <input
                 type="phone"
-                className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="phonenumber"
               />
             </div>
             <div className="md:flex w-full gap-4 my-2">
               <input
                 type="email"
-                className="my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="Email Address"
               />
               <input
                 type="text"
-                className=" my-2 md:my-0 p-4 bg-gray-800 w-full"
+                className={` my-2 md:my-0 p-4 ${theme}-bgg w-full`}
                 placeholder="website"
               />
             </div>
@@ -81,7 +131,7 @@ function VideoId() {
               id=""
               cols="30"
               rows="10"
-              className="w-full h-[300px] my-2 p-4 bg-slate-800"
+              className={` ${theme}-bgg w-full h-[300px] my-2 p-4 bg-slate-800`}
               placeholder="Type your comments"
             ></textarea>
 

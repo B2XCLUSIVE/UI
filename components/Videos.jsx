@@ -9,8 +9,11 @@ function Videos() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <Link href={`/videoshome/1`} className="md:flex w-full">
-        <div className="w-full  md:w-1/2 h-[300px] relative">
+      <Link
+        href={`/videoshome/1`}
+        className="md:flex md:items-center <gap-4></gap-4> w-full"
+      >
+        <div className="w-full  md:w-1/2 h-[300px] md:h-[150px] relative">
           <Image
             src={"/alb.jpeg"}
             width={1000}
@@ -23,7 +26,7 @@ function Videos() {
           </div>
         </div>
 
-        <div className="md:p-8 p-4 w-full md:w-1/2">
+        <div className=" p-4 w-full md:w-1/2">
           <h1 className={`${theme}-text font-bold text-xl`}>
             All The Red Carpet Looks
           </h1>
