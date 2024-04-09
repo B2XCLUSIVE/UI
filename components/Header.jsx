@@ -138,7 +138,7 @@ function Header() {
 
                 {showMenu ? (
                   <div
-                    className={` z-10 absolute right-0 flex flex-col ${theme}-bgg w-[150px] m-2" `}
+                    className={` z-50 absolute right-0 flex flex-col ${theme}-bgg w-[150px] m-2" `}
                   >
                     <Link
                       className={`border-b-2 ${theme}-text   text-sm p-4  hover:bg-primarycolor`}

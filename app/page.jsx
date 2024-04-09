@@ -46,27 +46,27 @@ export default function Home() {
             placeholder="Search here"
             className="w-11/12 bg-transparent p-4 text-white outline-none"
           />
-          <button className="rounded-full bg-primarycolor flex items-center py-2 gap-1 px-4">
+          <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
             <FaSearch /> Search
           </button>
         </div>
-        <div className="flex z-10 gap-4">
+        <div className="flex flex-wrap z-10 md:gap-4 gap-2 justify-center ">
           <Link
-            className="py-1 text-white flex items-center gap-1 px-4 rounded-full border border-white"
+            className="py-1 text-white flex items-center text-[10px] md:text-base gap-1 px-4 rounded-full border border-white"
             href={"#"}
           >
             <FaSearch />
             Trending Music
           </Link>
           <Link
-            className="py-1 text-white flex items-center gap-1 px-4 rounded-full border border-white"
+            className="py-1 text-white flex items-center gap-1 px-4 rounded-full md:text-base text-[10px] border border-white"
             href={"#"}
           >
             <FaSearch />
             Viral Videos
           </Link>
           <Link
-            className="py-1 text-white flex items-center gap-1 px-4 rounded-full border border-white"
+            className="py-1 text-white flex items-center gap-1 px-4 rounded-full md:text-base text-[10px] border border-white"
             href={"#"}
           >
             <FaSearch />
