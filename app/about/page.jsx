@@ -29,8 +29,8 @@ function About() {
           </div>
 
           <div className="w-full md:w-2/4 flex flex-col gap-4">
-            <h1>About us </h1>
-            <h1 className={`font-bold text-4xl`}>
+            <h1 className={`${theme}-text`}>About us </h1>
+            <h1 className={`font-bold ${theme}-text text-4xl`}>
               We Bring you the best content
             </h1>
             <p className={`${theme}-text`}>
@@ -45,17 +45,18 @@ function About() {
 
         <section className="w-full p-2 md:p-8 md:w-5/6 md:mx-auto md:flex md:items-center md:gap-8">
           <div className="w-full md:w-2/4 flex flex-col gap-4">
-            <h1 className="text-4xl font-bold">Our Service</h1>
+            <h1 className={`${theme}-text text-4xl font-bold`}>Our Service</h1>
             <div>
-              <h1 className="text-2xl"> Videos</h1>
-              <p>
+              <h1 className={`${theme}-text text-2xl`}> Trending Videos</h1>
+
+              <p className={`${theme}-text`}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
                 aliquam?
               </p>
             </div>
 
             <div>
-              <h1 className="text-2xl"> Musics</h1>
+              <h1 className={` ${theme}-text text-2xl`}> Musics</h1>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
                 aliquam?

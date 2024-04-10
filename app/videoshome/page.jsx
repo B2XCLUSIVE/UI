@@ -72,7 +72,7 @@ function VideosHome() {
             </div>
 
             <div className="border  p-2 ">
-              <p className={`${theme}-text`}>3</p>
+              <p className={`${theme}-text`}>NEXT</p>
             </div>
           </section>
         </div>
