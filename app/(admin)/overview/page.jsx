@@ -11,22 +11,23 @@ function Overview() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="w-10/12 p-8 flex flex-col gap-4">
+      <section className="w-10/12 md:p-8 flex flex-col gap-4">
         <h1 className={`${theme}-text text-3xl font-bold my-2`}>Overview</h1>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 p-2 md:grid-cols-4 gap-4">
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={`${theme}-text`}>Total Posts</h1>
+              <h1 className={`${theme}-text text-[10px] md:text-base`}>
+                Total Posts
+              </h1>
               <FaBlog className={`${theme}-text`} />
             </div>
-
             <div>
               <div className="flex">
                 <h1 className={`${theme}-text font-bold text-2xl`}>4</h1>
                 <p className={`text-green-500`}>34%</p>
               </div>
 
-              <p className="text-gray-300 text-[11px]">
+              <p className="text-gray-300 text-[9px] md:text-[11px]">
                 Compared to the previous month
               </p>
             </div>
@@ -34,7 +35,9 @@ function Overview() {
 
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={`${theme}-text`}>Followers</h1>
+              <h1 className={`${theme}-text text-[10px] md:text-base`}>
+                Followers
+              </h1>
               <FaUser className={`${theme}-text`} />
             </div>
 
@@ -44,7 +47,7 @@ function Overview() {
                 <p className={`text-red-500`}>34%</p>
               </div>
 
-              <p className="text-gray-300 text-[11px]">
+              <p className="text-gray-300 text-[9px] md:text-[11px]">
                 Compared to the previous month
               </p>
             </div>
@@ -91,8 +94,8 @@ function Overview() {
           <Charts />
         </section>
 
-        <section className="flex gap-4">
-          <div className=" w-2/6 rounded-lg">
+        <section className="md:flex-row flex flex-col gap-4">
+          <div className=" w-full md:w-2/6 rounded-lg">
             <h1 className={`${theme}-text font-bold`}>Recent 5 followers</h1>
 
             <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
@@ -107,7 +110,7 @@ function Overview() {
             <Followers />
           </div>
 
-          <div className="w-4/6">
+          <div className="w-full md:w-4/6">
             <h1 className={`${theme}-text font-bold`}>Recent 5 Content</h1>
 
             <div className="border flex justify-between border-gray-100 rounded-se rounded-ss p-4">

@@ -22,9 +22,9 @@ function SideBar() {
   return (
     <>
       <div
-        className={`border-r border-gray-500 p-4   ${showSideBar ? "w-2/12" : "w-[70px]"} `}
+        className={`border-r border-gray-500 p-4   ${showSideBar ? "w-2/12" : "w-[60px]"} `}
       >
-        <div className={`flex ${showSideBar ? "p-4" : "p-2"} justify-between`}>
+        <div className={`flex  justify-between`}>
           <h1
             className={`${theme}-text font-bold ${showSideBar ? "block" : "hidden"}`}
           >
@@ -43,7 +43,9 @@ function SideBar() {
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
             <FaChartBar className="text-3xl" />
-            <p className={` ${showSideBar ? "block" : "hidden"}  `}>
+            <p
+              className={` ${showSideBar ? "block" : "hidden"} ${theme}-text  `}
+            >
               Dashboard
             </p>
           </Link>
@@ -53,7 +55,9 @@ function SideBar() {
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
             <FaChartPie className="text-3xl" />
-            <p className={` ${showSideBar ? "block" : "hidden"}  `}>
+            <p
+              className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text  `}
+            >
               Analytics
             </p>
           </Link>
@@ -63,7 +67,11 @@ function SideBar() {
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
             <FaCalendar className="text-3xl" />
-            <p className={` ${showSideBar ? "block" : "hidden"}  `}>Content</p>
+            <p
+              className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
+            >
+              Content
+            </p>
           </Link>
 
           <Link
@@ -71,7 +79,9 @@ function SideBar() {
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
             <FaUser className="text-3xl" />
-            <p className={` ${showSideBar ? "block" : "hidden"}  `}>
+            <p
+              className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
+            >
               Followers
             </p>
           </Link>
@@ -81,7 +91,9 @@ function SideBar() {
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
             <FaNotesMedical className="text-3xl" />
-            <p className={` ${showSideBar ? "block" : "hidden"}  `}>
+            <p
+              className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
+            >
               Create Post
             </p>
           </Link>
@@ -91,7 +103,11 @@ function SideBar() {
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
             <FaTools className="text-3xl" />
-            <p className={` ${showSideBar ? "block" : "hidden"}  `}>Account</p>
+            <p
+              className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
+            >
+              Account
+            </p>
           </Link>
         </div>
       </div>

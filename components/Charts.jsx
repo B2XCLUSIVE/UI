@@ -58,7 +58,7 @@ export default function Charts() {
   return (
     <div className="w-full">
       <BarChart
-        width={1200}
+        width={300}
         height={300}
         data={data}
         margin={{
