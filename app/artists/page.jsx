@@ -28,7 +28,7 @@ function Artists() {
 
       <section className="w-full md:w-5/6 mx-auto p-4">
         <div className="flex gap-4 w-full">
-          <div className="md:w-4/6 rounded-full flex items-center z-10 border border-white">
+          <div className="md:w-4/6 rounded-full flex items-center z-10 border ">
             <input
               type="text"
               placeholder="Search here"

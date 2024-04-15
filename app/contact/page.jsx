@@ -77,25 +77,27 @@ function Contact() {
             <div
               className={`${theme}-text flex flex-col gap-4 w-full md:w-2/4`}
             >
-              <h1 className="font-bold text-4xl">Contact Us</h1>
-              <p>
+              <h1 className={` ${theme}-text font-bold text-4xl`}>
+                Contact Us
+              </h1>
+              <p className={`${theme}-text`}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 sagittis lacinia tellus. Nullam venenatis a sem non dictum.
                 Aliquam orci ipsum, malesuada lacinia faucibus nec, bibendum a
                 enim...
               </p>
 
-              <div className="flex gap-2 items-center">
-                <FaPhone />
-                <p>+234 123 456 7890</p>
+              <div className={`flex gap-2 items-center ${theme}-text `}>
+                <FaPhone className={`${theme}-text`} />
+                <p className={`${theme}-text`}>+234 123 456 7890</p>
               </div>
               <div className="flex gap-2 items-center">
-                <FaEnvelope />
-                <p>example@b2exclusive.com</p>
+                <FaEnvelope className={`${theme}-text`} />
+                <p className={`${theme}-text`}>example@b2exclusive.com</p>
               </div>
               <div className="flex gap-2 items-center">
-                <FaMap />
-                <p>90, Downtown St, USA</p>
+                <FaMap className={`${theme}-text`} />
+                <p className={`${theme}-text`}>90, Downtown St, USA</p>
               </div>
             </div>
           </div>
