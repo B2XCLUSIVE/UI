@@ -21,12 +21,14 @@ function Followers() {
           </div>
 
           <div>
-            <h1 className={`${theme}-text `}>Samuel Ganiu</h1>
-            <p className="text-green-500">Writer</p>
+            <h1 className={`${theme}-text md:text-base text-[12px] `}>
+              Samuel Ganiu
+            </h1>
+            <p className="text-green-500 md:text-base text-[12px] ">Writer</p>
           </div>
         </div>
 
-        <p className={`${theme}-text `}>2 days ago</p>
+        <p className={`${theme}-text md:text-base text-[12px] `}>2 days ago</p>
       </div>
     </>
   );

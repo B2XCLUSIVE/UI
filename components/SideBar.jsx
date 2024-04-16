@@ -17,14 +17,14 @@ import Link from "next/link";
 function SideBar() {
   const { theme } = useContext(ThemeContext);
 
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
 
   return (
     <>
       <div
-        className={`border-r border-gray-500 p-4   ${showSideBar ? "w-2/12" : "w-[60px]"} `}
+        className={`border-r border-gray-500 h-full z-20 p-4 ${theme}-bgg absolute md:static  ${showSideBar ? "md:w-2/12" : " md:w-[70px]"}  `}
       >
-        <div className={`flex  justify-between`}>
+        <div className={`flex ${showSideBar ? "p-4" : "p-2"} justify-between`}>
           <h1
             className={`${theme}-text font-bold ${showSideBar ? "block" : "hidden"}`}
           >
@@ -42,7 +42,7 @@ function SideBar() {
             href={"/overview"}
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
-            <FaChartBar className="text-3xl" />
+            <FaChartBar className="text-xl" />
             <p
               className={` ${showSideBar ? "block" : "hidden"} ${theme}-text  `}
             >
@@ -54,7 +54,7 @@ function SideBar() {
             href={"/overview"}
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
-            <FaChartPie className="text-3xl" />
+            <FaChartPie className="text-xl" />
             <p
               className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text  `}
             >
@@ -66,7 +66,7 @@ function SideBar() {
             href={"/overview"}
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
-            <FaCalendar className="text-3xl" />
+            <FaCalendar className="text-xl" />
             <p
               className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
             >
@@ -78,7 +78,7 @@ function SideBar() {
             href={"/overview"}
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
-            <FaUser className="text-3xl" />
+            <FaUser className="text-xl" />
             <p
               className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
             >
@@ -90,7 +90,7 @@ function SideBar() {
             href={"/overview"}
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
-            <FaNotesMedical className="text-3xl" />
+            <FaNotesMedical className="text-xl" />
             <p
               className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
             >
@@ -102,7 +102,7 @@ function SideBar() {
             href={"/overview"}
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
-            <FaTools className="text-3xl" />
+            <FaTools className="text-xl" />
             <p
               className={` ${showSideBar ? "block" : "hidden"}  ${theme}-text `}
             >

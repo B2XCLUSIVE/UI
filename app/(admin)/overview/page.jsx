@@ -11,7 +11,7 @@ function Overview() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="w-10/12 md:p-8 flex flex-col gap-4">
+      <section className="w-10/12 ml-[80px] pr-4 md:p-8 flex flex-col gap-4">
         <h1 className={`${theme}-text text-3xl font-bold my-2`}>Overview</h1>
         <div className="grid grid-cols-2 p-2 md:grid-cols-4 gap-4">
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
