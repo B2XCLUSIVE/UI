@@ -24,6 +24,8 @@ function Header() {
   }
 
   const { theme, toggle, showAuth, authDisplay } = useContext(ThemeContext);
+
+  const [user, setUser] = useState({});
   return (
     <>
       <div className={` ${theme}-bg p-4`}>
@@ -114,10 +116,14 @@ function Header() {
                 <Link href={"#"}>
                   <FaBlog />
                 </Link>
-                <Link href={"#"}>
-                  <FaUser onClick={authDisplay} />
+                <Link
+                  href={"#"}
+                  className="flex items-center gap-2"
+                  onClick={authDisplay}
+                >
+                  <FaUser className={`${theme}-text`} />
+                  <p className={`${theme}-text`}>My profile</p>
                 </Link>
-                <Link href={"/overview"}>My profile</Link>
 
                 <div onClick={toggle}>
                   {theme === "light" ? (
@@ -198,7 +204,7 @@ function Header() {
           </div>
 
           <div
-            className={` rounded-lg z-50 hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between ${theme}-head-bg backdrop-blur-lg`}
+            className={` rounded-lg z-30 hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between ${theme}-head-bg backdrop-blur-lg`}
           >
             <Link
               className={`${theme}-text  rounded-lg text-sm py-1 px-2  hover:bg-primarycolor`}
