@@ -21,10 +21,26 @@ function Auth() {
     password: "",
   });
 
-  const handleSignin = (e) => {
+  const [signinloading, setsigninLoading] = useState(false);
+  const [signinSuccess, setsigninSuccess] = useState(false);
+  const [signinerror, setsigninError] = useState(false);
+
+  const handleSignin = async (e) => {
     e.preventDefault();
+    setsigninLoading(true);
     try {
-    } catch (error) {}
+      setsigninLoading(true);
+      const response = await axios.post(
+        "https://b2xclusive.onrender.com/api/v1/auth/user/signin",
+        signInUser,
+      );
+      console.log("sign in Successfull", response.data);
+      setsigninSuccess(true);
+    } catch (error) {
+      console.log("unable to sign in", error.message);
+    } finally {
+      setsigninLoading(false);
+    }
   };
 
   const [signuploading, setsignupLoading] = useState(false);
@@ -56,13 +72,35 @@ function Auth() {
   return (
     <>
       <section className="absolute right-0 left-0 top-0 bottom-0 w-full h-full py-8 bg-[#000000d6] z-50 flex justify-center items-center">
+        <div className=" absolute top-5 flex w-full justify-center p-8 z-30">
+          {signinSuccess ? (
+            <div className="bg-green-600 p-2 rounded-lg">
+              <p className="md:text-sm text-[12px]">
+                Account created Successfully
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {signinerror ? (
+            <div className="bg-red-600 p-2 rounded-lg">
+              <p className="md:text-sm text-[12px]">Account creation failed</p>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+
         <div className="md:flex h-full w-full md:w-4/6 relative">
           <div className="p-2 bg-primarycolor absolute top-0 right-0">
             <FaWindowClose className={`${theme}-text`} onClick={authDisplay} />
           </div>
           <div className={`${theme}-bgg ${theme}-text p-10 w-full md:w-2/4`}>
             <div className="py-10">
-              <h1 className={`font-bold text-2xl ${theme}-text`}>Sign In</h1>
+              <h1 className={`font-bold text-2xl ${theme}-text`}>
+                {setsigninLoading ? "Signing in, Please wait...." : "Sign In"}
+              </h1>
 
               <p className={`${theme}-text`}>
                 Welcome back! sign in to your account
@@ -74,6 +112,10 @@ function Auth() {
                   Username Or Email Address
                 </label>
                 <input
+                  value={signInUser.username}
+                  onChange={(e) =>
+                    setsignInUser({ ...signInUser, username: e.target.value })
+                  }
                   type="text"
                   placeholder="username or email address"
                   className="p-4 rounded-full bg-transparent outline-none border"
@@ -83,6 +125,10 @@ function Auth() {
               <div className="flex  flex-col gap-2">
                 <label className="font-bold text-md">Password</label>
                 <input
+                  value={signInUser.password}
+                  onChange={(e) =>
+                    setsignInUser({ ...signInUser, password: e.target.value })
+                  }
                   type="password"
                   placeholder="password"
                   className="p-4 rounded-full bg-transparent outline-none border"
@@ -97,7 +143,7 @@ function Auth() {
                 <Link href={"/forgotpassword"}>Forgot Password</Link>
               </div>
 
-              <Button title={"Sign In"} />
+              <Button title={"Sign In"} onclick={handleSignin} />
             </form>
           </div>
 
