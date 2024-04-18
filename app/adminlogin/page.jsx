@@ -44,8 +44,8 @@ function AdminLogin() {
 
   return (
     <>
-      <section>
-        <div className=" absolute top-5 flex w-full justify-center p-8 z-30">
+      <section className="w-full md:w-5/6 mx-auto">
+        <div className="  md:w-4/6 mx-auto absolute top-5 flex w-full justify-center  z-30">
           {signinSuccess ? (
             <div className="bg-green-600 p-2 rounded-lg">
               <p className="md:text-sm text-[12px]">
@@ -67,8 +67,8 @@ function AdminLogin() {
           )}
         </div>
 
-        <div className="md:flex h-full w-full md:w-4/6 relative">
-          <div className={`${theme}-bgg ${theme}-text p-10 w-full md:w-2/4`}>
+        <div className="md:flex h-full w-full p-10 md:w-3/5 mx-auto relative">
+          <div className={` ${theme}-text w-full`}>
             <div className="py-10">
               <h1 className={`font-bold text-2xl ${theme}-text`}>
                 {signinloading
