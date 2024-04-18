@@ -38,17 +38,23 @@ export const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     // Store theme in localStorage
-    localStorage.setItem("theme", theme);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", theme);
+    }
   }, [theme]);
 
   useEffect(() => {
     // Store user in localStorage
-    localStorage.setItem("b2exclusiveuser", JSON.stringify(user));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("b2exclusiveuser", JSON.stringify(user));
+    }
   }, [user]);
 
   useEffect(() => {
     // Store user in localStorage
-    localStorage.setItem("b2exclusiveuadmin", JSON.stringify(adminUser));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("b2exclusiveuadmin", JSON.stringify(adminUser));
+    }
   }, [adminUser]);
 
   return (
