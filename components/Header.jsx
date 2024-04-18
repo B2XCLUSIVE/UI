@@ -8,6 +8,7 @@ import {
   FaFacebook,
   FaHamburger,
   FaLinkedin,
+  FaLock,
   FaSoundcloud,
   FaToggleOff,
   FaToggleOn,
@@ -23,9 +24,11 @@ function Header() {
     setShowMenu(!showMenu);
   }
 
-  const { theme, toggle, showAuth, authDisplay } = useContext(ThemeContext);
+  const { theme, toggle, showAuth, authDisplay, user, signin, profileOptions } =
+    useContext(ThemeContext);
 
-  const [user, setUser] = useState({});
+  console.log(user);
+
   return (
     <>
       <div className={` ${theme}-bg p-4`}>
@@ -116,15 +119,39 @@ function Header() {
                 <Link href={"#"}>
                   <FaBlog />
                 </Link>
-                <Link
-                  href={"#"}
-                  className="flex items-center gap-2"
-                  onClick={authDisplay}
-                >
-                  <FaUser className={`${theme}-text`} />
-                  <p className={`${theme}-text`}>My profile</p>
-                </Link>
-
+                {user === null ? (
+                  <Link
+                    href={"#"}
+                    className="flex items-center gap-2"
+                    onClick={authDisplay}
+                  >
+                    <FaLock className={`${theme}-text`} />
+                    <p className={`${theme}-text md:text-base text-[11px]`}>
+                      Login
+                    </p>
+                  </Link>
+                ) : (
+                  <div onClick={profileOptions} className="relative ">
+                    {signin ? (
+                      <div className="absolute top-8 bg-white w-full flex border flex-col gap-2 p-2 z-30 ">
+                        <Link className="md:text-base text-[11px]" href={"#"}>
+                          Account
+                        </Link>
+                        <Link className="md:text-base text-[11px]" href={"#"}>
+                          Logout
+                        </Link>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <Link href={"#"} className="flex items-center gap-2">
+                      <FaUser className={`${theme}-text`} />
+                      <p className={`${theme}-text md:text-base text-[11px]`}>
+                        My Profile
+                      </p>
+                    </Link>
+                  </div>
+                )}
                 <div onClick={toggle}>
                   {theme === "light" ? (
                     <FaToggleOn className="text-xl" />
@@ -147,50 +174,50 @@ function Header() {
                     className={` z-50 absolute right-0 flex flex-col ${theme}-bgg w-[150px] m-2" `}
                   >
                     <Link
-                      className={`border-b-2 ${theme}-text   text-sm p-4  hover:bg-primarycolor`}
+                      className={`border-b-2 ${theme}-text  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/"}
                     >
                       Home
                     </Link>
                     <Link
-                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
+                      className={` border-b-2 ${theme}-text md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/blogs"}
                     >
                       Blogs
                     </Link>
 
                     <Link
-                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
+                      className={` border-b-2 ${theme}-text md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/upcomingevents"}
                     >
                       Event
                     </Link>
                     <Link
-                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
+                      className={` border-b-2 ${theme}-text md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/artists"}
                     >
                       Artists
                     </Link>
                     <Link
-                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
+                      className={` border-b-2 ${theme}-text md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/musics"}
                     >
                       Musics
                     </Link>
                     <Link
-                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
+                      className={` border-b-2 ${theme}-text md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/videoshome"}
                     >
                       Videos
                     </Link>
                     <Link
-                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
+                      className={` border-b-2 ${theme}-text md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/about"}
                     >
                       About Us
                     </Link>
                     <Link
-                      className={` border-b-2 ${theme}-text text-sm p-4  hover:bg-primarycolor`}
+                      className={` border-b-2 ${theme}-text md:text-base text-[11px] p-4  hover:bg-primarycolor`}
                       href={"/contact"}
                     >
                       Contact Us
