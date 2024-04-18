@@ -5,20 +5,26 @@ export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    // Initialize theme from localStorage or default to "dark"
-    return localStorage.getItem("theme") || "dark";
+    if (typeof window !== "undefined") {
+      // Initialize theme from localStorage or default to "dark"
+      return localStorage.getItem("theme") || "dark";
+    }
   });
 
   const [user, setUser] = useState(() => {
     // Initialize user from localStorage or default to null
-    const storedUser = localStorage.getItem("b2exclusiveuser");
-    return storedUser ? JSON.parse(storedUser) : null;
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("b2exclusiveuser");
+      return storedUser ? JSON.parse(storedUser) : null;
+    }
   });
 
   const [adminUser, setadminUser] = useState(() => {
     // Initialize user from localStorage or default to null
-    const storedadminUser = localStorage.getItem("b2exclusiveadmin");
-    return storedadminUser ? JSON.parse(storedadminUser) : null;
+    if (typeof window !== "undefined") {
+      const storedadminUser = localStorage.getItem("b2exclusiveadmin");
+      return storedadminUser ? JSON.parse(storedadminUser) : null;
+    }
   });
 
   const toggle = () => {
