@@ -6,39 +6,37 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
-function AdminLogin() {
+function AdminSignUp() {
   const router = useRouter();
-  const { theme, setadminUser } = useContext(ThemeContext);
-  const [signInAdmin, setsignInAdmin] = useState({
+  const { theme } = useContext(ThemeContext);
+  const [signUpAdmin, setsignUpAdmin] = useState({
     email: "",
     password: "",
+    userName: "",
   });
 
   const [signinloading, setsigninLoading] = useState(false);
   const [signinSuccess, setsigninSuccess] = useState(false);
   const [signinerror, setsigninError] = useState(false);
 
-  const handleSignin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     setsigninLoading(true);
     try {
       setsigninLoading(true);
       const response = await axios.post(
-        "https://b2xclusive.onrender.com/api/v1/auth/user/signin",
-        signInAdmin,
+        "https://b2xclusive.onrender.com/api/v1/auth/admin-account/signup",
+        signUpAdmin,
       );
-
-      const adminData = response.data.data;
-      setadminUser(adminData.token);
 
       console.log("admin sign in Successfull", response.data);
       setsigninSuccess(true);
+      router.push("/adminlogin");
     } catch (error) {
       console.log("unable to sign admin in", error.message);
       setsigninError(true);
     } finally {
       setsigninLoading(false);
-      router.push("/overview");
     }
   };
 
@@ -72,21 +70,32 @@ function AdminLogin() {
             <div className="py-10">
               <h1 className={`font-bold text-2xl ${theme}-text`}>
                 {signinloading
-                  ? "Signing in, Please wait...."
-                  : "Admin Sign In"}
+                  ? "Signing up, Please wait...."
+                  : "Admin Sign Up"}
               </h1>
 
-              <p className={`${theme}-text`}>
-                Welcome back Admin! sign in to your Admin account
-              </p>
+              <p className={`${theme}-text`}>Create Admin account</p>
             </div>
             <form className={`${theme}-text flex flex-col gap-8`}>
               <div className="flex  flex-col gap-2">
+                <label className="font-bold text-md">Username</label>
+                <input
+                  value={signUpAdmin.userName}
+                  onChange={(e) =>
+                    setsignUpAdmin({ ...signUpAdmin, userName: e.target.value })
+                  }
+                  type="email"
+                  placeholder="email address"
+                  className="p-4 rounded-full bg-transparent outline-none border"
+                />
+              </div>
+
+              <div className="flex  flex-col gap-2">
                 <label className="font-bold text-md">Email Address</label>
                 <input
-                  value={signInAdmin.email}
+                  value={signUpAdmin.email}
                   onChange={(e) =>
-                    setsignInAdmin({ ...signInAdmin, email: e.target.value })
+                    setsignUpAdmin({ ...signUpAdmin, email: e.target.value })
                   }
                   type="email"
                   placeholder="email address"
@@ -97,9 +106,9 @@ function AdminLogin() {
               <div className="flex  flex-col gap-2">
                 <label className="font-bold text-md">Password</label>
                 <input
-                  value={signInAdmin.password}
+                  value={signUpAdmin.password}
                   onChange={(e) =>
-                    setsignInAdmin({ ...signInAdmin, password: e.target.value })
+                    setsignUpAdmin({ ...signUpAdmin, password: e.target.value })
                   }
                   type="password"
                   placeholder="password"
@@ -115,10 +124,8 @@ function AdminLogin() {
                 <Link href={"/forgotpassword"}>Forgot Password</Link>
               </div>
 
-              <Button title={"Sign In"} onclick={handleSignin} />
-              <Link href={"/adminsignup"}>
-                Don&apos;t have an account yet? Sign Up
-              </Link>
+              <Button title={"Admin Sign Up"} onclick={handleSignUp} />
+              <Link href={"/adminlogin"}>Already have an account? Sign In</Link>
             </form>
           </div>
         </div>
@@ -127,4 +134,4 @@ function AdminLogin() {
   );
 }
 
-export default AdminLogin;
+export default AdminSignUp;

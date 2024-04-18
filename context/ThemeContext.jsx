@@ -11,8 +11,14 @@ export const ThemeContextProvider = ({ children }) => {
 
   const [user, setUser] = useState(() => {
     // Initialize user from localStorage or default to null
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("b2exclusiveuser");
     return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  const [adminUser, setadminUser] = useState(() => {
+    // Initialize user from localStorage or default to null
+    const storedadminUser = localStorage.getItem("b2exclusiveadmin");
+    return storedadminUser ? JSON.parse(storedadminUser) : null;
   });
 
   const toggle = () => {
@@ -37,8 +43,13 @@ export const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     // Store user in localStorage
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("b2exclusiveuser", JSON.stringify(user));
   }, [user]);
+
+  useEffect(() => {
+    // Store user in localStorage
+    localStorage.setItem("b2exclusiveuadmin", JSON.stringify(adminUser));
+  }, [adminUser]);
 
   return (
     <ThemeContext.Provider
@@ -51,6 +62,8 @@ export const ThemeContextProvider = ({ children }) => {
         setUser,
         signin,
         profileOptions,
+        adminUser,
+        setadminUser,
       }}
     >
       {children}
