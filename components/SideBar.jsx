@@ -22,13 +22,13 @@ function SideBar() {
   return (
     <>
       <div
-        className={`border-r border-gray-500 h-screen z-20 p-4 ${theme}-bgg absolute md:static  ${showSideBar ? "md:w-2/12" : " md:w-[70px]"}  `}
+        className={` h-screen p-4 ${theme}-bgg  ${showSideBar ? "md:w-2/12" : " md:w-[70px]"}  `}
       >
         <div className={`flex ${showSideBar ? "p-4" : "p-2"} justify-between`}>
           <h1
             className={`${theme}-text font-bold ${showSideBar ? "block" : "hidden"}`}
           >
-            Menu
+            B2XCLUSIVE
           </h1>
 
           <FaHamburger

@@ -131,7 +131,7 @@ function Header() {
                     </p>
                   </Link>
                 ) : (
-                  <div onClick={profileOptions} className="relative ">
+                  <div onClick={profileOptions} className="relative z-50">
                     {signin ? (
                       <div className="absolute top-8 bg-white w-full flex border flex-col gap-2 p-2 z-30 ">
                         <Link className="md:text-base text-[11px]" href={"#"}>

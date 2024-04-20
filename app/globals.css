@@ -56,3 +56,12 @@ h1 {
 p {
   color: white;
 }
+
+.charts-container {
+  width: 100%;
+  height: 100%;
+}
+
+.recharts-cartesian-grid-horizontal {
+  border: none;
+}

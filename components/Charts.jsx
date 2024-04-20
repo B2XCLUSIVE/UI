@@ -1,12 +1,15 @@
 import React from "react";
+
 import {
   BarChart,
   Bar,
+  Rectangle,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const data = [
@@ -52,30 +55,77 @@ const data = [
     pv: 4300,
     amt: 2100,
   },
+  {
+    name: "Page G",
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: "Page G",
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
 ];
-
-export default function Charts() {
+function Charts() {
   return (
-    <div className="w-full">
-      <BarChart
-        width={1200}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
+    <div className="charts-container">
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        minWidth={100}
+        minHeight={300}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="pv" fill="#FFA500" />
-        <Bar dataKey="uv" fill="#C0C0C0" />
-      </BarChart>
+        <BarChart
+          width={500}
+          height={200}
+          data={data}
+          margin={{
+            top: 5,
+            right: 5,
+            left: 5,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid stroke="0" />
+          <XAxis
+            padding={{ left: 10 }}
+            dataKey="month"
+            tickSize={0}
+            axisLine={false}
+          />
+          <YAxis
+            padding={{ bottom: 10, top: 10 }}
+            tickCount={6}
+            axisLine={false}
+            tickSize={0}
+          />
+          <Tooltip />
+          <Legend
+            iconType="circle"
+            iconSize={10}
+            verticalAlign="top"
+            align="right"
+          />
+          <Bar
+            dataKey="pv"
+            fill="#8884d8"
+            activeBar={false}
+            barSize={60}
+            radius={[4, 4, 4, 4]}
+          />
+          <Bar
+            dataKey="uv"
+            fill="#82ca9d"
+            activeBar={false}
+            barSize={60}
+            radius={[4, 4, 4, 4]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }
+
+export default Charts;
