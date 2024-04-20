@@ -8,6 +8,7 @@ import "react-quill/dist/quill.snow.css"; // Import Quill styles
 
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
+import Button from "@/components/Button";
 
 function CreatePost() {
   const { theme } = useContext(ThemeContext);
@@ -38,24 +39,67 @@ function CreatePost() {
   const selectedModules = {
     toolbar: toolbarOptions,
   };
+
+  const [file, setFile] = useState(null);
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile); // Update 'file' state with selected file
+    setPost({ ...post, files: selectedFile }); // Update 'post' state with selected file
+  };
+  const [value, setValue] = useState("");
+  const [post, setPost] = useState({
+    files: file,
+    title: "",
+    subtitle: "",
+    description: value,
+    tags: "",
+    categories: "",
+  });
+
+  const handlePost = (e) => {
+    e.preventDefault();
+    try {
+      setPost({ ...post, description: value });
+      console.log(post);
+    } catch (error) {
+      console.log("Unable to upload post", error.message);
+    }
+  };
   return (
     <>
       <section className="w-10/12">
         <h1 className={`${theme}-text font-bold my-4 text-2xl`}>Create post</h1>
 
-        <form className="flex flex-col gap-4">
+        <form className={`flex flex-col gap-4 ${theme}-text`}>
           <div className="flex flex-col gap-2">
             <label>Blog Title</label>
             <input
+              value={post.title}
+              onChange={(e) => setPost({ ...post, title: e.target.value })}
               type="text"
               placeholder="Enter Blog Title"
               className="p-2 w-full bg-transparent rounded-lg border-gray-500 border outline-none"
             />
           </div>
+          <div className="flex flex-col gap-2">
+            <label>Blog header Image</label>
+            <input
+              type="file"
+              onChange={handleFileChange} // Call handleFileChange when a file is selected
+              className="p-2 w-full bg-transparent rounded-lg border-gray-500 border outline-none"
+            />
+            {/* Optional: Display the file name */}
+            {file && (
+              <p className={`${theme}-text`}>Selected File: {file.name}</p>
+            )}{" "}
+          </div>
+
           <div className="flex gap-4 w-full items-center">
             <div className="flex flex-col gap-2 w-8/12">
               <label>Post subtitle</label>
               <input
+                value={post.subtitle}
+                onChange={(e) => setPost({ ...post, subtitle: e.target.value })}
                 type="text"
                 placeholder="Enter Blog Title"
                 className="p-2 w-full bg-transparent rounded-lg border-gray-500 border outline-none"
@@ -63,33 +107,39 @@ function CreatePost() {
             </div>
 
             <div className="flex flex-col w-2/12">
-              <label>Categgories</label>
+              <label>Categories</label>
               <select
-                name=""
+                name="categories"
+                value={post.categories}
+                onChange={(e) =>
+                  setPost({ ...post, categories: e.target.value })
+                }
                 id=""
                 className="p-2 w-full bg-transparent rounded-lg border-gray-500 border outline-none"
               >
-                <option value="">Blogs</option>
-                <option value="">Music</option>
-                <option value="">Videos</option>
-                <option value="">Event</option>
+                <option value="blogs">Blogs</option>
+                <option value="music">Music</option>
+                <option value="videos">Videos</option>
+                <option value="event">Event</option>
               </select>
             </div>
 
             <div className="flex flex-col w-2/12">
               <label htmlFor="">Tags</label>
               <select
-                name=""
+                name="tags"
+                value={post.tags}
+                onChange={(e) => setPost({ ...post, tags: e.target.value })}
                 id=""
                 className="p-2 w-full bg-transparent rounded-lg border-gray-500 border outline-none"
               >
-                <option value="">Trending</option>
-                <option value="">New release</option>
-                <option value="">Top Music</option>
-                <option value="">Treding Articles</option>
-                <option value="">Viral Videos</option>
-                <option value="">Gists</option>
-                <option value="">New Albums</option>
+                <option value="trending">Trending</option>
+                <option value="newrelease">New release</option>
+                <option value="topmusic">Top Music</option>
+                <option value="trendingarticles">Treding Articles</option>
+                <option value="viralvideos">Viral Videos</option>
+                <option value="gists">Gists</option>
+                <option value="newalbums">New Albums</option>
               </select>
             </div>
           </div>
@@ -97,10 +147,17 @@ function CreatePost() {
           <div className="flex flex-col gap-2">
             <label htmlFor="">Post Descriptions</label>
             {showQuill && (
-              <ReactQuill modules={selectedModules} theme="snow" />
+              <ReactQuill
+                modules={selectedModules}
+                theme="snow"
+                value={value}
+                onChange={setValue} // Update 'value' state with editor content
+              />
             )}{" "}
             {/* Render ReactQuill only when showQuill is true */}
           </div>
+
+          <Button title={"Create Post"} onclick={handlePost} />
         </form>
       </section>
     </>
