@@ -29,7 +29,11 @@ function Header() {
 
   console.log(user);
 
-  const userId = localStorage.getItem("b2exclusiveuserid") || null;
+  const userId = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("b2exclusiveuserid");
+    }
+  };
 
   return (
     <>
