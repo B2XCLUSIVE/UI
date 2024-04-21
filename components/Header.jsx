@@ -120,11 +120,7 @@ function Header() {
                   <FaBlog />
                 </Link>
                 {user === null ? (
-                  <Link
-                    href={"#"}
-                    className="flex items-center gap-2"
-                    onClick={authDisplay}
-                  >
+                  <Link href={"/login"} className="flex items-center gap-2">
                     <FaLock className={`${theme}-text`} />
                     <p className={`${theme}-text md:text-base text-[11px]`}>
                       Login
