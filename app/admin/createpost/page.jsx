@@ -1,70 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic"; // Import 'dynamic' from 'next/dynamic' for dynamic component loading
-
-// Load ReactQuill dynamically to avoid server-side rendering issues
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
 
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
 import Button from "@/components/Button";
+import Tiptap from "@/components/TipTap";
 
 function CreatePost() {
   const { theme } = useContext(ThemeContext);
-  const [showQuill, setShowQuill] = useState(false); // State to track when to render ReactQuill
-
-  useEffect(() => {
-    // Set showQuill to true only after the component mounts (on the client-side)
-    setShowQuill(true);
-  }, []);
-
-  const toolbarOptions = [
-    ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block"],
-    ["link", "image", "video", "formula"],
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-    [{ direction: "rtl" }], // text direction
-    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-    ["clean"], // remove formatting button
-  ];
-
-  const selectedModules = {
-    toolbar: toolbarOptions,
-  };
 
   const [file, setFile] = useState(null);
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile); // Update 'file' state with selected file
-    setPost({ ...post, files: selectedFile }); // Update 'post' state with selected file
-  };
-  const [value, setValue] = useState("");
+
   const [post, setPost] = useState({
     files: file,
     title: "",
     subtitle: "",
-    description: value,
+    description: "",
     tags: "",
     categories: "",
   });
 
-  const handlePost = (e) => {
-    e.preventDefault();
-    try {
-      setPost({ ...post, description: value });
-      console.log(post);
-    } catch (error) {
-      console.log("Unable to upload post", error.message);
-    }
-  };
   return (
     <>
       <section className="w-10/12">
@@ -85,7 +40,6 @@ function CreatePost() {
             <label>Blog header Image</label>
             <input
               type="file"
-              onChange={handleFileChange} // Call handleFileChange when a file is selected
               className="p-2 w-full bg-transparent rounded-lg border-gray-500 border outline-none"
             />
             {/* Optional: Display the file name */}
@@ -146,18 +100,10 @@ function CreatePost() {
 
           <div className="flex flex-col gap-2">
             <label htmlFor="">Post Descriptions</label>
-            {showQuill && (
-              <ReactQuill
-                modules={selectedModules}
-                theme="snow"
-                value={value}
-                onChange={setValue} // Update 'value' state with editor content
-              />
-            )}{" "}
-            {/* Render ReactQuill only when showQuill is true */}
+            <Tiptap />
           </div>
 
-          <Button title={"Create Post"} onclick={handlePost} />
+          <Button title={"Create Post"} />
         </form>
       </section>
     </>

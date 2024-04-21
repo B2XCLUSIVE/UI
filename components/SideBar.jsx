@@ -87,7 +87,7 @@ function SideBar() {
           </Link>
 
           <Link
-            href={"/overview"}
+            href={"/admin/createpost"}
             className={`${theme}-text flex ${showSideBar ? "p-4" : "p-2"} hover:bg-primarycolor rounded-lg items-center gap-2  `}
           >
             <FaNotesMedical className="text-xl" />
