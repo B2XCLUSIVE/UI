@@ -27,13 +27,10 @@ function Header() {
   const { theme, toggle, showAuth, user, signin, profileOptions } =
     useContext(ThemeContext);
 
-  console.log(user);
-
-  const userId = () => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("b2exclusiveuserid");
-    }
-  };
+  const userId =
+    typeof window !== "undefined"
+      ? localStorage.getItem("b2exclusiveuserid")
+      : null;
 
   return (
     <>
