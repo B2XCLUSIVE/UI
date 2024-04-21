@@ -92,11 +92,11 @@ function Overview() {
           </div>
         </div>
 
-        <section>
-          <Charts />
-        </section>
+        <section className="w-full flex gap-4">
+          <div className="3/5">
+            <Charts />
+          </div>
 
-        <section className="md:flex-row flex flex-col gap-4">
           <div className=" w-full md:w-2/6 rounded-lg">
             <h1 className={`${theme}-text font-bold`}>Recent 5 followers</h1>
 
@@ -111,8 +111,10 @@ function Overview() {
             <Followers />
             <Followers />
           </div>
+        </section>
 
-          <div className="w-full md:w-4/6">
+        <section className="md:flex-row flex flex-col gap-4">
+          <div className="w-full ">
             <h1 className={`${theme}-text font-bold`}>Recent 5 Content</h1>
 
             <div className="border flex justify-between border-gray-100 rounded-se rounded-ss p-4">
