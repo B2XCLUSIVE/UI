@@ -19,6 +19,14 @@ export const ThemeContextProvider = ({ children }) => {
     }
   });
 
+  const [userId, setUserId] = useState(() => {
+    // Initialize user from localStorage or default to null
+    if (typeof window !== "undefined") {
+      const storedUserId = localStorage.getItem("b2exclusiveuserid");
+      return storedUserId ? JSON.parse(storedUserId) : null;
+    }
+  });
+
   const [adminUser, setadminUser] = useState(() => {
     // Initialize user from localStorage or default to null
     if (typeof window !== "undefined") {
@@ -59,6 +67,13 @@ export const ThemeContextProvider = ({ children }) => {
   useEffect(() => {
     // Store user in localStorage
     if (typeof window !== "undefined") {
+      localStorage.setItem("b2exclusiveuserid", JSON.stringify(userId));
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    // Store user in localStorage
+    if (typeof window !== "undefined") {
       localStorage.setItem("b2exclusiveuadmin", JSON.stringify(adminUser));
     }
   }, [adminUser]);
@@ -76,6 +91,8 @@ export const ThemeContextProvider = ({ children }) => {
         profileOptions,
         adminUser,
         setadminUser,
+        userId,
+        setUserId,
       }}
     >
       {children}

@@ -10,7 +10,7 @@ import Link from "next/link";
 import axios from "axios";
 
 function Login() {
-  const { theme, setUser } = useContext(ThemeContext);
+  const { theme, setUser, setUserId } = useContext(ThemeContext);
   const router = useRouter();
 
   const [signInUser, setsignInUser] = useState({
@@ -33,6 +33,7 @@ function Login() {
 
       const userData = response?.data;
       setUser(userData?.data?.token);
+      setUserId(userData?.data?.id);
       toast.success(userData.message, {
         position: "top-center",
       });

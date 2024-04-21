@@ -24,10 +24,12 @@ function Header() {
     setShowMenu(!showMenu);
   }
 
-  const { theme, toggle, showAuth, authDisplay, user, signin, profileOptions } =
+  const { theme, toggle, showAuth, user, signin, profileOptions } =
     useContext(ThemeContext);
 
   console.log(user);
+
+  const userId = localStorage.getItem("b2exclusiveuserid") || null;
 
   return (
     <>
@@ -130,7 +132,10 @@ function Header() {
                   <div onClick={profileOptions} className="relative z-50">
                     {signin ? (
                       <div className="absolute top-8 bg-white w-full flex border flex-col gap-2 p-2 z-30 ">
-                        <Link className="md:text-base text-[11px]" href={"#"}>
+                        <Link
+                          className="md:text-base text-[11px]"
+                          href={`/${userId}`}
+                        >
                           Account
                         </Link>
                         <Link className="md:text-base text-[11px]" href={"#"}>
