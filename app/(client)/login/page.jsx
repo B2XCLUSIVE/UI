@@ -7,11 +7,10 @@ import { ThemeContext } from "@/context/ThemeContext";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import axios from "axios";
 
 function Login() {
-  const { theme, authDisplay, setUser } = useContext(ThemeContext);
+  const { theme, setUser } = useContext(ThemeContext);
   const router = useRouter();
 
   const [signInUser, setsignInUser] = useState({
@@ -115,7 +114,7 @@ function Login() {
             ) : (
               <button
                 onClick={handleSignin}
-                className={`${signinloading ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 bg-primarycolor text-white `}
+                className={`${signinloading ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8  text-white `}
               >
                 {signinloading ? (
                   <AiOutlineLoading3Quarters className=" text-primarycolor text-center text-xl font-bold animate-spin infinite" />
