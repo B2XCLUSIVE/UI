@@ -69,7 +69,10 @@ function CreatePost() {
       });
 
       console.log("post", post);
-      router.push("/admin");
+
+      setTimeout(() => {
+        router.push("/admin");
+      }, 3000);
     } catch (error) {
       console.log("unable to post", error.message);
       toast.error(
@@ -93,7 +96,7 @@ function CreatePost() {
         <h1 className={`${theme}-text font-bold my-4 text-2xl`}>Create post</h1>
 
         <form className={`flex flex-col gap-8 ${theme}-text items-start`}>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 w-full">
             <label>Blog Title</label>
             <input
               value={post.title}

@@ -70,14 +70,7 @@ p {
   padding: 2rem;
 }
 
-.titap .dark p,
-h1,
-h2,
-h3 {
-  @apply text-white;
-}
-
-.tiptap .light p,
+.tiptap p,
 h1,
 h2,
 h3 {
