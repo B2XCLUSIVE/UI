@@ -2,9 +2,11 @@
 import Button from "@/components/Button";
 import { ThemeContext } from "@/context/ThemeContext";
 import axios from "axios";
-import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 function AdminLogin() {
   const router = useRouter();
@@ -15,8 +17,7 @@ function AdminLogin() {
   });
 
   const [signinloading, setsigninLoading] = useState(false);
-  const [signinSuccess, setsigninSuccess] = useState(false);
-  const [signinerror, setsigninError] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleSignin = async (e) => {
     e.preventDefault();
@@ -30,50 +31,43 @@ function AdminLogin() {
 
       const adminData = response.data.data;
       setadminUser(adminData.token);
-
       console.log("admin sign in Successfull", response.data);
-      setsigninSuccess(true);
+      toast.success(response?.data?.message, {
+        position: "top-center",
+      });
+      setTimeout(() => {
+        router.push("/admin");
+      }, 3000);
     } catch (error) {
       console.log("unable to sign admin in", error.message);
-      setsigninError(true);
+      toast.error(error?.response?.data?.message || "Failed to sign in admin", {
+        position: "top-center",
+      });
     } finally {
       setsigninLoading(false);
-      router.push("/overview");
     }
   };
 
+  useEffect(() => {
+    if (signInAdmin.email.length > 0 && signInAdmin.password.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [signInAdmin]);
+
   return (
     <>
-      <section className="w-full md:w-5/6 mx-auto">
-        <div className="  md:w-4/6 mx-auto absolute top-5 flex w-full justify-center  z-30">
-          {signinSuccess ? (
-            <div className="bg-green-600 p-2 rounded-lg">
-              <p className="md:text-sm text-[12px]">
-                Admin Account created Successfully
-              </p>
-            </div>
-          ) : (
-            ""
-          )}
-
-          {signinerror ? (
-            <div className="bg-red-600 p-2 rounded-lg">
-              <p className="md:text-sm text-[12px]">
-                Admin Account creation failed
-              </p>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-
-        <div className="md:flex h-full w-full p-10 md:w-3/5 mx-auto relative">
+      <section className="w-full  h-screen md:w-5/6 m-auto">
+        <ToastContainer />
+        <div className="md:flex justify-center items-center h-full w-full p-10 md:w-3/5 mx-auto ">
           <div className={` ${theme}-text w-full`}>
             <div className="py-10">
+              <h1 className={`${theme}-text font-bold text-3xl`}>
+                B2XCLUSIVE ADMIN{" "}
+              </h1>
               <h1 className={`font-bold text-2xl ${theme}-text`}>
-                {signinloading
-                  ? "Signing in, Please wait...."
-                  : "Admin Sign In"}
+                Admin Sign In{" "}
               </h1>
 
               <p className={`${theme}-text`}>
@@ -107,18 +101,25 @@ function AdminLogin() {
                 />
               </div>
 
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <input type="checkbox" name="" id="" />
-                  <p className={`${theme}-text`}>Remember Me</p>
-                </div>
-                <Link href={"/forgotpassword"}>Forgot Password</Link>
-              </div>
-
-              <Button title={"Sign In"} onclick={handleSignin} />
-              <Link href={"/adminsignup"}>
-                Don&apos;t have an account yet? Sign Up
-              </Link>
+              {buttonDisabled ? (
+                <button
+                  disabled
+                  className=" text-[14px] px-3 py-2 rounded-lg md:py-4 md:px-8 bg-gray-300 cursor-help text-white"
+                >
+                  Sign In
+                </button>
+              ) : (
+                <button
+                  onClick={handleSignin}
+                  className={`${signinloading ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8  text-white `}
+                >
+                  {signinloading ? (
+                    <AiOutlineLoading3Quarters className=" text-primarycolor text-center text-xl font-bold animate-spin infinite" />
+                  ) : (
+                    "Sign In as an Admin"
+                  )}
+                </button>
+              )}
             </form>
           </div>
         </div>

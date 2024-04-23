@@ -74,7 +74,7 @@ export const ThemeContextProvider = ({ children }) => {
   useEffect(() => {
     // Store user in localStorage
     if (typeof window !== "undefined") {
-      localStorage.setItem("b2exclusiveuadmin", JSON.stringify(adminUser));
+      localStorage.setItem("b2exclusiveadmin", JSON.stringify(adminUser));
     }
   }, [adminUser]);
 

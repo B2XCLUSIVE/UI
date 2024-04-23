@@ -93,7 +93,7 @@ function Overview() {
         </div>
 
         <section className="w-full flex gap-4">
-          <div className="3/5">
+          <div className="w-3/5">
             <Charts />
           </div>
 

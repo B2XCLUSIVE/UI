@@ -51,7 +51,7 @@ function Login() {
   };
 
   useEffect(() => {
-    if (signInUser.email.length > 0 && signInUser.password.length > 8) {
+    if (signInUser.email.length > 0 && signInUser.password.length > 0) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
