@@ -2,30 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.light-text {
-  color: #fff;
-}
-
-.light-bg {
-  @apply bg-gray-950;
-}
-
-.dark-text {
-  color: black;
-}
-
-.dark-bg {
-  @apply bg-gray-50;
-}
-
-.dark-bgg {
-  @apply bg-white;
-}
-
-.light-bgg {
-  @apply bg-gray-900;
-}
-
 .light-head-bg {
   background-color: #00000022;
 }
@@ -49,13 +25,6 @@
 .ql-editor p {
   color: black;
 }
-h1 {
-  color: white;
-}
-
-p {
-  color: white;
-}
 
 .charts-container {
   width: 100%;
@@ -70,7 +39,14 @@ p {
   padding: 2rem;
 }
 
-.tiptap p,
+.titap .dark p,
+h1,
+h2,
+h3 {
+  @apply text-white;
+}
+
+.tiptap .light p,
 h1,
 h2,
 h3 {

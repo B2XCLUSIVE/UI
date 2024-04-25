@@ -6,7 +6,6 @@ import RecentPost from "@/components/RecentPost";
 import Top40 from "@/components/Top40";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
-import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
@@ -26,13 +25,12 @@ import {
 } from "react-icons/fa";
 
 export default function Home() {
-  const { theme } = useContext(ThemeContext);
   return (
     <main>
       <section className="herosection p-8 md:p-36 relative">
         <div className="bg-[#000] opacity-35 w-full h-full absolute top-0 left-0 right-0 bottom-0"></div>
 
-        <h1 className="text-4xl font-extrabold text-center z-10">
+        <h1 className="text-4xl text-white font-extrabold text-center z-10">
           Stories, Thoughts Ideas and More
         </h1>
         <p className="z-10">
@@ -75,7 +73,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="md:w-5/6 mx-auto md:flex gap-4 p-4">
+      <section className="md:w-5/6 mx-auto grid grid-cols-3 gap-4 p-4">
         <div className="w-full h-48 relative">
           <Image
             src={"/talk.jpeg"}
@@ -86,9 +84,9 @@ export default function Home() {
           />
 
           <div className="absolute top-6 left-6 flex flex-col">
-            <h1 className="font-bold text-xl">The Top 50</h1>
-            <p>Trending Discussions</p>
-            <FaBook className="text-2xl" />
+            <h1 className="font-bold text-white text-xl">The Top 50</h1>
+            <p className="text-white">Trending Discussions</p>
+            <FaBook className="text-white text-2xl" />
           </div>
         </div>
         <div className="w-full h-48 relative">
@@ -101,9 +99,11 @@ export default function Home() {
           />
 
           <div className="absolute top-6 left-6 flex flex-col">
-            <h1 className="font-bold text-xl">Trending Discussions</h1>
-            <p>Latests Gists</p>
-            <FaMicrophone className="text-2xl" />
+            <h1 className="font-bold text-xl text-white">
+              Trending Discussions
+            </h1>
+            <p className="text-white">Latests Gists</p>
+            <FaMicrophone className=" text-white text-2xl" />
           </div>
         </div>
         <div className="w-full relative bg-black">
@@ -116,9 +116,9 @@ export default function Home() {
           />
 
           <div className="absolute top-6 left-6 flex flex-col">
-            <h1 className="font-bold text-xl">Trending Musics</h1>
-            <p>Nigeria</p>
-            <FaMusic className="text-2xl" />
+            <h1 className="font-bold text-xl text-white">Trending Musics</h1>
+            <p className="text-white">Nigeria</p>
+            <FaMusic className="text-2xl text-white" />
           </div>
         </div>
       </section>
@@ -138,12 +138,8 @@ export default function Home() {
           <div className="flex items-end justify-between mb-10">
             <div className="w-3/4 h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
-              <FaBackward
-                className={`${theme}-text border w-12 h-12 p-2 text-white`}
-              />
-              <FaForward
-                className={`${theme}-text border w-12 h-12 p-2 text-white`}
-              />
+              <FaBackward className={`border w-12 h-12 p-2 `} />
+              <FaForward className={`border w-12 h-12 p-2 `} />
             </div>
           </div>
 
@@ -159,12 +155,8 @@ export default function Home() {
           <div className="flex items-end justify-between mb-10">
             <div className="w-3/4 h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
-              <FaBackward
-                className={`${theme}-text border w-12 h-12 p-2 text-white`}
-              />
-              <FaForward
-                className={`${theme}-text border w-12 h-12 p-2 text-white`}
-              />
+              <FaBackward className={`border w-12 h-12 p-2 `} />
+              <FaForward className={`border w-12 h-12 p-2 `} />
             </div>
           </div>
 
@@ -223,12 +215,12 @@ export default function Home() {
           <CategoriesHeading title={"Get Connected"} />
 
           <div className="flex justify-between p-4">
-            <FaFacebook className={` ${theme}-text text-3xl `} />
-            <FaTwitter className={` ${theme}-text text-3xl `} />
-            <FaLinkedin className={` ${theme}-text text-3xl `} />
-            <FaYoutube className={` ${theme}-text text-3xl `} />
-            <FaInstagram className={` ${theme}-text text-3xl `} />
-            <FaPinterest className={` ${theme}-text text-3xl `} />
+            <FaFacebook className={`  text-3xl `} />
+            <FaTwitter className={` text-3xl `} />
+            <FaLinkedin className={`  text-3xl `} />
+            <FaYoutube className={` text-3xl `} />
+            <FaInstagram className={` text-3xl `} />
+            <FaPinterest className={`  text-3xl `} />
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
@@ -251,7 +243,7 @@ export default function Home() {
         <div>
           <CategoriesHeading title={"Music Soul"} />
 
-          <div className={`${theme}-bgg p-4 mt-4`}>
+          <div className={`p-4 mt-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -261,10 +253,10 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-0 p-4">
-                <h1 className="font-bold text-2xl">
+                <h1 className="font-bold text-2xl text-white">
                   All red carpet looks 2018 music awards
                 </h1>
-                <p>Arditta Colle -25 July, 2018</p>
+                <p className="text-white">Arditta Colle -25 July, 2018</p>
               </div>
             </div>
 
@@ -277,7 +269,7 @@ export default function Home() {
         <div>
           <CategoriesHeading title={"Live Concerts"} />
 
-          <div className={`${theme}-bgg p-4 mt-4`}>
+          <div className={`p-4 mt-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -287,10 +279,10 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-0 p-4">
-                <h1 className="font-bold text-2xl">
+                <h1 className="font-bold text-2xl text-white">
                   All red carpet looks 2018 music awards
                 </h1>
-                <p>Arditta Colle -25 July, 2018</p>
+                <p className="text-white">Arditta Colle -25 July, 2018</p>
               </div>
             </div>
 
@@ -303,7 +295,7 @@ export default function Home() {
         <div>
           <CategoriesHeading title={"New Albums"} />
 
-          <div className={`${theme}-bgg p-4 mt-4`}>
+          <div className={` p-4 mt-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -313,10 +305,10 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-0 p-4">
-                <h1 className="font-bold text-2xl">
+                <h1 className="font-bold text-white text-2xl">
                   All red carpet looks 2018 music awards
                 </h1>
-                <p>Arditta Colle -25 July, 2018</p>
+                <p className="text-white">Arditta Colle -25 July, 2018</p>
               </div>
             </div>
 

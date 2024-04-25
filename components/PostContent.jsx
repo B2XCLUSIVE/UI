@@ -5,7 +5,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
 import { FaComment, FaCommentDots, FaEllipsisV, FaEye } from "react-icons/fa";
 
-function PostContent() {
+function PostContent({ title, tags, categories, createdAt }) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -21,7 +21,7 @@ function PostContent() {
               className="w-full h-full object-cover rounded-full"
             />
           </div>
-          <h1 className={`${theme}-text `}>The Legend of the new Artists</h1>
+          <h1 className={`${theme}-text `}>{title}</h1>
         </div>
         <div className="w-6/12 flex items-center gap-2">
           <h1 className={`${theme}-text w-1/6 `}>Tech</h1>
@@ -36,7 +36,7 @@ function PostContent() {
 
             <h1 className={`${theme}-text `}>50</h1>
           </div>
-          <h1 className={`${theme}-text w-1/6 `}>11/4/2024</h1>
+          <h1 className={`${theme}-text w-1/6 `}>{createdAt.split("T")[0]}</h1>
           <h1
             className={`${theme}-text w-1/6 bg-green-500 text-center p-1 rounded-full `}
           >

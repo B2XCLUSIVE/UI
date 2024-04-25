@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 
-function CreatePost() {
+function AddVideos() {
   const router = useRouter();
   const { theme, showSideBar } = useContext(ThemeContext);
   const [uploadingPost, setuploadingPost] = useState(false);
@@ -97,7 +97,7 @@ function CreatePost() {
 
         <form className={`flex flex-col gap-8 ${theme}-text items-start`}>
           <div className="flex flex-col gap-2 w-full">
-            <label>Blog Title</label>
+            <label>Video Title</label>
             <input
               value={post.title}
               onChange={(e) => setPost({ ...post, title: e.target.value })}
@@ -106,50 +106,14 @@ function CreatePost() {
               className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
             />
           </div>
-          <div className="flex w-full flex-col gap-2">
-            <label>Blog header Image</label>
-            <input
-              type="file"
-              onChange={(e) => setFile(e.target.files[0])}
-              className="p-2 w-full bg-transparent rounded-lg  outline-none"
-            />
-            {/* Optional: Display the file name */}
-            {file && (
-              <div className="w-full">
-                <div className="w-full h-[300px]">
-                  <Image
-                    src={URL.createObjectURL(file)}
-                    width={1000}
-                    height={1000}
-                    alt="post"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className={`${theme}-text`}>Selected File: {file.name}</p>
-              </div>
-            )}{" "}
-          </div>
 
           <div className="flex gap-4 w-full items-center">
-            <div className="flex flex-col gap-2 w-8/12">
-              <label>Post subtitle</label>
+            <div className="flex flex-col w-6/12">
+              <label htmlFor="">Artists </label>
               <input
-                value={post.subtitle}
-                onChange={(e) => setPost({ ...post, subtitle: e.target.value })}
-                type="text"
-                placeholder="Enter Blog Title"
-                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
-              />
-            </div>
-
-            <div className="flex flex-col w-2/12">
-              <label>
-                Categories <span>Seprate tags with &quot;,&quot;</span>{" "}
-              </label>
-              <input
-                value={post.categories}
+                value={post.tags}
                 onChange={(e) =>
-                  setPost({ ...post, categories: e.target.value.split(",") })
+                  setPost({ ...post, tags: e.target.value.split(",") })
                 }
                 type="text"
                 placeholder="Enter Blog Title"
@@ -157,10 +121,8 @@ function CreatePost() {
               />
             </div>
 
-            <div className="flex flex-col w-2/12">
-              <label htmlFor="">
-                Tags <span>Seprate tags with &quot;,&quot;</span>
-              </label>
+            <div className="flex flex-col w-6/12">
+              <label htmlFor="">Duration </label>
               <input
                 value={post.tags}
                 onChange={(e) =>
@@ -173,8 +135,23 @@ function CreatePost() {
             </div>
           </div>
 
+          <div className="flex gap-4 w-full items-center">
+            <div className="flex flex-col w-full">
+              <label htmlFor="">Upload Video</label>
+              <input
+                value={post.tags}
+                onChange={(e) =>
+                  setPost({ ...post, tags: e.target.value.split(",") })
+                }
+                type="file"
+                placeholder="Enter Blog Title"
+                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+              />
+            </div>
+          </div>
+
           <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="">Post Descriptions</label>
+            <label htmlFor="">Video Descriptions</label>
             <Tiptap
               content={content}
               onChange={(newContent) => handleContentChange(newContent)}
@@ -197,4 +174,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default AddVideos;

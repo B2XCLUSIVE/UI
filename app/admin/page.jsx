@@ -153,7 +153,7 @@ function Overview() {
             <Charts />
           </div>
 
-          <div className=" w-full md:w-2/6 rounded-lg">
+          <div className=" w-full md:w-2/5 rounded-lg">
             <h1 className={`${theme}-text font-bold`}>Recent 5 followers</h1>
 
             <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
@@ -190,7 +190,7 @@ function Overview() {
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="border border-primarycolor text-primarycolor px-4 py-2 rounded-md mr-2"
+                className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
               >
                 Previous
               </button>
@@ -199,8 +199,8 @@ function Overview() {
                 <button
                   key={number}
                   onClick={() => setCurrentPage(number)}
-                  className={`border border-primarycolor text-primarycolor px-4 py-2 rounded-md mx-1 ${
-                    currentPage === number ? "bg-gray-800" : ""
+                  className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
+                    currentPage === number ? "bg-black" : ""
                   }`}
                 >
                   {number}
