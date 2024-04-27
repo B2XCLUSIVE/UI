@@ -106,7 +106,7 @@ function Overview() {
 
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={``}>Total Artists</h1>
+              <h1 className={`text-[10px] md:text-base`}>Total Artists</h1>
               <FaEye className={``} />
             </div>
 
@@ -115,13 +115,15 @@ function Overview() {
                 <h1 className={`font-bold text-2xl`}>408</h1>
               </div>
 
-              <p className="text-gray-300 text-[11px]">Of all time</p>
+              <p className="text-gray-300 text-[9px] md:text-[11px]">
+                Of all time
+              </p>
             </div>
           </div>
 
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={``}>Total Events</h1>
+              <h1 className={`text-[10px] md:text-base`}>Total Events</h1>
               <FaComment className={``} />
             </div>
 
@@ -130,7 +132,9 @@ function Overview() {
                 <h1 className={` font-bold text-2xl`}>50</h1>
               </div>
 
-              <p className="text-gray-300 text-[11px]">Of all time</p>
+              <p className="text-gray-300 text-[9px] md:text-[11px]">
+                Of all time
+              </p>
             </div>
           </div>
         </div>

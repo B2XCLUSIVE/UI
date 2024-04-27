@@ -71,7 +71,7 @@ function Contents() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={``}>Total Blogs</h1>
+              <h1 className={`text-[10px] md:text-base`}>Total Blogs</h1>
               <FaBlog className={``} />
             </div>
 
@@ -84,7 +84,7 @@ function Contents() {
 
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={``}>Total Music</h1>
+              <h1 className={`text-[10px] md:text-base`}>Total Music</h1>
               <FaUser className={``} />
             </div>
 
@@ -97,7 +97,7 @@ function Contents() {
 
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={``}>Total Videos</h1>
+              <h1 className={`text-[10px] md:text-base`}>Total Videos</h1>
               <FaEye className={``} />
             </div>
 
@@ -110,7 +110,7 @@ function Contents() {
 
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={``}>Total Events</h1>
+              <h1 className={`text-[10px] md:text-base`}>Total Events</h1>
               <FaComment className={``} />
             </div>
 
@@ -143,7 +143,7 @@ function Contents() {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
+            className="border text-[10px] md:text-base border-gray-500 text-gray-500 px-2 md:px-4 md:py-2 rounded-md mr-2"
           >
             Previous
           </button>
@@ -152,7 +152,7 @@ function Contents() {
             <button
               key={number}
               onClick={() => setCurrentPage(number)}
-              className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
+              className={`border border-gray-500 text-primarycolor md:text-base text-[10px] px-4 py-2 rounded-md mx-1 ${
                 currentPage === number ? "bg-black" : ""
               }`}
             >
@@ -163,13 +163,13 @@ function Contents() {
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
+            className="bg-primarycolor text-white px-4 py-2 md:text-base text-[10px] rounded-md ml-2"
           >
             Next
           </button>{" "}
         </div>
 
-        <div className="md:flex gap-4">
+        <div className="flex md:flex-row flex-col gap-4">
           <div className="md:w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
               <div className="w-4/12">

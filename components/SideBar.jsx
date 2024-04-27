@@ -27,7 +27,7 @@ function SideBar() {
     <>
       <div>
         <div
-          className="md:hidden absolute right-4 top-6 "
+          className="md:hidden absolute right-4 z-40 top-6 "
           onClick={() => setMenu(true)}
         >
           <MdMenuOpen className="text-2xl" />
@@ -41,6 +41,7 @@ function SideBar() {
                 onClick={() => setMenu(false)}
               />
             </div>
+            <h1 className="font-bold text-xl p-4">B2XCLUSIVE</h1>
             <div
               onClick={() => {
                 setMenu(false);
@@ -107,7 +108,7 @@ function SideBar() {
           ""
         )}
         <div
-          className={` h-screen p-4 md:block hidden  ${showSideBar ? "md:w-2/12" : " md:w-[70px]"}  `}
+          className={` h-screen  p-4 md:block hidden  ${showSideBar ? "md:2/12" : " md:w-[70px]"}  `}
         >
           <div
             className={`flex ${showSideBar ? "p-4" : "p-2"} justify-between`}

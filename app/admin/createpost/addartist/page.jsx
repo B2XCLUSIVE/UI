@@ -82,7 +82,7 @@ function AddArtists() {
   };
   return (
     <>
-      <form className={`flex flex-col gap-8  items-start`}>
+      <form className={`flex flex-col gap-8 w-full items-start`}>
         <ToastContainer />
         <div className="flex flex-col gap-2 w-full">
           <label>Artist Name</label>
@@ -121,7 +121,7 @@ function AddArtists() {
         </div>
 
         <div className="flex gap-4 w-full items-center">
-          <div className="flex flex-col gap-2 w-8/12">
+          <div className="flex flex-col w-full gap-2 ">
             <label>Artist Bio</label>
 
             <textarea

@@ -92,7 +92,7 @@ function CreatePost() {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} p-4 `}>
+      <section className={`${showSideBar ? "w-10/12" : "w-full"} md:p-4  `}>
         <ToastContainer />
 
         <form className={`flex flex-col gap-8 ${theme}-text items-start`}>
