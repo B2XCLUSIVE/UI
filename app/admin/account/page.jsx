@@ -38,7 +38,7 @@ function Account() {
           </div>
         </div>
 
-        <section className="w-full mt-28">
+        <section className="w-full p-8 mt-28">
           <form action="">
             <div className="flex py-4 border-b-gray-200 border-b ">
               <label htmlFor="" className="w-2/6">

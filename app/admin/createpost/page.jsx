@@ -92,7 +92,7 @@ function CreatePost() {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
+      <section className={`${showSideBar ? "w-10/12" : "w-full"} p-4 `}>
         <ToastContainer />
 
         <form className={`flex flex-col gap-8 ${theme}-text items-start`}>
@@ -130,8 +130,8 @@ function CreatePost() {
             )}{" "}
           </div>
 
-          <div className="flex gap-4 w-full items-center">
-            <div className="flex flex-col gap-2 w-8/12">
+          <div className="md:flex gap-4 w-full items-center">
+            <div className="flex flex-col gap-2 md:w-8/12">
               <label>Post subtitle</label>
               <input
                 value={post.subtitle}
@@ -142,7 +142,7 @@ function CreatePost() {
               />
             </div>
 
-            <div className="flex flex-col w-2/12">
+            <div className="flex flex-col md:w-2/12">
               <label>
                 Categories <span>Seprate tags with &quot;,&quot;</span>{" "}
               </label>
@@ -157,7 +157,7 @@ function CreatePost() {
               />
             </div>
 
-            <div className="flex flex-col w-2/12">
+            <div className="flex flex-col md:w-2/12">
               <label htmlFor="">
                 Tags <span>Seprate tags with &quot;,&quot;</span>
               </label>

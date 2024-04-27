@@ -1,13 +1,9 @@
 "use client";
 import Image from "next/image";
 
-import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
 import { FaComment, FaCommentDots, FaEllipsisV, FaEye } from "react-icons/fa";
 
 function PostContent({ title, tags, categories, createdAt }) {
-  const { theme } = useContext(ThemeContext);
-
   return (
     <>
       <div className="w-full p-2 flex items-center border border-gray-100 rounded-se rounded-ss">
@@ -21,29 +17,28 @@ function PostContent({ title, tags, categories, createdAt }) {
               className="w-full h-full object-cover rounded-full"
             />
           </div>
-          <h1 className={`${theme}-text `}>{title}</h1>
+          <h1 className={` `}>{title}</h1>
         </div>
         <div className="w-6/12 flex items-center gap-2">
-          <h1 className={`${theme}-text w-1/6 `}>Tech</h1>
+          <h1 className={`w-1/6 `}>Tech</h1>
           <div className="flex items-center gap-2 w-1/6">
-            <FaEye className={`${theme}-text`} />
+            <FaEye className={``} />
 
-            <h1 className={`${theme}-text`}>734</h1>
+            <h1 className={``}>734</h1>
           </div>
 
           <div className="flex items-center gap-2 w-1/6">
-            <FaComment className={`${theme}-text`} />
+            <FaComment className={``} />
 
-            <h1 className={`${theme}-text `}>50</h1>
+            <h1 className={``}>50</h1>
           </div>
-          <h1 className={`${theme}-text w-1/6 `}>{createdAt.split("T")[0]}</h1>
-          <h1
-            className={`${theme}-text w-1/6 bg-green-500 text-center p-1 rounded-full `}
-          >
+
+          <h1 className={` w-1/6 `}>{createdAt || "1"}</h1>
+          <h1 className={` w-1/6 bg-green-500 text-center p-1 rounded-full `}>
             Active
           </h1>
           <div className="w-1/6">
-            <FaEllipsisV className={`${theme}-text text-center`} />
+            <FaEllipsisV className={` text-center`} />
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import { ThemeContext } from "@/context/ThemeContext";
 import {
   Bold,
   Strikethrough,
@@ -15,10 +14,8 @@ import {
   Code,
   Link,
 } from "lucide-react";
-import { useContext } from "react";
 
 function Toolbar({ editor, content }) {
-  const { theme } = useContext(ThemeContext);
   if (!editor) {
     return null;
   }
@@ -33,7 +30,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("bold")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <Bold className="w-5 h-5" />
@@ -46,7 +43,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("italic")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <Italic className="w-5 h-5" />
@@ -60,7 +57,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("underline")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <Underline className="w-5 h-5" />
@@ -74,7 +71,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("strike")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : ` p-2`
           }
         >
           <Strikethrough className="w-5 h-5" />
@@ -87,8 +84,8 @@ function Toolbar({ editor, content }) {
           }}
           className={
             editor.isActive("heading", { level: 1 })
-              ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              ? "text-primarycolor border-gray-500 bg-gray-50 p-2 rounded-md"
+              : `p-2`
           }
         >
           <Heading1 className="w-5 h-5" />
@@ -101,7 +98,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("heading", { level: 2 })
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <Heading2 className="w-5 h-5" />
@@ -114,7 +111,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("heading", { level: 3 })
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <Heading3 className="w-5 h-5" />
@@ -128,7 +125,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("bulletList")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : ` p-2`
           }
         >
           <List className="w-5 h-5" />
@@ -141,7 +138,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("orderedList")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <ListOrdered className="w-5 h-5" />
@@ -154,7 +151,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("blockquote")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : ` p-2`
           }
         >
           <Quote className="w-5 h-5" />
@@ -168,7 +165,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("code")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <Code className="w-5 h-5" />
@@ -181,7 +178,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("undo")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : `p-2`
           }
         >
           <Undo className="w-5 h-5" />
@@ -195,7 +192,7 @@ function Toolbar({ editor, content }) {
           className={
             editor.isActive("redo")
               ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
-              : `${theme} p-2`
+              : ` p-2`
           }
         >
           <Redo className="w-5 h-5" />

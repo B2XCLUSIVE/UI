@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const data = [
@@ -48,6 +49,7 @@ const data = [
   },
   {
     name: "Page G",
+    price: "100$",
     uv: 3490,
     pv: 4300,
     amt: 2100,
@@ -56,31 +58,40 @@ const data = [
 
 export default function Linechart() {
   return (
-    <LineChart
-      width={1200}
-      height={300}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+      minWidth={100}
+      minHeight={300}
     >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis yAxisId="left" />
-      <YAxis yAxisId="right" orientation="right" />
-      <Tooltip />
-      <Legend />
-      <Line
-        yAxisId="left"
-        type="monotone"
-        dataKey="pv"
-        stroke="#797979"
-        activeDot={{ r: 8 }}
-      />
-      <Line yAxisId="right" type="monotone" dataKey="uv" stroke="#FFA500" />
-    </LineChart>
+      <LineChart
+        width={1200}
+        height={300}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="price" />
+
+        <XAxis dataKey="name" />
+        <YAxis yAxisId="left" />
+        <YAxis yAxisId="right" orientation="right" />
+        <Tooltip />
+        <Legend />
+        <Line
+          yAxisId="left"
+          type="monotone"
+          dataKey="pv"
+          stroke="#797979"
+          activeDot={{ r: 8 }}
+        />
+        <Line yAxisId="right" type="monotone" dataKey="uv" stroke="#FFA500" />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }
