@@ -1,13 +1,45 @@
 "use client";
 import Artist from "@/components/Artist";
 import SectionHeader from "@/components/SectionHeader";
-import { ThemeContext } from "@/context/ThemeContext";
-import Image from "next/image";
-import { useContext } from "react";
 import { FaBackward, FaForward, FaPlus, FaSearch } from "react-icons/fa";
+import axios from "axios";
+import useSWR from "swr";
+import { useState } from "react";
 
 function Artists() {
-  const { theme } = useContext(ThemeContext);
+  const pagesize = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const fetcher = async () => {
+    const response = await axios.get(
+      `https://dummyjson.com/products?page=${currentPage}`,
+    );
+    const data = response.data.products;
+    return data;
+  };
+  const { data, error, isLoading } = useSWR(
+    "https://b2xclusive.onrender.com/api/v1/artist/artists",
+    fetcher,
+  );
+
+  const totalItems = data?.length;
+  const totalPages = Math.ceil(totalItems / pagesize);
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
+  console.log("artistdata", data);
+
   return (
     <>
       <SectionHeader title={"Artists Blogs"} desc={"hsyhhs"} />
@@ -15,11 +47,11 @@ function Artists() {
       <section className="w-full md:w-5/6 mx-auto py-10 px-8">
         <div>
           <h1
-            className={`${theme}-text md:text-left text-center text-lg md:text-4xl font-bold`}
+            className={`md:text-left text-center text-lg md:text-4xl font-bold`}
           >
             Find the most recent music release
           </h1>
-          <p className={`${theme}-text text-center md:text-left`}>
+          <p className={` text-center md:text-left`}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum,
             consequatur.
           </p>
@@ -32,7 +64,7 @@ function Artists() {
             <input
               type="text"
               placeholder="Search here"
-              className={` ${theme}-text w-11/12 bg-transparent p-4 text-white outline-none `}
+              className={` w-11/12 bg-transparent p-4 text-white outline-none `}
             />
             <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
               <FaSearch /> Search
@@ -53,47 +85,29 @@ function Artists() {
         </div>
       </section>
       <section
-        className={`${theme}-bgg md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
+        className={` md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
       >
-        <Artist />
-        <Artist />
-        <Artist />
-        <Artist />
-        <Artist />
-        <Artist />
-        <Artist />
-        <Artist />
+        {data?.slice(0, currentPage * pagesize).map((data) => (
+          <Artist key={data.id} {...data} />
+        ))}
       </section>
 
-      <section
-        className={`p-4 md:p-8 mx-auto gap-2 flex justify-center ${theme}-text `}
-      >
-        <div className={`border  p-2 `}>
-          <p className={`${theme}-text`}>PREV</p>
+      <section className={`p-4 md:p-8 mx-auto gap-2 flex justify-center  `}>
+        <div className={`border  p-2 `} onClick={handlePrevPage}>
+          <p className={`text`}>PREV</p>
         </div>
 
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>1</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>2</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>3</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>4</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>...</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>NEXT</p>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <div
+            key={index + 1}
+            className={`border  p-2 ${currentPage === index + 1 ? "bg-primarycolor text-white" : ""} `}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            <p className={``}>{index + 1}</p>
+          </div>
+        ))}
+        <div className="border  p-2 " onClick={handleNextPage}>
+          <p className={``}>NEXT</p>
         </div>
       </section>
     </>

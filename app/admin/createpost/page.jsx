@@ -24,7 +24,6 @@ function CreatePost() {
   };
 
   const [post, setPost] = useState({
-    files: file,
     title: "",
     subtitle: "",
     description: content,
@@ -32,6 +31,14 @@ function CreatePost() {
     categories: [],
   });
 
+  // Update the artist state with new file
+  useEffect(() => {
+    setPost((prevPost) => ({
+      ...prevPost,
+      files: file,
+      description: content,
+    }));
+  }, [file, content]);
   const [token, setToken] = useState(""); // State to hold the token
 
   useEffect(() => {
@@ -39,69 +46,65 @@ function CreatePost() {
     if (storedToken) {
       const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
       setToken(cleanedToken);
+      console.log(cleanedToken);
     } else {
       console.error("Bearer token not found");
     }
   }, []);
 
-  const handlePost = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
+    setuploadingPost(true); // Reset uploadingPost state
     try {
-      setuploadingPost(true);
-      const updatedPost = {
-        ...post,
-        files: [file], // Update file
-        description: content, // Update content
+      let formData = new FormData(e.target);
+      formData.append("description", post.description);
+      console.log(e.target);
+      console.log(formData.get("description"));
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       };
+      console.log(formData);
       const postResponse = await axios.put(
         "https://b2xclusive.onrender.com/api/v1/post/create",
-        updatedPost,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
+        formData,
+        config,
       );
-      console.log(postResponse.data);
-      toast.success(postResponse?.data?.message, {
+      toast.success(postResponse.data.message, {
         position: "top-center",
       });
-
-      console.log("post", updatedPost);
-      console.log("sent post", postResponse.data);
 
       setTimeout(() => {
         router.push("/admin");
       }, 3000);
     } catch (error) {
-      console.log("unable to post", error.message);
-      toast.error(
-        error?.postResponse?.data?.message || "Failed to upload post",
-        {
-          position: "top-center",
-        },
-      );
+      console.error("Failed to upload post", error.message);
+      toast.error(error.response.data.message || "Failed to upload post", {
+        position: "top-center",
+      });
     } finally {
-      setuploadingPost(false);
+      setuploadingPost(false); // Reset uploadingPost state
     }
   };
-
-  console.log("File:", file);
-  console.log("Content:", content);
 
   return (
     <>
       <section className={`${showSideBar ? "w-10/12" : "w-full"} md:p-4  `}>
         <ToastContainer />
 
-        <form className={`flex flex-col gap-8 ${theme}-text items-start`}>
+        <form
+          className={`flex flex-col gap-8 ${theme}-text items-start`}
+          onSubmit={onSubmit}
+        >
           <div className="flex flex-col gap-2 w-full">
             <label>Blog Title</label>
             <input
               value={post.title}
               onChange={(e) => setPost({ ...post, title: e.target.value })}
               type="text"
+              name="title"
               placeholder="Enter Blog Title"
               className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
             />
@@ -110,6 +113,8 @@ function CreatePost() {
             <label>Blog header Image</label>
             <input
               type="file"
+              multiple
+              name="files"
               onChange={(e) => setFile(e.target.files[0])}
               className="p-2 w-full bg-transparent rounded-lg  outline-none"
             />
@@ -134,6 +139,7 @@ function CreatePost() {
             <div className="flex flex-col gap-2 md:w-8/12">
               <label>Post subtitle</label>
               <input
+                name="subtitle"
                 value={post.subtitle}
                 onChange={(e) => setPost({ ...post, subtitle: e.target.value })}
                 type="text"
@@ -151,6 +157,7 @@ function CreatePost() {
                 onChange={(e) =>
                   setPost({ ...post, categories: e.target.value.split(",") })
                 }
+                name="categories[]"
                 type="text"
                 placeholder="Enter Blog Title"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
@@ -166,6 +173,7 @@ function CreatePost() {
                 onChange={(e) =>
                   setPost({ ...post, tags: e.target.value.split(",") })
                 }
+                name="tags[]"
                 type="text"
                 placeholder="Enter Blog Title"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
@@ -182,7 +190,7 @@ function CreatePost() {
           </div>
 
           <button
-            onClick={handlePost} // Use handlePost instead of handleingPost
+            type="submit"
             className={`${uploadingPost ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 text-white`}
           >
             {uploadingPost ? (

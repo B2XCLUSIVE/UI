@@ -7,8 +7,12 @@ import Top40 from "@/components/Top40";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Link from "next/link";
-import { useContext } from "react";
+import useSWR from "swr";
+import { useContext, useEffect, useState } from "react";
 import {
   FaBackward,
   FaBook,
@@ -24,9 +28,33 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
+import axios from "axios";
+
 export default function Home() {
+  const [allPost, setAllPost] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://b2xclusive.onrender.com/api/v1/post/posts",
+        );
+        setAllPost(response?.data?.data);
+        console.log(allPost);
+      } catch (error) {
+        console.error("Failed to fethc blog post", error.message);
+        toast.error(error?.response?.data?.message || "Failed to upload post", {
+          position: "top-center",
+        });
+      }
+    };
+
+    fetchData();
+  }, [allPost]);
   return (
     <main>
+      <ToastContainer />
+
       <section className="herosection p-8 md:p-36 relative">
         <div className="bg-[#000] opacity-35 w-full h-full absolute top-0 left-0 right-0 bottom-0"></div>
 
@@ -163,13 +191,11 @@ export default function Home() {
           {/* RECENT POST SECTION */}
           <CategoriesHeading title={"Recent Posts"} />
 
-          <div className="grid md:grid-cols-2 gap-4 p-4 ">
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
+          <div className="grid md:grid-cols-2 gap-4 p-4">
+            {allPost &&
+              allPost
+                ?.slice(0, 6)
+                .map((post) => <RecentPost key={post.id} {...post} />)}
           </div>
 
           {/* TOP 40 section */}

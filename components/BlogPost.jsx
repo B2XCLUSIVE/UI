@@ -1,13 +1,12 @@
 "use client";
-import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 
-import Button from "./Button";
+import pld from "@/public/pld.jpeg";
 import Link from "next/link";
-import { useContext } from "react";
 
-function BlogPost() {
-  const { theme } = useContext(ThemeContext);
+function BlogPost({ title, subtitle, image, updatedAt, author }) {
+  const imageUrl = image && image.length > 0 ? image[0]?.url : pld;
+
   return (
     <>
       <Link href={"blogs/1"} className={` flex `}>
@@ -22,28 +21,20 @@ function BlogPost() {
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <p className={`${theme}-text md:text-base text-[11px]`}>
-              George Washnington
-            </p>
+            <p className={` md:text-base text-[11px]`}>{author.userName}</p>
             <p
               className={`text-primarycolor font-bold md:text-base text-[11px]`}
             >
               Follow
             </p>
           </div>
-          <h1 className={`${theme}-text text-sm md:text-xl font-bold`}>
-            Rock &apos;n Roll Really Is The
-          </h1>
-          <p className={`${theme}-text text-[10px] md:text-base`}>
-            This is Photoshop&apos;s version of Lorem Ipsum.
-          </p>
+          <h1 className={` text-sm md:text-xl font-bold`}>{title}</h1>
+          <p className={`text-[10px] md:text-base`}>{subtitle}</p>
           <div className="flex  items-center md:gap-4 gap-2">
-            <p className={`${theme}-text md:text-base text-[11px]`}>
-              March 6 2024
+            <p className={` md:text-base text-[11px]`}>
+              {updatedAt?.split("T")[0]}
             </p>
-            <p className={`${theme}-text md:text-base text-[11px]`}>
-              6 Mins read
-            </p>
+            <p className={` md:text-base text-[11px]`}>6 Mins read</p>
 
             <p className="text-white py-1 font-bold text-[10px]  px-3 bg-green-500 rounded-full">
               Trending
@@ -58,7 +49,7 @@ function BlogPost() {
         </div>
         <div className="hidden md:block w-1/3 h-[150px] md:h-[150px]">
           <Image
-            src={"/alb.jpeg"}
+            src={imageUrl}
             width={1000}
             height={1000}
             alt="alb"

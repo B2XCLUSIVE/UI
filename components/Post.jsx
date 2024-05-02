@@ -4,7 +4,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import { useContext } from "react";
 
-function Post({ title, subtitle, createdAt }) {
+function Post({ image, title, subtitle, createdAt }) {
   const { theme } = useContext(ThemeContext);
   return (
     <>
@@ -12,7 +12,7 @@ function Post({ title, subtitle, createdAt }) {
         <div className="flex gap-2 items-center">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image
-              src={"/alb.jpeg"}
+              src={image[0]?.url}
               width={1000}
               height={1000}
               alt="alb"
@@ -33,7 +33,7 @@ function Post({ title, subtitle, createdAt }) {
         <div className="flex gap-4">
           <h1 className={`${theme}-text md:text-base text-[12px] `}>100k</h1>
           <h1 className={`${theme}-text md:text-base text-[12px]`}>
-            {createdAt.split("T")[0]}
+            {createdAt}
           </h1>
         </div>
       </div>
