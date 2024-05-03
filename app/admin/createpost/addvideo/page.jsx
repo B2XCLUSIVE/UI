@@ -7,8 +7,7 @@ import Button from "@/components/Button";
 import Tiptap from "@/components/TipTap";
 import Image from "next/image";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function AddVideos() {
@@ -93,8 +92,6 @@ function AddVideos() {
   return (
     <>
       <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
-        <ToastContainer />
-
         <form className={`flex flex-col gap-8 ${theme}-text items-start`}>
           <div className="flex flex-col gap-2 w-full">
             <label>Video Title</label>

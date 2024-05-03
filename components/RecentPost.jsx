@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import pld from "@/public/pld.jpeg";
-function RecentPost({ title, image, updatedAt }) {
+function RecentPost({ id, title, image, updatedAt }) {
   const imageUrl = image && image.length > 0 ? image[0]?.url : pld;
 
   return (

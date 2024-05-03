@@ -1,13 +1,10 @@
 "use client";
-import Button from "@/components/Button";
 import { ThemeContext } from "@/context/ThemeContext";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-
+import { toast } from "react-toastify";
 function AdminLogin() {
   const router = useRouter();
   const { theme, setadminUser } = useContext(ThemeContext);
@@ -59,7 +56,6 @@ function AdminLogin() {
   return (
     <>
       <section className="w-full  h-screen md:w-5/6 m-auto">
-        <ToastContainer />
         <div className="md:flex justify-center items-center h-full w-full p-10 md:w-3/5 mx-auto ">
           <div className={` ${theme}-text w-full`}>
             <div className="py-10">

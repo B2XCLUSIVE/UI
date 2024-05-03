@@ -1,8 +1,7 @@
 "use client";
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { ThemeContext } from "@/context/ThemeContext";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -59,7 +58,6 @@ function SignUp() {
   return (
     <>
       <div className="md:flex h-full md:w-3/6 w-full md:p-8 mx-auto relative">
-        <ToastContainer />
         <div className={`${theme}-bg ${theme}-text p-10 w-full`}>
           <div className="py-10">
             <h1 className={`font-bold text-2xl ${theme}-text`}>

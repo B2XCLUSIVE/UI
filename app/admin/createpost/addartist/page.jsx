@@ -2,8 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -83,7 +82,6 @@ function AddArtists() {
   return (
     <>
       <form className={`flex flex-col gap-8 w-full items-start`}>
-        <ToastContainer />
         <div className="flex flex-col gap-2 w-full">
           <label>Artist Name</label>
           <input

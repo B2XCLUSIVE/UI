@@ -3,8 +3,7 @@ import BlogPost from "@/components/BlogPost";
 import CategoriesHeading from "@/components/CategoriesHeading";
 import RecentPost from "@/components/RecentPost";
 import SectionHeader from "@/components/SectionHeader";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
@@ -76,7 +75,6 @@ function Blogs() {
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ad quae dolores? Unde similique beatae aspernatur dolore corporis tempore exercitationem."
         }
       />
-      <ToastContainer />
 
       <section className="w-full md:w-5/6 mx-auto p-4">
         <div className="flex gap-4 w-full">

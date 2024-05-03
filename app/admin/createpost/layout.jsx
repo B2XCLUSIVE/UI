@@ -4,6 +4,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
 import Link from "next/link";
 import CreatePostLinks from "@/components/CreatePostLinks";
+import ToastNotificationContainer from "@/components/ToastNotificationComponent";
 function Layout({ children }) {
   const { showSideBar } = useContext(ThemeContext);
   return (
@@ -34,6 +35,7 @@ function Layout({ children }) {
         </div>
 
         <div className={`${showSideBar ? "w-10/12" : "w-full"} p-4`}>
+          <ToastNotificationContainer />
           {children}
         </div>
       </div>
