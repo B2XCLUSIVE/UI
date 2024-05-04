@@ -49,7 +49,7 @@ function Header() {
   };
   return (
     <>
-      <div className={`-bg p-4`}>
+      <div className={`-bg p-4 `}>
         <div
           className={`md:w-3/4 mx-auto flex items-center gap-4 flex-nowrap overflow-hidden`}
         >
