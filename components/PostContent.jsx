@@ -29,7 +29,7 @@ function PostContent({
     }
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     toast.warning("deleting post...", {
       autoClose: false,
       position: "top-center",
@@ -114,7 +114,7 @@ function PostContent({
                   Edit Post
                 </p>
                 <p
-                  onClick={() => handleDelete(id)}
+                  onClick={handleDelete}
                   className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
                 >
                   Delete Post
