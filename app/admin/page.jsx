@@ -10,38 +10,50 @@ import { FaBlog, FaComment, FaEye, FaUser } from "react-icons/fa";
 function Overview() {
   const { showSideBar } = useContext(ThemeContext);
   const [allPosts, setallPosts] = useState([]);
+  const [allArtist, setALlArtist] = useState([]);
+
   const [token, setToken] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
+  const fetchPost = async () => {
+    const storedToken = localStorage.getItem("b2exclusiveadmin");
+    if (storedToken) {
+      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+      setToken(cleanedToken);
+    } else {
+      console.error("Bearer token not found");
+    }
+    try {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setallPosts(response?.data?.data);
+      console.log(allPosts);
+
+      const artistResponse = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/artist/artists`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setALlArtist(artistResponse?.data?.data);
+      console.log(allArtist);
+    } catch (error) {
+      console.log("error fethcing posts", error.message);
+    }
+  };
 
   useEffect(() => {
-    const fetchPost = async () => {
-      const storedToken = localStorage.getItem("b2exclusiveadmin");
-      if (storedToken) {
-        const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
-        setToken(cleanedToken);
-      } else {
-        console.error("Bearer token not found");
-      }
-      try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        setallPosts(response?.data?.data);
-        console.log(allPosts);
-      } catch (error) {
-        console.log("error fethcing posts", error.message);
-      }
-    };
-
     fetchPost();
-  }, [allPosts, token, currentPage]);
+  }, []);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -161,7 +173,7 @@ function Overview() {
         </section>
 
         <section className="md:flex-row flex flex-col gap-4">
-          <div className="w-full ">
+          <div className="w-full md:w-4/6 ">
             <h1 className={`font-bold`}>Recent 5 Content</h1>
 
             <div className="border flex justify-between border-gray-100 rounded-se rounded-ss p-4">
@@ -206,6 +218,19 @@ function Overview() {
                 Next
               </button>{" "}
             </div>
+          </div>
+
+          <div className=" w-full md:w-2/6 rounded-lg">
+            <h1 className={`font-bold`}>Recent 5 Artists</h1>
+
+            <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
+              <h1 className={` font-bold`}>Users</h1>
+              <p className={` font-bold`}>Date</p>
+            </div>
+
+            {allArtist?.slice(0, 4).map((artist) => (
+              <Followers key={artist.id} {...artist} />
+            ))}
           </div>
         </section>
       </section>

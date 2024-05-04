@@ -32,25 +32,24 @@ import axios from "axios";
 
 export default function Home() {
   const [allPost, setAllPost] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://b2xclusive.onrender.com/api/v1/post/posts",
+      );
+      setAllPost(response?.data?.data);
+      console.log(allPost);
+    } catch (error) {
+      console.error("Failed to fethc blog post", error.message);
+      toast.error(error?.response?.data?.message || "Failed to upload post", {
+        position: "top-center",
+      });
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://b2xclusive.onrender.com/api/v1/post/posts",
-        );
-        setAllPost(response?.data?.data);
-        console.log(allPost);
-      } catch (error) {
-        console.error("Failed to fethc blog post", error.message);
-        toast.error(error?.response?.data?.message || "Failed to upload post", {
-          position: "top-center",
-        });
-      }
-    };
-
     fetchData();
-  }, [allPost]);
+  }, []);
   return (
     <main>
       <ToastContainer />
@@ -256,9 +255,10 @@ export default function Home() {
             <CategoriesHeading title={"Recent Post"} />
 
             <div className=" flex flex-col gap-1 pt-4 ">
-              <RecentPost />
-              <RecentPost />
-              <RecentPost />
+              {allPost &&
+                allPost
+                  ?.slice(0, 3)
+                  .map((post) => <RecentPost key={post.id} {...post} />)}
             </div>
             <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
           </div>

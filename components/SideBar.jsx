@@ -10,6 +10,8 @@ const {
   FaHamburger,
 } = require("react-icons/fa");
 
+import { CiLogout } from "react-icons/ci";
+import { toast } from "react-toastify";
 import { MdCancel, MdMenuOpen } from "react-icons/md";
 import Link from "next/link";
 import SidebarLink from "./SideBarLink";
@@ -22,6 +24,23 @@ function SideBar() {
 
   const pathname = useParams();
   const router = useRouter();
+
+  const handleLogout = () => {
+    try {
+      if (localStorage.getItem("b2exclusiveadmin") !== null) {
+        localStorage.setItem("b2exclusiveadmin", null);
+        toast.success(`Admin Logout Successfull`, { position: "top-center" });
+        setTimeout(() => {
+          router.push("/adminlogin");
+        }, 2000);
+      } else {
+        toast.warn(`No user data found`, { position: "top-center" });
+      }
+    } catch (error) {
+      console.log("Error signing out", error.message);
+      toast.error(`Unable to logout user`, { position: "top-center" });
+    }
+  };
 
   return (
     <>
@@ -103,12 +122,23 @@ function SideBar() {
               <FaTools />
               <p>Account</p>
             </div>
+            <div
+              onClick={() => {
+                setMenu(false);
+                handleLogout();
+                router.push("/adminlogin");
+              }}
+              className={`flex  p-4 items-center gap-2 hover:bg-primarycolor `}
+            >
+              <CiLogout />
+              <p>Log Out</p>
+            </div>
           </div>
         ) : (
           ""
         )}
         <div
-          className={` h-screen  p-4 md:block hidden  ${showSideBar ? "md:2/12" : " md:w-[70px]"}  `}
+          className={` h-screen relative p-4 md:block hidden  ${showSideBar ? "md:2/12" : " md:w-[70px]"}  `}
         >
           <div
             className={`flex ${showSideBar ? "p-4" : "p-2"} justify-between`}
@@ -123,7 +153,7 @@ function SideBar() {
             />
           </div>
 
-          <div className="py-4 flex flex-col gap-4">
+          <div className="py-4 flex flex-col gap-4 relative">
             <SidebarLink
               title={"Dasboard"}
               href={"/admin"}
@@ -154,6 +184,14 @@ function SideBar() {
               bar={showSideBar}
               icon={<FaTools />}
             />
+          </div>
+
+          <div
+            onClick={handleLogout}
+            className="flex p-4  cursor-pointer absolute bottom-10 items-center gap-2"
+          >
+            <CiLogout />
+            <h1>Logout</h1>
           </div>
         </div>
       </div>{" "}

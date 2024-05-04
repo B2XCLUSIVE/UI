@@ -21,7 +21,9 @@ function RecentPost({ id, title, image, updatedAt }) {
           <p className="text-white py-1 font-bold text-[10px]  px-3 bg-blue-500 rounded-full">
             Trending
           </p>
-          <h1 className={` font-bold text-[14px] md:text-xl`}>{title}</h1>
+          <h1 className={` font-bold text-[14px] md:text-xl`}>
+            {title?.split(" ").slice(0, 3).join(" ")}
+          </h1>
           <p className={` text-[14px]`}>{updatedAt?.split("T")[0]}</p>
         </div>
       </div>

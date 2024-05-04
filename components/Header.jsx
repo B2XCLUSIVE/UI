@@ -2,6 +2,7 @@
 
 import { ThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import {
   FaBlog,
@@ -14,8 +15,9 @@ import {
   FaUser,
   FaYoutube,
 } from "react-icons/fa";
-
+import { toast } from "react-toastify";
 function Header() {
+  const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
   function menushow() {
     setShowMenu(!showMenu);
@@ -28,6 +30,23 @@ function Header() {
       ? localStorage.getItem("b2exclusiveuserid")
       : null;
 
+  const handleLogout = () => {
+    try {
+      if (localStorage.getItem("b2exclusiveuser") !== null) {
+        localStorage.setItem("b2exclusiveuser", null);
+        localStorage.setItem("b2exclusiveuserid", null);
+        toast.success(`Logout Successfull`, { position: "top-center" });
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        toast.warn(`No user data found`, { position: "top-center" });
+      }
+    } catch (error) {
+      console.log("Error signing out", error.message);
+      toast.error(`Unable to logout user`, { position: "top-center" });
+    }
+  };
   return (
     <>
       <div className={`-bg p-4`}>
@@ -87,16 +106,19 @@ function Header() {
                 ) : (
                   <div onClick={profileOptions} className="relative z-50">
                     {signin ? (
-                      <div className="absolute top-8 bg-white w-full flex border flex-col gap-2 p-2 z-30 ">
+                      <div className="absolute top-8 bg-white w-full flex border flex-col z-30 ">
                         <Link
-                          className="md:text-base text-[11px]"
+                          className="md:text-base p-2 hover:bg-primarycolor hover:text-white text-[11px]"
                           href={`/${userId}`}
                         >
                           Account
                         </Link>
-                        <Link className="md:text-base text-[11px]" href={"#"}>
+                        <div
+                          onClick={handleLogout}
+                          className="md:text-base p-2 hover:bg-primarycolor hover:text-white cursor-pointer text-[11px]"
+                        >
                           Logout
-                        </Link>
+                        </div>
                       </div>
                     ) : (
                       ""

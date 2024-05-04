@@ -5,17 +5,7 @@ import { FaComment, FaCommentDots, FaEllipsisV, FaEye } from "react-icons/fa";
 import pld from "@/public/pld.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
-function PostContent({
-  id,
-  title,
-  tags,
-  image,
-  categories,
-  createdAt,
-  subtitle,
-}) {
-  const imageUrl = image && image.length > 0 ? image[0]?.url : pld;
-
+function ArtistContent({ id, name, image, bio, createdAt }) {
   const [showActions, setShowActions] = useState(false);
   const [token, setToken] = useState(""); // State to hold the token
   useEffect(() => {
@@ -29,7 +19,7 @@ function PostContent({
     }
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     toast.warning("deleting post...", {
       autoClose: false,
       position: "top-center",
@@ -43,12 +33,12 @@ function PostContent({
       };
 
       const response = await axios.delete(
-        `https://b2xclusive.onrender.com/api/v1/post/delete/${id}`,
+        `https://b2xclusive.onrender.com/api/v1/artist/delete/${id}`,
         config,
       );
       toast.dismiss();
 
-      toast.success(`Post Deleted successfully`, {
+      toast.success(`Artist Deleted successfully`, {
         position: "top-center",
       });
 
@@ -56,9 +46,9 @@ function PostContent({
         window.location.reload();
       });
     } catch (error) {
-      console.error("Failed delete post", error.message);
+      console.error("Failed delete artist", error.message);
       toast.dismiss();
-      toast.error(`Failed to delete post`, {
+      toast.error(`Failed to delete artist`, {
         position: "top-center",
       });
     }
@@ -69,7 +59,7 @@ function PostContent({
         <div className="w-6/12 flex items-center gap-2">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image
-              src={imageUrl}
+              src={image ? image.url : pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -77,47 +67,32 @@ function PostContent({
             />
           </div>
           <div>
-            <h1 className={`font-bold `}>
-              {title?.split(" ").slice(0, 4).join(" ")}
-            </h1>
+            <h1 className={`font-bold `}>{name}</h1>
             <p className="text-sm text-gray-400">
-              {subtitle?.split(" ").slice(0, 6).join(" ")}
+              {bio?.split(" ").slice(0, 4).join(" ")}
             </p>
           </div>
         </div>
-        <div className="w-6/12 flex items-center gap-2">
-          <h1 className={`w-1/6 `}>Tech</h1>
-          <div className="flex items-center gap-2 w-1/6">
-            <FaEye className={``} />
-
-            <h1 className={``}>734</h1>
-          </div>
-
-          <div className="flex items-center gap-2 w-1/6">
-            <FaComment className={``} />
-
-            <h1 className={``}>50</h1>
-          </div>
-
-          <h1 className={` w-1/6 `}>{createdAt?.split("T")[0]}</h1>
-          <h1 className={` w-1/6 bg-green-500 text-center p-1 rounded-full `}>
+        <div className="flex w-6/12 items-center">
+          <h1 className={` w-2/6 `}>{createdAt?.split("T")[0]}</h1>
+          <h1 className={` w-2/6 bg-green-500 text-center p-1 rounded-full `}>
             Active
           </h1>
           <div
-            className="w-1/6 relative cursor-pointer "
+            className="w-2/6 relative cursor-pointer "
             onClick={() => setShowActions(!showActions)}
           >
             <FaEllipsisV className={` text-center`} />
             {showActions ? (
               <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
                 <p className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer">
-                  Edit Post
+                  Edit Artist
                 </p>
                 <p
-                  onClick={() => handleDelete(id)}
+                  onClick={handleDelete}
                   className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
                 >
-                  Delete Post
+                  Delete Artist
                 </p>
               </div>
             ) : (
@@ -130,4 +105,4 @@ function PostContent({
   );
 }
 
-export default PostContent;
+export default ArtistContent;

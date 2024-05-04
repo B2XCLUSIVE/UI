@@ -6,41 +6,48 @@ import { useContext, useEffect, useState } from "react";
 
 import { FaBlog, FaComment, FaEye, FaUser } from "react-icons/fa";
 import axios from "axios";
+import ArtistContent from "@/components/ArtistContent";
 function Contents() {
   const { theme, showSideBar } = useContext(ThemeContext);
   const [allPosts, setallPosts] = useState([]);
+  const [allArtist, setAllArtist] = useState([]);
   const [token, setToken] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
+  const fetchPost = async () => {
+    const storedToken = localStorage.getItem("b2exclusiveadmin");
+    if (storedToken) {
+      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+      setToken(cleanedToken);
+    } else {
+      console.error("Bearer token not found");
+    }
+    try {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setallPosts(response?.data?.data);
+      console.log(allPosts);
+
+      const artistResponse = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/artist/artists`,
+      );
+      setAllArtist(artistResponse?.data?.data);
+      console.log(allArtist);
+    } catch (error) {
+      console.log("error fethcing posts", error.message);
+    }
+  };
 
   useEffect(() => {
-    const fetchPost = async () => {
-      const storedToken = localStorage.getItem("b2exclusiveadmin");
-      if (storedToken) {
-        const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
-        setToken(cleanedToken);
-      } else {
-        console.error("Bearer token not found");
-      }
-      try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        setallPosts(response?.data?.data);
-        console.log(allPosts);
-      } catch (error) {
-        console.log("error fethcing posts", error.message);
-      }
-    };
-
     fetchPost();
-  }, [allPosts, token, currentPage]);
+  }, []);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -121,23 +128,42 @@ function Contents() {
             </div>
           </div>
         </div>
-        <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-          <div className="w-6/12">
-            <h1 className={`${theme}-text font-bold`}>Blogs</h1>
+        <div className="flex w-full">
+          <div className="md:w-8/12">
+            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
+              <div className="w-6/12">
+                <h1 className={`${theme}-text font-bold`}>Blogs</h1>
+              </div>
+              <div className="w-6/12 flex gap-2">
+                <h1 className={`${theme}-text w-1/6 font-bold`}>Category</h1>
+
+                <h1 className={`${theme}-text w-1/6 font-bold`}>Comments</h1>
+                <h1 className={`${theme}-text w-1/6 font-bold`}>Date</h1>
+                <h1 className={`${theme}-text w-1/6 font-bold`}>Status</h1>
+                <h1 className={`${theme}-text w-1/6 font-bold`}>Action</h1>
+              </div>
+            </div>
+            {currentPosts?.map((post) => (
+              <PostContent key={post.id} {...post} />
+            ))}
           </div>
-          <div className="w-6/12 flex gap-2">
-            <h1 className={`${theme}-text w-1/6 font-bold`}>Category</h1>
-            <h1 className={`${theme}-text w-1/6 font-bold`}>Views</h1>
-            <h1 className={`${theme}-text w-1/6 font-bold`}>Comments</h1>
-            <h1 className={`${theme}-text w-1/6 font-bold`}>Post Date</h1>
-            <h1 className={`${theme}-text w-1/6 font-bold`}>Status</h1>
-            <h1 className={`${theme}-text w-1/6 font-bold`}>Action</h1>
+          <div className="w-4/12">
+            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
+              <div className="w-6/12">
+                <h1 className={`${theme}-text font-bold`}>Blogs</h1>
+              </div>
+              <div className="w-6/12 flex gap-2">
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Date</h1>
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Status</h1>
+
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Action</h1>
+              </div>
+            </div>
+            {allArtist?.map((post) => (
+              <ArtistContent key={post.id} {...post} />
+            ))}
           </div>
         </div>
-        {currentPosts?.map((post) => (
-          <PostContent key={post.id} {...post} />
-        ))}
-
         <div className="flex justify-center mt-4">
           {/* Previous button */}
           <button

@@ -4,41 +4,61 @@ import SectionHeader from "@/components/SectionHeader";
 import { FaBackward, FaForward, FaPlus, FaSearch } from "react-icons/fa";
 import axios from "axios";
 import useSWR from "swr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Artists() {
-  const pagesize = 10;
+  const [allArtist, setALlArtist] = useState([]);
+  const [token, setToken] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
-  const fetcher = async () => {
-    const response = await axios.get(
-      `https://dummyjson.com/products?page=${currentPage}`,
-    );
-    const data = response.data.products;
-    return data;
-  };
-  const { data, error, isLoading } = useSWR(
-    "https://b2xclusive.onrender.com/api/v1/artist/artists",
-    fetcher,
-  );
-
-  const totalItems = data?.length;
-  const totalPages = Math.ceil(totalItems / pagesize);
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+  const postsPerPage = 8;
+  const fetchData = async () => {
+    const storedToken = localStorage.getItem("b2exclusiveadmin");
+    if (storedToken) {
+      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+      setToken(cleanedToken);
+    } else {
+      console.error("Bearer token not found");
     }
+
+    try {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/artist/artists`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setALlArtist(response?.data?.data);
+      console.log(allArtist);
+    } catch (error) {}
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1);
-    }
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
-  console.log("artistdata", data);
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allArtist.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(allArtist.length / postsPerPage);
+
+  // Generate an array of page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <>
@@ -87,29 +107,41 @@ function Artists() {
       <section
         className={` md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
       >
-        {data?.slice(0, currentPage * pagesize).map((data) => (
+        {currentPosts?.map((data) => (
           <Artist key={data.id} {...data} />
         ))}
       </section>
 
-      <section className={`p-4 md:p-8 mx-auto gap-2 flex justify-center  `}>
-        <div className={`border  p-2 `} onClick={handlePrevPage}>
-          <p className={`text`}>PREV</p>
-        </div>
-
-        {Array.from({ length: totalPages }, (_, index) => (
-          <div
-            key={index + 1}
-            className={`border  p-2 ${currentPage === index + 1 ? "bg-primarycolor text-white" : ""} `}
-            onClick={() => handlePageChange(index + 1)}
+      <div className="flex justify-center mt-4">
+        {/* Previous button */}
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
+        >
+          Previous
+        </button>
+        {/* Page number buttons */}
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => setCurrentPage(number)}
+            className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
+              currentPage === number ? "bg-black" : ""
+            }`}
           >
-            <p className={``}>{index + 1}</p>
-          </div>
+            {number}
+          </button>
         ))}
-        <div className="border  p-2 " onClick={handleNextPage}>
-          <p className={``}>NEXT</p>
-        </div>
-      </section>
+        {/* Next button */}
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
+        >
+          Next
+        </button>{" "}
+      </div>
     </>
   );
 }
