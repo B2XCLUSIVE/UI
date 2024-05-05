@@ -2,12 +2,10 @@
 
 import Button from "@/components/Button";
 import SectionHeader from "@/components/SectionHeader";
-import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
 import { FaEnvelope, FaMap, FaPhone } from "react-icons/fa";
 
 function Contact() {
-  const { theme } = useContext(ThemeContext);
   return (
     <>
       <section>
@@ -32,31 +30,29 @@ function Contact() {
 
           <div className="md:flex md:gap-4 md:items-center">
             <div className="w-full md:w-2/4">
-              <h1 className={`${theme}-text font-bold text-4xl`}>
-                Get In Touch
-              </h1>
+              <h1 className={` font-bold text-4xl`}>Get In Touch</h1>
               <form className="p-4">
                 <div className=" md:flex w-full gap-4 my-2">
                   <input
                     type="text"
-                    className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                    className={`my-2 md:my-0 p-4  w-full`}
                     placeholder="firstname"
                   />
                   <input
                     type="phone"
-                    className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                    className={`my-2 md:my-0 p-4  w-full`}
                     placeholder="phonenumber"
                   />
                 </div>
                 <div className="md:flex w-full gap-4 my-2">
                   <input
                     type="email"
-                    className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                    className={`my-2 md:my-0 p-4  w-full`}
                     placeholder="Email Address"
                   />
                   <input
                     type="text"
-                    className={` my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                    className={` my-2 md:my-0 p-4  w-full`}
                     placeholder="website"
                   />
                 </div>
@@ -66,7 +62,7 @@ function Contact() {
                   id=""
                   cols="30"
                   rows="10"
-                  className={` ${theme}-bgg w-full h-[300px] my-2 p-4 bg-slate-800`}
+                  className={`  w-full h-[300px] my-2 p-4 bg-white`}
                   placeholder="Type your comments"
                 ></textarea>
 
@@ -74,30 +70,26 @@ function Contact() {
               </form>
             </div>
 
-            <div
-              className={`${theme}-text flex flex-col gap-4 w-full md:w-2/4`}
-            >
-              <h1 className={` ${theme}-text font-bold text-4xl`}>
-                Contact Us
-              </h1>
-              <p className={`${theme}-text`}>
+            <div className={` flex flex-col gap-4 w-full md:w-2/4`}>
+              <h1 className={`  font-bold text-4xl`}>Contact Us</h1>
+              <p className={``}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 sagittis lacinia tellus. Nullam venenatis a sem non dictum.
                 Aliquam orci ipsum, malesuada lacinia faucibus nec, bibendum a
                 enim...
               </p>
 
-              <div className={`flex gap-2 items-center ${theme}-text `}>
-                <FaPhone className={`${theme}-text`} />
-                <p className={`${theme}-text`}>+234 123 456 7890</p>
+              <div className={`flex gap-2 items-center `}>
+                <FaPhone className={``} />
+                <p className={``}>+234 123 456 7890</p>
               </div>
               <div className="flex gap-2 items-center">
-                <FaEnvelope className={`${theme}-text`} />
-                <p className={`${theme}-text`}>example@b2exclusive.com</p>
+                <FaEnvelope className={``} />
+                <p className={``}>example@b2exclusive.com</p>
               </div>
               <div className="flex gap-2 items-center">
-                <FaMap className={`${theme}-text`} />
-                <p className={`${theme}-text`}>90, Downtown St, USA</p>
+                <FaMap className={``} />
+                <p className={``}>90, Downtown St, USA</p>
               </div>
             </div>
           </div>

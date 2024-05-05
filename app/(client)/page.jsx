@@ -11,8 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Link from "next/link";
-import useSWR from "swr";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaBackward,
   FaBook,
@@ -265,7 +264,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full p-4 md:w-5/6 mx-auto md:flex md:gap-4">
+      <section className="w-full p-4 md:w-5/6 mx-auto md:grid grid-cols-3 md:gap-4">
         <div>
           <CategoriesHeading title={"Music Soul"} />
 

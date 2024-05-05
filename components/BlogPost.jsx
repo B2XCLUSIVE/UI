@@ -9,7 +9,7 @@ function BlogPost({ id, title, subtitle, image, updatedAt, author }) {
 
   return (
     <>
-      <Link href={`blogs/${id}`} className={` flex `}>
+      <div className={` flex `}>
         <div className="p-4 flex flex-col gap-2 md:w-2/3 w-full">
           <div className="flex gap-2 items-center">
             <div className="w-[20px] h-[20px]">
@@ -40,7 +40,7 @@ function BlogPost({ id, title, subtitle, image, updatedAt, author }) {
               Trending
             </p>
             <Link
-              href={"/blogs/1"}
+              href={`blogs/${id}`}
               className="text-primarycolor text-[10px] md:text-base"
             >
               Read More
@@ -56,7 +56,7 @@ function BlogPost({ id, title, subtitle, image, updatedAt, author }) {
             className="w-full h-full rounded-lg object-cover"
           />
         </div>
-      </Link>
+      </div>
     </>
   );
 }

@@ -19,6 +19,8 @@ import axios from "axios";
 
 function VideosHome() {
   const [allVideo, setAllVideo] = useState([]);
+  const [allPost, setAllPost] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
   const fetchData = async () => {
@@ -28,6 +30,12 @@ function VideosHome() {
       );
       setAllVideo(response?.data?.data);
       console.log(allVideo);
+
+      const postresponse = await axios.get(
+        "https://b2xclusive.onrender.com/api/v1/post/posts",
+      );
+      setAllPost(postresponse?.data?.data);
+      console.log(allPost);
     } catch (error) {
       console.error("Error fetching videos:", error);
       toast.error(error?.response?.data?.message || "Failed to video post", {
@@ -189,9 +197,10 @@ function VideosHome() {
           <CategoriesHeading title={"Recent Posts"} />
 
           <div className=" flex flex-col gap-1 pt-4 ">
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
+            {allPost &&
+              allPost
+                ?.slice(0, 3)
+                .map((post) => <RecentPost key={post.id} {...post} />)}
           </div>
         </div>
       </section>

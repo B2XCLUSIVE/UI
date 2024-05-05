@@ -8,19 +8,38 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { FaComment, FaHeart, FaShare } from "react-icons/fa";
 import axios from "axios";
-
+import { VscLoading } from "react-icons/vsc";
 import pld from "@/public/pld.jpeg";
+import { toast } from "react-toastify";
 function SingleBlog({ params }) {
   const { blogId } = params;
 
   const [blog, setBlog] = useState("");
-  const fetchdata = async () => {
-    const response = await axios.get(
-      `https://b2xclusive.onrender.com/api/v1/post/${blogId}`,
-    );
+  const [allPost, setAllPost] = useState([]);
 
-    setBlog(response?.data?.data);
-    console.log(blog);
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/post/${blogId}`,
+      );
+
+      setBlog(response?.data?.data);
+      console.log(blog);
+
+      const allpostresponse = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/post/posts`,
+      );
+      setAllPost(allpostresponse?.data?.data);
+      console.log(allPost);
+    } catch (error) {
+      console.error("Failed to fethc blog post", error.message);
+      toast.error(
+        error?.response?.data?.message || "Failed to fecthblog post",
+        {
+          position: "top-center",
+        },
+      );
+    }
   };
 
   useEffect(() => {
@@ -28,14 +47,18 @@ function SingleBlog({ params }) {
   }, []);
 
   if (!blog) {
-    return <div>Loading...</div>; // Add a loading state if blog is null
+    return (
+      <div className="w-full flex justify-center mt-20 ">
+        <VscLoading className="text-xl animate-spin" />
+      </div>
+    ); // Add a loading state if blog is null
   }
   const imageUrl =
     blog.image && blog.image.length > 0 ? blog.image[0]?.url : pld;
 
   return (
     <>
-      <SectionHeader title={"This blog"} desc={"The subhead"} />
+      <SectionHeader title={blog.title} desc={blog.subtitle} />
       <section className="w-full p-4 md:w-3/4 md:mx-auto ">
         <div>
           <div className="py-4">
@@ -54,10 +77,9 @@ function SingleBlog({ params }) {
             </div>
 
             <div>
-              <h1 className={` font-bold text-lg`}>Steve Qj</h1>
+              <h1 className={` font-bold text-lg`}>{blog?.author?.userName}</h1>
               <div className="flex gap-4">
-                <p className={``}>5 mins Read</p>
-                <p className={``}>Two days ago</p>
+                <p className={``}>{blog?.updatedAt.split("T")[0]}</p>
               </div>
             </div>
           </div>
@@ -87,8 +109,9 @@ function SingleBlog({ params }) {
 
         <CategoriesHeading title={"Related Articles"} />
         <div className="grid grid-cols-2 gap-4 py-4">
-          <RelatedArticles />
-          <RelatedArticles />
+          {allPost.slice(0, 1).map((blog) => (
+            <RelatedArticles key={blog.id} {...blog} />
+          ))}
         </div>
 
         <CategoriesHeading title={"Comments"} />
@@ -125,7 +148,7 @@ function SingleBlog({ params }) {
             id=""
             cols="30"
             rows="10"
-            className={`  w-full h-[300px] my-2 p-4 bg-slate-800`}
+            className={`  w-full h-[300px] my-2 p-4 bg-white`}
             placeholder="Type your comments"
           ></textarea>
 

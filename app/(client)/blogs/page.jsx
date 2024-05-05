@@ -5,10 +5,8 @@ import RecentPost from "@/components/RecentPost";
 import SectionHeader from "@/components/SectionHeader";
 import { toast } from "react-toastify";
 
-import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
-import { ThemeContext } from "@/context/ThemeContext";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -19,32 +17,33 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import axios from "axios";
+import { VscLoading } from "react-icons/vsc";
 
 function Blogs() {
   const [allPost, setAllPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
-        );
-        setAllPost(response?.data?.data);
-        console.log(allPost);
-      } catch (error) {
-        console.error("Failed to fethc blog post", error.message);
-        toast.error(
-          error?.response?.data?.message || "Failed to fecthblog post",
-          {
-            position: "top-center",
-          },
-        );
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
+      );
+      setAllPost(response?.data?.data);
+      console.log(allPost);
+    } catch (error) {
+      console.error("Failed to fethc blog post", error.message);
+      toast.error(
+        error?.response?.data?.message || "Failed to fecthblog post",
+        {
+          position: "top-center",
+        },
+      );
+    }
+  };
 
+  useEffect(() => {
     fetchData();
-  }, [allPost, currentPage]);
+  }, []);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -65,6 +64,14 @@ function Blogs() {
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
+  }
+
+  if (!allPost) {
+    return (
+      <div className="w-full flex justify-center mt-20 ">
+        <VscLoading className="text-xl animate-spin" />
+      </div>
+    ); // Add a loading state if blog is null
   }
 
   return (
