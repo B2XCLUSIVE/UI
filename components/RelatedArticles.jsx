@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function RelatedArticles() {
+function RelatedArticles({ name, subtitle }) {
   return (
     <>
       <div className="w-full h-[150px] md:h-[300px] relative">
@@ -12,11 +12,9 @@ function RelatedArticles() {
           className="w-full h-full object-cover"
         />
         <div className="text-white absolute bottom-0 left-0 p-2 md:p-4">
-          <h1 className="font-bold text-sm md:text-2xl ">
-            All The Red Carpet Looks
-          </h1>
+          <h1 className="font-bold text-sm md:text-2xl ">{name}</h1>
           <p className="md:text-base text-[10px]">
-            Arditta Colle -25 July, 2018
+            {subtitle || "A littlee about the album goes here"}{" "}
           </p>
         </div>
       </div>

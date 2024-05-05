@@ -1,16 +1,13 @@
 "use client";
-import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
 import { FaPlay, FaPlayCircle, FaPlus } from "react-icons/fa";
 
-function Videos() {
-  const { theme } = useContext(ThemeContext);
+function Videos({ id, title, artist, subtitle, createdAt }) {
   return (
     <>
       <Link
-        href={`/videoshome/1`}
+        href={`/videoshome/${id}`}
         className="md:flex md:items-center <gap-4></gap-4> w-full"
       >
         <div className="w-full  md:w-1/2 h-[300px] md:h-[150px] relative">
@@ -27,18 +24,18 @@ function Videos() {
         </div>
 
         <div className=" p-4 w-full md:w-1/2">
-          <h1 className={`${theme}-text font-bold text-xl`}>
-            All The Red Carpet Looks
-          </h1>
+          <h1 className={` font-bold text-xl`}>{title}</h1>
 
           <div className="md:flex">
-            <p className={`${theme}-text`}>Arditta Colle -25 July, 2017</p>
-            <p className={`${theme}-text`}>4 Comments</p>
+            <p className={``}>
+              {artist?.name} - {createdAt?.split("T")[0]}
+            </p>
           </div>
 
           <p className="text-gray-600">
-            Sed cursus eget risus non vestibulum. Sed in molestie elit, vitae
-            condimentum justo....
+            {subtitle
+              ? subtitle?.split(" ").slice(0, 8).join(" ")
+              : "a little about the album goes here"}{" "}
           </p>
         </div>
       </Link>

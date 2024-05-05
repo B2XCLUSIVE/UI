@@ -3,32 +3,17 @@ import Artist from "@/components/Artist";
 import SectionHeader from "@/components/SectionHeader";
 import { FaBackward, FaForward, FaPlus, FaSearch } from "react-icons/fa";
 import axios from "axios";
-import useSWR from "swr";
 import { useEffect, useState } from "react";
 
 function Artists() {
   const [allArtist, setALlArtist] = useState([]);
-  const [token, setToken] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
   const fetchData = async () => {
-    const storedToken = localStorage.getItem("b2exclusiveadmin");
-    if (storedToken) {
-      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
-      setToken(cleanedToken);
-    } else {
-      console.error("Bearer token not found");
-    }
-
     try {
       const response = await axios.get(
         `https://b2xclusive.onrender.com/api/v1/artist/artists`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
       );
       setALlArtist(response?.data?.data);
       console.log(allArtist);

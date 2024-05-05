@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function AddVideos() {
-  const router = useRouter();
+  const [allArtist, setALlArtist] = useState([]);
   const { theme, showSideBar } = useContext(ThemeContext);
   const [uploadingPost, setuploadingPost] = useState(false);
 
@@ -21,15 +21,6 @@ function AddVideos() {
   const handleContentChange = (cont) => {
     setContent(cont);
   };
-
-  const [post, setPost] = useState({
-    files: file,
-    title: "",
-    subtitle: "",
-    description: content,
-    tags: [],
-    categories: [],
-  });
 
   const [token, setToken] = useState(""); // State to hold the token
 
@@ -43,63 +34,101 @@ function AddVideos() {
     }
   }, []);
 
-  const handlePost = async (e) => {
-    e.preventDefault();
-
+  const fetchData = async () => {
+    toast.warning(`Fethcing Artists`, {
+      position: "top-center",
+      autoClose: false,
+    });
     try {
-      setuploadingPost(true);
-      const updatedPost = {
-        ...post,
-        files: [file], // Update file
-        description: content, // Update content
-      };
-      const postResponse = await axios.put(
-        "https://b2xclusive.onrender.com/api/v1/post/create",
-        updatedPost,
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/artist/artists`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         },
       );
-      console.log(postResponse.data);
-      toast.success(postResponse?.data?.message, {
+      setALlArtist(response?.data?.data);
+      toast.dismiss();
+      toast.success(`All Artists fetched`, { position: "top-center" });
+      console.log(allArtist);
+    } catch (error) {
+      console.log(error, "Unable to fetch artists");
+      toast.dismiss();
+      toast.error(error?.response?.data?.message || "Unable to fetch artists", {
         position: "top-center",
       });
+    }
+  };
 
-      console.log("post", updatedPost);
-      console.log("sent post", postResponse.data);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const [video, setVideo] = useState({
+    title: "",
+    duration: "",
+    description: content,
+    artistId: "",
+  });
+  useEffect(() => {
+    setVideo((prevPost) => ({
+      ...prevPost,
+      videos: file,
+      description: content,
+    }));
+  }, [file, content]);
+
+  const onsubmit = async (e) => {
+    e.preventDefault();
+    setuploadingPost(true);
+    try {
+      let formData = new FormData(e.target);
+      formData.append("description", video.description);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const videoResponse = await axios.put(
+        "https://b2xclusive.onrender.com/api/v1/track/createVideo",
+        formData,
+        config,
+      );
+      toast.success(videoResponse?.data?.message, {
+        position: "top-center",
+      });
 
       setTimeout(() => {
         router.push("/admin");
       }, 3000);
     } catch (error) {
-      console.log("unable to post", error.message);
-      toast.error(
-        error?.postResponse?.data?.message || "Failed to upload post",
-        {
-          position: "top-center",
-        },
-      );
+      console.error("Failed to upload video", error.message);
+      toast.error(error.response.data.message || "Failed to upload video", {
+        position: "top-center",
+      });
     } finally {
-      setuploadingPost(false);
+      setuploadingPost(false); // Reset uploadingPost state
     }
   };
-
-  console.log("File:", file);
-  console.log("Content:", content);
 
   return (
     <>
       <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
-        <form className={`flex flex-col gap-8 ${theme}-text items-start`}>
+        <form
+          onSubmit={onsubmit}
+          className={`flex flex-col gap-8 ${theme}-text items-start`}
+        >
           <div className="flex flex-col gap-2 w-full">
             <label>Video Title</label>
             <input
-              value={post.title}
-              onChange={(e) => setPost({ ...post, title: e.target.value })}
+              value={video.title}
+              onChange={(e) => setVideo({ ...video, title: e.target.value })}
               type="text"
-              placeholder="Enter Blog Title"
+              name="title"
+              placeholder="Enter Video Title"
               className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
             />
           </div>
@@ -107,26 +136,33 @@ function AddVideos() {
           <div className="flex gap-4 w-full items-center">
             <div className="flex flex-col w-6/12">
               <label htmlFor="">Artists </label>
-              <input
-                value={post.tags}
-                onChange={(e) =>
-                  setPost({ ...post, tags: e.target.value.split(",") })
-                }
-                type="text"
-                placeholder="Enter Blog Title"
+              <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
-              />
+                name="artistId"
+                id=""
+                onChange={(e) =>
+                  setVideo({ ...video, artisId: e.target.value })
+                }
+              >
+                <option value="null">Select Artist</option>
+                {allArtist?.map((artist) => (
+                  <option key={artist.id} value={artist.id}>
+                    {artist.name}
+                  </option>
+                ))}
+              </select>{" "}
             </div>
 
             <div className="flex flex-col w-6/12">
               <label htmlFor="">Duration </label>
               <input
-                value={post.tags}
+                value={video.duration}
+                name="duration"
                 onChange={(e) =>
-                  setPost({ ...post, tags: e.target.value.split(",") })
+                  setVideo({ ...video, duration: e.target.value })
                 }
                 type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Enter video duration"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -136,12 +172,11 @@ function AddVideos() {
             <div className="flex flex-col w-full">
               <label htmlFor="">Upload Video</label>
               <input
-                value={post.tags}
-                onChange={(e) =>
-                  setPost({ ...post, tags: e.target.value.split(",") })
-                }
+                name="videos"
+                multiple
+                onChange={(e) => setFile(e.target.files[0])}
                 type="file"
-                placeholder="Enter Blog Title"
+                placeholder="Upload video"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -156,7 +191,7 @@ function AddVideos() {
           </div>
 
           <button
-            onClick={handlePost} // Use handlePost instead of handleingPost
+            type="submit"
             className={`${uploadingPost ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 text-white`}
           >
             {uploadingPost ? (

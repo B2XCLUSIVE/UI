@@ -198,9 +198,10 @@ function Blogs() {
           <CategoriesHeading title={"Recent Posts"} />
 
           <div className=" flex flex-col gap-1 pt-4 ">
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
+            {allPost &&
+              allPost
+                ?.slice(0, 3)
+                .map((post) => <RecentPost key={post.id} {...post} />)}
           </div>
         </div>
       </section>

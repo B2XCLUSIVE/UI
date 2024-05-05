@@ -6,7 +6,6 @@ function Layout({ children }) {
     <>
       <div className="md:flex h-full relative gap-2  w-full mx-auto">
         <SideBar />
-        <ToastNotificationContainer />
         {children}
       </div>
     </>

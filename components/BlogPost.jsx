@@ -4,12 +4,12 @@ import Image from "next/image";
 import pld from "@/public/pld.jpeg";
 import Link from "next/link";
 
-function BlogPost({ title, subtitle, image, updatedAt, author }) {
+function BlogPost({ id, title, subtitle, image, updatedAt, author }) {
   const imageUrl = image && image.length > 0 ? image[0]?.url : pld;
 
   return (
     <>
-      <Link href={"blogs/1"} className={` flex `}>
+      <Link href={`blogs/${id}`} className={` flex `}>
         <div className="p-4 flex flex-col gap-2 md:w-2/3 w-full">
           <div className="flex gap-2 items-center">
             <div className="w-[20px] h-[20px]">

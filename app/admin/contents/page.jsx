@@ -7,10 +7,15 @@ import { useContext, useEffect, useState } from "react";
 import { FaBlog, FaComment, FaEye, FaUser } from "react-icons/fa";
 import axios from "axios";
 import ArtistContent from "@/components/ArtistContent";
+import MusicOverview from "@/components/MusicOverview";
 function Contents() {
   const { theme, showSideBar } = useContext(ThemeContext);
   const [allPosts, setallPosts] = useState([]);
   const [allArtist, setAllArtist] = useState([]);
+
+  const [allMusic, setAllMusic] = useState([]);
+
+  const [allVideo, setAllVideo] = useState([]);
   const [token, setToken] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,6 +45,28 @@ function Contents() {
       );
       setAllArtist(artistResponse?.data?.data);
       console.log(allArtist);
+
+      const musicResponse = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/track/audios`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setAllMusic(musicResponse?.data?.data);
+      console.log("music", allMusic);
+
+      const videoResponse = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/track/videos`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setAllVideo(videoResponse?.data?.data);
+      console.log("video", allVideo);
     } catch (error) {
       console.log("error fethcing posts", error.message);
     }
@@ -198,46 +225,34 @@ function Contents() {
         <div className="flex md:flex-row flex-col gap-4">
           <div className="md:w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-4/12">
+              <div className="w-6/12">
                 <h1 className={`${theme}-text font-bold`}>Music</h1>
               </div>
               <div className="w-6/12 flex gap-2">
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Category</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Views</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Comments</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Post Date</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Status</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Action</h1>
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Duration</h1>
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Date</h1>
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Action</h1>
               </div>
             </div>
-
-            <PostContent />
-            <PostContent />
-            <PostContent />
-            <PostContent />
-            <PostContent />
+            {allMusic?.map((music) => (
+              <MusicOverview key={music.id} {...music} />
+            ))}{" "}
           </div>
 
           <div className="md:w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-4/12">
+              <div className="w-6/12">
                 <h1 className={`${theme}-text font-bold`}>Video</h1>
               </div>
               <div className="w-6/12 flex gap-2">
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Category</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Views</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Comments</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Post Date</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Status</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Action</h1>
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Duration</h1>
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Date</h1>
+                <h1 className={`${theme}-text w-2/6 font-bold`}>Action</h1>
               </div>
             </div>
-
-            <PostContent />
-            <PostContent />
-            <PostContent />
-            <PostContent />
-            <PostContent />
+            {allVideo?.map((video) => (
+              <MusicOverview key={video.id} {...video} />
+            ))}{" "}
           </div>
 
           <div className="md:w-4/12">

@@ -35,7 +35,6 @@ function Layout({ children }) {
         </div>
 
         <div className={`${showSideBar ? "w-10/12" : "w-full"} p-4`}>
-          <ToastNotificationContainer />
           {children}
         </div>
       </div>

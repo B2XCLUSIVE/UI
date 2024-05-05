@@ -5,8 +5,7 @@ import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import Videos from "@/components/Videos";
-import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -16,19 +15,62 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import axios from "axios";
 
 function VideosHome() {
-  const { theme } = useContext(ThemeContext);
+  const [allVideo, setAllVideo] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 8;
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/track/videos?page=${currentPage}`,
+      );
+      setAllVideo(response?.data?.data);
+      console.log(allVideo);
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+      toast.error(error?.response?.data?.message || "Failed to video post", {
+        position: "top-center",
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allVideo.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(allVideo.length / postsPerPage);
+
+  // Generate an array of page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <>
       <SectionHeader title={"All videos"} desc={"some"} />
 
       <section className="w-full md:w-5/6 mx-auto py-4">
         <div className="p-6">
-          <h1 className={`${theme}-text text-4xl font-bold`}>
+          <h1 className={` text-4xl font-bold`}>
             Find the most recent video release
           </h1>
-          <p className={`${theme}-text`}>
+          <p className={``}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum,
             consequatur.
           </p>
@@ -41,7 +83,7 @@ function VideosHome() {
             <input
               type="text"
               placeholder="Search here"
-              className={` ${theme}-text w-11/12 bg-transparent p-4 text-white outline-none `}
+              className={`  w-11/12 bg-transparent p-4 text-white outline-none `}
             />
             <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
               <FaSearch /> Search
@@ -65,45 +107,41 @@ function VideosHome() {
       <section className=" md:w-5/6 p-4 md:p-8 mx-auto md:flex md:gap-8">
         <div className=" w-full md:w-3/6">
           <div className="w-full p-4 md:w-full flex flex-col gap-8">
-            <Videos />
-            <Videos />
-            <Videos />
-            <Videos />
-            <Videos />
-            <Videos />
+            {currentPosts?.map((video) => (
+              <Videos key={video.id} {...video} />
+            ))}
           </div>
 
-          <section
-            className={`p-4 md:p-8 mx-auto gap-2 flex justify-center ${theme}-text `}
-          >
-            <div className={`border  p-2 `}>
-              <p className={`${theme}-text`}>PREV</p>
-            </div>
-
-            <div className="border  p-2 ">
-              <p className={`${theme}-text`}>1</p>
-            </div>
-
-            <div className="border  p-2 ">
-              <p className={`${theme}-text`}>2</p>
-            </div>
-
-            <div className="border  p-2 ">
-              <p className={`${theme}-text`}>3</p>
-            </div>
-
-            <div className="border  p-2 ">
-              <p className={`${theme}-text`}>4</p>
-            </div>
-
-            <div className="border  p-2 ">
-              <p className={`${theme}-text`}>...</p>
-            </div>
-
-            <div className="border  p-2 ">
-              <p className={`${theme}-text`}>NEXT</p>
-            </div>
-          </section>
+          <div className="flex justify-center mt-4">
+            {/* Previous button */}
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
+            >
+              Previous
+            </button>
+            {/* Page number buttons */}
+            {pageNumbers.map((number) => (
+              <button
+                key={number}
+                onClick={() => setCurrentPage(number)}
+                className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
+                  currentPage === number ? "bg-black" : ""
+                }`}
+              >
+                {number}
+              </button>
+            ))}
+            {/* Next button */}
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
+            >
+              Next
+            </button>{" "}
+          </div>
         </div>
 
         <div className=" p-4 md:w-2/5">
@@ -137,12 +175,12 @@ function VideosHome() {
           <CategoriesHeading title={"Get Connected"} />
 
           <div className="flex justify-between p-4">
-            <FaFacebook className={`text-3xl ${theme}-text`} />
-            <FaTwitter className={`text-3xl ${theme}-text`} />
-            <FaLinkedin className={`text-3xl ${theme}-text`} />
-            <FaYoutube className={`text-3xl ${theme}-text`} />
-            <FaInstagram className={`text-3xl ${theme}-text`} />
-            <FaPinterest className={`text-3xl ${theme}-text`} />
+            <FaFacebook className={`text-3xl `} />
+            <FaTwitter className={`text-3xl `} />
+            <FaLinkedin className={`text-3xl `} />
+            <FaYoutube className={`text-3xl `} />
+            <FaInstagram className={`text-3xl `} />
+            <FaPinterest className={`text-3xl `} />
           </div>
 
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>

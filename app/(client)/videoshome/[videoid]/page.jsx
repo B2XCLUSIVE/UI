@@ -6,8 +6,6 @@ import RecentPost from "@/components/RecentPost";
 import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
-import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
 import Image from "next/image";
 import {
   FaComment,
@@ -21,33 +19,66 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import RelatedArticles from "@/components/RelatedArticles";
+import axios from "axios";
 
-function VideoId() {
-  const { theme } = useContext(ThemeContext);
+import pld from "@/public/pld.jpeg";
+import { useEffect, useState } from "react";
+function VideoId({ params }) {
+  const { videoid } = params;
+  const [video, setVideo] = useState("");
+  const [allVideo, setAllVideo] = useState([]);
+
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/track/video/${videoid}`,
+      );
+
+      setVideo(response?.data?.data);
+      console.log(video);
+      const allvideoresponse = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/track/videos`,
+      );
+      setAllVideo(allvideoresponse?.data?.data);
+      console.log(allVideo);
+    } catch (error) {
+      console.log("error loading videe", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
   return (
     <>
-      <SectionHeader title={"All videos"} desc={"some"} />
+      <SectionHeader
+        title={video?.title}
+        desc={video?.subtitle || "A littlee about the album goes here"}
+      />
 
       <section className=" md:w-5/6 md:p-8 p-4 mx-auto md:flex md:gap-8">
         <div className="w-full p-4 md:w-3/5 flex flex-col gap-8">
           <div>
             <div className="w-full">
-              <video width="1000" height="1000" controls preload="none">
-                <source src="/vic.mp4" type="video/mp4" />
-              </video>
+              <video
+                width="1000"
+                height="1000"
+                controls
+                autoPlay
+                preload="none"
+                src={video?.videoUrl}
+                type="video/mp4"
+              />
             </div>
-
             <div className="py-4">
-              <h1 className={`${theme}-text text-4xl md:text-5xl font-bold`}>
-                The Painfully Obvious Reason Why Palestinians Don’t Condemn
-                Hamas
+              <h1 className={` text-4xl md:text-5xl font-bold`}>
+                {video?.title}{" "}
               </h1>
-              <p className={`${theme}-text`}>
-                A call for Palestine’s freedom is not a call for Israel’s
-                destruction.
+              <p className={``}>
+                {video?.subtitle || "A littlee about the album goes here"}
               </p>
             </div>
-
             <div className="flex gap-2">
               <div className="w-[50px] h-[50px] rounded-full">
                 <Image
@@ -60,38 +91,33 @@ function VideoId() {
               </div>
 
               <div>
-                <h1 className={`${theme}-text font-bold text-lg`}>Steve Qj</h1>
+                <h1 className={` font-bold text-lg`}>Steve Qj</h1>
                 <div className="flex gap-4">
-                  <p className={`${theme}-text`}>5 mins Read</p>
-                  <p className={`${theme}-text`}>Two days ago</p>
+                  <p className={``}>5 mins Read</p>
+                  <p className={``}>Two days ago</p>
                 </div>
               </div>
             </div>
-
             <div className="flex items-center justify-between py-4 my-4 border-t border-b border-gray-400">
               <div className="flex items-center gap-2">
-                <FaHeart className={`${theme}-text`} />
-                <p className={`${theme}-text`}>24k</p>
+                <FaHeart className={``} />
+                <p className={``}>24k</p>
               </div>
               <div className="flex items-center gap-2">
-                <FaComment className={`${theme}-text`} />
-                <p className={`${theme}-text`}>100k</p>
+                <FaComment className={``} />
+                <p className={``}>100k</p>
               </div>
 
-              <FaShare className={`${theme}-text`} />
+              <FaShare className={``} />
             </div>
-
-            <p className={`${theme}-text`}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              amet consequuntur officiis atque sequi ex enim, nihil voluptates!
-              Fuga, hic!
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: video.description }} />{" "}
           </div>
 
           <CategoriesHeading title={"Related Videos"} />
           <div className="grid grid-cols-2 gap-4 py-4">
-            <RelatedArticles />
-            <RelatedArticles />
+            {allVideo.slice(0, 1).map((video) => (
+              <RelatedArticles key={video.id} {...video} />
+            ))}
           </div>
 
           <CategoriesHeading title={"Comments"} />
@@ -104,24 +130,24 @@ function VideoId() {
             <div className=" md:flex w-full gap-4 my-2">
               <input
                 type="text"
-                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                className={`my-2 md:my-0 p-4  w-full`}
                 placeholder="firstname"
               />
               <input
                 type="phone"
-                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                className={`my-2 md:my-0 p-4 w-full`}
                 placeholder="phonenumber"
               />
             </div>
             <div className="md:flex w-full gap-4 my-2">
               <input
                 type="email"
-                className={`my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                className={`my-2 md:my-0 p-4  w-full`}
                 placeholder="Email Address"
               />
               <input
                 type="text"
-                className={` my-2 md:my-0 p-4 ${theme}-bgg w-full`}
+                className={` my-2 md:my-0 p-4  w-full`}
                 placeholder="website"
               />
             </div>
@@ -131,7 +157,7 @@ function VideoId() {
               id=""
               cols="30"
               rows="10"
-              className={` ${theme}-bgg w-full h-[300px] my-2 p-4 bg-slate-800`}
+              className={`  w-full h-[300px] my-2 p-4 bg-slate-800`}
               placeholder="Type your comments"
             ></textarea>
 
