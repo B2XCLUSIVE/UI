@@ -49,7 +49,7 @@ function Header() {
   };
   return (
     <>
-      <div className={`-bg p-4 `}>
+      <div className={`p-4 `}>
         <div
           className={`md:w-3/4 mx-auto flex items-center gap-4 flex-nowrap overflow-hidden`}
         >
@@ -139,57 +139,81 @@ function Header() {
 
                 {showMenu ? (
                   <div
-                    className={` z-50 absolute right-0 flex flex-col  w-[150px] m-2" `}
+                    className={`bg-white z-50 absolute right-0 flex flex-col  w-[150px] m-2" `}
                   >
-                    <Link
+                    <div
                       className={`border-b-2  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/"}
+                      onClick={() => {
+                        router.push("/");
+                        setShowMenu(false);
+                      }}
                     >
                       Home
-                    </Link>
-                    <Link
+                    </div>
+                    <div
                       className={` border-b-2  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/blogs"}
+                      onClick={() => {
+                        router.push("/blogs");
+                        setShowMenu(false);
+                      }}
                     >
                       Blogs
-                    </Link>
+                    </div>
 
-                    <Link
+                    <div
                       className={` border-b-2 md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/upcomingevents"}
+                      onClick={() => {
+                        router.push("/upcomingevents");
+                        setShowMenu(false);
+                      }}
                     >
                       Event
-                    </Link>
-                    <Link
+                    </div>
+                    <div
                       className={` border-b-2 md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/artists"}
+                      onClick={() => {
+                        router.push("/artists");
+                        setShowMenu(false);
+                      }}
                     >
                       Artists
-                    </Link>
-                    <Link
+                    </div>
+                    <div
                       className={` border-b-2 md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/musics"}
+                      onClick={() => {
+                        router.push("/musics");
+                        setShowMenu(false);
+                      }}
                     >
                       Musics
-                    </Link>
-                    <Link
+                    </div>
+                    <div
                       className={` border-b-2  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/videoshome"}
+                      onClick={() => {
+                        router.push("/videoshome");
+                        setShowMenu(false);
+                      }}
                     >
                       Videos
-                    </Link>
-                    <Link
+                    </div>
+                    <div
                       className={` border-b-2  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/about"}
+                      onClick={() => {
+                        router.push("/about");
+                        setShowMenu(false);
+                      }}
                     >
                       About Us
-                    </Link>
-                    <Link
+                    </div>
+                    <div
                       className={` border-b-2  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
-                      href={"/contact"}
+                      onClick={() => {
+                        router.push("/contact");
+                        setShowMenu(false);
+                      }}
                     >
                       Contact Us
-                    </Link>
+                    </div>
                   </div>
                 ) : (
                   ""

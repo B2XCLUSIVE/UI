@@ -1,13 +1,12 @@
 "use client";
 import axios from "axios";
 import Button from "@/components/Button";
-import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import pld from "@/public/pld.jpeg";
 
 function SingleUser({ params }) {
-  const { theme } = useContext(ThemeContext);
   const [userData, setUserData] = useState(null);
   const userId = params.userId;
 
@@ -50,11 +49,11 @@ function SingleUser({ params }) {
         <section className="w-full">
           {/* Profile details section */}
           <div className="bg-gradient-to-tr from-primarycolor to-orange-600 p-8 md:p-20 flex flex-col items-center relative">
-            <div className="w-full md:w-3/6 mx-auto absolute flex justify-between items-center  left-10 -bottom-24 right-10">
-              <div className="flex items-center gap-4">
-                <div className="w-[100px] h-[100px] border-white rounded-full border-4">
+            <div className="w-full md:w-3/6 mx-auto absolute flex justify-between p-2 items-center m:left-10 -bottom-24 md:right-10">
+              <div className="flex md:flex-col items-center gap-4">
+                <div className="md:w-[100px] md:h-[100px] w-[60px] h-[60px] border-white rounded-full border-4">
                   <Image
-                    src="/alb.jpeg"
+                    src={userData?.image || pld}
                     width={1000}
                     height={1000}
                     alt="alb"
@@ -62,10 +61,10 @@ function SingleUser({ params }) {
                   />
                 </div>
                 <div>
-                  <h1 className={`${theme}-text font-bold text-2xl`}>
+                  <h1 className={` font-bold text-md md:text-2xl`}>
                     Profile Details
                   </h1>
-                  <p className={`${theme}-text`}>
+                  <p className={`md:text-base text-xs`}>
                     Update your photo and personal details
                   </p>
                 </div>
@@ -77,11 +76,11 @@ function SingleUser({ params }) {
           </div>
 
           {/* Form section to edit user details */}
-          <section className="w-full md:w-3/6 mx-auto mt-28">
+          <section className="w-full md:w-3/6 mx-auto p-4 mt-28">
             <form action="">
               {/* Username field */}
               <div className="flex py-4 border-b-gray-200 border-b ">
-                <label htmlFor="" className="w-2/6">
+                <label htmlFor="" className="md:text-base text-sm w-2/6">
                   Username
                 </label>
                 <div className="flex w-4/6 ">
@@ -94,7 +93,7 @@ function SingleUser({ params }) {
               </div>
               {/* Email field */}
               <div className="flex py-4 border-b-gray-200 border-b ">
-                <label htmlFor="" className="w-2/6">
+                <label htmlFor="" className="md:text-base text-sm w-2/6">
                   Email
                 </label>
                 <div className="flex w-4/6 ">
@@ -108,8 +107,8 @@ function SingleUser({ params }) {
 
               {/* Your Photo section */}
               <div className="flex py-4 border-b-gray-200 border-b ">
-                <label htmlFor="" className="w-2/6">
-                  Your Photo
+                <label htmlFor="" className="md:text-base text-sm w-2/6">
+                  Photo
                 </label>
                 <div className="flex w-4/6 justify-between ">
                   <div className="w-[60px] h-[60px] rounded-full">
@@ -121,8 +120,9 @@ function SingleUser({ params }) {
                       className="w-full h-full rounded-full"
                     />
                   </div>
-                  <div className="flex items-center">
-                    <button className="border p-4 rounded-lg">Delete</button>
+                  <div className="md:flex items-center">
+                    <input type="file" className="mb-2" />
+                    <button className="border p-2 rounded-lg">Delete</button>
                     <Button title={"Update"} />
                   </div>
                 </div>
@@ -130,8 +130,8 @@ function SingleUser({ params }) {
 
               {/* Bio textarea */}
               <div className="flex py-4 border-b-gray-200 border-b ">
-                <label htmlFor="" className="w-2/6">
-                  Your Bio
+                <label htmlFor="" className="md:text-base text-sm w-2/6">
+                  Bio
                 </label>
                 <div className="flex w-4/6 ">
                   <textarea
