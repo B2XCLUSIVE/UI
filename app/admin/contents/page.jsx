@@ -177,7 +177,7 @@ function Contents() {
           <div className="w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
               <div className="w-6/12">
-                <h1 className={`${theme}-text font-bold`}>Blogs</h1>
+                <h1 className={`${theme}-text font-bold`}>Artist</h1>
               </div>
               <div className="w-6/12 flex gap-2">
                 <h1 className={`${theme}-text w-2/6 font-bold`}>Date</h1>

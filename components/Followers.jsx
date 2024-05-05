@@ -1,18 +1,15 @@
 "use client";
 
-import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
-import { useContext } from "react";
-
-function Followers() {
-  const { theme } = useContext(ThemeContext);
+import pld from "@/public/pld.jpeg";
+function Followers({ name, bio, createdAt }) {
   return (
     <>
       <div className="border flex justify-between border-gray-100  p-2">
         <div className="flex gap-2 items-center">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image
-              src={"/alb.jpeg"}
+              src={pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -21,14 +18,16 @@ function Followers() {
           </div>
 
           <div>
-            <h1 className={`${theme}-text md:text-base text-[12px] `}>
-              Samuel Ganiu
-            </h1>
-            <p className="text-green-500 md:text-base text-[12px] ">Writer</p>
+            <h1 className={` md:text-base text-[12px] `}>{name}</h1>
+            <p className="text-green-500 md:text-base text-[12px] ">
+              {bio.split(" ").slice(0, 5).join(" ")}....
+            </p>
           </div>
         </div>
 
-        <p className={`${theme}-text md:text-base text-[12px] `}>2 days ago</p>
+        <p className={` md:text-base text-[12px] `}>
+          {createdAt.split("T")[0]}
+        </p>
       </div>
     </>
   );
