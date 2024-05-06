@@ -29,7 +29,7 @@ function AdminLogin() {
       const adminData = response.data.data;
       setadminUser(adminData.token);
       console.log("admin sign in Successfull", response.data);
-      toast.success(response?.data?.message, {
+      toast.success(response?.data?.message || "admin sign in successful", {
         position: "top-center",
       });
       setTimeout(() => {
