@@ -251,6 +251,13 @@ function Header() {
               Artists
             </Link>
             <Link
+              className={` text-sm py-1 px-2 text-white  hover:bg-primarycolor rounded-lg`}
+              href={"/musics"}
+            >
+              Musics
+            </Link>
+
+            <Link
               className={`text-sm py-1 px-2 text-white hover:bg-primarycolor rounded-lg`}
               href={"/videoshome"}
             >
