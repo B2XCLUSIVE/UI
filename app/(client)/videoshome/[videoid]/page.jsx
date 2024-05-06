@@ -22,11 +22,13 @@ import RelatedArticles from "@/components/RelatedArticles";
 import axios from "axios";
 
 import pld from "@/public/pld.jpeg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "@/context/ThemeContext";
 function VideoId({ params }) {
   const { videoid } = params;
   const [video, setVideo] = useState("");
   const [allVideo, setAllVideo] = useState([]);
+  const [allPost, setAllPost] = useState([]);
 
   const fetchdata = async () => {
     try {
@@ -41,6 +43,12 @@ function VideoId({ params }) {
       );
       setAllVideo(allvideoresponse?.data?.data);
       console.log(allVideo);
+
+      const postresponse = await axios.get(
+        "https://b2xclusive.onrender.com/api/v1/post/posts",
+      );
+      setAllPost(postresponse?.data?.data);
+      console.log(allPost);
     } catch (error) {
       console.log("error loading videe", error.message);
     }
@@ -49,6 +57,25 @@ function VideoId({ params }) {
   useEffect(() => {
     fetchdata();
   }, []);
+
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(video?.videoUrl);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${video?.title}.mp4`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.log("Error downloading video:", error.message);
+    }
+  };
+  const { user } = useContext(ThemeContext);
+  const [showComment, setShowComment] = useState(false);
 
   return (
     <>
@@ -111,65 +138,102 @@ function VideoId({ params }) {
               <FaShare className={``} />
             </div>
             <div dangerouslySetInnerHTML={{ __html: video.description }} />{" "}
+            <Button
+              title={"Download Video"}
+              onclick={handleDownload}
+              className="bg-primarycolor text-white"
+            />
           </div>
-
           <CategoriesHeading title={"Related Videos"} />
           <div className="grid grid-cols-2 gap-4 py-4">
             {allVideo.slice(0, 1).map((video) => (
               <RelatedArticles key={video.id} {...video} />
             ))}
           </div>
-
           <CategoriesHeading title={"Comments"} />
-
-          <Comments />
-          <Comments />
-
-          <CategoriesHeading title={"Add your comments"} />
-          <form className="p-4">
-            <div className=" md:flex w-full gap-4 my-2">
-              <input
-                type="text"
-                className={`my-2 md:my-0 p-4  w-full`}
-                placeholder="firstname"
-              />
-              <input
-                type="phone"
-                className={`my-2 md:my-0 p-4 w-full`}
-                placeholder="phonenumber"
-              />
-            </div>
-            <div className="md:flex w-full gap-4 my-2">
-              <input
-                type="email"
-                className={`my-2 md:my-0 p-4  w-full`}
-                placeholder="Email Address"
-              />
-              <input
-                type="text"
-                className={` my-2 md:my-0 p-4  w-full`}
-                placeholder="website"
+          <div className={`p-4 flex gap-4 `}>
+            <div className="w-[200px]  md:w-[50px] h-[50px]">
+              <Image
+                src={"/alb.jpeg"}
+                width={1000}
+                height={1000}
+                alt="alb"
+                className="w-full h-full object-cover"
               />
             </div>
 
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              className={`  w-full h-[300px] my-2 p-4 bg-slate-800`}
-              placeholder="Type your comments"
-            ></textarea>
+            <div className="flex flex-col gap-2">
+              <div>
+                <h1 className={`font-bold text-md md:text-base text-[12px] `}>
+                  Brain Deo
+                </h1>
+                <p className={` md:text-base text-[10px]`}>15-10-2024</p>
+              </div>
+              <p className={`md:text-base text-[10px] `}>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
+                cumque voluptates aperiam tempora nostrum adipisci voluptatem
+                numquam dolorem a quisquam?
+              </p>
+              <div
+                onClick={() => setShowComment(true)}
+                className="text-primarycolor md:text-base text-[10px]"
+              >
+                Reply
+              </div>
 
-            <Button title={"Send Comments"} />
-          </form>
+              <div className={`p-4 flex gap-4 `}>
+                <div className="w-[200px]  md:w-[50px] h-[50px]">
+                  <Image
+                    src={"/alb.jpeg"}
+                    width={1000}
+                    height={1000}
+                    alt="alb"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <h1
+                      className={`font-bold text-md md:text-base text-[12px] `}
+                    >
+                      Brain Deo
+                    </h1>
+                    <p className={`md:text-base text-[10px]`}>15-10-2024</p>
+                  </div>
+                  <p className={`md:text-base text-[10px] `}>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Illo cumque voluptates aperiam tempora nostrum adipisci
+                    voluptatem numquam dolorem a quisquam?
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {showComment ? (
+            user === null ? (
+              <Link href={"/login"}>Please login to drop a comment</Link>
+            ) : (
+              <form className="p-4">
+                <textarea
+                  name=""
+                  id=""
+                  cols="10"
+                  rows="10"
+                  className={`  w-full h-[100px] border my-2 p-4 bg-white`}
+                  placeholder="Type your comments"
+                ></textarea>
+
+                <Button title={"Send Comments"} />
+              </form>
+            )
+          ) : (
+            ""
+          )}{" "}
         </div>
         <div className=" p-4 md:w-2/5">
           {/* TOP ARTIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Top 10 Artists</h1>
-          </div>
-
+          <CategoriesHeading title={"Top 10 Artists"} />
           <div className="flex flex-col gap-2">
             <TopMusic />
             <TopMusic />
@@ -178,14 +242,9 @@ function VideoId({ params }) {
             <TopMusic />
             <TopMusic />
           </div>
-
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-
           {/* TOP PLAYLIST SECTION */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Top Playlists</h1>
-          </div>
-
+          <CategoriesHeading title={"Top Playlist"} />{" "}
           <div className="flex flex-col gap-2">
             <TopPlaylist />
             <TopPlaylist />
@@ -193,14 +252,9 @@ function VideoId({ params }) {
             <TopPlaylist />
             <TopPlaylist />
           </div>
-
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-
           {/* GET CONNECTED */}
-          <div className="p-4 bg-gray-900 my-4 rounded-lg">
-            <h1 className="font-bold">Get Cnnected</h1>
-          </div>
-
+          <CategoriesHeading title={"Get Connected"} />
           <div className="flex justify-between p-4">
             <FaFacebook className="text-3xl text-white" />
             <FaTwitter className="text-3xl text-white" />
@@ -209,18 +263,14 @@ function VideoId({ params }) {
             <FaInstagram className="text-3xl text-white" />
             <FaPinterest className="text-3xl text-white" />
           </div>
-
           <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-
           {/* Recent post section */}
-          <div className="p-4 bg-gray-900 mt-4 rounded-lg">
-            <h1 className="font-bold">Recent Post</h1>
-          </div>
-
+          <CategoriesHeading title={"Receent Post"} />
           <div className=" flex flex-col gap-1 pt-4 ">
-            <RecentPost />
-            <RecentPost />
-            <RecentPost />
+            {allPost &&
+              allPost
+                ?.slice(0, 3)
+                .map((post) => <RecentPost key={post.id} {...post} />)}
           </div>
         </div>
       </section>

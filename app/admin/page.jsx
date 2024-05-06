@@ -96,7 +96,7 @@ function Overview() {
         <h1 className={`text-3xl font-bold`}>Overview</h1>
 
         {/* Render total counts */}
-        <div className="grid grid-cols-2 p-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 p-2 md:grid-cols-6 gap-4">
           {/* Total Posts */}
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
@@ -149,6 +149,36 @@ function Overview() {
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`text-[10px] md:text-base`}>Total Events</h1>
+              <FaComment className={``} />
+            </div>
+            <div>
+              <div className="flex">
+                <h1 className={` font-bold text-2xl`}>50</h1>
+              </div>
+              <p className="text-gray-300 text-[9px] md:text-[11px]">
+                Of all time
+              </p>
+            </div>
+          </div>
+
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
+            <div className="flex justify-between">
+              <h1 className={`text-[10px] md:text-base`}>Total Views</h1>
+              <FaComment className={``} />
+            </div>
+            <div>
+              <div className="flex">
+                <h1 className={` font-bold text-2xl`}>50</h1>
+              </div>
+              <p className="text-gray-300 text-[9px] md:text-[11px]">
+                Of all time
+              </p>
+            </div>
+          </div>
+
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
+            <div className="flex justify-between">
+              <h1 className={`text-[10px] md:text-base`}>Total Downloads</h1>
               <FaComment className={``} />
             </div>
             <div>

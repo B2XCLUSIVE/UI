@@ -11,9 +11,12 @@ import axios from "axios";
 import { VscLoading } from "react-icons/vsc";
 import pld from "@/public/pld.jpeg";
 import { toast } from "react-toastify";
+import Link from "next/link";
+import { ThemeContext } from "@/context/ThemeContext";
 function SingleBlog({ params }) {
   const { blogId } = params;
-
+  const { user } = useContext(ThemeContext);
+  const [showComment, setShowComment] = useState(false);
   const [blog, setBlog] = useState("");
   const [allPost, setAllPost] = useState([]);
 
@@ -106,54 +109,90 @@ function SingleBlog({ params }) {
           </div>
           <div dangerouslySetInnerHTML={{ __html: blog.description }} />{" "}
         </div>
-
         <CategoriesHeading title={"Related Articles"} />
         <div className="grid grid-cols-2 gap-4 py-4">
           {allPost.slice(0, 1).map((blog) => (
             <RelatedArticles key={blog.id} {...blog} />
           ))}
         </div>
-
         <CategoriesHeading title={"Comments"} />
-        <Comments />
-
-        <form className="p-4">
-          <div className=" md:flex w-full gap-4 my-2">
-            <input
-              type="text"
-              className={`my-2 md:my-0 p-4  w-full`}
-              placeholder="firstname"
-            />
-            <input
-              type="phone"
-              className={`my-2 md:my-0 p-4  w-full`}
-              placeholder="phonenumber"
-            />
-          </div>
-          <div className="md:flex w-full gap-4 my-2">
-            <input
-              type="email"
-              className={`my-2 md:my-0 p-4  w-full`}
-              placeholder="Email Address"
-            />
-            <input
-              type="text"
-              className={` my-2 md:my-0 p-4  w-full`}
-              placeholder="website"
+        <div className={`p-4 flex gap-4 `}>
+          <div className="w-[200px]  md:w-[50px] h-[50px]">
+            <Image
+              src={"/alb.jpeg"}
+              width={1000}
+              height={1000}
+              alt="alb"
+              className="w-full h-full object-cover"
             />
           </div>
 
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            className={`  w-full h-[300px] my-2 p-4 bg-white`}
-            placeholder="Type your comments"
-          ></textarea>
+          <div className="flex flex-col gap-2">
+            <div>
+              <h1 className={`font-bold text-md md:text-base text-[12px] `}>
+                Brain Deo
+              </h1>
+              <p className={` md:text-base text-[10px]`}>15-10-2024</p>
+            </div>
+            <p className={`md:text-base text-[10px] `}>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
+              cumque voluptates aperiam tempora nostrum adipisci voluptatem
+              numquam dolorem a quisquam?
+            </p>
+            <div
+              onClick={() => setShowComment(true)}
+              className="text-primarycolor md:text-base text-[10px]"
+            >
+              Reply
+            </div>
 
-          <Button title={"Send Comments"} />
-        </form>
+            <div className={`p-4 flex gap-4 `}>
+              <div className="w-[200px]  md:w-[50px] h-[50px]">
+                <Image
+                  src={"/alb.jpeg"}
+                  width={1000}
+                  height={1000}
+                  alt="alb"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <div>
+                  <h1 className={`font-bold text-md md:text-base text-[12px] `}>
+                    Brain Deo
+                  </h1>
+                  <p className={`md:text-base text-[10px]`}>15-10-2024</p>
+                </div>
+                <p className={`md:text-base text-[10px] `}>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
+                  cumque voluptates aperiam tempora nostrum adipisci voluptatem
+                  numquam dolorem a quisquam?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {showComment ? (
+          user === null ? (
+            <Link href={"/login"}>Please login to drop a comment</Link>
+          ) : (
+            <form className="p-4">
+              <textarea
+                name=""
+                id=""
+                cols="10"
+                rows="10"
+                className={`  w-full h-[100px] border my-2 p-4 bg-white`}
+                placeholder="Type your comments"
+              ></textarea>
+
+              <Button title={"Send Comments"} />
+            </form>
+          )
+        ) : (
+          ""
+        )}{" "}
       </section>
     </>
   );

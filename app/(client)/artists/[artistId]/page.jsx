@@ -14,8 +14,9 @@ import {
 import axios from "axios";
 import pld from "@/public/pld.jpeg";
 import { VscLoading } from "react-icons/vsc";
+import AudioPlayer from "@/components/AudioPlayer";
 
-function ArtistMusics({ params }) {
+function SingleMusics({ params }) {
   const { artistId } = params;
 
   const [artist, setArtist] = useState("");
@@ -99,7 +100,9 @@ function ArtistMusics({ params }) {
         className={` p-2 w-full md:w-5/6 md:mx-auto flex flex-col gap-4 `}
       >
         {currentPosts.map((audio) => (
-          <ArtistSong key={audio.id} {...audio} />
+          <div key={audio.id}>
+            <ArtistSong key={audio.id} {...audio} />
+          </div>
         ))}
 
         <div className="flex justify-center mt-4">
@@ -137,4 +140,4 @@ function ArtistMusics({ params }) {
   );
 }
 
-export default ArtistMusics;
+export default SingleMusics;

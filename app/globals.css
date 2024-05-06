@@ -80,3 +80,10 @@ h3 {
   font-size: 3rem;
   font-style: italic;
 }
+
+audio {
+  width: 100%; /* Set the width to fill its container */
+  outline: none; /* Remove default focus outline */
+  margin-bottom: 20px; /* Add spacing below the player */
+  background-color: white;
+}
