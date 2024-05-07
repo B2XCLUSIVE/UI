@@ -10,17 +10,17 @@ function Artists() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/artist/artists`,
-      );
-      setALlArtist(response?.data?.data);
-      console.log(allArtist);
-    } catch (error) {}
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/artist/artists`,
+        );
+        setALlArtist(response?.data?.data);
+      } catch (error) {}
+    };
+
     fetchData();
   }, []);
 

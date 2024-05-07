@@ -31,13 +31,18 @@ function Login() {
       );
 
       const userData = response?.data;
+      console.log(userData);
       setUser(userData?.data?.token);
       setUserId(userData?.data?.id);
       toast.success(userData.message, {
         position: "top-center",
       });
       setTimeout(() => {
-        router.push("/");
+        if (userData?.data?.role === "admin") {
+          router.push("/admin");
+        } else {
+          router.push("/");
+        }
       }, 3000);
     } catch (error) {
       console.log("unable to sign in", error.message);

@@ -24,22 +24,21 @@ function SingleMusics({ params }) {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
 
-  const fetchdata = async () => {
-    const response = await axios.get(
-      `https://b2xclusive.onrender.com/api/v1/artist/${artistId}`,
-    );
-
-    setArtist(response?.data?.data);
-    const audiosresponse = await axios.get(
-      `https://b2xclusive.onrender.com/api/v1/track/audios?artistId=${artistId}&page=${currentPage}`,
-    );
-    setAudios(audiosresponse?.data?.data);
-    console.log(audios);
-  };
-
   useEffect(() => {
+    const fetchdata = async () => {
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/artist/${artistId}`,
+      );
+
+      setArtist(response?.data?.data);
+      const audiosresponse = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/track/audios?artistId=${artistId}&page=${currentPage}`,
+      );
+      setAudios(audiosresponse?.data?.data);
+    };
+
     fetchdata();
-  }, []);
+  }, [artistId, currentPage]);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);

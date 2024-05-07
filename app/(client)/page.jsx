@@ -31,22 +31,21 @@ import axios from "axios";
 
 export default function Home() {
   const [allPost, setAllPost] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://b2xclusive.onrender.com/api/v1/post/posts",
-      );
-      setAllPost(response?.data?.data);
-      console.log(allPost);
-    } catch (error) {
-      console.error("Failed to fethc blog post", error.message);
-      toast.error(error?.response?.data?.message || "Failed to upload post", {
-        position: "top-center",
-      });
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://b2xclusive.onrender.com/api/v1/post/posts",
+        );
+        setAllPost(response?.data?.data);
+      } catch (error) {
+        console.error("Failed to fethc blog post", error.message);
+        toast.error(error?.response?.data?.message || "Failed to upload post", {
+          position: "top-center",
+        });
+      }
+    };
+
     fetchData();
   }, []);
   return (

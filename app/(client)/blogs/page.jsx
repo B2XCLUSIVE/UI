@@ -23,27 +23,27 @@ function Blogs() {
   const [allPost, setAllPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
-      );
-      setAllPost(response?.data?.data);
-      console.log(allPost);
-    } catch (error) {
-      console.error("Failed to fethc blog post", error.message);
-      toast.error(
-        error?.response?.data?.message || "Failed to fecthblog post",
-        {
-          position: "top-center",
-        },
-      );
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
+        );
+        setAllPost(response?.data?.data);
+      } catch (error) {
+        console.error("Failed to fethc blog post", error.message);
+        toast.error(
+          error?.response?.data?.message || "Failed to fecthblog post",
+          {
+            position: "top-center",
+          },
+        );
+      }
+    };
+
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);

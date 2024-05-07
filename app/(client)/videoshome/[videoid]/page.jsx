@@ -7,6 +7,7 @@ import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import Image from "next/image";
+import Link from "next/link";
 import {
   FaComment,
   FaFacebook,
@@ -30,33 +31,30 @@ function VideoId({ params }) {
   const [allVideo, setAllVideo] = useState([]);
   const [allPost, setAllPost] = useState([]);
 
-  const fetchdata = async () => {
-    try {
-      const response = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/track/video/${videoid}`,
-      );
-
-      setVideo(response?.data?.data);
-      console.log(video);
-      const allvideoresponse = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/track/videos`,
-      );
-      setAllVideo(allvideoresponse?.data?.data);
-      console.log(allVideo);
-
-      const postresponse = await axios.get(
-        "https://b2xclusive.onrender.com/api/v1/post/posts",
-      );
-      setAllPost(postresponse?.data?.data);
-      console.log(allPost);
-    } catch (error) {
-      console.log("error loading videe", error.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/track/video/${videoid}`,
+        );
+
+        setVideo(response?.data?.data);
+        const allvideoresponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/track/videos`,
+        );
+        setAllVideo(allvideoresponse?.data?.data);
+
+        const postresponse = await axios.get(
+          "https://b2xclusive.onrender.com/api/v1/post/posts",
+        );
+        setAllPost(postresponse?.data?.data);
+      } catch (error) {
+        console.log("error loading videe", error.message);
+      }
+    };
+
     fetchdata();
-  }, []);
+  }, [videoid]);
 
   const handleDownload = async () => {
     try {

@@ -20,34 +20,32 @@ function SingleBlog({ params }) {
   const [blog, setBlog] = useState("");
   const [allPost, setAllPost] = useState([]);
 
-  const fetchdata = async () => {
-    try {
-      const response = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/post/${blogId}`,
-      );
-
-      setBlog(response?.data?.data);
-      console.log(blog);
-
-      const allpostresponse = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/post/posts`,
-      );
-      setAllPost(allpostresponse?.data?.data);
-      console.log(allPost);
-    } catch (error) {
-      console.error("Failed to fethc blog post", error.message);
-      toast.error(
-        error?.response?.data?.message || "Failed to fecthblog post",
-        {
-          position: "top-center",
-        },
-      );
-    }
-  };
-
   useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/post/${blogId}`,
+        );
+
+        setBlog(response?.data?.data);
+
+        const allpostresponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/post/posts`,
+        );
+        setAllPost(allpostresponse?.data?.data);
+      } catch (error) {
+        console.error("Failed to fethc blog post", error.message);
+        toast.error(
+          error?.response?.data?.message || "Failed to fecthblog post",
+          {
+            position: "top-center",
+          },
+        );
+      }
+    };
+
     fetchdata();
-  }, []);
+  }, [blogId]);
 
   if (!blog) {
     return (
