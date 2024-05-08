@@ -4,7 +4,7 @@ import { FaDownload, FaHamburger, FaPlay } from "react-icons/fa";
 import Link from "next/link";
 import pld from "@/public/pld.jpeg";
 import { useState } from "react";
-function ArtistSong({ title, artist, createdAt, audioUrl, duration }) {
+function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
   const [showPlayer, setShowPlayer] = useState(false);
   const handleDownload = () => {
     const anchor = document.createElement("a");
@@ -16,10 +16,10 @@ function ArtistSong({ title, artist, createdAt, audioUrl, duration }) {
     <>
       <div>
         <div className={` flex gap-4 items-center p-4 justify-between pr-8`}>
-          <div className={`bg-gray-300 md:block hidden p-4`}>
+          <div className={`bg-gray-50 md:block hidden p-4`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
-                src={artist?.image?.url || pld}
+                src={image?.url || pld}
                 width={1000}
                 height={1000}
                 alt="alb"

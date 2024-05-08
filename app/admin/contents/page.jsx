@@ -8,73 +8,80 @@ import { FaBlog, FaComment, FaEye, FaUser } from "react-icons/fa";
 import axios from "axios";
 import ArtistContent from "@/components/ArtistContent";
 import MusicOverview from "@/components/MusicOverview";
+import EventOverview from "@/components/EventOverview";
+import VideoOverview from "@/components/VideoOverview";
 function Contents() {
-  const { theme, showSideBar } = useContext(ThemeContext);
+  const { showSideBar } = useContext(ThemeContext);
   const [allPosts, setallPosts] = useState([]);
   const [allArtist, setAllArtist] = useState([]);
-
   const [allMusic, setAllMusic] = useState([]);
-
   const [allVideo, setAllVideo] = useState([]);
+  const [allEvent, setallEvent] = useState([]);
   const [token, setToken] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
-  const fetchPost = async () => {
-    const storedToken = localStorage.getItem("b2exclusiveadmin");
-    if (storedToken) {
-      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
-      setToken(cleanedToken);
-    } else {
-      console.error("Bearer token not found");
-    }
-    try {
-      const response = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      setallPosts(response?.data?.data);
-      console.log(allPosts);
-
-      const artistResponse = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/artist/artists`,
-      );
-      setAllArtist(artistResponse?.data?.data);
-      console.log(allArtist);
-
-      const musicResponse = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/track/audios`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      setAllMusic(musicResponse?.data?.data);
-      console.log("music", allMusic);
-
-      const videoResponse = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/track/videos`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      setAllVideo(videoResponse?.data?.data);
-      console.log("video", allVideo);
-    } catch (error) {
-      console.log("error fethcing posts", error.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchPost = async () => {
+      const storedToken = localStorage.getItem("b2exclusiveadmin");
+      if (storedToken) {
+        const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+        setToken(cleanedToken);
+      } else {
+        console.error("Bearer token not found");
+      }
+      try {
+        const response = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        setallPosts(response?.data?.data);
+
+        const artistResponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/artist/artists`,
+        );
+        setAllArtist(artistResponse?.data?.data);
+
+        const musicResponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/track/audios`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        setAllMusic(musicResponse?.data?.data);
+
+        const videoResponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/track/videos`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        setAllVideo(videoResponse?.data?.data);
+
+        const eventResponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/event/events`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        setallEvent(eventResponse?.data?.data);
+      } catch (error) {
+        console.log("error fethcing posts", error.message);
+      }
+    };
+
     fetchPost();
-  }, []);
+  }, [currentPage, token]);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -100,9 +107,9 @@ function Contents() {
   return (
     <>
       <section className={`${showSideBar ? "w-10/12" : "w-full"} p-4 `}>
-        <h1 className={`${theme}-text my-4 text-2xl font-bold `}>Contents</h1>
+        <h1 className={` my-4 text-2xl font-bold `}>Contents</h1>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
             <div className="flex justify-between">
               <h1 className={`text-[10px] md:text-base`}>Total Blogs</h1>
@@ -154,36 +161,80 @@ function Contents() {
               </div>
             </div>
           </div>
+
+          <div className="p-4 border border-gray-100 flex flex-col justify-between h-[120px] rounded-lg">
+            <div className="flex justify-between">
+              <h1 className={`text-[10px] md:text-base`}>Total Artist</h1>
+              <FaComment className={``} />
+            </div>
+
+            <div>
+              <div className="flex">
+                <h1 className={` font-bold text-2xl`}>50</h1>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex w-full">
+        <div className="flex w-full gap-8 p-4">
           <div className="md:w-8/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-6/12">
-                <h1 className={`${theme}-text font-bold`}>Blogs</h1>
+              <div className="w-5/12">
+                <h1 className={` font-bold`}>Blogs</h1>
               </div>
-              <div className="w-6/12 flex gap-2">
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Category</h1>
+              <div className="w-7/12 flex gap-2">
+                <h1 className={` w-1/6 font-bold`}>Category</h1>
 
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Comments</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Date</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Status</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Action</h1>
+                <h1 className={` w-1/6 font-bold`}>Comments</h1>
+                <h1 className={` w-1/6 font-bold`}>Date</h1>
+                <h1 className={` w-1/6 font-bold`}>Status</h1>
+                <h1 className={` w-2/6 font-bold`}>Action</h1>
               </div>
             </div>
             {currentPosts?.map((post) => (
               <PostContent key={post.id} {...post} />
             ))}
+
+            <div className="flex justify-center mt-4">
+              {/* Previous button */}
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className="border text-[10px] md:text-base border-gray-500 text-gray-500 px-2 md:px-4 md:py-2 rounded-md mr-2"
+              >
+                Previous
+              </button>
+              {/* Page number buttons */}
+              {pageNumbers.map((number) => (
+                <button
+                  key={number}
+                  onClick={() => setCurrentPage(number)}
+                  className={`border border-gray-500 text-primarycolor md:text-base text-[10px] px-4 py-2 rounded-md mx-1 ${
+                    currentPage === number ? "bg-black" : ""
+                  }`}
+                >
+                  {number}
+                </button>
+              ))}
+              {/* Next button */}
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="bg-primarycolor text-white px-4 py-2 md:text-base text-[10px] rounded-md ml-2"
+              >
+                Next
+              </button>{" "}
+            </div>
           </div>
           <div className="w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-6/12">
-                <h1 className={`${theme}-text font-bold`}>Artist</h1>
+              <div className="w-5/12">
+                <h1 className={` font-bold`}>Artist</h1>
               </div>
-              <div className="w-6/12 flex gap-2">
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Date</h1>
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Status</h1>
+              <div className="w-7/12 flex gap-2">
+                <h1 className={` w-2/6 font-bold`}>Date</h1>
+                <h1 className={` w-2/6 font-bold`}>Status</h1>
 
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Action</h1>
+                <h1 className={` w-3/6 font-bold`}>Action</h1>
               </div>
             </div>
             {allArtist?.map((post) => (
@@ -191,47 +242,17 @@ function Contents() {
             ))}
           </div>
         </div>
-        <div className="flex justify-center mt-4">
-          {/* Previous button */}
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className="border text-[10px] md:text-base border-gray-500 text-gray-500 px-2 md:px-4 md:py-2 rounded-md mr-2"
-          >
-            Previous
-          </button>
-          {/* Page number buttons */}
-          {pageNumbers.map((number) => (
-            <button
-              key={number}
-              onClick={() => setCurrentPage(number)}
-              className={`border border-gray-500 text-primarycolor md:text-base text-[10px] px-4 py-2 rounded-md mx-1 ${
-                currentPage === number ? "bg-black" : ""
-              }`}
-            >
-              {number}
-            </button>
-          ))}
-          {/* Next button */}
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className="bg-primarycolor text-white px-4 py-2 md:text-base text-[10px] rounded-md ml-2"
-          >
-            Next
-          </button>{" "}
-        </div>
 
         <div className="flex md:flex-row flex-col gap-4">
           <div className="md:w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
               <div className="w-6/12">
-                <h1 className={`${theme}-text font-bold`}>Music</h1>
+                <h1 className={` font-bold`}>Music</h1>
               </div>
               <div className="w-6/12 flex gap-2">
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Duration</h1>
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Date</h1>
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Action</h1>
+                <h1 className={` w-2/6 font-bold`}>Duration</h1>
+                <h1 className={` w-2/6 font-bold`}>Date</h1>
+                <h1 className={` w-2/6 font-bold`}>Action</h1>
               </div>
             </div>
             {allMusic?.map((music) => (
@@ -242,39 +263,33 @@ function Contents() {
           <div className="md:w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
               <div className="w-6/12">
-                <h1 className={`${theme}-text font-bold`}>Video</h1>
+                <h1 className={` font-bold`}>Video</h1>
               </div>
               <div className="w-6/12 flex gap-2">
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Duration</h1>
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Date</h1>
-                <h1 className={`${theme}-text w-2/6 font-bold`}>Action</h1>
+                <h1 className={` w-2/6 font-bold`}>Duration</h1>
+                <h1 className={` w-2/6 font-bold`}>Date</h1>
+                <h1 className={` w-2/6 font-bold`}>Action</h1>
               </div>
             </div>
             {allVideo?.map((video) => (
-              <MusicOverview key={video.id} {...video} />
+              <VideoOverview key={video.id} {...video} />
             ))}{" "}
           </div>
 
           <div className="md:w-4/12">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-4/12">
-                <h1 className={`${theme}-text font-bold`}>Events</h1>
+              <div className="w-6/12">
+                <h1 className={` font-bold`}>Events</h1>
               </div>
               <div className="w-6/12 flex gap-2">
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Category</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Views</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Comments</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Post Date</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Status</h1>
-                <h1 className={`${theme}-text w-1/6 font-bold`}>Action</h1>
+                <h1 className={`w-3/6 font-bold`}>Date</h1>
+                <h1 className={` w-3/6 font-bold`}>Action</h1>
               </div>
             </div>
 
-            <PostContent />
-            <PostContent />
-            <PostContent />
-            <PostContent />
-            <PostContent />
+            {allEvent?.map((event) => (
+              <EventOverview key={event.id} {...event} />
+            ))}
           </div>
         </div>
       </section>

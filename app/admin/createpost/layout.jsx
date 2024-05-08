@@ -13,7 +13,7 @@ function Layout({ children }) {
         <h1 className={` font-bold my-4 text-2xl`}>Create post</h1>
 
         <div
-          className={`${showSideBar ? "w-10/12" : "w-full"} grid grid-cols-5 border-b border-gray-200 `}
+          className={`${showSideBar ? "w-10/12" : "w-full"} grid grid-cols-6 border-b border-gray-200 `}
         >
           <CreatePostLinks
             title={"Artists"}
@@ -28,6 +28,11 @@ function Layout({ children }) {
             title={"Video"}
             href={"/admin/createpost/addvideo"}
           />
+          <CreatePostLinks
+            title={"Organizer"}
+            href={"/admin/createpost/addorganizer"}
+          />
+
           <CreatePostLinks
             title={"Events"}
             href={"/admin/createpost/addevent"}

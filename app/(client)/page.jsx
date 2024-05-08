@@ -31,6 +31,8 @@ import axios from "axios";
 
 export default function Home() {
   const [allPost, setAllPost] = useState([]);
+
+  const [allEvent, setAllEvent] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,6 +40,11 @@ export default function Home() {
           "https://b2xclusive.onrender.com/api/v1/post/posts",
         );
         setAllPost(response?.data?.data);
+
+        const eventresponse = await axios.get(
+          "https://b2xclusive.onrender.com/api/v1/event/events",
+        );
+        setAllEvent(eventresponse?.data?.data);
       } catch (error) {
         console.error("Failed to fethc blog post", error.message);
         toast.error(error?.response?.data?.message || "Failed to upload post", {
@@ -172,9 +179,9 @@ export default function Home() {
           <CategoriesHeading title={"Upcoming Events"} />
 
           <div className="flex flex-col gap-4 my-4">
-            <Event />
-            <Event />
-            <Event />
+            {allEvent?.slice(0, 3).map((event) => (
+              <Event key={event.id} {...event} />
+            ))}
           </div>
 
           <div className="flex items-end justify-between mb-10">

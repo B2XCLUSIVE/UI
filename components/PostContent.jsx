@@ -5,6 +5,7 @@ import { FaComment, FaCommentDots, FaEllipsisV, FaEye } from "react-icons/fa";
 import pld from "@/public/pld.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 function PostContent({
   id,
   title,
@@ -66,7 +67,7 @@ function PostContent({
   return (
     <>
       <div className="w-full p-2 flex items-center border border-gray-100 rounded-se rounded-ss">
-        <div className="w-6/12 flex items-center gap-2">
+        <div className="w-5/12 flex items-center gap-2">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image
               src={imageUrl}
@@ -85,13 +86,8 @@ function PostContent({
             </p>
           </div>
         </div>
-        <div className="w-6/12 flex items-center gap-2">
+        <div className="w-7/12 flex items-center gap-2">
           <h1 className={`w-1/6 `}>Tech</h1>
-          <div className="flex items-center gap-2 w-1/6">
-            <FaEye className={``} />
-
-            <h1 className={``}>734</h1>
-          </div>
 
           <div className="flex items-center gap-2 w-1/6">
             <FaComment className={``} />
@@ -104,15 +100,18 @@ function PostContent({
             Active
           </h1>
           <div
-            className="w-1/6 relative cursor-pointer "
+            className="w-2/6 relative cursor-pointer "
             onClick={() => setShowActions(!showActions)}
           >
             <FaEllipsisV className={` text-center`} />
             {showActions ? (
               <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
-                <p className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer">
+                <Link
+                  href={`/admin/contents/edit/blog/${id}`}
+                  className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
+                >
                   Edit Post
-                </p>
+                </Link>
                 <p
                   onClick={handleDelete}
                   className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"

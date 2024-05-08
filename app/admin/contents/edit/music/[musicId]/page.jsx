@@ -3,26 +3,36 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ThemeContext } from "@/context/ThemeContext";
 import { useContext } from "react";
-import Button from "@/components/Button";
 import Tiptap from "@/components/TipTap";
-import Image from "next/image";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+function EditMusic({ params }) {
+  const { musicId } = params;
 
-function AddVideos() {
-  const router = useRouter();
   const [allArtist, setALlArtist] = useState([]);
-  const { theme, showSideBar } = useContext(ThemeContext);
+
+  const router = useRouter();
+  const { showSideBar } = useContext(ThemeContext);
   const [uploadingPost, setuploadingPost] = useState(false);
 
   const [file, setFile] = useState(null);
-  const [thumbnail, setThumbnail] = useState(null);
+  const [imagefile, setImageFile] = useState(null);
   const [content, setContent] = useState("");
 
   const handleContentChange = (cont) => {
     setContent(cont);
   };
+
+  const [singleMusic, setSingleMusic] = useState({
+    title: "",
+    subTitle: "",
+    artistId: "",
+    duration: "",
+    thumbnail: "",
+    description: "",
+  });
 
   const [token, setToken] = useState(""); // State to hold the token
 
@@ -38,7 +48,7 @@ function AddVideos() {
 
   useEffect(() => {
     const fetchData = async () => {
-      toast.warning(`Fethcing Artists`, {
+      toast.warning(`Fethcing Artists and Music Contents`, {
         position: "top-center",
         autoClose: false,
       });
@@ -52,6 +62,13 @@ function AddVideos() {
           },
         );
         setALlArtist(response?.data?.data);
+
+        const musicresponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/track/audio/${musicId}`,
+        );
+        const postData = musicresponse?.data?.data;
+        setSingleMusic(postData);
+
         toast.dismiss();
         toast.success(`All Artists fetched`, { position: "top-center" });
       } catch (error) {
@@ -67,32 +84,23 @@ function AddVideos() {
     };
 
     fetchData();
-  }, [token]);
+  }, [token, musicId]);
 
-  const [video, setVideo] = useState({
-    title: "",
-    duration: "",
-    subTitle: "",
-    description: content,
-    artistId: "",
-    tags: [],
-    categories: [],
-  });
   useEffect(() => {
-    setVideo((prevPost) => ({
+    setSingleMusic((prevPost) => ({
       ...prevPost,
-      videos: file,
-      thumbnail: thumbnail,
-      description: content,
+      audios: file,
+      thumbnail: imagefile,
+      description: singleMusic.description,
     }));
-  }, [file, content, thumbnail]);
+  }, [file, imagefile, singleMusic.description]);
 
-  const onsubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setuploadingPost(true);
     try {
       let formData = new FormData(e.target);
-      formData.append("description", video.description);
+      formData.append("description", setSingleMusic.description);
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -100,12 +108,12 @@ function AddVideos() {
         },
       };
 
-      const videoResponse = await axios.put(
-        "https://b2xclusive.onrender.com/api/v1/track/createVideo",
+      const musicResponse = await axios.patch(
+        `https://b2xclusive.onrender.com/api/v1/track/audio/update/${musicId}`,
         formData,
         config,
       );
-      toast.success(videoResponse?.data?.message, {
+      toast.success(musicResponse?.data?.message, {
         position: "top-center",
       });
 
@@ -113,8 +121,8 @@ function AddVideos() {
         router.push("/admin");
       }, 3000);
     } catch (error) {
-      console.error("Failed to upload video", error.message);
-      toast.error(error?.response?.data?.message || "Failed to upload video", {
+      console.error("Failed to upload music", error.message);
+      toast.error(error?.response?.data?.message || "Failed to upload music", {
         position: "top-center",
       });
     } finally {
@@ -124,28 +132,45 @@ function AddVideos() {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
-        <form onSubmit={onsubmit} className={`flex flex-col gap-8 items-start`}>
+      <section className={`${showSideBar ? "w-10/12" : "w-full"} p-4 md:p-8 `}>
+        <form onSubmit={onSubmit} className={`flex flex-col gap-8 items-start`}>
           <div className="flex flex-col gap-2 w-full">
-            <label>Video Title</label>
+            <label>Music Title</label>
             <input
-              value={video.title}
-              onChange={(e) => setVideo({ ...video, title: e.target.value })}
+              value={singleMusic.title}
+              onChange={(e) =>
+                setSingleMusic({ ...singleMusic, title: e.target.value })
+              }
               type="text"
               name="title"
-              placeholder="Enter Video Title"
+              placeholder="Enter Music Title"
               className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
             />
           </div>
           <div className="flex gap-4 w-full items-center">
             <div className="flex flex-col w-6/12">
+              <label htmlFor="">Subtitle </label>
+              <input
+                value={singleMusic.subTitle}
+                name="subTitle"
+                onChange={(e) =>
+                  setSingleMusic({ ...singleMusic, subTitle: e.target.value })
+                }
+                type="text"
+                placeholder="Enter subtitle"
+                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+              />
+            </div>
+
+            <div className="flex flex-col w-3/12">
               <label htmlFor="">Artists </label>
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="artistId"
+                value={singleMusic.artistId}
                 id=""
                 onChange={(e) =>
-                  setVideo({ ...video, artisId: e.target.value })
+                  setSingleMusic({ ...singleMusic, artisId: e.target.value })
                 }
               >
                 <option value="null">Select Artist</option>
@@ -157,72 +182,25 @@ function AddVideos() {
               </select>{" "}
             </div>
 
-            <div className="flex flex-col w-6/12">
+            <div className="flex flex-col w-3/12">
               <label htmlFor="">Duration </label>
               <input
-                value={video.duration}
+                value={singleMusic.duration}
                 name="duration"
                 onChange={(e) =>
-                  setVideo({ ...video, duration: e.target.value })
+                  setSingleMusic({ ...singleMusic, duration: e.target.value })
                 }
                 type="text"
-                placeholder="Enter video duration"
-                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
-              />
-            </div>
-          </div>
-          <div className="md:flex gap-4 w-full items-center">
-            <div className="flex flex-col gap-2 md:w-8/12">
-              <label>Video subtitle</label>
-              <input
-                name="subtitle"
-                value={video.subtitle}
-                onChange={(e) =>
-                  setVideo({ ...video, subtitle: e.target.value })
-                }
-                type="text"
-                placeholder="Enter video Title"
-                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
-              />
-            </div>
-
-            <div className="flex flex-col md:w-2/12">
-              <label>
-                Categories <span>Seprate categories with &quot;,&quot;</span>{" "}
-              </label>
-              <input
-                value={video.categories}
-                onChange={(e) =>
-                  setVideo({ ...video, categories: e.target.value.split(",") })
-                }
-                name="categories[]"
-                type="text"
-                placeholder="Enter video Title"
-                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
-              />
-            </div>
-
-            <div className="flex flex-col md:w-2/12">
-              <label htmlFor="">
-                Tags <span>Seprate tags with &quot;,&quot;</span>
-              </label>
-              <input
-                value={video.tags}
-                onChange={(e) =>
-                  setVideo({ ...video, tags: e.target.value.split(",") })
-                }
-                name="tags[]"
-                type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Enter music duration"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
           </div>
           <div className="flex gap-4 w-full items-center">
             <div className="flex flex-col w-full">
-              <label htmlFor="">Upload Video Thumbnail </label>
+              <label htmlFor="">Upload Music Cover </label>
               <input
-                onChange={(e) => setThumbnail(e.target.files[0])}
+                onChange={(e) => setImageFile(e.target.files[0])}
                 type="file"
                 multiple
                 name="thumbnail"
@@ -231,50 +209,64 @@ function AddVideos() {
               />
             </div>
           </div>
-          {thumbnail ? (
+          {imagefile && imagefile ? (
             <div className="w-full">
               <div className="w-full h-[300px]">
                 <Image
-                  src={URL.createObjectURL(thumbnail)}
+                  src={URL.createObjectURL(imagefile)}
                   width={1000}
                   height={1000}
                   alt="post"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className={``}>Selected File: {thumbnail.name}</p>
+              <p className={``}>Selected File: {imagefile.name}</p>
             </div>
           ) : (
-            <p>No file selected</p>
-          )}{" "}
+            singleMusic?.image && (
+              <div className="w-full">
+                <div className="w-full h-[300px]">
+                  <Image
+                    src={singleMusic?.image?.url}
+                    width={1000}
+                    height={1000}
+                    alt="post"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className={``}>Selected File: {singleMusic.image?.url}</p>
+              </div>
+            )
+          )}
           <div className="flex gap-4 w-full items-center">
             <div className="flex flex-col w-full">
-              <label htmlFor="">Upload Video</label>
+              <label htmlFor="">Upload Music </label>
               <input
-                name="videos"
-                multiple
                 onChange={(e) => setFile(e.target.files[0])}
                 type="file"
-                placeholder="Upload video"
+                multiple
+                name="audios"
+                placeholder="Upload File"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
           </div>
           <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="">Video Descriptions</label>
+            <label htmlFor="">Music Descriptions</label>
             <Tiptap
-              content={content}
+              content={singleMusic.description}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>
           <button
             type="submit"
+            // Use handlePost instead of handleingPost
             className={`${uploadingPost ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 text-white`}
           >
             {uploadingPost ? (
               <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
             ) : (
-              "Create post"
+              "Update music"
             )}
           </button>
         </form>
@@ -283,4 +275,4 @@ function AddVideos() {
   );
 }
 
-export default AddVideos;
+export default EditMusic;

@@ -6,7 +6,14 @@ import pld from "@/public/pld.jpeg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
+function VideoOverview({
+  id,
+  title,
+  thumbnail,
+  duration,
+  createdAt,
+  subtitle,
+}) {
   const [showActions, setShowActions] = useState(false);
   const [token, setToken] = useState(""); // State to hold the token
   useEffect(() => {
@@ -34,7 +41,7 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
       };
 
       const response = await axios.delete(
-        `https://b2xclusive.onrender.com/api/v1/track/audio/delete/${id}`,
+        `https://b2xclusive.onrender.com/api/v1/track/video/delete/${id}`,
         config,
       );
       toast.dismiss();
@@ -60,7 +67,7 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
         <div className="w-6/12 flex items-center gap-2">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image
-              src={image ? image?.url : pld}
+              src={thumbnail?.url || pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -87,7 +94,7 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
             {showActions ? (
               <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
                 <Link
-                  href={`/admin/contents/edit/music/${id}`}
+                  href={`/admin/contents/edit/video/${id}`}
                   className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
                 >
                   Edit Post
@@ -109,4 +116,4 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
   );
 }
 
-export default MusicOverview;
+export default VideoOverview;

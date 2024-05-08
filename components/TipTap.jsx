@@ -4,6 +4,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./Toolbar";
 import Underline from "@tiptap/extension-underline";
+import { useEffect } from "react";
 
 const Tiptap = ({ content, onChange }) => {
   const handleChange = (newContent) => {
@@ -20,7 +21,11 @@ const Tiptap = ({ content, onChange }) => {
       handleChange(editor.getHTML());
     },
   });
-
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content);
+    }
+  }, [editor, content]);
   return (
     <div>
       <Toolbar editor={editor} content={content} />

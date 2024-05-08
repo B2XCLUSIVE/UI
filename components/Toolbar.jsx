@@ -19,6 +19,7 @@ function Toolbar({ editor, content }) {
   if (!editor) {
     return null;
   }
+
   return (
     <>
       <div className="border border-gray-200 p-4 flex gap-4 flex-wrap w-full">

@@ -200,15 +200,19 @@ function Overview() {
           <div className="w-full md:w-2/5 rounded-lg">
             <h1 className={`font-bold`}>Recent 5 Users</h1>
             <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
-              <h1 className={` font-bold`}>Users</h1>
-              <p className={` font-bold`}>Date</p>
+              <h1 className={` w-3/5 font-bold`}>Users</h1>
+              <div className="flex w-2/5 ">
+                <p className={`w-1/2 font-bold`}>Role</p>
+
+                <p className={`w-1/2 font-bold`}>Date</p>
+              </div>{" "}
             </div>
             {allUsers.slice(0, 5).map((user) => (
               <div
                 key={user.id}
-                className="border flex justify-between border-gray-100 p-2"
+                className="border  flex justify-between border-gray-100 p-2"
               >
-                <div className="flex gap-2 items-center">
+                <div className="flex  w-3/5 gap-2 items-center">
                   <div className="w-[40px] h-[40px] rounded-full">
                     <Image
                       src={user.image || pld}
@@ -218,7 +222,7 @@ function Overview() {
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-                  <div>
+                  <div className="">
                     <h1 className={`md:text-base text-[12px]`}>
                       {user.userName}
                     </h1>
@@ -227,9 +231,14 @@ function Overview() {
                     </p>
                   </div>
                 </div>
-                <p className={`md:text-base text-[12px]`}>
-                  {user.createdAt.split("T")[0]}
-                </p>
+                <div className="flex  w-2/5">
+                  <p className={`w-1/2 md:text-base text-[12px]`}>
+                    {user.role}
+                  </p>
+                  <p className={`w-1/2 md:text-base text-[12px]`}>
+                    {user.createdAt.split("T")[0]}
+                  </p>
+                </div>{" "}
               </div>
             ))}
           </div>
@@ -286,8 +295,35 @@ function Overview() {
               <h1 className={` font-bold`}>Artist</h1>
               <p className={` font-bold`}>Date</p>
             </div>
-            {allArtist.slice(0, 5).map((artist) => (
-              <Followers key={artist.id} {...artist} />
+            {allArtist?.slice(0, 5).map((artist) => (
+              <div key={artist.id}>
+                <div className="border flex justify-between border-gray-100  p-2">
+                  <div className="flex gap-2 items-center">
+                    <div className="w-[40px] h-[40px] rounded-full">
+                      <Image
+                        src={artist?.image?.url || pld}
+                        width={1000}
+                        height={1000}
+                        alt="alb"
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </div>
+
+                    <div>
+                      <h1 className={` md:text-base text-[12px] `}>
+                        {artist?.name}
+                      </h1>
+                      <p className="text-green-500 md:text-base text-[12px] ">
+                        {artist?.bio?.split(" ").slice(0, 5).join(" ")}....
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className={` md:text-base text-[12px] `}>
+                    {artist?.createdAt?.split("T")[0]}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </section>

@@ -95,9 +95,7 @@ function SingleMusics({ params }) {
         </div>
       </section>
 
-      <section
-        className={` p-2 w-full md:w-5/6 md:mx-auto flex flex-col gap-4 `}
-      >
+      <section className={` w-full md:w-5/6 md:mx-auto flex flex-col gap-2 `}>
         {currentPosts.map((audio) => (
           <div key={audio.id}>
             <ArtistSong key={audio.id} {...audio} />

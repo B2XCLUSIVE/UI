@@ -6,9 +6,11 @@ import pld from "@/public/pld.jpeg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
+
+function EventOverview({ id, title, image, createdAt, subtitle }) {
   const [showActions, setShowActions] = useState(false);
   const [token, setToken] = useState(""); // State to hold the token
+  console.log(title);
   useEffect(() => {
     const storedToken = localStorage.getItem("b2exclusiveadmin");
     if (storedToken) {
@@ -60,7 +62,7 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
         <div className="w-6/12 flex items-center gap-2">
           <div className="w-[40px] h-[40px] rounded-full">
             <Image
-              src={image ? image?.url : pld}
+              src={image ? image[0]?.url : pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -72,13 +74,12 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
               {title?.split(" ").slice(0, 4).join(" ")}
             </h1>
             <p className="text-sm text-gray-400">
-              {subtitle?.split(" ").slice(0, 6).join(" ")}
+              {subtitle?.split(" ").slice(0, 6).join(" ") || "Event Subtitle"}
             </p>
           </div>
         </div>
         <div className="w-6/12 flex items-center gap-2">
-          <p className="w-2/6">{duration ? duration : "00:00"}</p>
-          <p className="w-2/6">{createdAt.split("T")[0]}</p>
+          <p className="w-2/6">{createdAt?.split("T")[0]}</p>
           <div
             className="w-1/6 relative cursor-pointer "
             onClick={() => setShowActions(!showActions)}
@@ -87,7 +88,7 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
             {showActions ? (
               <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
                 <Link
-                  href={`/admin/contents/edit/music/${id}`}
+                  href={`/admin/contents/edit/events/${id}`}
                   className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
                 >
                   Edit Post
@@ -109,4 +110,4 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
   );
 }
 
-export default MusicOverview;
+export default EventOverview;

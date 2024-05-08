@@ -8,8 +8,16 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-function AddMusic() {
-  const [allArtist, setALlArtist] = useState([]);
+function EditEvent({ params }) {
+  const { eventId } = params;
+  const [allOrganizers, setAllOrganizers] = useState([]);
+  const [singlevent, setsingleEvent] = useState({
+    title: "",
+    subTitle: "",
+    organisersId: "",
+    date: "",
+    location: "",
+  });
 
   const router = useRouter();
   const { showSideBar } = useContext(ThemeContext);
@@ -37,27 +45,38 @@ function AddMusic() {
 
   useEffect(() => {
     const fetchData = async () => {
-      toast.warning(`Fethcing Artists`, {
+      toast.warning(`Fethcing Organizers and event details`, {
         position: "top-center",
         autoClose: false,
       });
       try {
         const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/artist/artists`,
+          `https://b2xclusive.onrender.com/api/v1/event/organisers`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           },
         );
-        setALlArtist(response?.data?.data);
+        setAllOrganizers(response?.data?.data);
+
+        const eventresponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/event/${eventId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        setsingleEvent(eventresponse?.data?.data);
+
         toast.dismiss();
-        toast.success(`All Artists fetched`, { position: "top-center" });
+        toast.success(`All Organizers fetched`, { position: "top-center" });
       } catch (error) {
-        console.log(error, "Unable to fetch artists");
+        console.log(error, "Unable to fetch Organizers");
         toast.dismiss();
         toast.error(
-          error?.response?.data?.message || "Unable to fetch artists",
+          error?.response?.data?.message || "Unable to fetch organisers",
           {
             position: "top-center",
           },
@@ -66,30 +85,22 @@ function AddMusic() {
     };
 
     fetchData();
-  }, [token]);
+  }, [eventId, token]);
 
-  const [music, setMusic] = useState({
-    title: "",
-    subTitle: "",
-    description: content,
-    duration: "",
-    artistId: "",
-  });
   useEffect(() => {
-    setMusic((prevPost) => ({
+    setsingleEvent((prevPost) => ({
       ...prevPost,
-      audios: file,
-      thumbnail: imagefile,
+      files: file,
       description: content,
     }));
-  }, [file, content, imagefile]);
+  }, [file, content]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setuploadingPost(true);
     try {
       let formData = new FormData(e.target);
-      formData.append("description", music.description);
+      formData.append("description", singlevent.description);
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -97,12 +108,12 @@ function AddMusic() {
         },
       };
 
-      const musicResponse = await axios.put(
-        "https://b2xclusive.onrender.com/api/v1/track/createAudio",
+      const eventResponse = await axios.patch(
+        "https://b2xclusive.onrender.com/api/v1/event/create",
         formData,
         config,
       );
-      toast.success(musicResponse?.data?.message, {
+      toast.success(eventResponse?.data?.message, {
         position: "top-center",
       });
 
@@ -110,8 +121,8 @@ function AddMusic() {
         router.push("/admin");
       }, 3000);
     } catch (error) {
-      console.error("Failed to upload music", error.message);
-      toast.error(error?.response?.data?.message || "Failed to upload music", {
+      console.error("Failed to add Event", error.message);
+      toast.error(error?.response?.data?.message || "Failed to add event", {
         position: "top-center",
       });
     } finally {
@@ -124,13 +135,15 @@ function AddMusic() {
       <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
         <form onSubmit={onSubmit} className={`flex flex-col gap-8 items-start`}>
           <div className="flex flex-col gap-2 w-full">
-            <label>Music Title</label>
+            <label>Event Title</label>
             <input
-              value={music.title}
-              onChange={(e) => setMusic({ ...music, title: e.target.value })}
+              value={singlevent.title}
+              onChange={(e) =>
+                setsingleEvent({ ...singlevent, title: e.target.value })
+              }
               type="text"
               name="title"
-              placeholder="Enter Music Title"
+              placeholder="Enter Event Title"
               className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
             />
           </div>
@@ -138,9 +151,9 @@ function AddMusic() {
             <div className="flex flex-col w-6/12">
               <label htmlFor="">Subtitle </label>
               <input
-                value={music.subTitle}
+                value={singlevent.subTitle}
                 onChange={(e) =>
-                  setMusic({ ...music, subTitle: e.target.value })
+                  setsingleEvent({ ...singlevent, subTitle: e.target.value })
                 }
                 type="text"
                 placeholder="Enter subtitle"
@@ -149,84 +162,101 @@ function AddMusic() {
             </div>
 
             <div className="flex flex-col w-3/12">
-              <label htmlFor="">Artists </label>
+              <label htmlFor="">Organizers </label>
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
-                name="artistId"
+                name="organisersId[]"
                 id=""
+                value={singlevent?.organisers[0]?.id}
                 onChange={(e) =>
-                  setMusic({ ...music, artisId: e.target.value })
+                  setsingleEvent({
+                    ...singlevent,
+                    organisersId: e.target.value,
+                  })
                 }
               >
-                <option value="null">Select Artist</option>
-                {allArtist?.map((artist) => (
-                  <option key={artist.id} value={artist.id}>
-                    {artist.name}
+                <option value="null">Select Organizer</option>
+                {allOrganizers?.map((organizer) => (
+                  <option key={organizer.id} value={organizer.id}>
+                    {organizer.name}
                   </option>
                 ))}
               </select>{" "}
             </div>
 
             <div className="flex flex-col w-3/12">
-              <label htmlFor="">Duration </label>
+              <label htmlFor="">Date </label>
               <input
-                value={music.duration}
-                name="duration"
+                value={singlevent.date}
+                name="date"
                 onChange={(e) =>
-                  setMusic({ ...music, duration: e.target.value })
+                  setsingleEvent({ ...singlevent, date: e.target.value })
+                }
+                type="date"
+                placeholder="Enter music duration"
+                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+              />
+            </div>
+            <div className="flex flex-col w-3/12">
+              <label htmlFor="">Location </label>
+              <input
+                value={singlevent.location}
+                name="location"
+                onChange={(e) =>
+                  setsingleEvent({ ...singlevent, location: e.target.value })
                 }
                 type="text"
-                placeholder="Enter music duration"
+                placeholder="Enter music location"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
           </div>
           <div className="flex gap-4 w-full items-center">
             <div className="flex flex-col w-full">
-              <label htmlFor="">Upload Music Cover </label>
+              <label htmlFor="">Upload Event Image</label>
               <input
-                onChange={(e) => setImageFile(e.target.files[0])}
+                onChange={(e) => setFile(e.target.files[0])}
                 type="file"
                 multiple
-                name="thumbnail"
+                name="files"
                 placeholder="Upload File"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
           </div>
-          {imagefile ? (
+          {file && file ? (
             <div className="w-full">
               <div className="w-full h-[300px]">
                 <Image
-                  src={URL.createObjectURL(imagefile)}
+                  src={URL.createObjectURL(file)}
                   width={1000}
                   height={1000}
                   alt="post"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className={``}>Selected File: {imagefile.name}</p>
+              <p className={``}>Selected File: {file.name}</p>
             </div>
           ) : (
-            <p>No file selected</p>
-          )}{" "}
-          <div className="flex gap-4 w-full items-center">
-            <div className="flex flex-col w-full">
-              <label htmlFor="">Upload Music </label>
-              <input
-                onChange={(e) => setFile(e.target.files[0])}
-                type="file"
-                multiple
-                name="audios"
-                placeholder="Upload File"
-                className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
-              />
-            </div>
-          </div>
+            singlevent?.image?.length > 0 && (
+              <div className="w-full">
+                <div className="w-full h-[300px]">
+                  <Image
+                    src={singlevent.image[0].url}
+                    width={1000}
+                    height={1000}
+                    alt="post"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className={``}>Selected File: {singlevent.image[0].url}</p>
+              </div>
+            )
+          )}
           <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="">Music Descriptions</label>
+            <label htmlFor="">Event Descriptions</label>
             <Tiptap
-              content={content}
+              content={singlevent.description}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>
@@ -238,7 +268,7 @@ function AddMusic() {
             {uploadingPost ? (
               <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
             ) : (
-              "Create post"
+              "Create Event"
             )}
           </button>
         </form>
@@ -247,4 +277,4 @@ function AddMusic() {
   );
 }
 
-export default AddMusic;
+export default EditEvent;

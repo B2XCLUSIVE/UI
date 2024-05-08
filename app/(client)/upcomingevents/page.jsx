@@ -2,11 +2,37 @@
 import EventTicket from "@/components/EventTicket";
 import SectionHeader from "@/components/SectionHeader";
 import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
+import { toast } from "react-toastify";
+
+import axios from "axios";
+
 function UpcomingEvent() {
-  const { theme } = useContext(ThemeContext);
+  const [event, setEvent] = useState([]);
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/event/events`,
+        );
+
+        setEvent(response?.data);
+      } catch (error) {
+        console.error("Failed to fethc blog post", error.message);
+        toast.error(
+          error?.response?.data?.message || "Failed to fecthblog post",
+          {
+            position: "top-center",
+          },
+        );
+      }
+    };
+
+    fetchdata();
+  }, []);
   return (
     <>
       <SectionHeader
@@ -20,7 +46,7 @@ function UpcomingEvent() {
             <input
               type="text"
               placeholder="Search here"
-              className={` ${theme}-text w-11/12 bg-transparent p-4 text-white outline-none `}
+              className={`  w-11/12 bg-transparent p-4 text-white outline-none `}
             />
             <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
               <FaSearch /> Search
@@ -41,43 +67,38 @@ function UpcomingEvent() {
         </div>
       </section>
       <section className="p-4 md:w-5/6 md:p-20 mx-auto flex flex-col md:gap-10 gap-4">
-        <EventTicket />
-        <EventTicket />
-        <EventTicket />
-        <EventTicket />
-        <EventTicket />
-        <EventTicket />
+        {event?.data?.map((even) => (
+          <EventTicket key={even?.data?.id} {...even?.data} />
+        ))}
       </section>
 
-      <section
-        className={`p-4 md:p-8 mx-auto gap-2 flex justify-center ${theme}-text `}
-      >
+      <section className={`p-4 md:p-8 mx-auto gap-2 flex justify-center  `}>
         <div className={`border  p-2 `}>
-          <p className={`${theme}-text`}>PREV</p>
+          <p className={``}>PREV</p>
         </div>
 
         <div className="border  p-2 ">
-          <p className={`${theme}-text`}>1</p>
+          <p className={``}>1</p>
         </div>
 
         <div className="border  p-2 ">
-          <p className={`${theme}-text`}>2</p>
+          <p className={``}>2</p>
         </div>
 
         <div className="border  p-2 ">
-          <p className={`${theme}-text`}>3</p>
+          <p className={``}>3</p>
         </div>
 
         <div className="border  p-2 ">
-          <p className={`${theme}-text`}>4</p>
+          <p className={``}>4</p>
         </div>
 
         <div className="border  p-2 ">
-          <p className={`${theme}-text`}>...</p>
+          <p className={``}>...</p>
         </div>
 
         <div className="border  p-2 ">
-          <p className={`${theme}-text`}>NEXT</p>
+          <p className={``}>NEXT</p>
         </div>
       </section>
     </>

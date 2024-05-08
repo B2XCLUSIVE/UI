@@ -11,81 +11,95 @@ import { toast } from "react-toastify";
 
 import { useRouter } from "next/navigation";
 
-function CreatePost() {
+function EditBlog({ params }) {
+  const { blogpostId } = params;
   const router = useRouter();
   const { theme, showSideBar } = useContext(ThemeContext);
   const [uploadingPost, setuploadingPost] = useState(false);
 
+  const [singlePost, setSinglePost] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
+    tags: [],
+    categories: [],
+  });
+
+  useEffect(() => {
+    const fetchSinglePost = async () => {
+      toast.warning(`Fetching post content`, {
+        position: "top-center",
+        autoClose: false,
+      });
+      try {
+        const response = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/post/${blogpostId}`,
+        );
+        const postData = response?.data?.data;
+        setSinglePost(postData);
+        toast.dismiss();
+
+        toast.success(`Successfuly fetched post`, { position: "top-center" });
+      } catch (error) {
+        console.log("Error fetching single post:", error.message);
+        toast.dismiss();
+        toast.error(`Error fetching post`, { position: "top-center" });
+      }
+    };
+    fetchSinglePost();
+  }, [blogpostId]);
   const [file, setFile] = useState(null);
-  const [content, setContent] = useState("");
+  const post = singlePost.description;
+
+  const [content, setContent] = useState(post);
 
   const handleContentChange = (cont) => {
     setContent(cont);
   };
 
-  const [post, setPost] = useState({
-    title: "",
-    subtitle: "",
-    description: content,
-    tags: [],
-    categories: [],
-  });
-
-  // Update the artist state with new file
-  useEffect(() => {
-    setPost((prevPost) => ({
-      ...prevPost,
-      files: file,
-      description: content,
-    }));
-  }, [file, content]);
-  const [token, setToken] = useState(""); // State to hold the token
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("b2exclusiveadmin");
-    if (storedToken) {
-      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
-      setToken(cleanedToken);
-      console.log(cleanedToken);
-    } else {
-      console.error("Bearer token not found");
-    }
-  }, []);
-
+  const [token, setToken] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
-    setuploadingPost(true); // Reset uploadingPost state
+    setuploadingPost(true);
     try {
-      let formData = new FormData(e.target);
-      formData.append("description", post.description);
-      console.log(e.target);
-      console.log(formData.get("description"));
+      const formData = new FormData(e.target);
+      formData.append("description", singlePost.description);
+
+      const storedToken = localStorage.getItem("b2exclusiveadmin");
+      if (storedToken) {
+        const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+        setToken(cleanedToken);
+        console.log(token);
+      } else {
+        console.error("Bearer token not found");
+      }
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       };
-      console.log(formData);
-      const postResponse = await axios.put(
-        "https://b2xclusive.onrender.com/api/v1/post/create",
+
+      const response = await axios.patch(
+        `https://b2xclusive.onrender.com/api/v1/post/update/${blogpostId}`,
         formData,
         config,
       );
-      toast.success(postResponse.data.message, {
+
+      toast.success(response.data.message, {
         position: "top-center",
       });
 
       setTimeout(() => {
-        router.push("/admin");
+        router.push("/admin/contents");
       }, 3000);
     } catch (error) {
       console.error("Failed to upload post", error.message);
-      toast.error(error.response.data.message || "Failed to upload post", {
+      toast.error(error.response?.data?.message || "Failed to update post", {
         position: "top-center",
       });
     } finally {
-      setuploadingPost(false); // Reset uploadingPost state
+      setuploadingPost(false);
     }
   };
 
@@ -93,14 +107,16 @@ function CreatePost() {
     <>
       <section className={`${showSideBar ? "w-10/12" : "w-full"} md:p-4  `}>
         <form
-          className={`flex flex-col gap-8 ${theme}-text items-start`}
+          className={`flex flex-col gap-8  items-start`}
           onSubmit={onSubmit}
         >
           <div className="flex flex-col gap-2 w-full">
             <label>Blog Title</label>
             <input
-              value={post.title}
-              onChange={(e) => setPost({ ...post, title: e.target.value })}
+              value={singlePost.title}
+              onChange={(e) =>
+                setSinglePost({ ...singlePost, title: e.target.value })
+              }
               type="text"
               name="title"
               placeholder="Enter Blog Title"
@@ -117,7 +133,7 @@ function CreatePost() {
               className="p-2 w-full bg-transparent rounded-lg  outline-none"
             />
             {/* Optional: Display the file name */}
-            {file && (
+            {file && file ? (
               <div className="w-full">
                 <div className="w-full h-[300px]">
                   <Image
@@ -128,9 +144,24 @@ function CreatePost() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className={`${theme}-text`}>Selected File: {file.name}</p>
+                <p className={``}>Selected File: {file.name}</p>
               </div>
-            )}{" "}
+            ) : (
+              singlePost?.image?.length > 0 && (
+                <div className="w-full">
+                  <div className="w-full h-[300px]">
+                    <Image
+                      src={singlePost.image[0].url}
+                      width={1000}
+                      height={1000}
+                      alt="post"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className={``}>Selected File: {singlePost.image[0].url}</p>
+                </div>
+              )
+            )}
           </div>
 
           <div className="md:flex gap-4 w-full items-center">
@@ -138,8 +169,10 @@ function CreatePost() {
               <label>Post subtitle</label>
               <input
                 name="subtitle"
-                value={post.subtitle}
-                onChange={(e) => setPost({ ...post, subtitle: e.target.value })}
+                value={singlePost.subtitle}
+                onChange={(e) =>
+                  setSinglePost({ ...singlePost, subtitle: e.target.value })
+                }
                 type="text"
                 placeholder="Enter Blog Title"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
@@ -151,13 +184,16 @@ function CreatePost() {
                 Categories <span>Seprate categories with &quot;,&quot;</span>{" "}
               </label>
               <input
-                value={post.categories}
+                value={singlePost.categories.join(",")}
                 onChange={(e) =>
-                  setPost({ ...post, categories: e.target.value.split(",") })
+                  setSinglePost({
+                    ...singlePost,
+                    categories: e.target.value.split(","),
+                  })
                 }
                 name="categories[]"
                 type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Enter Blog categories"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -167,9 +203,12 @@ function CreatePost() {
                 Tags <span>Seprate tags with &quot;,&quot;</span>
               </label>
               <input
-                value={post.tags}
+                value={singlePost.tags.join(",")}
                 onChange={(e) =>
-                  setPost({ ...post, tags: e.target.value.split(",") })
+                  setSinglePost({
+                    ...singlePost,
+                    tags: e.target.value.split(","),
+                  })
                 }
                 name="tags[]"
                 type="text"
@@ -182,7 +221,7 @@ function CreatePost() {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Post Descriptions</label>
             <Tiptap
-              content={content}
+              content={singlePost.description}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>
@@ -194,7 +233,7 @@ function CreatePost() {
             {uploadingPost ? (
               <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
             ) : (
-              "Create post"
+              "Update post"
             )}
           </button>
         </form>
@@ -203,4 +242,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default EditBlog;

@@ -2,23 +2,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaPlay, FaPlayCircle, FaPlus } from "react-icons/fa";
-
-function Videos({ id, title, artist, subtitle, createdAt }) {
+import pld from "@/public/pld.jpeg";
+function Videos({ id, title, artist, subtitle, createdAt, thumbnail }) {
   return (
     <>
       <Link
         href={`/videoshome/${id}`}
         className="md:flex md:items-center <gap-4></gap-4> w-full"
       >
-        <div className="w-full  md:w-1/2 h-[300px] md:h-[150px] relative">
+        <div className="w-full  md:w-1/2 h-[300px] md:h-[150px] relative rounded-lg">
           <Image
-            src={"/alb.jpeg"}
+            src={thumbnail?.url || pld}
             width={1000}
             height={1000}
             alt="alb"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-lg"
           />
-          <div className="bg-[#00000084] absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center ">
+          <div className="bg-[#00000084] absolute top-0 left-0 right-0 rounded-lg bottom-0 flex justify-center items-center ">
             <FaPlayCircle className="text-white text-3xl" />
           </div>
         </div>

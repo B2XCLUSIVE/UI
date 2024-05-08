@@ -13,6 +13,7 @@ import pld from "@/public/pld.jpeg";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { ThemeContext } from "@/context/ThemeContext";
+import Blogs from "../page";
 function SingleBlog({ params }) {
   const { blogId } = params;
   const { user } = useContext(ThemeContext);
@@ -30,7 +31,7 @@ function SingleBlog({ params }) {
         setBlog(response?.data?.data);
 
         const allpostresponse = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts`,
+          `https://b2xclusive.onrender.com/api/v1/post/posts?tags=${blog.tags[0]}`,
         );
         setAllPost(allpostresponse?.data?.data);
       } catch (error) {
@@ -45,7 +46,7 @@ function SingleBlog({ params }) {
     };
 
     fetchdata();
-  }, [blogId]);
+  }, [blogId, blog.tags]);
 
   if (!blog) {
     return (
@@ -69,7 +70,7 @@ function SingleBlog({ params }) {
           <div className="flex gap-2">
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
-                src={imageUrl}
+                src={pld}
                 width={1000}
                 height={1000}
                 alt="alb"
@@ -107,7 +108,7 @@ function SingleBlog({ params }) {
           </div>
           <div dangerouslySetInnerHTML={{ __html: blog.description }} />{" "}
         </div>
-        <CategoriesHeading title={"Related Articles"} />
+        <CategoriesHeading title={"Related Articles by Tags"} />
         <div className="grid grid-cols-2 gap-4 py-4">
           {allPost.slice(0, 1).map((blog) => (
             <RelatedArticles key={blog.id} {...blog} />
