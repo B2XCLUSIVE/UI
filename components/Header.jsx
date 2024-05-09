@@ -88,7 +88,7 @@ function Header() {
             </div>
             <div>
               <h1 className={`md:text-3xl font-bold text-center `}>
-                B2EXCLUSIVE
+                B2XCLUSIVE
               </h1>
             </div>
             <div

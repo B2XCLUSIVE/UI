@@ -6,7 +6,7 @@ function RelatedArticles({ title, image, subtitle }) {
     <>
       <div className="w-full h-[150px] md:h-[300px] relative">
         <Image
-          src={image[0]?.url || pld}
+          src={pld}
           width={1000}
           height={1000}
           alt="blogd"
