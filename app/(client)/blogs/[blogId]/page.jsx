@@ -6,7 +6,7 @@ import RelatedArticles from "@/components/RelatedArticles";
 import SectionHeader from "@/components/SectionHeader";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-import { FaComment, FaHeart, FaShare } from "react-icons/fa";
+import { FaComment, FaEye, FaHeart, FaShare } from "react-icons/fa";
 import axios from "axios";
 import { VscLoading } from "react-icons/vsc";
 import pld from "@/public/pld.jpeg";
@@ -20,6 +20,17 @@ function SingleBlog({ params }) {
   const [showComment, setShowComment] = useState(false);
   const [blog, setBlog] = useState("");
   const [allPost, setAllPost] = useState([]);
+  const [token, setToken] = useState("");
+  const [like, setLike] = useState("");
+  useEffect(() => {
+    const storedToken = localStorage.getItem("b2exclusiveuser");
+    if (storedToken) {
+      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+      setToken(cleanedToken);
+    } else {
+      console.error("Bearer token not found");
+    }
+  }, []);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -31,7 +42,7 @@ function SingleBlog({ params }) {
         setBlog(response?.data?.data);
 
         const allpostresponse = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts?tags=${blog.tags[0]}`,
+          `https://b2xclusive.onrender.com/api/v1/post/posts`,
         );
         setAllPost(allpostresponse?.data?.data);
       } catch (error) {
@@ -46,7 +57,7 @@ function SingleBlog({ params }) {
     };
 
     fetchdata();
-  }, [blogId, blog.tags]);
+  }, [blogId]);
 
   if (!blog) {
     return (
@@ -55,9 +66,31 @@ function SingleBlog({ params }) {
       </div>
     ); // Add a loading state if blog is null
   }
-  const imageUrl =
-    blog.image && blog.image.length > 0 ? blog.image[0]?.url : pld;
 
+  const handleLike = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const like = await axios.put(
+        `https://b2xclusive.onrender.com/api/v1/post/${blogId}/like`,
+        config,
+      );
+      setLike(false); // Update local state to reflect unliked status
+      toast.success(like?.response?.data?.message, { position: "top-center" });
+
+      // Check if the post has already been liked
+    } catch (error) {
+      console.error("Failed to handle like/unlike", error.message);
+      toast.error(
+        error?.response?.data?.message || "Failed to handle like/unlike",
+        { position: "top-center" },
+      );
+    }
+  };
   return (
     <>
       <SectionHeader title={blog.title} desc={blog.subtitle} />
@@ -87,12 +120,23 @@ function SingleBlog({ params }) {
           </div>
           <div className="flex items-center justify-between py-4 my-4 border-t border-b border-gray-400">
             <div className="flex items-center gap-2">
-              <FaHeart className={``} />
+              <div onClick={handleLike}>
+                {like ? (
+                  <FaHeart className={`text-primarycolor`} />
+                ) : (
+                  <FaHeart className={``} />
+                )}{" "}
+              </div>{" "}
               <p className={``}>24k</p>
             </div>
             <div className="flex items-center gap-2">
               <FaComment className={``} />
               <p className={``}>100k</p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <FaEye className={``} />
+              <p className={``}>{blog?.views.length}</p>
             </div>
 
             <FaShare className={``} />

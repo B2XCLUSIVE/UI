@@ -91,9 +91,8 @@ function EditEvent({ params }) {
     setsingleEvent((prevPost) => ({
       ...prevPost,
       files: file,
-      description: content,
     }));
-  }, [file, content]);
+  }, [file]);
 
   const onSubmit = async (e) => {
     e.preventDefault();

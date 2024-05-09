@@ -2,11 +2,50 @@
 import ArtistAlbum from "@/components/ArtistAlbum";
 import SectionHeader from "@/components/SectionHeader";
 import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import axios from "axios";
 
 function Musics() {
-  const { theme } = useContext(ThemeContext);
+  const [allMusic, setAllMusic] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 15;
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const musicResponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/track/audios?page=${currentPage}`,
+        );
+        setAllMusic(musicResponse?.data?.data);
+      } catch (error) {
+        console.log("error fethcing posts", error.message);
+      }
+    };
+
+    fetchdata();
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allMusic.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(allMusic.length / postsPerPage);
+
+  // Generate an array of page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <>
       <SectionHeader
@@ -22,7 +61,7 @@ function Musics() {
             <input
               type="text"
               placeholder="Search here"
-              className={` ${theme}-text w-11/12 bg-transparent p-4 text-white outline-none `}
+              className={`  w-11/12 bg-transparent p-4 text-white outline-none `}
             />
             <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
               <FaSearch /> Search
@@ -42,48 +81,41 @@ function Musics() {
           </div>
         </div>
       </section>
-      <section className="w-full p-2 md:w-5/6 md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-8">
-        <ArtistAlbum />
-        <ArtistAlbum />
-        <ArtistAlbum />
-        <ArtistAlbum />
-        <ArtistAlbum />
-        <ArtistAlbum />
-        <ArtistAlbum />
-        <ArtistAlbum />
-        <ArtistAlbum />
+      <section className="w-full p-2 md:w-5/6 md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+        {currentPosts?.map((music) => (
+          <ArtistAlbum key={music.id} {...music} />
+        ))}
       </section>
-      <section
-        className={`p-4 md:p-8 mx-auto gap-2 flex justify-center ${theme}-text `}
-      >
-        <div className={`border  p-2 `}>
-          <p className={`${theme}-text`}>PREV</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>1</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>2</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>3</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>4</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>...</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={`${theme}-text`}>NEXT</p>
-        </div>
-      </section>
+      <div className="flex justify-center mt-4">
+        {/* Previous button */}
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="border text-[10px] md:text-base border-gray-500 text-gray-500 px-2 md:px-4 md:py-2 rounded-md mr-2"
+        >
+          Previous
+        </button>
+        {/* Page number buttons */}
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => setCurrentPage(number)}
+            className={`border border-gray-500 text-primarycolor md:text-base text-[10px] px-4 py-2 rounded-md mx-1 ${
+              currentPage === number ? "bg-black" : ""
+            }`}
+          >
+            {number}
+          </button>
+        ))}
+        {/* Next button */}
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="bg-primarycolor text-white px-4 py-2 md:text-base text-[10px] rounded-md ml-2"
+        >
+          Next
+        </button>{" "}
+      </div>
     </>
   );
 }

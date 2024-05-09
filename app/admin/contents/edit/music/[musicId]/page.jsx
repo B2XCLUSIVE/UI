@@ -91,16 +91,16 @@ function EditMusic({ params }) {
       ...prevPost,
       audios: file,
       thumbnail: imagefile,
-      description: singleMusic.description,
+      description: content,
     }));
-  }, [file, imagefile, singleMusic.description]);
+  }, [file, imagefile, content]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setuploadingPost(true);
     try {
       let formData = new FormData(e.target);
-      formData.append("description", setSingleMusic.description);
+      formData.append("description", content);
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -170,7 +170,7 @@ function EditMusic({ params }) {
                 value={singleMusic.artistId}
                 id=""
                 onChange={(e) =>
-                  setSingleMusic({ ...singleMusic, artisId: e.target.value })
+                  setSingleMusic({ ...singleMusic, artistId: e.target.value })
                 }
               >
                 <option value="null">Select Artist</option>
