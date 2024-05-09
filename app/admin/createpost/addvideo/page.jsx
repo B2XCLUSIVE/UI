@@ -175,10 +175,10 @@ function AddVideos() {
             <div className="flex flex-col gap-2 md:w-8/12">
               <label>Video subtitle</label>
               <input
-                name="subtitle"
-                value={video.subtitle}
+                name="subTitle"
+                value={video.subTitle}
                 onChange={(e) =>
-                  setVideo({ ...video, subtitle: e.target.value })
+                  setVideo({ ...video, subTitle: e.target.value })
                 }
                 type="text"
                 placeholder="Enter video Title"
@@ -274,7 +274,7 @@ function AddVideos() {
             {uploadingPost ? (
               <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
             ) : (
-              "Create post"
+              "Create Video"
             )}
           </button>
         </form>

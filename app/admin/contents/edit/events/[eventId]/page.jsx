@@ -14,7 +14,7 @@ function EditEvent({ params }) {
   const [singlevent, setsingleEvent] = useState({
     title: "",
     subTitle: "",
-    organisersId: "",
+    organisers: [],
     date: "",
     location: "",
   });
@@ -242,7 +242,7 @@ function EditEvent({ params }) {
               <div className="w-full">
                 <div className="w-full h-[300px]">
                   <Image
-                    src={singlevent.image[0].url}
+                    src={singlevent?.image[0]?.url}
                     width={1000}
                     height={1000}
                     alt="post"

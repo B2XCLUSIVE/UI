@@ -11,12 +11,14 @@ import axios from "axios";
 
 function UpcomingEvent() {
   const [event, setEvent] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 10;
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/event/events`,
+          `https://b2xclusive.onrender.com/api/v1/event/events?page=${currentPage}`,
         );
 
         setEvent(response?.data);
@@ -33,6 +35,28 @@ function UpcomingEvent() {
 
     fetchdata();
   }, []);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = event?.data?.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(event?.data?.length / postsPerPage);
+
+  // Generate an array of page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <>
       <SectionHeader
@@ -67,40 +91,41 @@ function UpcomingEvent() {
         </div>
       </section>
       <section className="p-4 md:w-5/6 md:p-20 mx-auto flex flex-col md:gap-10 gap-4">
-        {event?.data?.map((even) => (
-          <EventTicket key={even?.data?.id} {...even?.data} />
+        {currentPosts?.map((even) => (
+          <EventTicket key={even?.id} {...even} />
         ))}
       </section>
 
-      <section className={`p-4 md:p-8 mx-auto gap-2 flex justify-center  `}>
-        <div className={`border  p-2 `}>
-          <p className={``}>PREV</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={``}>1</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={``}>2</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={``}>3</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={``}>4</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={``}>...</p>
-        </div>
-
-        <div className="border  p-2 ">
-          <p className={``}>NEXT</p>
-        </div>
-      </section>
+      <div className="flex justify-center mt-4">
+        {/* Previous button */}
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="border text-[10px] md:text-base border-gray-500 text-gray-500 px-2 md:px-4 md:py-2 rounded-md mr-2"
+        >
+          Previous
+        </button>
+        {/* Page number buttons */}
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => setCurrentPage(number)}
+            className={`border border-gray-500 text-primarycolor md:text-base text-[10px] px-4 py-2 rounded-md mx-1 ${
+              currentPage === number ? "bg-black" : ""
+            }`}
+          >
+            {number}
+          </button>
+        ))}
+        {/* Next button */}
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="bg-primarycolor text-white px-4 py-2 md:text-base text-[10px] rounded-md ml-2"
+        >
+          Next
+        </button>{" "}
+      </div>
     </>
   );
 }

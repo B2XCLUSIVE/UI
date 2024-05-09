@@ -142,6 +142,7 @@ function AddEvent() {
                 onChange={(e) =>
                   setEvent({ ...event, subTitle: e.target.value })
                 }
+                name="subTitle"
                 type="text"
                 placeholder="Enter subtitle"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
@@ -179,7 +180,7 @@ function AddEvent() {
               />
             </div>
             <div className="flex flex-col w-3/12">
-              <label htmlFor="">Location </label>
+              <label htmlFor="">Location and Full Address </label>
               <input
                 value={event.location}
                 name="location"

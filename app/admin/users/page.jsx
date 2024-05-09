@@ -68,8 +68,11 @@ function FollowersDashboard() {
         <div>
           <h1 className={`my-4`}>Followers (4 of 4 records)</h1>
           <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
-            <h1 className={` font-bold`}>Followers</h1>
-            <p className={` font-bold`}>Date</p>
+            <h1 className={` w-6/12 font-bold`}>Followers</h1>
+            <div className="w-6/12 flex">
+              <p className={`w-3/6 font-bold`}>Role</p>
+              <p className={`w-3/6 font-bold`}>Date</p>
+            </div>{" "}
           </div>
 
           {currentPosts.slice(0, 5).map((user) => (
@@ -77,7 +80,7 @@ function FollowersDashboard() {
               key={user.id}
               className="border flex justify-between border-gray-100 p-2"
             >
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center w-6/12">
                 <div className="w-[40px] h-[40px] rounded-full">
                   <Image
                     src={user.image || pld}
@@ -96,9 +99,13 @@ function FollowersDashboard() {
                   </p>
                 </div>
               </div>
-              <p className={`md:text-base text-[12px]`}>
-                {user.createdAt.split("T")[0]}
-              </p>
+              <div className="w-6/12 flex">
+                <p className={`md:text-base text-[12px] w-3/6`}>{user.role}</p>
+
+                <p className={`md:text-base w-3/6 text-[12px]`}>
+                  {user.createdAt.split("T")[0]}
+                </p>
+              </div>
             </div>
           ))}
           <div className="flex justify-center mt-4">

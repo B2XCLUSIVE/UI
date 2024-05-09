@@ -16,7 +16,7 @@ function EventTicket({ id, title, image, location, date }) {
         <div className="flex gap-6 items-center">
           <div className="w-[250px] h-[100px] border-r-4 border-primarycolor hidden md:block">
             <Image
-              src={image[0]?.url || pld}
+              src={image.length > 0 ? image[0]?.url : pld}
               width={1000}
               height={1000}
               alt="alb"

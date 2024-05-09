@@ -6,16 +6,28 @@ import pld from "@/public/pld.jpeg";
 import { useState } from "react";
 function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
   const [showPlayer, setShowPlayer] = useState(false);
-  const handleDownload = () => {
-    const anchor = document.createElement("a");
-    anchor.href = audioUrl;
-    anchor.download = `${title}.mp3`;
-    anchor.click();
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(audioUrl);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = `${title}.mp3`;
+      anchor.click();
+
+      // Clean up by revoking the URL object
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Failed to download audio:", error);
+      // Handle error
+    }
   };
   return (
     <>
       <div>
-        <div className={` flex gap-4 items-center p-4 justify-between pr-8`}>
+        <div className={` flex gap-4 items-center p-4 pr-8`}>
           <div className={`bg-gray-50 md:block hidden p-4`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
@@ -27,7 +39,7 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
               />
             </div>
           </div>
-          <div className={` flex gap-4 items-center`}>
+          <div className={` flex gap-4 w-6/12 `}>
             <FaPlay
               className="cursor-pointer "
               onClick={() => setShowPlayer(!showPlayer)}
@@ -35,13 +47,14 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
             <h1 className={` font-bold`}>{title}</h1>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-3/12 ">
             <h1 className={``}>{artist?.name}</h1>
             <h1 className={``}>{duration || "00:00"}</h1>
           </div>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center w-3/12 ">
             <h1 className={` md:block hidden`}>{createdAt.split("T")[0]}</h1>
+            <FaDownload onClick={handleDownload} className="cursor-pointer" />
           </div>
         </div>
         {showPlayer ? (

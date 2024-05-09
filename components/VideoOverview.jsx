@@ -87,7 +87,7 @@ function VideoOverview({
           <p className="w-2/6">{duration ? duration : "00:00"}</p>
           <p className="w-2/6">{createdAt.split("T")[0]}</p>
           <div
-            className="w-1/6 relative cursor-pointer "
+            className="w-2/6 relative cursor-pointer "
             onClick={() => setShowActions(!showActions)}
           >
             <FaEllipsisV className={` text-center`} />

@@ -36,7 +36,7 @@ function EventOverview({ id, title, image, createdAt, subtitle }) {
       };
 
       const response = await axios.delete(
-        `https://b2xclusive.onrender.com/api/v1/track/audio/delete/${id}`,
+        `https://b2xclusive.onrender.com/api/v1/event/delete/${id}`,
         config,
       );
       toast.dismiss();
@@ -79,9 +79,9 @@ function EventOverview({ id, title, image, createdAt, subtitle }) {
           </div>
         </div>
         <div className="w-6/12 flex items-center gap-2">
-          <p className="w-2/6">{createdAt?.split("T")[0]}</p>
+          <p className="w-3/6">{createdAt?.split("T")[0]}</p>
           <div
-            className="w-1/6 relative cursor-pointer "
+            className="w-3/6 relative cursor-pointer "
             onClick={() => setShowActions(!showActions)}
           >
             <FaEllipsisV className={` text-center`} />

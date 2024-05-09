@@ -10,6 +10,10 @@ import ArtistContent from "@/components/ArtistContent";
 import MusicOverview from "@/components/MusicOverview";
 import EventOverview from "@/components/EventOverview";
 import VideoOverview from "@/components/VideoOverview";
+import AllArtistOverview from "@/components/AllArtistOverview";
+import AllMusicOverview from "@/components/AllMusicOverview";
+import AllVideosOverview from "@/components/AllVideosOverview";
+import AllEventOverview from "@/components/AllEventOverview";
 function Contents() {
   const { showSideBar } = useContext(ThemeContext);
   const [allPosts, setallPosts] = useState([]);
@@ -226,71 +230,14 @@ function Contents() {
             </div>
           </div>
           <div className="w-4/12">
-            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-5/12">
-                <h1 className={` font-bold`}>Artist</h1>
-              </div>
-              <div className="w-7/12 flex gap-2">
-                <h1 className={` w-2/6 font-bold`}>Date</h1>
-                <h1 className={` w-2/6 font-bold`}>Status</h1>
-
-                <h1 className={` w-3/6 font-bold`}>Action</h1>
-              </div>
-            </div>
-            {allArtist?.map((post) => (
-              <ArtistContent key={post.id} {...post} />
-            ))}
+            <AllArtistOverview />
           </div>
         </div>
 
-        <div className="flex md:flex-row flex-col gap-4">
-          <div className="md:w-4/12">
-            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-6/12">
-                <h1 className={` font-bold`}>Music</h1>
-              </div>
-              <div className="w-6/12 flex gap-2">
-                <h1 className={` w-2/6 font-bold`}>Duration</h1>
-                <h1 className={` w-2/6 font-bold`}>Date</h1>
-                <h1 className={` w-2/6 font-bold`}>Action</h1>
-              </div>
-            </div>
-            {allMusic?.map((music) => (
-              <MusicOverview key={music.id} {...music} />
-            ))}{" "}
-          </div>
-
-          <div className="md:w-4/12">
-            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-6/12">
-                <h1 className={` font-bold`}>Video</h1>
-              </div>
-              <div className="w-6/12 flex gap-2">
-                <h1 className={` w-2/6 font-bold`}>Duration</h1>
-                <h1 className={` w-2/6 font-bold`}>Date</h1>
-                <h1 className={` w-2/6 font-bold`}>Action</h1>
-              </div>
-            </div>
-            {allVideo?.map((video) => (
-              <VideoOverview key={video.id} {...video} />
-            ))}{" "}
-          </div>
-
-          <div className="md:w-4/12">
-            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
-              <div className="w-6/12">
-                <h1 className={` font-bold`}>Events</h1>
-              </div>
-              <div className="w-6/12 flex gap-2">
-                <h1 className={`w-3/6 font-bold`}>Date</h1>
-                <h1 className={` w-3/6 font-bold`}>Action</h1>
-              </div>
-            </div>
-
-            {allEvent?.map((event) => (
-              <EventOverview key={event.id} {...event} />
-            ))}
-          </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          <AllMusicOverview />
+          <AllVideosOverview />
+          <AllEventOverview />
         </div>
       </section>
     </>

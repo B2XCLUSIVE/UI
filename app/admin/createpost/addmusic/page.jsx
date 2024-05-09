@@ -143,6 +143,7 @@ function AddMusic() {
                   setMusic({ ...music, subTitle: e.target.value })
                 }
                 type="text"
+                name="subTitle"
                 placeholder="Enter subtitle"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
@@ -238,7 +239,7 @@ function AddMusic() {
             {uploadingPost ? (
               <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
             ) : (
-              "Create post"
+              "Create Music"
             )}
           </button>
         </form>
