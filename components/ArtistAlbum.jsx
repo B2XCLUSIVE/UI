@@ -50,10 +50,12 @@ function ArtistAlbum({
             />
             <div className="bg-[#0000009d] flex justify-between items-center p-4 absolute left-0 right-0 bottom-0">
               <div>
-                <h1 className="font-bold text-white text-[10px] md:text-[16px]">
+                <h1 className="font-bold text-white text-[12px] md:text-[16px]">
                   {title}
                 </h1>
-                <p className="text-white">{artist.name}</p>
+                <p className="text-white md:text-bas text-[10px]">
+                  {artist.name}
+                </p>
                 <p className="text-white text-sm">
                   {subTitle?.split(" ").slice(0, 5).join(" ")}
                 </p>
@@ -61,11 +63,11 @@ function ArtistAlbum({
               <div className="flex gap-3 w-1/6">
                 <FaPlay
                   onClick={() => setShowPlayer(!showPlayer)}
-                  className="text-lg text-white cursor-pointer md:block hidden"
+                  className="text-lg text-white cursor-pointer md:block "
                 />
                 <FaDownload
                   onClick={handleDownload}
-                  className="text-lg cursor-pointer text-white md:block hidden"
+                  className="text-lg cursor-pointer text-white md:block "
                 />
               </div>
             </div>
