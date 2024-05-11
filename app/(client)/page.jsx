@@ -1,17 +1,12 @@
-"use client";
 import AlbumCover from "@/components/AlbumCover";
 import CategoriesHeading from "@/components/CategoriesHeading";
-import Event from "@/components/Event";
 import RecentPost from "@/components/RecentPost";
 import Top40 from "@/components/Top40";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
 import Image from "next/image";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import {
   FaBackward,
   FaBook,
@@ -27,39 +22,14 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-import axios from "axios";
+import HomePost from "@/components/HomePosts";
+import HomeEvents from "@/components/HomeEvents";
+import HomeRecentPost from "@/components/HomeRecentPost";
 
 export default function Home() {
-  const [allPost, setAllPost] = useState([]);
-
-  const [allEvent, setAllEvent] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://b2xclusive.onrender.com/api/v1/post/posts",
-        );
-        setAllPost(response?.data?.data);
-
-        const eventresponse = await axios.get(
-          "https://b2xclusive.onrender.com/api/v1/event/events",
-        );
-        setAllEvent(eventresponse?.data?.data);
-      } catch (error) {
-        console.error("Failed to fethc blog post", error.message);
-        toast.error(error?.response?.data?.message || "Failed to upload post", {
-          position: "top-center",
-        });
-      }
-    };
-
-    fetchData();
-  }, []);
   return (
     <main>
-      <ToastContainer />
-
-      <section className="herosection p-8 md:p-36 relative">
+      <section className="herosection p-8 md:p-36 w-full  relative">
         <div className="bg-[#000] opacity-35 w-full h-full absolute top-0 left-0 right-0 bottom-0"></div>
 
         <h1 className="text-4xl text-white font-extrabold text-center z-10">
@@ -177,11 +147,15 @@ export default function Home() {
 
           {/* UPCOMING EVENTS SECTION*/}
           <CategoriesHeading title={"Upcoming Events"} />
+          <div className="w-full">
+            <HomeEvents />
 
-          <div className="flex flex-col gap-4 my-4">
-            {allEvent?.slice(0, 3).map((event) => (
-              <Event key={event.id} {...event} />
-            ))}
+            <Link
+              href={"/upcomingevents"}
+              className="text-primarycolor font-bold text-center cursor-pointer"
+            >
+              Read More
+            </Link>
           </div>
 
           <div className="flex items-end justify-between mb-10">
@@ -194,12 +168,14 @@ export default function Home() {
 
           {/* RECENT POST SECTION */}
           <CategoriesHeading title={"Recent Posts"} />
-
-          <div className="grid md:grid-cols-2 gap-4 p-4">
-            {allPost &&
-              allPost
-                ?.slice(0, 6)
-                .map((post) => <RecentPost key={post.id} {...post} />)}
+          <div className="w-full flex flex-col">
+            <HomePost />
+            <Link
+              href={"/blogs"}
+              className="text-primarycolor font-bold text-center cursor-pointer"
+            >
+              Read More
+            </Link>
           </div>
 
           {/* TOP 40 section */}
@@ -258,12 +234,8 @@ export default function Home() {
           {/* Recent post section */}
           <div className="hidden md:block">
             <CategoriesHeading title={"Recent Post"} />
-
-            <div className=" flex flex-col gap-1 pt-4 ">
-              {allPost &&
-                allPost
-                  ?.slice(0, 3)
-                  .map((post) => <RecentPost key={post.id} {...post} />)}
+            <div className="w-full">
+              <HomeRecentPost />
             </div>
             <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
           </div>

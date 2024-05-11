@@ -24,7 +24,7 @@ function Event({ id, title, image, location, date }) {
           </div>
 
           <div className="hidden md:block">
-            <h1 className="font-bold">{date.split("T")[0]}</h1>
+            <h1 className="font-bold">{date?.split("T")[0]}</h1>
           </div>
           <Link
             href={`/upcomingevents/${id}`}

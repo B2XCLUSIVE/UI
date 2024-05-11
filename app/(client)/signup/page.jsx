@@ -48,7 +48,7 @@ function SignUp() {
   };
 
   useEffect(() => {
-    if (signUpUser.email.length > 0 && signUpUser.password.length > 8) {
+    if (signUpUser.email.length > 0 && signUpUser.password.length > 7) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -104,7 +104,14 @@ function SignUp() {
                 className="p-4 rounded-full bg-transparent outline-none border"
               />
             </div>
-
+            {signUpUser.password.length > 0 &&
+            signUpUser.password.length < 8 ? (
+              <p className="text-red-500">
+                Password must be at least 8 characters
+              </p>
+            ) : (
+              ""
+            )}
             {buttonDisabled ? (
               <button
                 disabled
