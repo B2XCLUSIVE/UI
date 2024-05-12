@@ -64,7 +64,7 @@ function SingleMusics({ params }) {
   if (!artist) {
     return (
       <div className="w-full flex justify-center mt-20 ">
-        <VscLoading className="text-xl animate-spin" />
+        <VscLoading className="text-4xl animate-spin" />
       </div>
     ); // Add a loading state if blog is null
   }

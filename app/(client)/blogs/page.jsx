@@ -1,13 +1,6 @@
-"use client";
-import BlogPost from "@/components/BlogPost";
 import CategoriesHeading from "@/components/CategoriesHeading";
-import RecentPost from "@/components/RecentPost";
 import SectionHeader from "@/components/SectionHeader";
-import { toast } from "react-toastify";
-
-import useSWR from "swr";
 import TopPlaylist from "@/components/TopPlaylist";
-import { useEffect, useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -17,8 +10,6 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
-import axios from "axios";
-import { VscLoading } from "react-icons/vsc";
 import AllBlogPosts from "@/components/AllBlogPosts";
 import HomeRecentPost from "@/components/HomeRecentPost";
 

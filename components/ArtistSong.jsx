@@ -4,10 +4,15 @@ import { FaDownload, FaHamburger, FaPlay } from "react-icons/fa";
 import Link from "next/link";
 import pld from "@/public/pld.jpeg";
 import { useState } from "react";
+
+import { LuLoader2 } from "react-icons/lu";
+import { VscLoading } from "react-icons/vsc";
 function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
   const [showPlayer, setShowPlayer] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const handleDownload = async () => {
     try {
+      setDownloading(true);
       const response = await fetch(audioUrl);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
@@ -22,6 +27,8 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
     } catch (error) {
       console.error("Failed to download audio:", error);
       // Handle error
+    } finally {
+      setDownloading(false); // Reset downloading state to false after download completes
     }
   };
   return (
@@ -54,7 +61,11 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
 
           <div className="flex gap-4 items-center w-3/12 ">
             <h1 className={` md:block hidden`}>{createdAt.split("T")[0]}</h1>
-            <FaDownload onClick={handleDownload} className="cursor-pointer" />
+            {downloading ? (
+              <VscLoading className="animate-spin " />
+            ) : (
+              <FaDownload onClick={handleDownload} className="cursor-pointer" />
+            )}
           </div>
         </div>
         {showPlayer ? (

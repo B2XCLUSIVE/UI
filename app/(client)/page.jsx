@@ -75,7 +75,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="md:w-5/6 mx-auto grid grid-cols-3 gap-4 p-4">
+      <section className="md:w-5/6 mx-auto grid grid-cols-3 gap-4  p-4">
         <div className="w-full h-48 relative">
           <Image
             src={"/talk.jpeg"}
@@ -85,9 +85,13 @@ export default function Home() {
             alt="music"
           />
 
-          <div className="absolute top-6 left-6 flex flex-col">
-            <h1 className="font-bold text-white text-xl">The Top 50</h1>
-            <p className="text-white">Trending Discussions</p>
+          <div className="absolute top-6 left-2 md:left-6 flex flex-col">
+            <h1 className="font-bold  text-white text-sm md:text-xl">
+              The Top 50
+            </h1>
+            <p className="text-xs md:text-base text-white">
+              Trending Discussions
+            </p>
             <FaBook className="text-white text-2xl" />
           </div>
         </div>
@@ -100,11 +104,11 @@ export default function Home() {
             alt="music"
           />
 
-          <div className="absolute top-6 left-6 flex flex-col">
-            <h1 className="font-bold text-xl text-white">
+          <div className="absolute top-6 left-2 md:left-6 flex flex-col">
+            <h1 className="font-bold text-sm md:text-xl text-white">
               Trending Discussions
             </h1>
-            <p className="text-white">Latests Gists</p>
+            <p className="text-white text-xs md:text-base">Latests Gists</p>
             <FaMicrophone className=" text-white text-2xl" />
           </div>
         </div>
@@ -117,9 +121,11 @@ export default function Home() {
             alt="music"
           />
 
-          <div className="absolute top-6 left-6 flex flex-col">
-            <h1 className="font-bold text-xl text-white">Trending Musics</h1>
-            <p className="text-white">Nigeria</p>
+          <div className="absolute top-6 left-2 md:left-6 flex flex-col">
+            <h1 className="font-bold text-sm md:text-xl text-white">
+              Trending Musics
+            </h1>
+            <p className="text-white text-xs md:text-base">Nigeria</p>
             <FaMusic className="text-2xl text-white" />
           </div>
         </div>

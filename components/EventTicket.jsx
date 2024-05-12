@@ -1,17 +1,13 @@
 "use client";
-import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
-import Button from "./Button";
 import pld from "@/public/pld.jpeg";
 function EventTicket({ id, title, image, location, date }) {
-  const { theme } = useContext(ThemeContext);
   return (
     <>
       <Link
-        href={`upcomingevents/1`}
-        className={` ${theme}-text p-4 md:p-0 md:flex gap-6 justify-between  cursor-pointer`}
+        href={`upcomingevents/${id}`}
+        className={`  p-4 md:p-0 md:flex gap-6 justify-between  cursor-pointer`}
       >
         <div className="flex gap-6 items-center">
           <div className="w-[250px] h-[100px] border-r-4 border-primarycolor hidden md:block">
@@ -25,15 +21,17 @@ function EventTicket({ id, title, image, location, date }) {
           </div>
 
           <div className="p-4 md:py-4 ">
-            <h1 className={`font-bold md:text-xl ${theme}-text`}>{title}</h1>
+            <h1 className={`font-bold md:text-xl `}>{title}</h1>
 
             <div className="flex gap-4">
-              <p className={`${theme}-text md:text-base text-[11px]`}>
+              <p className={` md:text-base text-[11px]`}>
                 Date: {date.split("T")[0]}
               </p>
             </div>
 
-            <p className={`${theme}-text md:text-base text-[11px]`}>
+            <p
+              className={` md:text-base text-[11px] text-primarycolor font-bold`}
+            >
               Location: {location}
             </p>
           </div>

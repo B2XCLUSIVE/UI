@@ -1,6 +1,6 @@
+"use client";
 import { useEffect, useState } from "react";
 import BlogPost from "./BlogPost";
-import RecentPost from "./RecentPost";
 
 import axios from "axios";
 function AllBlogPosts() {

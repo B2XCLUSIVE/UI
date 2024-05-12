@@ -1,50 +1,8 @@
-"use client";
-import Artist from "@/components/Artist";
+import AllArtists from "@/components/AllArtists";
 import SectionHeader from "@/components/SectionHeader";
-import { FaBackward, FaForward, FaPlus, FaSearch } from "react-icons/fa";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 function Artists() {
-  const [allArtist, setALlArtist] = useState([]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 8;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/artist/artists`,
-        );
-        setALlArtist(response?.data?.data);
-      } catch (error) {}
-    };
-
-    fetchData();
-  }, []);
-
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
-
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allArtist.slice(indexOfFirstPost, indexOfLastPost);
-
-  // Calculate total number of pages
-  const totalPages = Math.ceil(allArtist.length / postsPerPage);
-
-  // Generate an array of page numbers
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
-
   return (
     <>
       <SectionHeader title={"Artists Blogs"} desc={"hsyhhs"} />
@@ -89,44 +47,8 @@ function Artists() {
           </div>
         </div>
       </section>
-      <section
-        className={` md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
-      >
-        {currentPosts?.map((data) => (
-          <Artist key={data.id} {...data} />
-        ))}
-      </section>
 
-      <div className="flex justify-center mt-4">
-        {/* Previous button */}
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
-        >
-          Previous
-        </button>
-        {/* Page number buttons */}
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            onClick={() => setCurrentPage(number)}
-            className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
-              currentPage === number ? "bg-black" : ""
-            }`}
-          >
-            {number}
-          </button>
-        ))}
-        {/* Next button */}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
-        >
-          Next
-        </button>{" "}
-      </div>
+      <AllArtists />
     </>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 import CategoriesHeading from "@/components/CategoriesHeading";
 import Comments from "@/components/Comments";
-import EventOrganisers from "@/components/EventOrganisers";
 import RecentPost from "@/components/RecentPost";
 import TicketOrder from "@/components/TicketOrder";
 import TopMusic from "@/components/TopMusic";
@@ -11,7 +10,6 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import img1 from "@/public/alb.jpeg";
-import { toast } from "react-toastify";
 
 import {
   FaClock,
@@ -28,10 +26,21 @@ import {
 import SectionHeader from "@/components/SectionHeader";
 import Button from "@/components/Button";
 import pld from "@/public/pld.jpeg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { VscLoading } from "react-icons/vsc";
+import { ThemeContext } from "@/context/ThemeContext";
 function SingleEventPage({ params }) {
+  const { user } = useContext(ThemeContext);
   const { eventId } = params;
   const [event, setEvent] = useState([]);
+  const [showComment, setShowComment] = useState(false);
+
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -41,19 +50,59 @@ function SingleEventPage({ params }) {
         );
 
         setEvent(response?.data);
+        const eventDate = new Date(response?.data?.data?.date); // Set your event date here
+        const currentTime = new Date();
+        const timeDiff = eventDate - currentTime;
+
+        if (timeDiff > 0) {
+          const totalSeconds = Math.floor(timeDiff / 1000);
+
+          const days = Math.floor(totalSeconds / (3600 * 24));
+          const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = Math.floor(totalSeconds % 60);
+
+          setCountdown({ days, hours, minutes, seconds });
+
+          const timer = setInterval(() => {
+            const newTimeDiff = eventDate - new Date();
+            if (newTimeDiff > 0) {
+              const newTotalSeconds = Math.floor(newTimeDiff / 1000);
+
+              const newDays = Math.floor(newTotalSeconds / (3600 * 24));
+              const newHours = Math.floor(
+                (newTotalSeconds % (3600 * 24)) / 3600,
+              );
+              const newMinutes = Math.floor((newTotalSeconds % 3600) / 60);
+              const newSeconds = Math.floor(newTotalSeconds % 60);
+
+              setCountdown({
+                days: newDays,
+                hours: newHours,
+                minutes: newMinutes,
+                seconds: newSeconds,
+              });
+            } else {
+              clearInterval(timer);
+            }
+          }, 1000);
+        }
       } catch (error) {
-        console.error("Failed to fethc blog post", error.message);
-        toast.error(
-          error?.response?.data?.message || "Failed to fecthblog post",
-          {
-            position: "top-center",
-          },
-        );
+        console.error("Failed to fetch event", error.message);
+        // Handle error
       }
     };
-
     fetchdata();
   }, [eventId]);
+
+  if (!event) {
+    return (
+      <div className="w-full flex justify-center mt-20 ">
+        <VscLoading className="text-4xl animate-spin" />
+      </div>
+    ); // Add a loading state if blog is null
+  }
+
   return (
     <>
       <SectionHeader title={event?.data?.title} desc={"event"} />
@@ -70,32 +119,32 @@ function SingleEventPage({ params }) {
             />
             <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-between items-center p-4 md:p-44">
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>72</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.days}</h1>
                 <p className={``}>Days</p>
               </div>
 
               <p className={``}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>34</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.hours}</h1>
                 <p className={``}>Hours</p>
               </div>
 
               <p className={``}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>27</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.minutes}</h1>
                 <p className={``}>Minutes</p>
               </div>
 
               <p className={``}>:</p>
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>10</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.seconds}</h1>
                 <p className={``}>Seconds</p>
               </div>
             </div>
           </div>
-          <div className="w-full md:w-5/6 mx-auto flex flex-col gap-4 items-center p-4">
+          <div className="w-full  mx-auto flex flex-col gap-4 items-center p-4">
             <CategoriesHeading title={"Upcoming Events"} />
 
             <div
@@ -121,7 +170,7 @@ function SingleEventPage({ params }) {
 
               <div className="flex items-center gap-2">
                 <FaUser className={` text-sm `} />
-                <p className={``}>John Doe</p>
+                <p className={``}>{event?.data?.organisers[0]?.name}</p>
               </div>
 
               <div className="flex items-center gap-1">
@@ -131,7 +180,7 @@ function SingleEventPage({ params }) {
 
               <div className="flex items-center gap-1">
                 <FaClock className={` text-sm `} />
-                <p className={``}>14 March, 2024</p>
+                <p className={``}>{event?.data?.date.split("T")[0]}</p>
               </div>
             </div>
           </div>
@@ -156,6 +205,7 @@ function SingleEventPage({ params }) {
             </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: event?.data?.description }} />{" "}
+          <Button title={"Buy Ticket"} />
           <div className="w-full h-[500px] py-4">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d126844.06348606381!2d3.3488896!3d6.537216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sng!4v1710857933472!5m2!1sen!2sng"
@@ -166,28 +216,6 @@ function SingleEventPage({ params }) {
               className="w-full h-full object-cover"
             ></iframe>
           </div>
-          <CategoriesHeading title={"Buy Ticket to Events"} />
-          <div className={`flex justify-between  py-4`}>
-            <div className="flex justify-center w-1/4 p-8">
-              <p className={``}>Ticket Type</p>
-            </div>
-
-            <div className="flex justify-center w-1/4 p-8">
-              <p className={``}>Price</p>
-            </div>
-
-            <div className="flex justify-center w-1/4 p-8">
-              <p className={``}>Qty</p>
-            </div>
-
-            <div className="flex justify-center w-1/4 p-8">
-              <p className={``}>Purchase</p>
-            </div>
-          </div>
-          <TicketOrder />
-          <TicketOrder />
-          <TicketOrder />
-          <TicketOrder />
           <div className="relative h-[200px] my-4">
             <Image
               src={img1}
@@ -198,27 +226,27 @@ function SingleEventPage({ params }) {
             />
             <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-between items-center p-20">
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>72</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.days}</h1>
                 <p className={``}>Days</p>
               </div>
 
               <p className={``}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>34</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.hours}</h1>
                 <p className={``}>Hours</p>
               </div>
 
               <p className={``}>:</p>
 
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>27</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.minutes}</h1>
                 <p className={``}>Minutes</p>
               </div>
 
               <p className={``}>:</p>
               <div className="flex flex-col items-center">
-                <h1 className={` text-4xl font-bold`}>10</h1>
+                <h1 className={` text-4xl font-bold`}>{countdown.seconds}</h1>
                 <p className={``}>Seconds</p>
               </div>
             </div>
@@ -252,46 +280,85 @@ function SingleEventPage({ params }) {
             </div>
           </div>
           <CategoriesHeading title={"Comments"} />
-          <Comments />
-          <Comments />
-          <CategoriesHeading title={"AQdd your comments"} />
-          <form className="p-4">
-            <div className=" md:flex w-full gap-4 my-2">
-              <input
-                type="text"
-                className={`my-2 md:my-0 p-4  w-full`}
-                placeholder="firstname"
-              />
-              <input
-                type="phone"
-                className={`my-2 md:my-0 p-4  w-full`}
-                placeholder="phonenumber"
-              />
-            </div>
-            <div className="md:flex w-full gap-4 my-2">
-              <input
-                type="email"
-                className={`my-2 md:my-0 p-4  w-full`}
-                placeholder="Email Address"
-              />
-              <input
-                type="text"
-                className={` my-2 md:my-0 p-4  w-full`}
-                placeholder="website"
+          <div className={`p-4 flex gap-4 `}>
+            <div className="w-[200px]  md:w-[50px] h-[50px]">
+              <Image
+                src={"/alb.jpeg"}
+                width={1000}
+                height={1000}
+                alt="alb"
+                className="w-full h-full object-cover"
               />
             </div>
 
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              className={` w-full h-[300px] my-2 p-4 bg-slate-800`}
-              placeholder="Type your comments"
-            ></textarea>
+            <div className="flex flex-col gap-2">
+              <div>
+                <h1 className={`font-bold text-md md:text-base text-[12px] `}>
+                  Brain Deo
+                </h1>
+                <p className={` md:text-base text-[10px]`}>15-10-2024</p>
+              </div>
+              <p className={`md:text-base text-[10px] `}>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
+                cumque voluptates aperiam tempora nostrum adipisci voluptatem
+                numquam dolorem a quisquam?
+              </p>
+              <div
+                onClick={() => setShowComment(true)}
+                className="text-primarycolor md:text-base text-[10px]"
+              >
+                Reply
+              </div>
 
-            <Button title={"Send Comments"} />
-          </form>
+              <div className={`p-4 flex gap-4 `}>
+                <div className="w-[200px]  md:w-[50px] h-[50px]">
+                  <Image
+                    src={"/alb.jpeg"}
+                    width={1000}
+                    height={1000}
+                    alt="alb"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <h1
+                      className={`font-bold text-md md:text-base text-[12px] `}
+                    >
+                      Brain Deo
+                    </h1>
+                    <p className={`md:text-base text-[10px]`}>15-10-2024</p>
+                  </div>
+                  <p className={`md:text-base text-[10px] `}>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Illo cumque voluptates aperiam tempora nostrum adipisci
+                    voluptatem numquam dolorem a quisquam?
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {showComment ? (
+            user === null ? (
+              <Link href={"/login"}>Please login to drop a comment</Link>
+            ) : (
+              <form className="p-4">
+                <textarea
+                  name=""
+                  id=""
+                  cols="10"
+                  rows="10"
+                  className={`  w-full h-[100px] border my-2 p-4 bg-white`}
+                  placeholder="Type your comments"
+                ></textarea>
+
+                <Button title={"Send Comments"} />
+              </form>
+            )
+          ) : (
+            ""
+          )}{" "}
         </div>
 
         <div className="w-full md:w-2/6">
@@ -319,7 +386,7 @@ function SingleEventPage({ params }) {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              <h1 className={``}>John Does</h1>
+              <h1 className={``}>{event?.data?.organisers[0]?.name}</h1>
               <p className={``}>Organizer</p>
             </div>
             <div className="flex justify-center gap-4">

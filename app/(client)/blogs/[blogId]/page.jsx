@@ -62,7 +62,7 @@ function SingleBlog({ params }) {
   if (!blog) {
     return (
       <div className="w-full flex justify-center mt-20 ">
-        <VscLoading className="text-xl animate-spin" />
+        <VscLoading className="text-4xl animate-spin" />
       </div>
     ); // Add a loading state if blog is null
   }
@@ -93,11 +93,11 @@ function SingleBlog({ params }) {
   };
   return (
     <>
-      <SectionHeader title={blog.title} desc={blog.subtitle} />
+      <SectionHeader title={blog?.title} desc={blog?.subtitle} />
       <section className="w-full p-4 md:w-3/4 md:mx-auto ">
-        <div>
-          <div className="py-4">
-            <h1 className={` text-4xl md:text-5xl font-bold`}>{blog.title}</h1>
+        <div className="flex flex-col gap-2 md:gap-6">
+          <div className="py-4 flex flex-col gap-4">
+            <h1 className={` text-3xl md:text-5xl font-bold`}>{blog.title}</h1>
             <p className={``}>{blog.subtitle}</p>
           </div>
           <div className="flex gap-2">
