@@ -21,7 +21,7 @@ function BlogPost({ id, title, subtitle, image, updatedAt, author }) {
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <p className={` md:text-base text-[11px]`}>{author.userName}</p>
+            <p className={` md:text-base text-[11px]`}>{author?.userName}</p>
             <p
               className={`text-primarycolor font-bold md:text-base text-[11px]`}
             >

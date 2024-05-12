@@ -5,6 +5,7 @@ import RecentPost from "@/components/RecentPost";
 import SectionHeader from "@/components/SectionHeader";
 import { toast } from "react-toastify";
 
+import useSWR from "swr";
 import TopPlaylist from "@/components/TopPlaylist";
 import { useEffect, useState } from "react";
 import {
@@ -18,62 +19,10 @@ import {
 } from "react-icons/fa";
 import axios from "axios";
 import { VscLoading } from "react-icons/vsc";
+import AllBlogPosts from "@/components/AllBlogPosts";
+import HomeRecentPost from "@/components/HomeRecentPost";
 
 function Blogs() {
-  const [allPost, setAllPost] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 10;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
-        );
-        setAllPost(response?.data?.data);
-      } catch (error) {
-        console.error("Failed to fethc blog post", error.message);
-        toast.error(
-          error?.response?.data?.message || "Failed to fecthblog post",
-          {
-            position: "top-center",
-          },
-        );
-      }
-    };
-
-    fetchData();
-  }, [currentPage]);
-
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
-
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allPost.slice(indexOfFirstPost, indexOfLastPost);
-
-  // Calculate total number of pages
-  const totalPages = Math.ceil(allPost.length / postsPerPage);
-
-  // Generate an array of page numbers
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
-
-  if (!allPost) {
-    return (
-      <div className="w-full flex justify-center mt-20 ">
-        <VscLoading className="text-xl animate-spin" />
-      </div>
-    ); // Add a loading state if blog is null
-  }
-
   return (
     <>
       <SectionHeader
@@ -112,40 +61,8 @@ function Blogs() {
 
       <section className=" md:w-5/6 md:p-8 mx-auto md:flex md:gap-8">
         <div className="w-full md:w-3/5">
-          <div className="p-4 grid gap-4">
-            {currentPosts &&
-              currentPosts.map((post) => <BlogPost key={post.id} {...post} />)}
-          </div>
-
-          <div className="flex justify-center mt-4">
-            {/* Previous button */}
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-              className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
-            >
-              Previous
-            </button>
-            {/* Page number buttons */}
-            {pageNumbers.map((number) => (
-              <button
-                key={number}
-                onClick={() => setCurrentPage(number)}
-                className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
-                  currentPage === number ? "bg-black" : ""
-                }`}
-              >
-                {number}
-              </button>
-            ))}
-            {/* Next button */}
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
-            >
-              Next
-            </button>{" "}
+          <div>
+            <AllBlogPosts />
           </div>
         </div>
         <div className=" p-4 md:w-2/5">
@@ -205,10 +122,9 @@ function Blogs() {
           <CategoriesHeading title={"Recent Posts"} />
 
           <div className=" flex flex-col gap-1 pt-4 ">
-            {allPost &&
-              allPost
-                ?.slice(0, 3)
-                .map((post) => <RecentPost key={post.id} {...post} />)}
+            <div>
+              <HomeRecentPost />
+            </div>{" "}
           </div>
         </div>
       </section>

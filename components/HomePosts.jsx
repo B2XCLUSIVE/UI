@@ -2,18 +2,28 @@
 import axios from "axios";
 import useSWR from "swr";
 import RecentPost from "./RecentPost";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function HomePost() {
   const [allPost, setAllPost] = useState([]);
-  const fetcher = async () => {
-    const iresponse = await axios.get(
-      "https://b2xclusive.onrender.com/api/v1/post/posts",
-    );
-    setAllPost(iresponse?.data?.data);
-  };
 
-  const { data, isLoading, error } = useSWR("data", fetcher);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await axios.get(
+          "https://b2xclusive.onrender.com/api/v1/post/posts",
+        );
+        setAllPost(response?.data?.data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message || "Error fetching posts");
+        setIsLoading(false);
+      }
+    };
+    fetchdata();
+  }, []);
 
   if (error)
     return (

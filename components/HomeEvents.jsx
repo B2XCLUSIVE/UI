@@ -1,19 +1,27 @@
 "use client";
 import axios from "axios";
-import useSWR from "swr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Event from "./Event";
 
 function HomeEvents() {
   const [allEvent, setAllEvent] = useState([]);
-  const fetcher = async () => {
-    const response = await axios.get(
-      "https://b2xclusive.onrender.com/api/v1/event/events",
-    );
-    setAllEvent(response?.data?.data);
-  };
-
-  const { data, isLoading, error } = useSWR("idata", fetcher);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await axios.get(
+          "https://b2xclusive.onrender.com/api/v1/event/events ",
+        );
+        setAllEvent(response?.data?.data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message || "Error fetching posts");
+        setIsLoading(false);
+      }
+    };
+    fetchdata();
+  }, []);
 
   if (error)
     return (
@@ -30,7 +38,7 @@ function HomeEvents() {
 
   return (
     <>
-      <div className="flex flex-col gap-4 my-4">
+      <div className="flex w-full flex-col gap-4 my-4">
         {allEvent?.slice(0, 3).map((event) => (
           <Event key={event.id} {...event} />
         ))}

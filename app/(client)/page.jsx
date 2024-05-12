@@ -147,7 +147,7 @@ export default function Home() {
 
           {/* UPCOMING EVENTS SECTION*/}
           <CategoriesHeading title={"Upcoming Events"} />
-          <div className="w-full">
+          <div className="w-full flex justify-center flex-col">
             <HomeEvents />
 
             <Link
