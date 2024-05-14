@@ -34,7 +34,9 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
   return (
     <>
       <div>
-        <div className={` flex gap-4 items-center p-4 pr-8`}>
+        <div
+          className={` flex md:flex-row flex-col gap-2 md:gap-4 md:items-center p-4 pr-8`}
+        >
           <div className={`bg-gray-50 md:block hidden p-4`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
@@ -46,7 +48,7 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
               />
             </div>
           </div>
-          <div className={` flex gap-4 w-6/12 `}>
+          <div className={` flex gap-4 md:w-6/12 `}>
             <FaPlay
               className="cursor-pointer "
               onClick={() => setShowPlayer(!showPlayer)}
@@ -54,12 +56,12 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
             <h1 className={` font-bold`}>{title}</h1>
           </div>
 
-          <div className="flex gap-4 w-3/12 ">
+          <div className="flex gap-4 md:w-3/12 ">
             <h1 className={``}>{artist?.name}</h1>
             <h1 className={``}>{duration || "00:00"}</h1>
           </div>
 
-          <div className="flex gap-4 items-center w-3/12 ">
+          <div className="flex gap-4 items-center md:w-3/12 ">
             <h1 className={` md:block hidden`}>{createdAt.split("T")[0]}</h1>
             {downloading ? (
               <VscLoading className="animate-spin " />

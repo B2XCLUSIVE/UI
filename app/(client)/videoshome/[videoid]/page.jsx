@@ -19,17 +19,17 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
-import RelatedArticles from "@/components/RelatedArticles";
 import axios from "axios";
 
 import pld from "@/public/pld.jpeg";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
+import HomeRecentPost from "@/components/HomeRecentPost";
+import { VscLoading } from "react-icons/vsc";
 function VideoId({ params }) {
   const { videoid } = params;
   const [video, setVideo] = useState("");
   const [allVideo, setAllVideo] = useState([]);
-  const [allPost, setAllPost] = useState([]);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -43,11 +43,6 @@ function VideoId({ params }) {
           `https://b2xclusive.onrender.com/api/v1/track/videos`,
         );
         setAllVideo(allvideoresponse?.data?.data);
-
-        const postresponse = await axios.get(
-          "https://b2xclusive.onrender.com/api/v1/post/posts",
-        );
-        setAllPost(postresponse?.data?.data);
       } catch (error) {
         console.log("error loading videe", error.message);
       }
@@ -74,6 +69,14 @@ function VideoId({ params }) {
   };
   const { user } = useContext(ThemeContext);
   const [showComment, setShowComment] = useState(false);
+
+  if (!video) {
+    return (
+      <div className="w-full flex justify-center mt-20 ">
+        <VscLoading className="text-4xl animate-spin" />
+      </div>
+    ); // Add a loading state if blog is null
+  }
 
   return (
     <>
@@ -145,7 +148,26 @@ function VideoId({ params }) {
           <CategoriesHeading title={"Related Videos"} />
           <div className="grid grid-cols-2 gap-4 py-4">
             {allVideo.slice(0, 1).map((video) => (
-              <RelatedArticles key={video.id} {...video} />
+              <div key={video.id}>
+                <div className="w-full h-[150px] md:h-[300px] relative">
+                  <Image
+                    src={video?.thumbnail?.url || pld}
+                    width={1000}
+                    height={1000}
+                    alt="blogd"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="text-white absolute bottom-0 bg-[#000000aa] left-0 p-2 md:p-4">
+                    <h1 className="font-bold text-sm md:text-2xl text-white ">
+                      {video?.title?.split(" ").slice(0, 3).join(" ")} .....
+                    </h1>
+                    <p className="md:text-base text-[10px]">
+                      {video?.subtitle?.split(" ").slice(0, 6).join(" ") ||
+                        "A littlee about the album goes here"}{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
           <CategoriesHeading title={"Comments"} />
@@ -265,10 +287,7 @@ function VideoId({ params }) {
           {/* Recent post section */}
           <CategoriesHeading title={"Receent Post"} />
           <div className=" flex flex-col gap-1 pt-4 ">
-            {allPost &&
-              allPost
-                ?.slice(0, 3)
-                .map((post) => <RecentPost key={post.id} {...post} />)}
+            <HomeRecentPost />
           </div>
         </div>
       </section>

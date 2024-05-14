@@ -1,11 +1,10 @@
 "use client";
-
-import { useState, useEffect } from "react";
-import Artist from "./Artist";
-
 import axios from "axios";
-function AllArtists() {
-  const [allArtist, setALlArtist] = useState([]);
+import { useState, useEffect } from "react";
+import Videos from "./Videos";
+
+function AllVideos() {
+  const [allVideo, setAllVideo] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
 
@@ -15,9 +14,9 @@ function AllArtists() {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`,
+          `https://b2xclusive.onrender.com/api/v1/track/videos?page=${currentPage}`,
         );
-        setALlArtist(response?.data?.data);
+        setAllVideo(response?.data?.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -36,12 +35,12 @@ function AllArtists() {
     );
   if (isLoading)
     return (
-      <div className="w-full md:w-5/6 mx-auto grid grid-cols-4 gap-4 py-4">
-        <div className="h-80 w-full bg-gray-300 animate-pulse rounded-lg "></div>
+      <div className="w-full  mx-auto flex-col flex  gap-4 py-4">
+        <div className="h-40 w-full bg-gray-300 animate-pulse rounded-lg "></div>
 
-        <div className="h-80 w-full bg-gray-300 animate-pulse rounded-lg "></div>
-        <div className="h-80 w-full bg-gray-300 animate-pulse rounded-lg "></div>
-        <div className="h-80 w-full bg-gray-300 animate-pulse rounded-lg "></div>
+        <div className="h-40 w-full bg-gray-300 animate-pulse rounded-lg "></div>
+        <div className="h-40 w-full bg-gray-300 animate-pulse rounded-lg "></div>
+        <div className="h-40 w-full bg-gray-300 animate-pulse rounded-lg "></div>
       </div>
     );
 
@@ -55,10 +54,10 @@ function AllArtists() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allArtist.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = allVideo.slice(indexOfFirstPost, indexOfLastPost);
 
   // Calculate total number of pages
-  const totalPages = Math.ceil(allArtist.length / postsPerPage);
+  const totalPages = Math.ceil(allVideo.length / postsPerPage);
 
   // Generate an array of page numbers
   const pageNumbers = [];
@@ -69,13 +68,11 @@ function AllArtists() {
   return (
     <>
       <div>
-        <section
-          className={` md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
-        >
-          {currentPosts?.map((data) => (
-            <Artist key={data.id} {...data} />
+        <div className="w-full p-4 md:w-full flex flex-col gap-8">
+          {currentPosts?.map((video) => (
+            <Videos key={video.id} {...video} />
           ))}
-        </section>
+        </div>
 
         <div className="flex justify-center mt-4">
           {/* Previous button */}
@@ -112,4 +109,4 @@ function AllArtists() {
   );
 }
 
-export default AllArtists;
+export default AllVideos;

@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Artist from "./Artist";
-
 import axios from "axios";
-function AllArtists() {
-  const [allArtist, setALlArtist] = useState([]);
+import { useState, useEffect } from "react";
+import ArtistAlbum from "./ArtistAlbum";
+function AllMusic() {
+  const [allMusic, setAllMusic] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
 
@@ -15,9 +14,9 @@ function AllArtists() {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`,
+          `https://b2xclusive.onrender.com/api/v1/track/audios?page=${currentPage}`,
         );
-        setALlArtist(response?.data?.data);
+        setAllMusic(response?.data?.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -55,10 +54,10 @@ function AllArtists() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allArtist.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = allMusic.slice(indexOfFirstPost, indexOfLastPost);
 
   // Calculate total number of pages
-  const totalPages = Math.ceil(allArtist.length / postsPerPage);
+  const totalPages = Math.ceil(allMusic.length / postsPerPage);
 
   // Generate an array of page numbers
   const pageNumbers = [];
@@ -69,20 +68,17 @@ function AllArtists() {
   return (
     <>
       <div>
-        <section
-          className={` md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
-        >
-          {currentPosts?.map((data) => (
-            <Artist key={data.id} {...data} />
+        <section className="w-full p-2 md:w-5/6 md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+          {currentPosts?.map((music) => (
+            <ArtistAlbum key={music.id} {...music} />
           ))}
         </section>
-
         <div className="flex justify-center mt-4">
           {/* Previous button */}
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
+            className="border text-[10px] md:text-base border-gray-500 text-gray-500 px-2 md:px-4 md:py-2 rounded-md mr-2"
           >
             Previous
           </button>
@@ -91,7 +87,7 @@ function AllArtists() {
             <button
               key={number}
               onClick={() => setCurrentPage(number)}
-              className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
+              className={`border border-gray-500 text-primarycolor md:text-base text-[10px] px-4 py-2 rounded-md mx-1 ${
                 currentPage === number ? "bg-black" : ""
               }`}
             >
@@ -102,7 +98,7 @@ function AllArtists() {
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
+            className="bg-primarycolor text-white px-4 py-2 md:text-base text-[10px] rounded-md ml-2"
           >
             Next
           </button>{" "}
@@ -112,4 +108,4 @@ function AllArtists() {
   );
 }
 
-export default AllArtists;
+export default AllMusic;
