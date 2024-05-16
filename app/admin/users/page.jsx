@@ -4,6 +4,8 @@ import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import pld from "@/public/pld.jpeg";
+import AllArtistOverview from "@/components/AllArtistOverview";
+import AllUsers from "@/components/AllUser";
 
 function FollowersDashboard() {
   const [allUsers, setAllUsers] = useState([]);
@@ -64,90 +66,37 @@ function FollowersDashboard() {
 
   return (
     <>
-      <section className="md:w-10/12 p-4">
-        <div>
-          <h1 className={`my-4`}>Followers (4 of 4 records)</h1>
-          <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
-            <h1 className={` w-6/12 font-bold`}>Followers</h1>
-            <div className="w-6/12 flex">
-              <p className={`w-3/6 font-bold`}>Role</p>
-              <p className={`w-3/6 font-bold`}>Date</p>
-            </div>{" "}
-          </div>
-
-          {currentPosts.slice(0, 5).map((user) => (
-            <div
-              key={user.id}
-              className="border flex justify-between border-gray-100 p-2"
-            >
-              <div className="flex gap-2 items-center w-6/12">
-                <div className="w-[40px] h-[40px] rounded-full">
-                  <Image
-                    src={user.image || pld}
-                    width={1000}
-                    height={1000}
-                    alt="user"
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-                <div>
-                  <h1 className={`md:text-base text-[12px]`}>
-                    {user.userName}
-                  </h1>
-                  <p className="text-green-500 md:text-base text-[12px]">
-                    {user.email}
-                  </p>
-                </div>
+      <div className="w-full md:10/12">
+        <div className="p-2 w-full flex flex-col gap-2">
+          <h1 className="text-xl ">All Users</h1>
+          <div className="h-72">
+            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
+              <div className="w-7/12">
+                <h1 className={` text-xs`}>Users</h1>
               </div>
-              <div className="w-6/12 flex">
-                <p className={`md:text-base text-[12px] w-3/6`}>{user.role}</p>
+              <h1 className={` w-3/12 text-xs`}>Date</h1>
 
-                <p className={`md:text-base w-3/6 text-[12px]`}>
-                  {user.createdAt.split("T")[0]}
-                </p>
-              </div>
+              <h1 className={` w-2/12 text-xs`}>Action</h1>
             </div>
-          ))}
-          <div className="flex justify-center mt-4">
-            {/* Pagination buttons */}
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-              className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
-            >
-              Previous
-            </button>
-            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-              (number) => (
-                <button
-                  key={number}
-                  onClick={() => setCurrentPage(number)}
-                  className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
-                    currentPage === number ? "bg-black text-white" : ""
-                  }`}
-                >
-                  {number}
-                </button>
-              ),
-            )}
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
-            >
-              Next
-            </button>
+
+            <AllUsers />
           </div>
         </div>
 
-        <div>
-          <h1 className={` my-4`}>Comments </h1>
-          <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-4">
-            <h1 className={` font-bold`}>Followers</h1>
-            <p className={` font-bold`}>Date</p>
+        <div className="p-2 w-full flex flex-col gap-2">
+          <h1 className="text-xl ">Comments</h1>
+          <div className="h-72">
+            <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
+              <div className="w-7/12">
+                <h1 className={` text-xs`}>Comments</h1>
+              </div>
+              <h1 className={` w-3/12 text-xs`}>Date</h1>
+
+              <h1 className={` w-2/12 text-xs`}>Action</h1>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }

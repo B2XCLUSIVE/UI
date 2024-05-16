@@ -1,11 +1,11 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PostContent from "./PostContent";
 
 import axios from "axios";
-import ArtistContent from "@/components/ArtistContent";
-function AllArtistOverview() {
-  const [allArtist, setAllArtist] = useState([]);
+function AllOverviewPost() {
+  const [allPosts, setallPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const postsPerPage = 10;
@@ -16,9 +16,9 @@ function AllArtistOverview() {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`,
+          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
         );
-        setAllArtist(response?.data?.data);
+        setallPosts(response?.data?.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -57,21 +57,22 @@ function AllArtistOverview() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allArtist.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   // Calculate total number of pages
-  const totalPages = Math.ceil(allArtist.length / postsPerPage);
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
   // Generate an array of page numbers
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
+
   return (
     <>
       <div>
         {currentPosts?.map((post) => (
-          <ArtistContent key={post.id} {...post} />
+          <PostContent key={post.id} {...post} />
         ))}
 
         <div className="flex justify-center mt-4 gap-2">
@@ -109,4 +110,4 @@ function AllArtistOverview() {
   );
 }
 
-export default AllArtistOverview;
+export default AllOverviewPost;

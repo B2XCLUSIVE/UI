@@ -4,7 +4,7 @@ import ToastNotificationContainer from "@/components/ToastNotificationComponent"
 function Layout({ children }) {
   return (
     <>
-      <div className="md:flex h-full relative gap-2  w-full mx-auto">
+      <div className="md:flex h-full relative w-full mx-auto">
         <SideBar />
         {children}
       </div>

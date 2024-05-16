@@ -12,7 +12,7 @@ const {
 
 import { CiLogout } from "react-icons/ci";
 import { toast } from "react-toastify";
-import { MdCancel, MdMenuOpen } from "react-icons/md";
+import { MdCancel, MdMenuOpen, MdOutlineEmojiEvents } from "react-icons/md";
 import Link from "next/link";
 import SidebarLink from "./SideBarLink";
 import { useState } from "react";
@@ -44,7 +44,7 @@ function SideBar() {
 
   return (
     <>
-      <div>
+      <div className="w-2/12">
         <div
           className="md:hidden absolute right-4 z-40 top-6 "
           onClick={() => setMenu(true)}
@@ -86,6 +86,19 @@ function SideBar() {
               <FaCalendar />
               <p>Contents</p>
             </div>
+            <div
+              onClick={() => {
+                setMenu(false);
+                router.push("/admin/events");
+              }}
+              className={`flex  p-4 items-center gap-2 hover:bg-primarycolor ${
+                pathname === "/overview" ? "bg-primarycolor" : ""
+              }`}
+            >
+              <MdOutlineEmojiEvents />
+              <p>Artists & Events</p>
+            </div>
+
             <div
               onClick={() => {
                 setMenu(false);
@@ -137,23 +150,14 @@ function SideBar() {
         ) : (
           ""
         )}
-        <div
-          className={` h-screen relative p-4 md:block hidden  ${showSideBar ? "md:2/12" : " md:w-[70px]"}  `}
-        >
-          <div
-            className={`flex ${showSideBar ? "p-4" : "p-2"} justify-between`}
-          >
-            <h1 className={`font-bold ${showSideBar ? "block" : "hidden"}`}>
+        <div className={` h-screen relative p-4 md:block hidden     `}>
+          <div className={`flex p-2  justify-between`}>
+            <Link href={"/"} className={`font-bold `}>
               B2XCLUSIVE
-            </h1>
-
-            <FaHamburger
-              className={`cursor-pointer text-xl `}
-              onClick={() => setShowSideBar(!showSideBar)}
-            />
+            </Link>
           </div>
 
-          <div className="py-4 flex flex-col gap-4 relative">
+          <div className="py-4 flex flex-col gap-2 relative">
             <SidebarLink
               title={"Dasboard"}
               href={"/admin"}
@@ -166,6 +170,13 @@ function SideBar() {
               bar={showSideBar}
               icon={<FaCalendar />}
             />
+            <SidebarLink
+              title={"Artists & Events"}
+              href={"/admin/events"}
+              bar={showSideBar}
+              icon={<MdOutlineEmojiEvents />}
+            />
+
             <SidebarLink
               title={"Users"}
               href={"/admin/users"}
@@ -191,7 +202,7 @@ function SideBar() {
             className="flex p-4  cursor-pointer absolute bottom-10 items-center gap-2"
           >
             <CiLogout />
-            <h1>Logout</h1>
+            <h1 className="text-xs">Logout</h1>
           </div>
         </div>
       </div>{" "}

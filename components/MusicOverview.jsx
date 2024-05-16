@@ -57,10 +57,10 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
   return (
     <>
       <div className="w-full p-2 flex items-center border border-gray-100 rounded-se rounded-ss">
-        <div className="w-6/12 flex items-center gap-2">
-          <div className="w-[40px] h-[40px] rounded-full">
+        <div className="w-5/12 flex items-center gap-2">
+          <div className="w-[30px] h-[30px] rounded-full">
             <Image
-              src={image ? image?.url : pld}
+              src={image?.url || pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -68,41 +68,39 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
             />
           </div>
           <div>
-            <h1 className={`font-bold `}>
-              {title?.split(" ").slice(0, 4).join(" ")}
+            <h1 className={`text-xs`}>
+              {title?.split(" ").slice(0, 2).join(" ")}
             </h1>
-            <p className="text-sm text-gray-400">
+            <p className="text-xs text-gray-400">
               {subtitle?.split(" ").slice(0, 6).join(" ")}
             </p>
           </div>
         </div>
-        <div className="w-6/12 flex items-center gap-2">
-          <p className="w-2/6">{duration ? duration : "00:00"}</p>
-          <p className="w-2/6">{createdAt.split("T")[0]}</p>
-          <div
-            className="w-1/6 relative cursor-pointer "
-            onClick={() => setShowActions(!showActions)}
-          >
-            <FaEllipsisV className={` text-center`} />
-            {showActions ? (
-              <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
-                <Link
-                  href={`/admin/contents/edit/music/${id}`}
-                  className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
-                >
-                  Edit Post
-                </Link>
-                <p
-                  onClick={handleDelete}
-                  className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
-                >
-                  Delete Post
-                </p>
-              </div>
-            ) : (
-              ""
-            )}{" "}
-          </div>
+        <p className="w-2/12 text-xs">{duration ? duration : "00:00"}</p>
+        <p className="w-3/12 text-xs">{createdAt.split("T")[0]}</p>
+        <div
+          className="w-2/12 relative cursor-pointer "
+          onClick={() => setShowActions(!showActions)}
+        >
+          <FaEllipsisV className={`text-xs text-center`} />
+          {showActions ? (
+            <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
+              <Link
+                href={`/admin/contents/edit/blog/${id}`}
+                className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
+              >
+                Edit Post
+              </Link>
+              <p
+                onClick={handleDelete}
+                className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
+              >
+                Delete Post
+              </p>
+            </div>
+          ) : (
+            ""
+          )}{" "}
         </div>
       </div>
     </>

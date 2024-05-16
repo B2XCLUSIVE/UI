@@ -57,10 +57,10 @@ function ArtistContent({ id, name, image, bio, createdAt }) {
   return (
     <>
       <div className="w-full p-2 flex items-center border border-gray-100 rounded-se rounded-ss">
-        <div className="w-5/12 flex items-center gap-2">
-          <div className="w-[40px] h-[40px] rounded-full">
+        <div className="w-7/12 flex items-center gap-2">
+          <div className="w-[30px] h-[30px] rounded-full">
             <Image
-              src={image.url || pld}
+              src={image?.url || pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -68,41 +68,36 @@ function ArtistContent({ id, name, image, bio, createdAt }) {
             />
           </div>
           <div>
-            <h1 className={`font-bold `}>{name}</h1>
-            <p className="text-sm text-gray-400">
+            <h1 className={`text-xs`}>{name}</h1>
+            <p className="text-xs text-gray-400">
               {bio?.split(" ").slice(0, 3).join(" ")}
             </p>
           </div>
         </div>
-        <div className="flex w-7/12 items-center">
-          <h1 className={` w-2/6 `}>{createdAt?.split("T")[0]}</h1>
-          <h1 className={` w-2/6 bg-green-500 text-center p-1 rounded-full `}>
-            Active
-          </h1>
-          <div
-            className="w-3/6 relative cursor-pointer "
-            onClick={() => setShowActions(!showActions)}
-          >
-            <FaEllipsisV className={` text-center`} />
-            {showActions ? (
-              <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
-                <Link
-                  href={`/admin/contents/edit/artist/${id}`}
-                  className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
-                >
-                  Edit Artist
-                </Link>
-                <p
-                  onClick={handleDelete}
-                  className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
-                >
-                  Delete Artist
-                </p>
-              </div>
-            ) : (
-              ""
-            )}{" "}
-          </div>
+        <h1 className={` w-3/12 text-xs `}>{createdAt?.split("T")[0]}</h1>
+        <div
+          className="w-2/12 relative cursor-pointer "
+          onClick={() => setShowActions(!showActions)}
+        >
+          <FaEllipsisV className={` text-center`} />
+          {showActions ? (
+            <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
+              <Link
+                href={`/admin/contents/edit/blog/${id}`}
+                className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
+              >
+                Edit Post
+              </Link>
+              <p
+                onClick={handleDelete}
+                className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
+              >
+                Delete Post
+              </p>
+            </div>
+          ) : (
+            ""
+          )}{" "}
         </div>
       </div>
     </>

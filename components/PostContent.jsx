@@ -9,9 +9,9 @@ import Link from "next/link";
 function PostContent({
   id,
   title,
-  tags,
+
   image,
-  categories,
+  views,
   createdAt,
   subtitle,
 }) {
@@ -67,10 +67,10 @@ function PostContent({
   return (
     <>
       <div className="w-full p-2 flex items-center border border-gray-100 rounded-se rounded-ss">
-        <div className="w-5/12 flex items-center gap-2">
-          <div className="w-[40px] h-[40px] rounded-full">
+        <div className="w-6/12 flex items-center gap-2">
+          <div className="w-[30px] h-[30px] rounded-full">
             <Image
-              src={imageUrl}
+              src={imageUrl || pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -78,29 +78,26 @@ function PostContent({
             />
           </div>
           <div>
-            <h1 className={`font-bold `}>
+            <h1 className={`text-xs `}>
               {title?.split(" ").slice(0, 4).join(" ")}
             </h1>
-            <p className="text-sm text-gray-400">
+            <p className="text-xs text-gray-400">
               {subtitle?.split(" ").slice(0, 6).join(" ")}
             </p>
           </div>
         </div>
-        <div className="w-7/12 flex items-center gap-2">
-          <h1 className={`w-1/6 `}>Tech</h1>
+        <div className="w-6/12 flex items-center gap-2">
+          <h1 className={`w-1/4 text-xs `}>{views.length}</h1>
 
-          <div className="flex items-center gap-2 w-1/6">
-            <FaComment className={``} />
+          <div className="flex items-center gap-2 w-1/4">
+            <FaComment className={` text-xs`} />
 
-            <h1 className={``}>50</h1>
+            <h1 className={`text-xs`}>50</h1>
           </div>
 
-          <h1 className={` w-1/6 `}>{createdAt?.split("T")[0]}</h1>
-          <h1 className={` w-1/6 bg-green-500 text-center p-1 rounded-full `}>
-            Active
-          </h1>
+          <h1 className={` w-1/4  text-xs`}>{createdAt?.split("T")[0]}</h1>
           <div
-            className="w-2/6 relative cursor-pointer "
+            className="w-1/4 relative cursor-pointer "
             onClick={() => setShowActions(!showActions)}
           >
             <FaEllipsisV className={` text-center`} />
@@ -108,13 +105,13 @@ function PostContent({
               <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
                 <Link
                   href={`/admin/contents/edit/blog/${id}`}
-                  className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
+                  className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
                 >
                   Edit Post
                 </Link>
                 <p
                   onClick={handleDelete}
-                  className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
+                  className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
                 >
                   Delete Post
                 </p>

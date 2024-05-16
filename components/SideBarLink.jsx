@@ -6,17 +6,15 @@ import { usePathname } from "next/navigation";
 function SidebarLink({ href, title, bar, icon }) {
   const pathname = usePathname();
 
-  console.log("path", pathname);
-
   return (
     <Link
       href={href}
-      className={`flex ${bar ? "p-4" : "p-2"} rounded-lg items-center gap-2 hover:bg-primarycolor ${
-        pathname === href ? "bg-primarycolor" : ""
+      className={`flex ${bar ? "p-3" : "p-2"} rounded-lg items-center gap-2 hover:bg-primarycolor ${
+        pathname === href ? " text-white bg-primarycolor" : ""
       }`}
     >
       {icon}
-      <p className={`${bar ? "block" : "hidden"} `}>{title}</p>
+      <p className={`${bar ? "block" : "hidden"} text-xs `}>{title}</p>
     </Link>
   );
 }

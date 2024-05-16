@@ -6,14 +6,7 @@ import pld from "@/public/pld.jpeg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-function VideoOverview({
-  id,
-  title,
-  thumbnail,
-  duration,
-  createdAt,
-  subtitle,
-}) {
+function User({ id, name, image, bio, createdAt }) {
   const [showActions, setShowActions] = useState(false);
   const [token, setToken] = useState(""); // State to hold the token
   useEffect(() => {
@@ -41,12 +34,12 @@ function VideoOverview({
       };
 
       const response = await axios.delete(
-        `https://b2xclusive.onrender.com/api/v1/track/video/delete/${id}`,
+        `https://b2xclusive.onrender.com/api/v1/artist/delete/${id}`,
         config,
       );
       toast.dismiss();
 
-      toast.success(`Post Deleted successfully`, {
+      toast.success(`Artist Deleted successfully`, {
         position: "top-center",
       });
 
@@ -54,9 +47,9 @@ function VideoOverview({
         window.location.reload();
       });
     } catch (error) {
-      console.error("Failed delete post", error.message);
+      console.error("Failed delete artist", error.message);
       toast.dismiss();
-      toast.error(`Failed to delete post`, {
+      toast.error(`Failed to delete artist`, {
         position: "top-center",
       });
     }
@@ -64,10 +57,10 @@ function VideoOverview({
   return (
     <>
       <div className="w-full p-2 flex items-center border border-gray-100 rounded-se rounded-ss">
-        <div className="w-5/12 flex items-center gap-2">
+        <div className="w-7/12 flex items-center gap-2">
           <div className="w-[30px] h-[30px] rounded-full">
             <Image
-              src={thumbnail?.url || pld}
+              src={image?.url || pld}
               width={1000}
               height={1000}
               alt="alb"
@@ -75,32 +68,29 @@ function VideoOverview({
             />
           </div>
           <div>
-            <h1 className={`text-xs `}>
-              {title?.split(" ").slice(0, 4).join(" ")}
-            </h1>
+            <h1 className={`text-xs`}>{name}</h1>
             <p className="text-xs text-gray-400">
-              {subtitle?.split(" ").slice(0, 6).join(" ")}
+              {bio?.split(" ").slice(0, 3).join(" ")}
             </p>
           </div>
         </div>
-        <p className="w-2/12 text-xs">{duration ? duration : "00:00"}</p>
-        <p className="w-3/12 text-xs">{createdAt.split("T")[0]}</p>
+        <h1 className={` w-3/12 text-xs `}>{createdAt?.split("T")[0]}</h1>
         <div
-          className="w-2/12 relative text-xs cursor-pointer "
+          className="w-2/12 relative cursor-pointer "
           onClick={() => setShowActions(!showActions)}
         >
           <FaEllipsisV className={` text-center`} />
           {showActions ? (
             <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
               <Link
-                href={`/admin/contents/edit/video/${id}`}
-                className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
+                href={`/admin/contents/edit/blog/${id}`}
+                className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
               >
                 Edit Post
               </Link>
               <p
                 onClick={handleDelete}
-                className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
+                className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
               >
                 Delete Post
               </p>
@@ -114,4 +104,4 @@ function VideoOverview({
   );
 }
 
-export default VideoOverview;
+export default User;
