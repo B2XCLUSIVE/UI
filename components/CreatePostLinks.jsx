@@ -8,7 +8,7 @@ function CreatePostLinks({ href, title }) {
     <>
       <Link
         href={href}
-        className={`${pathname === href ? "  border-primarycolor border-b-4" : ""} hover:bg-gray-50 p-4 text-center`}
+        className={`${pathname === href ? "   border-primarycolor border-b-4" : ""} hover:bg-gray-50 p-2 text-center text-xs`}
       >
         {title}
       </Link>

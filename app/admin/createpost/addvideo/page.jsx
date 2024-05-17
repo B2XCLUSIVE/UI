@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
-import Button from "@/components/Button";
 import Tiptap from "@/components/TipTap";
 import Image from "next/image";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -13,7 +10,9 @@ import { useRouter } from "next/navigation";
 function AddVideos() {
   const router = useRouter();
   const [allArtist, setALlArtist] = useState([]);
-  const { theme, showSideBar } = useContext(ThemeContext);
+  const [gettingArtist, setGettingArtist] = useState(true);
+  const [gettingArtisterror, setGettingArtisterror] = useState(false);
+
   const [uploadingPost, setuploadingPost] = useState(false);
 
   const [file, setFile] = useState(null);
@@ -38,10 +37,7 @@ function AddVideos() {
 
   useEffect(() => {
     const fetchData = async () => {
-      toast.warning(`Fethcing Artists`, {
-        position: "top-center",
-        autoClose: false,
-      });
+      setGettingArtist(true);
       try {
         const response = await axios.get(
           `https://b2xclusive.onrender.com/api/v1/artist/artists`,
@@ -52,17 +48,11 @@ function AddVideos() {
           },
         );
         setALlArtist(response?.data?.data);
-        toast.dismiss();
-        toast.success(`All Artists fetched`, { position: "top-center" });
       } catch (error) {
         console.log(error, "Unable to fetch artists");
-        toast.dismiss();
-        toast.error(
-          error?.response?.data?.message || "Unable to fetch artists",
-          {
-            position: "top-center",
-          },
-        );
+        setGettingArtisterror(true);
+      } finally {
+        setGettingArtist(false);
       }
     };
 
@@ -124,7 +114,7 @@ function AddVideos() {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
+      <section className={``}>
         <form onSubmit={onsubmit} className={`flex flex-col gap-8 items-start`}>
           <div className="flex flex-col gap-2 w-full">
             <label>Video Title</label>

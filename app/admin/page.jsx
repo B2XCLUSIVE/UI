@@ -193,7 +193,7 @@ function Overview() {
                 className="border  flex justify-between border-gray-100 p-2"
               >
                 <div className="flex  w-3/5 gap-2 items-center">
-                  <div className="w-[40px] h-[40px] rounded-full">
+                  <div className="w-[30px] h-[30px] rounded-full">
                     <Image
                       src={user.image || pld}
                       width={1000}
@@ -203,19 +203,17 @@ function Overview() {
                     />
                   </div>
                   <div className="">
-                    <h1 className={`md:text-base text-[12px]`}>
+                    <h1 className={`md:text-xs text-[12px]`}>
                       {user.userName}
                     </h1>
-                    <p className="text-green-500 md:text-base text-[12px]">
+                    <p className="text-green-500 md:text-xs text-[12px]">
                       {user.email}
                     </p>
                   </div>
                 </div>
                 <div className="flex  w-2/5">
-                  <p className={`w-1/2 md:text-base text-[12px]`}>
-                    {user.role}
-                  </p>
-                  <p className={`w-1/2 md:text-base text-[12px]`}>
+                  <p className={`w-1/2 md:text-xs text-[12px]`}>{user.role}</p>
+                  <p className={`w-1/2 md:text-xs text-[12px]`}>
                     {user.createdAt.split("T")[0]}
                   </p>
                 </div>{" "}

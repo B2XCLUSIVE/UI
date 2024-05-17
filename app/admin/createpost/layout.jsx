@@ -9,8 +9,8 @@ function Layout({ children }) {
   const { showSideBar } = useContext(ThemeContext);
   return (
     <>
-      <div className={`${showSideBar ? "w-10/12" : "w-full"}`}>
-        <h1 className={` font-bold my-4 text-2xl`}>Create post</h1>
+      <div className={`w-full md:w-10/12 p-2 flex flex-col gap-2`}>
+        <h1 className={` text-xl`}>Create post</h1>
 
         <div
           className={`${showSideBar ? "w-10/12" : "w-full"} grid grid-cols-6 border-b border-gray-200 `}
@@ -39,9 +39,7 @@ function Layout({ children }) {
           />
         </div>
 
-        <div className={`${showSideBar ? "w-10/12" : "w-full"} p-4`}>
-          {children}
-        </div>
+        <div className={`w-full p-4`}>{children}</div>
       </div>
     </>
   );

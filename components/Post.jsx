@@ -17,10 +17,10 @@ function Post({ image, title, subtitle, createdAt, views }) {
 
           <div>
             <h1 className={`md:text-xs text-[12px] `}>
-              {title?.split(" ").slice(0, 5).join(" ")}
+              {title?.split(" ").slice(0, 5).join(" ")}....
             </h1>
             <p className="text-green-500 md:text-xs text-[11px] ">
-              {subtitle?.split(" ").slice(0, 7).join(" ")}
+              {subtitle?.split(" ").slice(0, 7).join(" ")}....
             </p>
           </div>
         </div>

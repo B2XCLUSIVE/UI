@@ -81,7 +81,7 @@ function AddArtists() {
   };
   return (
     <>
-      <form className={`flex flex-col gap-8 w-full items-start`}>
+      <form className={`flex text-xs flex-col gap-8 w-full items-start`}>
         <div className="flex flex-col gap-2 w-full">
           <label>Artist Name</label>
           <input
@@ -89,7 +89,7 @@ function AddArtists() {
             onChange={(e) => setArtist({ ...artist, name: e.target.value })}
             type="text"
             placeholder="Enter Artist Name"
-            className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+            className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
           />
         </div>
         <div className="flex w-full flex-col gap-2">
@@ -128,7 +128,7 @@ function AddArtists() {
               value={artist.bio}
               onChange={(e) => setArtist({ ...artist, bio: e.target.value })}
               type="text"
-              placeholder="Enter Blog Title"
+              placeholder="Enter artists biography"
               className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
             ></textarea>
           </div>

@@ -30,7 +30,7 @@ function Toolbar({ editor, content }) {
           }}
           className={
             editor.isActive("bold")
-              ? "text-primarycolor border-gray bg-gray-50 p-2 rounded-md"
+              ? "text-primarycolor text-xs border-gray bg-gray-50 p-2 rounded-md"
               : `p-2`
           }
         >

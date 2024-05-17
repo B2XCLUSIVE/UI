@@ -69,7 +69,7 @@ function MusicOverview({ id, title, image, duration, createdAt, subtitle }) {
           </div>
           <div>
             <h1 className={`text-xs`}>
-              {title?.split(" ").slice(0, 2).join(" ")}
+              {title?.split(" ").slice(0, 4).join(" ")}
             </h1>
             <p className="text-xs text-gray-400">
               {subtitle?.split(" ").slice(0, 6).join(" ")}

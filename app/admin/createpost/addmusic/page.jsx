@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 function AddMusic() {
   const [allArtist, setALlArtist] = useState([]);
+  const [gettingArtist, setGettingArtist] = useState(true);
+  const [gettingArtisterror, setGettingArtisterror] = useState(false);
 
   const router = useRouter();
   const { showSideBar } = useContext(ThemeContext);
@@ -37,10 +39,7 @@ function AddMusic() {
 
   useEffect(() => {
     const fetchData = async () => {
-      toast.warning(`Fethcing Artists`, {
-        position: "top-center",
-        autoClose: false,
-      });
+      setGettingArtist(true);
       try {
         const response = await axios.get(
           `https://b2xclusive.onrender.com/api/v1/artist/artists`,
@@ -51,17 +50,11 @@ function AddMusic() {
           },
         );
         setALlArtist(response?.data?.data);
-        toast.dismiss();
-        toast.success(`All Artists fetched`, { position: "top-center" });
       } catch (error) {
         console.log(error, "Unable to fetch artists");
-        toast.dismiss();
-        toast.error(
-          error?.response?.data?.message || "Unable to fetch artists",
-          {
-            position: "top-center",
-          },
-        );
+        setGettingArtisterror(true);
+      } finally {
+        setGettingArtist(false);
       }
     };
 
@@ -121,8 +114,11 @@ function AddMusic() {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
-        <form onSubmit={onSubmit} className={`flex flex-col gap-8 items-start`}>
+      <section className={` `}>
+        <form
+          onSubmit={onSubmit}
+          className={`flex text-xs flex-col gap-8 items-start`}
+        >
           <div className="flex flex-col gap-2 w-full">
             <label>Music Title</label>
             <input
@@ -131,7 +127,7 @@ function AddMusic() {
               type="text"
               name="title"
               placeholder="Enter Music Title"
-              className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+              className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
             />
           </div>
           <div className="flex gap-4 w-full items-center">
@@ -150,22 +146,36 @@ function AddMusic() {
             </div>
 
             <div className="flex flex-col w-3/12">
-              <label htmlFor="">Artists </label>
+              <label htmlFor="artist-select">Artists</label>
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="artistId"
-                id=""
+                id="artist-select"
                 onChange={(e) =>
-                  setMusic({ ...music, artisId: e.target.value })
+                  setMusic({ ...music, artistId: e.target.value })
                 }
+                disabled={gettingArtist || gettingArtisterror}
               >
-                <option value="null">Select Artist</option>
-                {allArtist?.map((artist) => (
-                  <option key={artist.id} value={artist.id}>
-                    {artist.name}
-                  </option>
-                ))}
-              </select>{" "}
+                <option value="null">
+                  {gettingArtist
+                    ? "Loading..."
+                    : gettingArtisterror
+                      ? "Failed to load artists"
+                      : "Select Artist"}
+                </option>
+                {!gettingArtist &&
+                  !gettingArtisterror &&
+                  allArtist?.map((artist) => (
+                    <option key={artist.id} value={artist.id}>
+                      {artist.name}
+                    </option>
+                  ))}
+              </select>
+              {gettingArtisterror && (
+                <p className="text-primarycolor text-xs mt-2">
+                  Failed to get all artists
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col w-3/12">

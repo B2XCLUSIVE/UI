@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
-import Button from "@/components/Button";
 import Tiptap from "@/components/TipTap";
 import Image from "next/image";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -13,7 +10,6 @@ import { useRouter } from "next/navigation";
 
 function CreatePost() {
   const router = useRouter();
-  const { theme, showSideBar } = useContext(ThemeContext);
   const [uploadingPost, setuploadingPost] = useState(false);
 
   const [file, setFile] = useState(null);
@@ -91,9 +87,9 @@ function CreatePost() {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} md:p-4  `}>
+      <section className={`w-full  `}>
         <form
-          className={`flex flex-col gap-8 ${theme}-text items-start`}
+          className={`text-xs flex flex-col gap-8  items-start`}
           onSubmit={onSubmit}
         >
           <div className="flex flex-col gap-2 w-full">
@@ -104,7 +100,7 @@ function CreatePost() {
               type="text"
               name="title"
               placeholder="Enter Blog Title"
-              className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+              className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
             />
           </div>
           <div className="flex w-full flex-col gap-2">
@@ -128,27 +124,30 @@ function CreatePost() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className={`${theme}-text`}>Selected File: {file.name}</p>
+                <p className={``}>Selected File: {file.name}</p>
               </div>
             )}{" "}
           </div>
 
           <div className="md:flex gap-4 w-full items-center">
-            <div className="flex flex-col gap-2 md:w-8/12">
-              <label>Post subtitle</label>
+            <div className="flex flex-col gap-2 md:w-7/12">
+              <label>Blog subtitle</label>
               <input
                 name="subtitle"
                 value={post.subtitle}
                 onChange={(e) => setPost({ ...post, subtitle: e.target.value })}
                 type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Enter Blog subtitle"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
 
-            <div className="flex flex-col md:w-2/12">
+            <div className="flex flex-col gap-2 md:w-3/12">
               <label>
-                Categories <span>Seprate categories with &quot;,&quot;</span>{" "}
+                Categories{" "}
+                <span className="text-gray-500">
+                  Seprate categories with &quot;,&quot;
+                </span>{" "}
               </label>
               <input
                 value={post.categories}
@@ -157,14 +156,17 @@ function CreatePost() {
                 }
                 name="categories[]"
                 type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Blog categories"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
 
-            <div className="flex flex-col md:w-2/12">
+            <div className="flex flex-col gap-2 md:w-2/12">
               <label htmlFor="">
-                Tags <span>Seprate tags with &quot;,&quot;</span>
+                Tags{" "}
+                <span className="text-gray-500">
+                  Seprate tags with &quot;,&quot;
+                </span>
               </label>
               <input
                 value={post.tags}
@@ -173,14 +175,14 @@ function CreatePost() {
                 }
                 name="tags[]"
                 type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Blog tags"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
           </div>
 
           <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="">Post Descriptions</label>
+            <label htmlFor="">Post Description</label>
             <Tiptap
               content={content}
               onChange={(newContent) => handleContentChange(newContent)}
