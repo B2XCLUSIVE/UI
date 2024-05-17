@@ -46,7 +46,7 @@ function SideBar() {
     <>
       <div className="w-2/12">
         <div
-          className="md:hidden absolute right-4 z-40 top-6 "
+          className="md:hidden absolute right-4 z-40 top-4 "
           onClick={() => setMenu(true)}
         >
           <MdMenuOpen className="text-2xl" />

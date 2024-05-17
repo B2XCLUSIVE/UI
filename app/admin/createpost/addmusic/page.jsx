@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ThemeContext } from "@/context/ThemeContext";
-import { useContext } from "react";
 import Tiptap from "@/components/TipTap";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
@@ -10,11 +8,10 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 function AddMusic() {
   const [allArtist, setALlArtist] = useState([]);
-  const [gettingArtist, setGettingArtist] = useState(true);
+  const [gettingArtist, setGettingArtist] = useState(false);
   const [gettingArtisterror, setGettingArtisterror] = useState(false);
 
   const router = useRouter();
-  const { showSideBar } = useContext(ThemeContext);
   const [uploadingPost, setuploadingPost] = useState(false);
 
   const [file, setFile] = useState(null);
@@ -130,8 +127,8 @@ function AddMusic() {
               className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
             />
           </div>
-          <div className="flex gap-4 w-full items-center">
-            <div className="flex flex-col w-6/12">
+          <div className="flex flex-col md:flex-row gap-4 w-full md:items-center ">
+            <div className="flex flex-col md:w-6/12">
               <label htmlFor="">Subtitle </label>
               <input
                 value={music.subTitle}
@@ -145,7 +142,7 @@ function AddMusic() {
               />
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="artist-select">Artists</label>
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
@@ -154,7 +151,6 @@ function AddMusic() {
                 onChange={(e) =>
                   setMusic({ ...music, artistId: e.target.value })
                 }
-                disabled={gettingArtist || gettingArtisterror}
               >
                 <option value="null">
                   {gettingArtist
@@ -178,7 +174,7 @@ function AddMusic() {
               )}
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Duration </label>
               <input
                 value={music.duration}

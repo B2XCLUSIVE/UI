@@ -178,7 +178,7 @@ function Overview() {
             <Charts />
           </div>
           <div className="w-full md:w-2/5 rounded-lg">
-            <h1 className={`text-sm`}>Recent 5 Users</h1>
+            <h1 className={`text-sm my-2`}>Recent 5 Users</h1>
             <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-2">
               <h1 className={` w-3/5 text-xs`}>Users</h1>
               <div className="flex w-2/5 ">
@@ -225,7 +225,7 @@ function Overview() {
         {/* Render recent posts and artists */}
         <section className="md:flex-row flex flex-col gap-4">
           <div className="w-full md:w-4/6">
-            <h1 className={`text-sm`}>Recent 5 Posts</h1>
+            <h1 className={`text-sm my-2`}>Recent 5 Posts</h1>
             <div className="border flex justify-between border-gray-100 rounded-se rounded-ss p-2">
               <h1 className={` w-3/5 text-xs`}>Post Title</h1>
               <div className="flex w-2/5  gap-8">
@@ -238,7 +238,7 @@ function Overview() {
             ))}
           </div>
           <div className="w-full md:w-2/6 rounded-lg">
-            <h1 className={`text-sm`}>Recent 5 Artists</h1>
+            <h1 className={`text-sm my-2`}>Recent 5 Artists</h1>
             <div className="border flex justify-between border-gray-100 rounded-ss rounded-se p-2">
               <h1 className={` text-sm w-3/4 `}>Artist</h1>
               <p className={` text-sm w-1/4 `}>Date</p>

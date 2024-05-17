@@ -83,7 +83,7 @@ function AddOrganizer() {
     <>
       <form
         onSubmit={onSubmit}
-        className={`flex flex-col gap-8 w-full items-start`}
+        className={`flex flex-col gap-4 text-xs w-full items-start`}
       >
         <div className="flex flex-col gap-2 w-full">
           <label>Organizer Name</label>
@@ -94,7 +94,7 @@ function AddOrganizer() {
             }
             type="text"
             placeholder="Enter Organizer Name"
-            className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+            className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
           />
         </div>
         <div className="flex w-full flex-col gap-2">

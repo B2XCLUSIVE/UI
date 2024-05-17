@@ -3,23 +3,37 @@
 import { useContext, useEffect, useState } from "react";
 
 import axios from "axios";
-import ArtistContent from "@/components/ArtistContent";
 import User from "./User";
 function AllUser() {
   const [allUser, setAllUser] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const postsPerPage = 10;
+  const [token, setToken] = useState("");
+  const role = "user";
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`,
-        );
-        setAllUser(response?.data?.data);
+        const storedToken = localStorage.getItem("b2exclusiveadmin");
+        if (storedToken) {
+          const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+          setToken(cleanedToken);
+
+          const usersResponse = await axios.get(
+            `https://b2xclusive.onrender.com/api/v1/users/allUsers?role=${role}`,
+            {
+              headers: {
+                Authorization: `Bearer ${cleanedToken}`,
+              },
+            },
+          );
+          setAllUser(usersResponse.data.data);
+        } else {
+          console.error("Bearer token not found");
+        }
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);

@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 function AddVideos() {
   const router = useRouter();
   const [allArtist, setALlArtist] = useState([]);
-  const [gettingArtist, setGettingArtist] = useState(true);
+  const [gettingArtist, setGettingArtist] = useState(false);
   const [gettingArtisterror, setGettingArtisterror] = useState(false);
 
   const [uploadingPost, setuploadingPost] = useState(false);
@@ -115,7 +115,10 @@ function AddVideos() {
   return (
     <>
       <section className={``}>
-        <form onSubmit={onsubmit} className={`flex flex-col gap-8 items-start`}>
+        <form
+          onSubmit={onsubmit}
+          className={`flex flex-col gap-4 text-xs items-start`}
+        >
           <div className="flex flex-col gap-2 w-full">
             <label>Video Title</label>
             <input
@@ -124,7 +127,7 @@ function AddVideos() {
               type="text"
               name="title"
               placeholder="Enter Video Title"
-              className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+              className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
             />
           </div>
           <div className="flex gap-4 w-full items-center">
@@ -138,12 +141,20 @@ function AddVideos() {
                   setVideo({ ...video, artisId: e.target.value })
                 }
               >
-                <option value="null">Select Artist</option>
-                {allArtist?.map((artist) => (
-                  <option key={artist.id} value={artist.id}>
-                    {artist.name}
-                  </option>
-                ))}
+                <option value="null">
+                  {gettingArtist
+                    ? "Loading"
+                    : gettingArtisterror
+                      ? "Failed to load artists"
+                      : "Select Artist"}
+                </option>
+                {!gettingArtist &&
+                  !gettingArtisterror &&
+                  allArtist?.map((artist) => (
+                    <option key={artist.id} value={artist.id}>
+                      {artist.name}
+                    </option>
+                  ))}
               </select>{" "}
             </div>
 
@@ -162,7 +173,7 @@ function AddVideos() {
             </div>
           </div>
           <div className="md:flex gap-4 w-full items-center">
-            <div className="flex flex-col gap-2 md:w-8/12">
+            <div className="flex flex-col gap-2 md:w-7/12">
               <label>Video subtitle</label>
               <input
                 name="subTitle"
@@ -176,9 +187,12 @@ function AddVideos() {
               />
             </div>
 
-            <div className="flex flex-col md:w-2/12">
+            <div className="flex flex-col gap-2 md:w-3/12">
               <label>
-                Categories <span>Seprate categories with &quot;,&quot;</span>{" "}
+                Categories{" "}
+                <span className="text-gray-500">
+                  Seprate categories with &quot;,&quot;
+                </span>{" "}
               </label>
               <input
                 value={video.categories}
@@ -192,9 +206,12 @@ function AddVideos() {
               />
             </div>
 
-            <div className="flex flex-col md:w-2/12">
+            <div className="flex flex-col gap-2 md:w-2/12">
               <label htmlFor="">
-                Tags <span>Seprate tags with &quot;,&quot;</span>
+                Tags{" "}
+                <span className="text-gray-500">
+                  Seprate tags with &quot;,&quot;
+                </span>
               </label>
               <input
                 value={video.tags}
@@ -210,7 +227,9 @@ function AddVideos() {
           </div>
           <div className="flex gap-4 w-full items-center">
             <div className="flex flex-col w-full">
-              <label htmlFor="">Upload Video Thumbnail </label>
+              <label htmlFor="">
+                Upload Video Thumbnail (.jpg, .png only){" "}
+              </label>
               <input
                 onChange={(e) => setThumbnail(e.target.files[0])}
                 type="file"

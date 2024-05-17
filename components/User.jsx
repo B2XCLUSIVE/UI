@@ -6,7 +6,7 @@ import pld from "@/public/pld.jpeg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-function User({ id, name, image, bio, createdAt }) {
+function User({ id, userName, email, image, bio, createdAt, role }) {
   const [showActions, setShowActions] = useState(false);
   const [token, setToken] = useState(""); // State to hold the token
   useEffect(() => {
@@ -68,13 +68,12 @@ function User({ id, name, image, bio, createdAt }) {
             />
           </div>
           <div>
-            <h1 className={`text-xs`}>{name}</h1>
-            <p className="text-xs text-gray-400">
-              {bio?.split(" ").slice(0, 3).join(" ")}
-            </p>
+            <h1 className={`text-xs`}>{userName}</h1>
+            <p className="text-xs text-gray-400">{email}</p>
           </div>
         </div>
         <h1 className={` w-3/12 text-xs `}>{createdAt?.split("T")[0]}</h1>
+        <h1 className={` w-3/12 text-xs `}>{role}</h1>
         <div
           className="w-2/12 relative cursor-pointer "
           onClick={() => setShowActions(!showActions)}

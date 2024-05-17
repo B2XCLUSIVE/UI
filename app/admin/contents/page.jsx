@@ -79,7 +79,7 @@ function Contents() {
           </div>
         </div>
         <div className="flex w-full gap-2 ">
-          <div className="w-full h-72">
+          <div className="w-full md:h-72">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
               <div className="w-6/12">
                 <h1 className={` text-xs`}>Blogs</h1>
