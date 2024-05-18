@@ -75,7 +75,8 @@ function EditMusic({ params }) {
         console.log(error, "Unable to fetch artists");
         toast.dismiss();
         toast.error(
-          error?.response?.data?.message || "Unable to fetch artists",
+          error?.response?.data?.errorResponse?.message ||
+            "Unable to fetch artists",
           {
             position: "top-center",
           },
@@ -133,7 +134,10 @@ function EditMusic({ params }) {
   return (
     <>
       <section className={`${showSideBar ? "w-10/12" : "w-full"} p-4 md:p-8 `}>
-        <form onSubmit={onSubmit} className={`flex flex-col gap-8 items-start`}>
+        <form
+          onSubmit={onSubmit}
+          className={`flex text-xs flex-col gap-8 items-start`}
+        >
           <div className="flex flex-col gap-2 w-full">
             <label>Music Title</label>
             <input
@@ -144,11 +148,11 @@ function EditMusic({ params }) {
               type="text"
               name="title"
               placeholder="Enter Music Title"
-              className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+              className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
-          <div className="flex gap-4 w-full items-center">
-            <div className="flex flex-col w-6/12">
+          <div className="flex gap-4 w-full flex-col md:flex-row md:items-center">
+            <div className="flex flex-col md:w-6/12">
               <label htmlFor="">Subtitle </label>
               <input
                 value={singleMusic.subTitle}
@@ -162,7 +166,7 @@ function EditMusic({ params }) {
               />
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Artists </label>
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
@@ -182,7 +186,7 @@ function EditMusic({ params }) {
               </select>{" "}
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Duration </label>
               <input
                 value={singleMusic.duration}

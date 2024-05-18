@@ -72,9 +72,13 @@ function AddArtists() {
       }, 3000);
     } catch (error) {
       console.error("Failed to upload post", error.message);
-      toast.error(error.response.data.message || "Failed to upload post", {
-        position: "top-center",
-      });
+      toast.error(
+        error?.response?.data?.errorResponse?.message ||
+          "Failed to upload post",
+        {
+          position: "top-center",
+        },
+      );
     } finally {
       setuploadingPost(false); // Reset uploadingPost state
     }

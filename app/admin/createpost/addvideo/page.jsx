@@ -104,9 +104,13 @@ function AddVideos() {
       }, 3000);
     } catch (error) {
       console.error("Failed to upload video", error.message);
-      toast.error(error?.response?.data?.message || "Failed to upload video", {
-        position: "top-center",
-      });
+      toast.error(
+        error?.response?.data?.errorResponse?.message ||
+          "Failed to upload video",
+        {
+          position: "top-center",
+        },
+      );
     } finally {
       setuploadingPost(false); // Reset uploadingPost state
     }

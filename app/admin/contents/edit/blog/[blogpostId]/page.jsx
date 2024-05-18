@@ -27,23 +27,14 @@ function EditBlog({ params }) {
 
   useEffect(() => {
     const fetchSinglePost = async () => {
-      toast.warning(`Fetching post content`, {
-        position: "top-center",
-        autoClose: false,
-      });
       try {
         const response = await axios.get(
           `https://b2xclusive.onrender.com/api/v1/post/${blogpostId}`,
         );
         const postData = response?.data?.data;
         setSinglePost(postData);
-        toast.dismiss();
-
-        toast.success(`Successfuly fetched post`, { position: "top-center" });
       } catch (error) {
         console.log("Error fetching single post:", error.message);
-        toast.dismiss();
-        toast.error(`Error fetching post`, { position: "top-center" });
       }
     };
     fetchSinglePost();
@@ -105,22 +96,22 @@ function EditBlog({ params }) {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} md:p-4  `}>
+      <section className={` md:p-4 p-2 `}>
         <form
-          className={`flex flex-col gap-8  items-start`}
+          className={`flex flex-col gap-4 text-xs  items-start`}
           onSubmit={onSubmit}
         >
           <div className="flex flex-col gap-2 w-full">
             <label>Blog Title</label>
             <input
-              value={singlePost.title}
+              value={singlePost.title || "Loading....."}
               onChange={(e) =>
                 setSinglePost({ ...singlePost, title: e.target.value })
               }
               type="text"
               name="title"
               placeholder="Enter Blog Title"
-              className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+              className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
           <div className="flex w-full flex-col gap-2">
@@ -165,11 +156,11 @@ function EditBlog({ params }) {
           </div>
 
           <div className="md:flex gap-4 w-full items-center">
-            <div className="flex flex-col gap-2 md:w-8/12">
+            <div className="flex flex-col gap-2 md:w-7/12">
               <label>Post subtitle</label>
               <input
                 name="subtitle"
-                value={singlePost.subtitle}
+                value={singlePost.subtitle || "Loading...."}
                 onChange={(e) =>
                   setSinglePost({ ...singlePost, subtitle: e.target.value })
                 }
@@ -179,12 +170,15 @@ function EditBlog({ params }) {
               />
             </div>
 
-            <div className="flex flex-col md:w-2/12">
+            <div className="flex flex-col md:w-3/12">
               <label>
-                Categories <span>Seprate categories with &quot;,&quot;</span>{" "}
+                Categories{" "}
+                <span className="text-gray-500">
+                  Seprate categories with &quot;,&quot;
+                </span>{" "}
               </label>
               <input
-                value={singlePost.categories.join(",")}
+                value={singlePost.categories.join(",") || "Loading..."}
                 onChange={(e) =>
                   setSinglePost({
                     ...singlePost,
@@ -200,10 +194,13 @@ function EditBlog({ params }) {
 
             <div className="flex flex-col md:w-2/12">
               <label htmlFor="">
-                Tags <span>Seprate tags with &quot;,&quot;</span>
+                Tags{" "}
+                <span className="text-gray-500">
+                  Seprate tags with &quot;,&quot;
+                </span>
               </label>
               <input
-                value={singlePost.tags.join(",")}
+                value={singlePost.tags.join(",") || "Loading..."}
                 onChange={(e) =>
                   setSinglePost({
                     ...singlePost,
@@ -221,7 +218,7 @@ function EditBlog({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Post Descriptions</label>
             <Tiptap
-              content={singlePost.description}
+              content={singlePost.description || "Loading..."}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>

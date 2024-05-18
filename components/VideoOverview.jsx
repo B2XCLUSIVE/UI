@@ -96,13 +96,13 @@ function VideoOverview({
                 href={`/admin/contents/edit/video/${id}`}
                 className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
               >
-                Edit Post
+                Edit Video
               </Link>
               <p
                 onClick={handleDelete}
                 className="hover:bg-primarycolor hover:text-white p-4 cursor-pointer"
               >
-                Delete Post
+                Delete Video
               </p>
             </div>
           ) : (

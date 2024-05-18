@@ -101,9 +101,13 @@ function AddMusic() {
       }, 3000);
     } catch (error) {
       console.error("Failed to upload music", error.message);
-      toast.error(error?.response?.data?.message || "Failed to upload music", {
-        position: "top-center",
-      });
+      toast.error(
+        error?.response?.data?.errorResponse?.message ||
+          "Failed to upload music",
+        {
+          position: "top-center",
+        },
+      );
     } finally {
       setuploadingPost(false); // Reset uploadingPost state
     }

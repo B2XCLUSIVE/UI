@@ -50,10 +50,6 @@ function EditVideo({ params }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      toast.warning(`Fethcing Artists and Music Contents`, {
-        position: "top-center",
-        autoClose: false,
-      });
       try {
         const response = await axios.get(
           `https://b2xclusive.onrender.com/api/v1/artist/artists`,
@@ -70,18 +66,8 @@ function EditVideo({ params }) {
         );
         const postData = musicresponse?.data?.data;
         setSingleVideo(postData);
-
-        toast.dismiss();
-        toast.success(`All Artists fetched`, { position: "top-center" });
       } catch (error) {
         console.log(error, "Unable to fetch artists");
-        toast.dismiss();
-        toast.error(
-          error?.response?.data?.message || "Unable to fetch artists",
-          {
-            position: "top-center",
-          },
-        );
       }
     };
 
@@ -135,27 +121,30 @@ function EditVideo({ params }) {
   return (
     <>
       <section className={`${showSideBar ? "w-10/12" : "w-full"} p-4 md:p-8 `}>
-        <form onSubmit={onSubmit} className={`flex flex-col gap-8 items-start`}>
+        <form
+          onSubmit={onSubmit}
+          className={`flex flex-col text-xs gap-8 items-start`}
+        >
           <div className="flex flex-col gap-2 w-full">
             <label>Music Title</label>
             <input
-              value={singleVideo.title}
+              value={singleVideo.title || "Loading..."}
               onChange={(e) =>
                 setSingleVideo({ ...singleVideo, title: e.target.value })
               }
               type="text"
               name="title"
               placeholder="Enter Video Title"
-              className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+              className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
-          <div className="flex gap-4 w-full items-center">
-            <div className="md:flex gap-4 w-full items-center">
-              <div className="flex flex-col gap-2 md:w-8/12">
+          <div className="flex flex-col md:flex-row gap-4 w-full md:items-center">
+            <div className="flex flex-col md:flex-row gap-4 w-full md:items-center">
+              <div className="flex flex-col gap-2 w-full md:w-8/12">
                 <label>Video subtitle</label>
                 <input
                   name="subTitle"
-                  value={singleVideo.subTitle}
+                  value={singleVideo.subTitle || "Loading..."}
                   onChange={(e) =>
                     setSingleVideo({ ...singleVideo, subTitle: e.target.value })
                   }
@@ -170,7 +159,7 @@ function EditVideo({ params }) {
                   Categories <span>Seprate categories with &quot;,&quot;</span>{" "}
                 </label>
                 <input
-                  value={singleVideo.categories}
+                  value={singleVideo.categories || "Loading..."}
                   onChange={(e) =>
                     setSingleVideo({
                       ...singleVideo,
@@ -189,7 +178,7 @@ function EditVideo({ params }) {
                   Tags <span>Seprate tags with &quot;,&quot;</span>
                 </label>
                 <input
-                  value={singleVideo.tags}
+                  value={singleVideo.tags || "Loading..."}
                   onChange={(e) =>
                     setSingleVideo({
                       ...singleVideo,
@@ -204,12 +193,12 @@ function EditVideo({ params }) {
               </div>
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Artists </label>
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="artistId"
-                value={singleVideo.artistId}
+                value={singleVideo.artistId || "Loading..."}
                 id=""
                 onChange={(e) =>
                   setSingleVideo({ ...setSingleVideo, artisId: e.target.value })
@@ -224,10 +213,10 @@ function EditVideo({ params }) {
               </select>{" "}
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Duration </label>
               <input
-                value={singleVideo.duration}
+                value={singleVideo.duration || "Loading..."}
                 name="duration"
                 onChange={(e) =>
                   setSingleVideo({ ...singleVideo, duration: e.target.value })
@@ -296,7 +285,7 @@ function EditVideo({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Video Descriptions</label>
             <Tiptap
-              content={singleVideo.description}
+              content={singleVideo.description || "Loading..."}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>

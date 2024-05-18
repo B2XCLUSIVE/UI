@@ -45,10 +45,6 @@ function EditEvent({ params }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      toast.warning(`Fethcing Organizers and event details`, {
-        position: "top-center",
-        autoClose: false,
-      });
       try {
         const response = await axios.get(
           `https://b2xclusive.onrender.com/api/v1/event/organisers`,
@@ -69,18 +65,8 @@ function EditEvent({ params }) {
           },
         );
         setsingleEvent(eventresponse?.data?.data);
-
-        toast.dismiss();
-        toast.success(`All Organizers fetched`, { position: "top-center" });
       } catch (error) {
         console.log(error, "Unable to fetch Organizers");
-        toast.dismiss();
-        toast.error(
-          error?.response?.data?.message || "Unable to fetch organisers",
-          {
-            position: "top-center",
-          },
-        );
       }
     };
 
@@ -131,26 +117,29 @@ function EditEvent({ params }) {
 
   return (
     <>
-      <section className={`${showSideBar ? "w-10/12" : "w-full"} `}>
-        <form onSubmit={onSubmit} className={`flex flex-col gap-8 items-start`}>
+      <section className={` w-full md:10/12 p-2 `}>
+        <form
+          onSubmit={onSubmit}
+          className={`flex flex-col text-xs gap-4 items-start`}
+        >
           <div className="flex flex-col gap-2 w-full">
             <label>Event Title</label>
             <input
-              value={singlevent.title}
+              value={singlevent.title || "Loading..."}
               onChange={(e) =>
                 setsingleEvent({ ...singlevent, title: e.target.value })
               }
               type="text"
               name="title"
               placeholder="Enter Event Title"
-              className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+              className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
-          <div className="flex gap-4 w-full items-center">
-            <div className="flex flex-col w-6/12">
+          <div className="flex gap-4 flex-col md:flex-row w-full md:items-center">
+            <div className="flex flex-col md:w-6/12">
               <label htmlFor="">Subtitle </label>
               <input
-                value={singlevent.subTitle}
+                value={singlevent.subTitle || "Loading..."}
                 onChange={(e) =>
                   setsingleEvent({ ...singlevent, subTitle: e.target.value })
                 }
@@ -160,13 +149,13 @@ function EditEvent({ params }) {
               />
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Organizers </label>
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="organisersId[]"
                 id=""
-                value={singlevent?.organisers[0]?.id}
+                value={singlevent?.organisers[0]?.id || "Loading..."}
                 onChange={(e) =>
                   setsingleEvent({
                     ...singlevent,
@@ -183,10 +172,10 @@ function EditEvent({ params }) {
               </select>{" "}
             </div>
 
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Date </label>
               <input
-                value={singlevent.date}
+                value={singlevent.date || "Loading..."}
                 name="date"
                 onChange={(e) =>
                   setsingleEvent({ ...singlevent, date: e.target.value })
@@ -196,10 +185,10 @@ function EditEvent({ params }) {
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
-            <div className="flex flex-col w-3/12">
+            <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Location </label>
               <input
-                value={singlevent.location}
+                value={singlevent.location || "Loading..."}
                 name="location"
                 onChange={(e) =>
                   setsingleEvent({ ...singlevent, location: e.target.value })
@@ -255,7 +244,7 @@ function EditEvent({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Event Descriptions</label>
             <Tiptap
-              content={singlevent.description}
+              content={singlevent.description || "Loading..."}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>

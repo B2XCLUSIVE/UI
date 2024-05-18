@@ -87,16 +87,16 @@ function EventOverview({ id, title, image, createdAt, subtitle }) {
           {showActions ? (
             <div className="w-full border right-0 top-5 rounded-lg absolute bg-white flex flex-col ">
               <Link
-                href={`/admin/contents/edit/blog/${id}`}
+                href={`/admin/contents/edit/events/${id}`}
                 className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
               >
-                Edit Post
+                Edit Event
               </Link>
               <p
                 onClick={handleDelete}
                 className="hover:bg-primarycolor hover:rounded-lg hover:text-white p-2 text-xs cursor-pointer"
               >
-                Delete Post
+                Delete Event
               </p>
             </div>
           ) : (

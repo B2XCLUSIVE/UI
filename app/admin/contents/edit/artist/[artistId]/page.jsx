@@ -22,10 +22,6 @@ function EditArtist({ params }) {
 
   useEffect(() => {
     const fetchSingleArtist = async () => {
-      toast.warning(`Fetching artist`, {
-        position: "top-center",
-        autoClose: false,
-      });
       try {
         const response = await axios.get(
           `https://b2xclusive.onrender.com/api/v1/artist/${artistId}`,
@@ -37,13 +33,8 @@ function EditArtist({ params }) {
             ? postData.image
             : [postData.image],
         });
-        toast.dismiss();
-
-        toast.success(`Successfuly fetched artist`, { position: "top-center" });
       } catch (error) {
         console.log("Error fetching artist:", error.message);
-        toast.dismiss();
-        toast.error(`Error fetching artist`, { position: "top-center" });
       }
     };
     fetchSingleArtist();
@@ -103,19 +94,19 @@ function EditArtist({ params }) {
     <>
       <form
         onSubmit={onSubmit}
-        className={`flex flex-col gap-8 w-full items-start md:p-8 p-4`}
+        className={`flex flex-col gap-4 text-xs w-full items-start md:p-8 p-4`}
       >
         <div className="flex flex-col gap-2 w-full">
           <label>Artist Name</label>
           <input
             name="name"
-            value={singleArtist.name}
+            value={singleArtist.name || "Loading..."}
             onChange={(e) =>
               setsingleArtist({ ...singleArtist, name: e.target.value })
             }
             type="text"
             placeholder="Enter Artist Name"
-            className=" w-full bg-transparent rounded-lg text-3xl  outline-none"
+            className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
           />
         </div>
         <div className="flex w-full flex-col gap-2">
@@ -166,7 +157,7 @@ function EditArtist({ params }) {
             <textarea
               name="bio"
               id=""
-              value={singleArtist.bio}
+              value={singleArtist.bio || "Loading..."}
               onChange={(e) =>
                 setsingleArtist({ ...singleArtist, bio: e.target.value })
               }

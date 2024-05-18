@@ -100,9 +100,12 @@ function AddEvent() {
       }, 3000);
     } catch (error) {
       console.error("Failed to add Event", error.message);
-      toast.error(error?.response?.data?.message || "Failed to add event", {
-        position: "top-center",
-      });
+      toast.error(
+        error?.response?.data?.errorResponse?.message || "Failed to add event",
+        {
+          position: "top-center",
+        },
+      );
     } finally {
       setuploadingPost(false); // Reset uploadingPost state
     }

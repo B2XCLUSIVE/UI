@@ -41,7 +41,7 @@ function Contents() {
 
           <div className="p-4 border border-gray-100 flex flex-col justify-between h-[100px] rounded-lg">
             <div className="flex justify-between">
-              <h1 className={`text-[10px] md:text-base`}>Total Videos</h1>
+              <h1 className={`text-[10px] md:text-xs`}>Total Videos</h1>
               <CiVideoOn className={`text-xs`} />
             </div>
 
