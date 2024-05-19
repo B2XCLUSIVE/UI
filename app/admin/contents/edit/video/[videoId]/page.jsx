@@ -128,13 +128,13 @@ function EditVideo({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label>Music Title</label>
             <input
-              value={singleVideo.title || "Loading..."}
+              value={singleVideo.title}
               onChange={(e) =>
                 setSingleVideo({ ...singleVideo, title: e.target.value })
               }
               type="text"
               name="title"
-              placeholder="Enter Video Title"
+              placeholder="Loading..."
               className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
@@ -144,12 +144,12 @@ function EditVideo({ params }) {
                 <label>Video subtitle</label>
                 <input
                   name="subTitle"
-                  value={singleVideo.subTitle || "Loading..."}
+                  value={singleVideo.subTitle}
                   onChange={(e) =>
                     setSingleVideo({ ...singleVideo, subTitle: e.target.value })
                   }
                   type="text"
-                  placeholder="Enter video subtitle"
+                  placeholder="Loading..."
                   className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 />
               </div>
@@ -159,7 +159,7 @@ function EditVideo({ params }) {
                   Categories <span>Seprate categories with &quot;,&quot;</span>{" "}
                 </label>
                 <input
-                  value={singleVideo.categories || "Loading..."}
+                  value={singleVideo.categories}
                   onChange={(e) =>
                     setSingleVideo({
                       ...singleVideo,
@@ -178,7 +178,7 @@ function EditVideo({ params }) {
                   Tags <span>Seprate tags with &quot;,&quot;</span>
                 </label>
                 <input
-                  value={singleVideo.tags || "Loading..."}
+                  value={singleVideo.tags}
                   onChange={(e) =>
                     setSingleVideo({
                       ...singleVideo,
@@ -216,7 +216,7 @@ function EditVideo({ params }) {
             <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Duration </label>
               <input
-                value={singleVideo.duration || "Loading..."}
+                value={singleVideo.duration}
                 name="duration"
                 onChange={(e) =>
                   setSingleVideo({ ...singleVideo, duration: e.target.value })
@@ -285,7 +285,7 @@ function EditVideo({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Video Descriptions</label>
             <Tiptap
-              content={singleVideo.description || "Loading..."}
+              content={singleVideo.description}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>

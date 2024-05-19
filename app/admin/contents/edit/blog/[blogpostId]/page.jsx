@@ -104,13 +104,13 @@ function EditBlog({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label>Blog Title</label>
             <input
-              value={singlePost.title || "Loading....."}
+              value={singlePost.title}
               onChange={(e) =>
                 setSinglePost({ ...singlePost, title: e.target.value })
               }
               type="text"
               name="title"
-              placeholder="Enter Blog Title"
+              placeholder="Loading..."
               className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
@@ -160,12 +160,12 @@ function EditBlog({ params }) {
               <label>Post subtitle</label>
               <input
                 name="subtitle"
-                value={singlePost.subtitle || "Loading...."}
+                value={singlePost.subtitle}
                 onChange={(e) =>
                   setSinglePost({ ...singlePost, subtitle: e.target.value })
                 }
                 type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -178,7 +178,7 @@ function EditBlog({ params }) {
                 </span>{" "}
               </label>
               <input
-                value={singlePost.categories.join(",") || "Loading..."}
+                value={singlePost.categories.join(",")}
                 onChange={(e) =>
                   setSinglePost({
                     ...singlePost,
@@ -187,7 +187,7 @@ function EditBlog({ params }) {
                 }
                 name="categories[]"
                 type="text"
-                placeholder="Enter Blog categories"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -200,7 +200,7 @@ function EditBlog({ params }) {
                 </span>
               </label>
               <input
-                value={singlePost.tags.join(",") || "Loading..."}
+                value={singlePost.tags.join(",")}
                 onChange={(e) =>
                   setSinglePost({
                     ...singlePost,
@@ -209,7 +209,7 @@ function EditBlog({ params }) {
                 }
                 name="tags[]"
                 type="text"
-                placeholder="Enter Blog Title"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -218,7 +218,7 @@ function EditBlog({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Post Descriptions</label>
             <Tiptap
-              content={singlePost.description || "Loading..."}
+              content={singlePost.description}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>

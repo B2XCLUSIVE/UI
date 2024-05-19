@@ -94,7 +94,7 @@ function EditEvent({ params }) {
       };
 
       const eventResponse = await axios.patch(
-        "https://b2xclusive.onrender.com/api/v1/event/create",
+        `https://b2xclusive.onrender.com/api/v1/event/update/${eventId}`,
         formData,
         config,
       );
@@ -125,13 +125,13 @@ function EditEvent({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label>Event Title</label>
             <input
-              value={singlevent.title || "Loading..."}
+              value={singlevent.title}
               onChange={(e) =>
                 setsingleEvent({ ...singlevent, title: e.target.value })
               }
               type="text"
               name="title"
-              placeholder="Enter Event Title"
+              placeholder="Loading.."
               className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
@@ -139,12 +139,12 @@ function EditEvent({ params }) {
             <div className="flex flex-col md:w-6/12">
               <label htmlFor="">Subtitle </label>
               <input
-                value={singlevent.subTitle || "Loading..."}
+                value={singlevent.subTitle}
                 onChange={(e) =>
                   setsingleEvent({ ...singlevent, subTitle: e.target.value })
                 }
                 type="text"
-                placeholder="Enter subtitle"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -155,7 +155,7 @@ function EditEvent({ params }) {
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="organisersId[]"
                 id=""
-                value={singlevent?.organisers[0]?.id || "Loading..."}
+                value={singlevent?.organisers[0]?.id}
                 onChange={(e) =>
                   setsingleEvent({
                     ...singlevent,
@@ -175,26 +175,26 @@ function EditEvent({ params }) {
             <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Date </label>
               <input
-                value={singlevent.date || "Loading..."}
+                value={singlevent.date}
                 name="date"
                 onChange={(e) =>
                   setsingleEvent({ ...singlevent, date: e.target.value })
                 }
                 type="date"
-                placeholder="Enter music duration"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
             <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Location </label>
               <input
-                value={singlevent.location || "Loading..."}
+                value={singlevent.location}
                 name="location"
                 onChange={(e) =>
                   setsingleEvent({ ...singlevent, location: e.target.value })
                 }
                 type="text"
-                placeholder="Enter music location"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -244,7 +244,7 @@ function EditEvent({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Event Descriptions</label>
             <Tiptap
-              content={singlevent.description || "Loading..."}
+              content={singlevent.description}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>
@@ -256,7 +256,7 @@ function EditEvent({ params }) {
             {uploadingPost ? (
               <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
             ) : (
-              "Create Event"
+              "Update Event"
             )}
           </button>
         </form>

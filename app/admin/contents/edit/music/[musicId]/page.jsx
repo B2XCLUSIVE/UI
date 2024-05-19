@@ -126,13 +126,13 @@ function EditMusic({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label>Music Title</label>
             <input
-              value={singleMusic.title || "Loading..."}
+              value={singleMusic.title}
               onChange={(e) =>
                 setSingleMusic({ ...singleMusic, title: e.target.value })
               }
               type="text"
               name="title"
-              placeholder="Enter Music Title"
+              placeholder="Loading..."
               className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
             />
           </div>
@@ -140,13 +140,13 @@ function EditMusic({ params }) {
             <div className="flex flex-col md:w-6/12">
               <label htmlFor="">Subtitle </label>
               <input
-                value={singleMusic.subTitle || "Loading...."}
+                value={singleMusic.subTitle}
                 name="subTitle"
                 onChange={(e) =>
                   setSingleMusic({ ...singleMusic, subTitle: e.target.value })
                 }
                 type="text"
-                placeholder="Enter subtitle"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -156,7 +156,7 @@ function EditMusic({ params }) {
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="artistId"
-                value={singleMusic.artistId || "Loading..."}
+                value={singleMusic.artistId}
                 id=""
                 onChange={(e) =>
                   setSingleMusic({ ...singleMusic, artistId: e.target.value })
@@ -174,13 +174,13 @@ function EditMusic({ params }) {
             <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Duration </label>
               <input
-                value={singleMusic.duration || "Loading..."}
+                value={singleMusic.duration}
                 name="duration"
                 onChange={(e) =>
                   setSingleMusic({ ...singleMusic, duration: e.target.value })
                 }
                 type="text"
-                placeholder="Enter music duration"
+                placeholder="Loading..."
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
               />
             </div>
@@ -243,7 +243,7 @@ function EditMusic({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Music Descriptions</label>
             <Tiptap
-              content={singleMusic.description || "Loading..."}
+              content={singleMusic.description}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>

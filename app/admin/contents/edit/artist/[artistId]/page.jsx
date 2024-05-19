@@ -100,12 +100,12 @@ function EditArtist({ params }) {
           <label>Artist Name</label>
           <input
             name="name"
-            value={singleArtist.name || "Loading..."}
+            value={singleArtist.name}
             onChange={(e) =>
               setsingleArtist({ ...singleArtist, name: e.target.value })
             }
             type="text"
-            placeholder="Enter Artist Name"
+            placeholder="Loading..."
             className=" w-full bg-transparent rounded-lg text-lg md:text-2xl  outline-none"
           />
         </div>
@@ -157,12 +157,12 @@ function EditArtist({ params }) {
             <textarea
               name="bio"
               id=""
-              value={singleArtist.bio || "Loading..."}
+              value={singleArtist.bio}
               onChange={(e) =>
                 setsingleArtist({ ...singleArtist, bio: e.target.value })
               }
               type="text"
-              placeholder="Enter Blog Title"
+              placeholder="Loading..."
               className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
             ></textarea>
           </div>
