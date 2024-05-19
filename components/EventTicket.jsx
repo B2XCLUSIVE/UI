@@ -41,7 +41,7 @@ function EventTicket({ id, title, image, location, date }) {
             href={`/upcomingevents/${id}`}
             className="text-[14px] px-3 py-2 rounded-lg md:py-4 md:px-8 bg-primarycolor text-white"
           >
-            Buy Ticket
+            View Event
           </Link>
         </div>
       </Link>

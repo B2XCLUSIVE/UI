@@ -48,10 +48,6 @@ function EditMusic({ params }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      toast.warning(`Fethcing Artists and Music Contents`, {
-        position: "top-center",
-        autoClose: false,
-      });
       try {
         const response = await axios.get(
           `https://b2xclusive.onrender.com/api/v1/artist/artists`,
@@ -68,19 +64,8 @@ function EditMusic({ params }) {
         );
         const postData = musicresponse?.data?.data;
         setSingleMusic(postData);
-
-        toast.dismiss();
-        toast.success(`All Artists fetched`, { position: "top-center" });
       } catch (error) {
         console.log(error, "Unable to fetch artists");
-        toast.dismiss();
-        toast.error(
-          error?.response?.data?.errorResponse?.message ||
-            "Unable to fetch artists",
-          {
-            position: "top-center",
-          },
-        );
       }
     };
 
@@ -141,7 +126,7 @@ function EditMusic({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label>Music Title</label>
             <input
-              value={singleMusic.title}
+              value={singleMusic.title || "Loading..."}
               onChange={(e) =>
                 setSingleMusic({ ...singleMusic, title: e.target.value })
               }
@@ -155,7 +140,7 @@ function EditMusic({ params }) {
             <div className="flex flex-col md:w-6/12">
               <label htmlFor="">Subtitle </label>
               <input
-                value={singleMusic.subTitle}
+                value={singleMusic.subTitle || "Loading...."}
                 name="subTitle"
                 onChange={(e) =>
                   setSingleMusic({ ...singleMusic, subTitle: e.target.value })
@@ -171,7 +156,7 @@ function EditMusic({ params }) {
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="artistId"
-                value={singleMusic.artistId}
+                value={singleMusic.artistId || "Loading..."}
                 id=""
                 onChange={(e) =>
                   setSingleMusic({ ...singleMusic, artistId: e.target.value })
@@ -189,7 +174,7 @@ function EditMusic({ params }) {
             <div className="flex flex-col md:w-3/12">
               <label htmlFor="">Duration </label>
               <input
-                value={singleMusic.duration}
+                value={singleMusic.duration || "Loading..."}
                 name="duration"
                 onChange={(e) =>
                   setSingleMusic({ ...singleMusic, duration: e.target.value })
@@ -258,7 +243,7 @@ function EditMusic({ params }) {
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="">Music Descriptions</label>
             <Tiptap
-              content={singleMusic.description}
+              content={singleMusic.description || "Loading..."}
               onChange={(newContent) => handleContentChange(newContent)}
             />
           </div>

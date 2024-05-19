@@ -205,7 +205,7 @@ function SingleEventPage({ params }) {
             </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: event?.data?.description }} />{" "}
-          <Button title={"Buy Ticket"} />
+          <Button title={"View Event"} />
           <div className="w-full h-[500px] py-4">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d126844.06348606381!2d3.3488896!3d6.537216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sng!4v1710857933472!5m2!1sen!2sng"
