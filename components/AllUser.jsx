@@ -8,7 +8,7 @@ function AllUser() {
   const [allUser, setAllUser] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const postsPerPage = 10;
+  const postsPerPage = 5;
   const [token, setToken] = useState("");
   const role = "user";
 

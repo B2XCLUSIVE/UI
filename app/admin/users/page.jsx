@@ -6,7 +6,7 @@ function FollowersDashboard() {
       <div className="w-full md:10/12">
         <div className="p-2 w-full flex flex-col gap-2">
           <h1 className="text-xl ">All Users</h1>
-          <div className="h-72">
+          <div className="min-h-72">
             <div className="w-full p-2 flex border border-gray-100 rounded-se rounded-ss">
               <div className="w-7/12">
                 <h1 className={` text-xs`}>Users</h1>
