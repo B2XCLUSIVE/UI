@@ -178,7 +178,7 @@ function VideoId({ params }) {
             <div className="flex items-center justify-between py-4 my-4 border-t border-b border-gray-400">
               <div className="flex items-center gap-2">
                 <FaHeart className={``} />
-                <p className={``}>24k</p>
+                <p className={``}>{video?.likes.length}</p>
               </div>
               <div className="flex items-center gap-2">
                 <FaComment className={``} />

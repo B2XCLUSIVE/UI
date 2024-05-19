@@ -14,26 +14,30 @@ function AllUser() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("b2exclusiveuser");
+    if (storedToken) {
+      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+      setToken(cleanedToken);
+    } else {
+      console.error("Bearer token not found");
+    }
+  }, []);
+
   useEffect(() => {
     const fetchdata = async () => {
+      if (!token) return;
       try {
-        const storedToken = localStorage.getItem("b2exclusiveadmin");
-        if (storedToken) {
-          const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
-          setToken(cleanedToken);
-
-          const usersResponse = await axios.get(
-            `https://b2xclusive.onrender.com/api/v1/users/allUsers?role=${role}`,
-            {
-              headers: {
-                Authorization: `Bearer ${cleanedToken}`,
-              },
+        const usersResponse = await axios.get(
+          `https://b2xclusive.onrender.com/api/v1/users/allUsers?role=${role}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
             },
-          );
-          setAllUser(usersResponse.data.data);
-        } else {
-          console.error("Bearer token not found");
-        }
+          },
+        );
+        setAllUser(usersResponse.data.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -42,7 +46,7 @@ function AllUser() {
       }
     };
     fetchdata();
-  }, [currentPage]);
+  }, [token]);
 
   if (error)
     return (

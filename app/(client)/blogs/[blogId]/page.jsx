@@ -85,6 +85,7 @@ function SingleBlog({ params }) {
         `https://b2xclusive.onrender.com/api/v1/post/${blogId}/like`,
         config,
       );
+
       setLike(false); // Update local state to reflect unliked status
       toast.success(like?.response?.data?.message, { position: "top-center" });
 
@@ -163,7 +164,7 @@ function SingleBlog({ params }) {
                   <FaHeart className={``} />
                 )}{" "}
               </div>{" "}
-              <p className={``}>24k</p>
+              <p className={``}>{blog?.likes.length}</p>
             </div>
             <div className="flex items-center gap-2">
               <FaComment className={``} />
