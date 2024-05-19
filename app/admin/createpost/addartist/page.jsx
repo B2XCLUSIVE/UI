@@ -61,8 +61,6 @@ function AddArtists() {
         config,
       );
 
-      console.log(postResponse.data);
-      console.log(formData);
       toast.success(postResponse.data.message, {
         position: "top-center",
       });

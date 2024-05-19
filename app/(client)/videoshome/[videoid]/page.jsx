@@ -18,6 +18,7 @@ import {
   FaShare,
   FaTwitter,
   FaYoutube,
+  FaEye,
 } from "react-icons/fa";
 import axios from "axios";
 
@@ -26,10 +27,15 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import HomeRecentPost from "@/components/HomeRecentPost";
 import { VscLoading } from "react-icons/vsc";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 function VideoId({ params }) {
   const { videoid } = params;
   const [video, setVideo] = useState("");
   const [allVideo, setAllVideo] = useState([]);
+  const [sendingComment, setsendingComment] = useState(false);
+  const [comment, setComment] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -50,6 +56,16 @@ function VideoId({ params }) {
 
     fetchdata();
   }, [videoid]);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("b2exclusiveuser");
+    if (storedToken) {
+      const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
+      setToken(cleanedToken);
+    } else {
+      console.error("Bearer token not found");
+    }
+  }, []);
 
   const handleDownload = async () => {
     try {
@@ -77,6 +93,36 @@ function VideoId({ params }) {
       </div>
     ); // Add a loading state if blog is null
   }
+
+  const handleComment = async (e) => {
+    e.preventDefault();
+    setsendingComment(true);
+    try {
+      const formData = new FormData();
+      formData.append("comment", comment);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      };
+      const commentresponse = await axios.put(
+        `https://b2xclusive.onrender.com/api/v1/track/video/${videoid}/comment`,
+        formData,
+        config,
+      );
+
+      setComment("");
+      window.location.reload();
+    } catch (error) {
+      console.error("Failed to add comment", error.message);
+      toast.error(error?.response?.data?.message || "Failed to add comment", {
+        position: "top-center",
+      });
+    } finally {
+      setsendingComment(false);
+    }
+  };
 
   return (
     <>
@@ -119,10 +165,13 @@ function VideoId({ params }) {
               </div>
 
               <div>
-                <h1 className={` font-bold text-lg`}>Steve Qj</h1>
+                <h1 className={` font-bold text-lg`}>
+                  {video?.user?.userName}
+                </h1>
                 <div className="flex gap-4">
-                  <p className={``}>5 mins Read</p>
-                  <p className={``}>Two days ago</p>
+                  <p className={`text-xs text-gray-400`}>
+                    {video?.updatedAt.split("T")[0]}
+                  </p>
                 </div>
               </div>
             </div>
@@ -133,7 +182,11 @@ function VideoId({ params }) {
               </div>
               <div className="flex items-center gap-2">
                 <FaComment className={``} />
-                <p className={``}>100k</p>
+                <p className={``}>{video?.comments?.length}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaEye className={``} />
+                <p className={``}>{video?.views.length}</p>
               </div>
 
               <FaShare className={``} />
@@ -171,80 +224,74 @@ function VideoId({ params }) {
             ))}
           </div>
           <CategoriesHeading title={"Comments"} />
-          <div className={`p-4 flex gap-4 `}>
-            <div className="w-[200px]  md:w-[50px] h-[50px]">
-              <Image
-                src={"/alb.jpeg"}
-                width={1000}
-                height={1000}
-                alt="alb"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <div>
-                <h1 className={`font-bold text-md md:text-base text-[12px] `}>
-                  Brain Deo
-                </h1>
-                <p className={` md:text-base text-[10px]`}>15-10-2024</p>
-              </div>
-              <p className={`md:text-base text-[10px] `}>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
-                cumque voluptates aperiam tempora nostrum adipisci voluptatem
-                numquam dolorem a quisquam?
-              </p>
-              <div
-                onClick={() => setShowComment(true)}
-                className="text-primarycolor md:text-base text-[10px]"
-              >
-                Reply
-              </div>
-
-              <div className={`p-4 flex gap-4 `}>
-                <div className="w-[200px]  md:w-[50px] h-[50px]">
-                  <Image
-                    src={"/alb.jpeg"}
-                    width={1000}
-                    height={1000}
-                    alt="alb"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <div>
-                    <h1
-                      className={`font-bold text-md md:text-base text-[12px] `}
-                    >
-                      Brain Deo
-                    </h1>
-                    <p className={`md:text-base text-[10px]`}>15-10-2024</p>
+          <div>
+            {video?.comments ? (
+              video?.comments.map((comment) => (
+                <div key={comment.id} className={`p-4 flex gap-4 `}>
+                  <div className="w-[200px]  md:w-[50px] h-[50px]">
+                    <Image
+                      src={pld}
+                      width={1000}
+                      height={1000}
+                      alt="alb"
+                      className="w-full h-full object-cover rounded-full"
+                    />
                   </div>
-                  <p className={`md:text-base text-[10px] `}>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Illo cumque voluptates aperiam tempora nostrum adipisci
-                    voluptatem numquam dolorem a quisquam?
-                  </p>
+
+                  <div className="flex flex-col gap-2">
+                    <div>
+                      <h1
+                        className={`font-bold text-md md:text-base text-[12px] `}
+                      >
+                        {comment?.user?.userName}
+                      </h1>
+                      <p className={` md:text-xs text-gray-400 text-[10px]`}>
+                        {comment.createdAt.split("T")[0]}
+                      </p>
+                    </div>
+                    <p className={`md:text-base text-[10px] `}>
+                      {comment?.content}{" "}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <p>No Comment</p>
+            )}
+          </div>{" "}
+          <div
+            onClick={() => setShowComment(true)}
+            className="text-primarycolor md:text-base text-[10px] cursor-pointer p-3 border rounded-md "
+          >
+            Add Comment
           </div>
           {showComment ? (
             user === null ? (
               <Link href={"/login"}>Please login to drop a comment</Link>
             ) : (
-              <form className="p-4">
+              <form className="p-4" onSubmit={handleComment}>
                 <textarea
-                  name=""
+                  name="comment"
                   id=""
+                  value={comment}
                   cols="10"
+                  onChange={(e) => setComment(e.target.value)}
                   rows="10"
                   className={`  w-full h-[100px] border my-2 p-4 bg-white`}
                   placeholder="Type your comments"
                 ></textarea>
 
-                <Button title={"Send Comments"} />
+                <button
+                  type="submit"
+                  // Use handlePost instead of handleingPost
+                  className={`${sendingComment ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 text-white`}
+                >
+                  {sendingComment ? (
+                    <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
+                  ) : (
+                    "send comment"
+                  )}
+                </button>
               </form>
             )
           ) : (
