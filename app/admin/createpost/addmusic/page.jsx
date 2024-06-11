@@ -6,6 +6,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { jwtDecode } from "jwt-decode";
 function AddMusic() {
   const [allArtist, setALlArtist] = useState([]);
   const [gettingArtist, setGettingArtist] = useState(false);
@@ -24,16 +25,37 @@ function AddMusic() {
 
   const [token, setToken] = useState(""); // State to hold the token
 
+  const [isTokenExpired, setIsTokenExpired] = useState(false);
+
   useEffect(() => {
     const storedToken = localStorage.getItem("b2exclusiveadmin");
     if (storedToken) {
       const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
-      setToken(cleanedToken);
+
+      try {
+        const decodedToken = jwtDecode(cleanedToken);
+        const currentTime = Date.now() / 1000; // Current time in seconds
+
+        if (decodedToken.exp < currentTime) {
+          console.error("Token is expired");
+          toast.error("Invalid or Expired token, please sign in", {
+            position: "top-center",
+          });
+          setIsTokenExpired(true);
+          // Optionally, you can remove the expired token from localStorage
+          localStorage.removeItem("b2exclusiveadmin");
+          router.push("/adminlogin");
+        } else {
+          setToken(cleanedToken);
+          setIsTokenExpired(false);
+        }
+      } catch (error) {
+        console.error("Invalid token:", error);
+      }
     } else {
       console.error("Bearer token not found");
     }
-  }, []);
-
+  }, [router]);
   useEffect(() => {
     const fetchData = async () => {
       setGettingArtist(true);
