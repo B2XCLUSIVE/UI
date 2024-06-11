@@ -156,6 +156,7 @@ function AddVideos() {
               name="title"
               placeholder="Enter Video Title"
               className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
+              required
             />
           </div>
           <div className="flex gap-4 w-full items-center">
@@ -168,6 +169,7 @@ function AddVideos() {
                 onChange={(e) =>
                   setVideo({ ...video, artisId: e.target.value })
                 }
+                required
               >
                 <option value="null">
                   {gettingArtist
@@ -197,6 +199,7 @@ function AddVideos() {
                 type="text"
                 placeholder="Enter video duration"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>
@@ -212,6 +215,7 @@ function AddVideos() {
                 type="text"
                 placeholder="Enter video Title"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
 
@@ -231,6 +235,7 @@ function AddVideos() {
                 type="text"
                 placeholder="Enter video Title"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
 
@@ -250,6 +255,7 @@ function AddVideos() {
                 type="text"
                 placeholder="Enter Blog Title"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>
@@ -265,6 +271,7 @@ function AddVideos() {
                 name="thumbnail"
                 placeholder="Upload File"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>
@@ -294,6 +301,7 @@ function AddVideos() {
                 type="file"
                 placeholder="Upload video"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>

@@ -151,6 +151,7 @@ function AddEvent() {
               name="title"
               placeholder="Enter Event Title"
               className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
+              required
             />
           </div>
           <div className="flex gap-4 w-full md:flex-row flex-col md:items-center">
@@ -165,6 +166,7 @@ function AddEvent() {
                 type="text"
                 placeholder="Enter subtitle"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
 
@@ -173,6 +175,7 @@ function AddEvent() {
               <select
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
                 name="organisersId[]"
+                required
                 id=""
                 onChange={(e) =>
                   setEvent({ ...event, organisersId: e.target.value })
@@ -204,6 +207,7 @@ function AddEvent() {
                 type="date"
                 placeholder="Enter music duration"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
             <div className="flex flex-col md:w-3/12">
@@ -217,6 +221,7 @@ function AddEvent() {
                 type="text"
                 placeholder="Enter music location"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>
@@ -230,6 +235,7 @@ function AddEvent() {
                 name="files"
                 placeholder="Upload File"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>

@@ -120,6 +120,7 @@ function AddOrganizer() {
             type="text"
             placeholder="Enter Organizer Name"
             className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
+            required
           />
         </div>
         <div className="flex w-full flex-col gap-2">
@@ -128,6 +129,7 @@ function AddOrganizer() {
             type="file"
             onChange={(e) => setFile(e.target.files[0])}
             className="p-2 w-full bg-transparent rounded-lg  outline-none"
+            required
           />
           {/* Optional: Display the file name */}
           {file ? (
@@ -162,6 +164,7 @@ function AddOrganizer() {
               type="text"
               placeholder="Enter Organizer"
               className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+              required
             ></textarea>
           </div>
         </div>

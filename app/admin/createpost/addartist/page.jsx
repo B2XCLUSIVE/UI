@@ -114,6 +114,7 @@ function AddArtists() {
             type="text"
             placeholder="Enter Artist Name"
             className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
+            required
           />
         </div>
         <div className="flex w-full flex-col gap-2">
@@ -122,6 +123,7 @@ function AddArtists() {
             type="file"
             onChange={(e) => setFile(e.target.files[0])}
             className="p-2 w-full bg-transparent rounded-lg  outline-none"
+            required
           />
           {/* Optional: Display the file name */}
           {file ? (
@@ -154,6 +156,7 @@ function AddArtists() {
               type="text"
               placeholder="Enter artists biography"
               className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+              required
             ></textarea>
           </div>
         </div>

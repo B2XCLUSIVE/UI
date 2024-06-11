@@ -151,6 +151,7 @@ function AddMusic() {
               name="title"
               placeholder="Enter Music Title"
               className=" w-full bg-transparent rounded-lg text-2xl  outline-none"
+              required
             />
           </div>
           <div className="flex flex-col md:flex-row gap-4 w-full md:items-center ">
@@ -165,6 +166,7 @@ function AddMusic() {
                 name="subTitle"
                 placeholder="Enter subtitle"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
 
@@ -177,6 +179,7 @@ function AddMusic() {
                 onChange={(e) =>
                   setMusic({ ...music, artistId: e.target.value })
                 }
+                required
               >
                 <option value="null">
                   {gettingArtist
@@ -211,6 +214,7 @@ function AddMusic() {
                 type="text"
                 placeholder="Enter music duration"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>
@@ -224,6 +228,7 @@ function AddMusic() {
                 name="thumbnail"
                 placeholder="Upload File"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>
@@ -253,6 +258,7 @@ function AddMusic() {
                 name="audios"
                 placeholder="Upload File"
                 className="p-4 w-full bg-transparent rounded-lg border-gray-200 border outline-none"
+                required
               />
             </div>
           </div>
