@@ -93,8 +93,8 @@ function AddArtists() {
     } catch (error) {
       console.error("Failed to upload post", error.message);
       toast.error(
-        error?.response?.data?.errorResponse?.message ||
-          "Failed to upload post",
+        error?.response?.data?.message ||
+          error?.response?.data?.errorResponse?.message,
         {
           position: "top-center",
         },

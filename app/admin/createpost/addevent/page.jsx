@@ -125,7 +125,8 @@ function AddEvent() {
     } catch (error) {
       console.error("Failed to add Event", error.message);
       toast.error(
-        error?.response?.data?.errorResponse?.message || "Failed to add event",
+        error?.response?.data?.message ||
+          error?.response?.data?.errorResponse?.message,
         {
           position: "top-center",
         },
