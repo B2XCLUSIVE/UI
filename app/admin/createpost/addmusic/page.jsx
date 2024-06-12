@@ -124,7 +124,7 @@ function AddMusic() {
     } catch (error) {
       console.error("Failed to upload music", error.message);
       toast.error(
-        error?.response?.data?.errorResponse?.message ||
+        error?.response?.data?.message ||
           error?.response?.data?.errorResponse?.message,
         {
           position: "top-center",
