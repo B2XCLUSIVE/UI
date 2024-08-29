@@ -25,55 +25,57 @@ import {
 import HomePost from "@/components/HomePosts";
 import HomeEvents from "@/components/HomeEvents";
 import HomeRecentPost from "@/components/HomeRecentPost";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <main>
-      <section className="herosection p-8 md:p-36 w-full  relative">
-        <div className="bg-[#000] opacity-35 w-full h-full absolute top-0 left-0 right-0 bottom-0"></div>
-
-        <h1 className="text-4xl text-white font-extrabold text-center z-10">
-          Stories, Thoughts Ideas and More
-        </h1>
-        <p className="z-10">
-          Ignite Your Curiosity and Imagination Through Captivating Stories and
-          Inspiring Insights. Explore, Learn, and Discover with Us!
-        </p>
-
-        <div className="w-full md:w-5/6 rounded-full flex items-center z-10 border border-white">
-          <input
-            type="text"
-            placeholder="Search here"
-            className="w-11/12 bg-transparent p-4 text-white outline-none"
-          />
-          <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
-            <FaSearch /> Search
-          </button>
-        </div>
-        <div className="flex flex-wrap z-10 md:gap-4 gap-2 justify-center ">
-          <Link
-            className="py-1 text-white flex items-center text-[10px] md:text-base gap-1 px-4 rounded-full border border-white"
-            href={"#"}
-          >
-            <FaSearch />
-            Trending Music
-          </Link>
-          <Link
-            className="py-1 text-white flex items-center gap-1 px-4 rounded-full md:text-base text-[10px] border border-white"
-            href={"#"}
-          >
-            <FaSearch />
-            Viral Videos
-          </Link>
-          <Link
-            className="py-1 text-white flex items-center gap-1 px-4 rounded-full md:text-base text-[10px] border border-white"
-            href={"#"}
-          >
-            <FaSearch />
-            Trending Topics
-          </Link>
-        </div>
-      </section>
+      {/* <section className="herosection p-8 md:p-36 w-full  relative"> */}
+      {/*   <div className="bg-[#000] opacity-35 w-full h-full absolute top-0 left-0 right-0 bottom-0"></div> */}
+      {/**/}
+      {/*   <h1 className="text-4xl text-white font-extrabold text-center z-10"> */}
+      {/*     Stories, Thoughts Ideas and More */}
+      {/*   </h1> */}
+      {/*   <p className="z-10"> */}
+      {/*     Ignite Your Curiosity and Imagination Through Captivating Stories and */}
+      {/*     Inspiring Insights. Explore, Learn, and Discover with Us! */}
+      {/*   </p> */}
+      {/**/}
+      {/*   <div className="w-full md:w-5/6 rounded-full flex items-center z-10 border border-white"> */}
+      {/*     <input */}
+      {/*       type="text" */}
+      {/*       placeholder="Search here" */}
+      {/*       className="w-11/12 bg-transparent p-4 text-white outline-none" */}
+      {/*     /> */}
+      {/*     <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2"> */}
+      {/*       <FaSearch /> Search */}
+      {/*     </button> */}
+      {/*   </div> */}
+      {/*   <div className="flex flex-wrap z-10 md:gap-4 gap-2 justify-center "> */}
+      {/*     <Link */}
+      {/*       className="py-1 text-white flex items-center text-[10px] md:text-base gap-1 px-4 rounded-full border border-white" */}
+      {/*       href={"#"} */}
+      {/*     > */}
+      {/*       <FaSearch /> */}
+      {/*       Trending Music */}
+      {/*     </Link> */}
+      {/*     <Link */}
+      {/*       className="py-1 text-white flex items-center gap-1 px-4 rounded-full md:text-base text-[10px] border border-white" */}
+      {/*       href={"#"} */}
+      {/*     > */}
+      {/*       <FaSearch /> */}
+      {/*       Viral Videos */}
+      {/*     </Link> */}
+      {/*     <Link */}
+      {/*       className="py-1 text-white flex items-center gap-1 px-4 rounded-full md:text-base text-[10px] border border-white" */}
+      {/*       href={"#"} */}
+      {/*     > */}
+      {/*       <FaSearch /> */}
+      {/*       Trending Topics */}
+      {/*     </Link> */}
+      {/*   </div> */}
+      {/* </section> */}
+      <HeroSection />
 
       <section className="md:w-5/6 mx-auto grid grid-cols-3 gap-4  p-4">
         <div className="w-full h-48 relative">

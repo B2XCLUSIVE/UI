@@ -187,7 +187,12 @@ function SingleBlog({ params }) {
               className="w-full h-full object-cover"
             />
           </div>
-          <div dangerouslySetInnerHTML={{ __html: blog.description }} />{" "}
+          <div
+            className="text-2xl text-white"
+            dangerouslySetInnerHTML={{
+              __html: blog.descriptionsplit(" ").slice(0, 20).join(" ") + "...",
+            }}
+          />{" "}
         </div>
         <CategoriesHeading title={"Related Articles by Tags"} />
         <div className="grid grid-cols-2 gap-4 py-4">
