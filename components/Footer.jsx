@@ -1,13 +1,10 @@
 "use client";
 import Link from "next/link";
 import {
-  FaBlog,
   FaFacebook,
-  FaHamburger,
   FaLinkedin,
   FaSoundcloud,
   FaTwitter,
-  FaUser,
   FaYoutube,
 } from "react-icons/fa";
 
@@ -83,12 +80,12 @@ function Footer() {
             >
               Contact Us
             </Link>
-            <Link
-              className="text-white text-[11px] py-1 px-2  hover:bg-primarycolor rounded-lg"
-              href={"/adminlogin"}
-            >
-              Admin
-            </Link>
+            {/* <Link */}
+            {/*   className="text-white text-[11px] py-1 px-2  hover:bg-primarycolor rounded-lg" */}
+            {/*   href={"/adminlogin"} */}
+            {/* > */}
+            {/*   Admin */}
+            {/* </Link> */}
           </div>
         </div>
       </div>

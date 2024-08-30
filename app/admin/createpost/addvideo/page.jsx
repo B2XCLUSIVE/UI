@@ -46,7 +46,7 @@ function AddVideos() {
           setIsTokenExpired(true);
           // Optionally, you can remove the expired token from localStorage
           localStorage.removeItem("b2exclusiveadmin");
-          router.push("/adminlogin");
+          router.push("/login");
         } else {
           setToken(cleanedToken);
           setIsTokenExpired(false);

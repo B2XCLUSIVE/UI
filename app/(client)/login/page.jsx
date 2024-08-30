@@ -9,7 +9,7 @@ import Link from "next/link";
 import axios from "axios";
 
 function Login() {
-  const { theme, setUser, setUserId } = useContext(ThemeContext);
+  const { theme, setUser, setUserId, setadminUser } = useContext(ThemeContext);
   const router = useRouter();
 
   const [signInUser, setsignInUser] = useState({
@@ -39,6 +39,7 @@ function Login() {
       });
       setTimeout(() => {
         if (userData?.data?.role === "admin") {
+          setadminUser(userData?.data?.token);
           router.push("/admin");
         } else {
           router.push("/");

@@ -1,17 +1,16 @@
 "use client";
-import SideBar from "@/components/SideBar";
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
-function Layout({ children }) {
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+
+export const useAuth = () => {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem("b2exclusiveadmin");
     const expirationTime = localStorage.getItem("tokenExpiration");
 
-    if (!token) {
+    if (!token || Date.now() > expirationTime) {
       // Token not found or expired, redirect to login
       localStorage.removeItem("b2exclusiveadmin");
 
@@ -22,18 +21,5 @@ function Layout({ children }) {
     }
   }, [router]);
 
-  if (!isAuthenticated) {
-    return null;
-  }
-
-  return (
-    <>
-      <div className="md:flex h-full relative w-full mx-auto">
-        <SideBar />
-        {children}
-      </div>
-    </>
-  );
-}
-
-export default Layout;
+  return isAuthenticated;
+};

@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { FaBlog, FaComment, FaDownload, FaEye, FaUser } from "react-icons/fa";
+import { FaBlog, FaDownload, FaEye, FaUser } from "react-icons/fa";
 import { ThemeContext } from "@/context/ThemeContext";
 import Post from "@/components/Post";
 import Followers from "@/components/Followers";
