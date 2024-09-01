@@ -1,11 +1,11 @@
 function SectionHeader({ title, desc }) {
   return (
     <>
-      <div className="bg-gradient-to-tr from-primarycolor to-orange-600 p-8 md:p-32 flex flex-col items-center">
-        <h1 className="font-bold text-2xl text-center text-white md:text-6xl">
+      <div className="bg-primarycolor p-8 md:p-24 h-[350px] flex flex-col items-center justify-center">
+        <h1 className="font-bold text-2xl text-center text-white md:text-4xl">
           {title}{" "}
         </h1>
-        <p className=" md:text-lg text-white md:w-4/6 mx-auto text-center">
+        <p className=" md:text-lg text-white md:w-3/6 mx-auto text-center">
           {desc}
         </p>
       </div>

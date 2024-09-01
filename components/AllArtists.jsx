@@ -70,7 +70,7 @@ function AllArtists() {
     <>
       <div>
         <section
-          className={` md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-8`}
+          className={` md:w-5/6 p-8 mx-auto  grid grid-cols-2 md:grid-cols-4 gap-4`}
         >
           {currentPosts?.map((data) => (
             <Artist key={data.id} {...data} />
