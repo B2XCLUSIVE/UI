@@ -2,7 +2,7 @@
 import SideBar from "@/components/SideBar";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Layout({ children }) {
   const router = useRouter();
