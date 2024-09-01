@@ -18,39 +18,50 @@ function HeroSection() {
     pauseOnHover: true,
   };
   const [allPost, setAllPost] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts`,
-        );
-        setAllPost(response?.data?.data);
-        setIsLoading(false);
-        const imageUrl = console.log(allPost);
-      } catch (error) {
-        console.log(error.message);
-        setError(error.message || "Error fetching posts");
-        setIsLoading(false);
-      }
-    };
-    fetchdata();
-  }, []);
 
+  const slideshow = [
+    {
+      id: 1,
+      img: "/video.webp",
+      text: "Watch the latest Music Videos",
+      link: "/videoshome",
+      subtext:
+        "We provide you the latest music videos as they come in HD quality. Available to watch and   download.",
+    },
+    {
+      id: 2,
+      img: "/music.webp",
+      text: "Catch Up on the Latest Trending Musics",
+      link: "/musics",
+      subtext:
+        "We provide you the latest music videos as they come in HD quality. Available to watch and   download.",
+    },
+    {
+      id: 3,
+      img: "/blog.jpeg",
+      text: "Find all the exciting news and gossips here",
+      link: "/blogs",
+      subtext:
+        "We provide you the latest music videos as they come in HD quality. Available to watch and   download.",
+    },
+    {
+      id: 4,
+      img: "/event.jpg",
+      text: "Our latest events are ready now",
+      link: "/upcomingevents",
+      subtext:
+        "We provide you the latest music videos as they come in HD quality. Available to watch and   download.",
+    },
+  ];
   return (
     <>
       <div className="slider-container">
         <Slider {...settings}>
-          {allPost.map((each) => (
+          {slideshow.map((each) => (
             <div className="relative" key={each.id}>
-              <div className="bg-black w-full h-[500px] relative">
+              <div className="bg-black w-full h-[600px] relative">
                 <Image
-                  src={
-                    each.image && each.image.length > 0
-                      ? each.image[0]?.url
-                      : pld
-                  }
+                  src={each.img}
                   width={1000}
                   height={1000}
                   alt="hero"
@@ -58,23 +69,18 @@ function HeroSection() {
                 />
                 <div className="bg-gradient-to-t from-black  w-full absolute top-0 bottom-0 left-0 right-0"></div>
               </div>
-              <div className="absolute bottom-5 p-8 flex flex-col gap-2 items-start">
-                <h1 className="font-bold text-4xl md:text-5xl text-white">
-                  {each.title}
+              <div className="absolute top-0 bottom-0 right-0 left-0 p-8 flex flex-col gap-4 items-center justify-center">
+                <h1 className="font-bold text-4xl md:text-5xl text-white uppercase">
+                  {each.text}
                 </h1>
-                <div
-                  className="text-white text-xl md:text-2xl font-thin"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      each.description.split(" ").slice(0, 20).join(" ") +
-                      "...",
-                  }}
-                />
+                <p className="text-white text-2xl w-3/6 mx-auto text-center">
+                  {each.subtext}
+                </p>
                 <Link
-                  className="p-2 text-sm text-primarycolor rounded-full border border-primarycolor"
-                  href={`/blogs/${each.id}`}
+                  className="py-2 px-4 text-sm text-primarycolor rounded-full border border-primarycolor"
+                  href={each.link}
                 >
-                  Read More{" "}
+                  EXPLORE{" "}
                 </Link>
               </div>{" "}
             </div>

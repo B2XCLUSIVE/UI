@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.light-head-bg {
-  background-color: #00000022;
+body {
+  background-color: #f4f7fa;
 }
 
 .dark-head-bg {

@@ -25,6 +25,50 @@ function Header() {
 
   const { user, signin, profileOptions } = useContext(ThemeContext);
 
+  const navlinks = [
+    {
+      id: 1,
+      nav: "Home",
+      link: "/",
+    },
+    {
+      id: 2,
+      nav: "Blogs",
+      link: "/blogs",
+    },
+    {
+      id: 3,
+      nav: "Events",
+      link: "/upcomingevents",
+    },
+    {
+      id: 4,
+      nav: "Artists",
+      link: "/artists",
+    },
+    {
+      id: 5,
+      nav: "Musics",
+      link: "/musics",
+    },
+
+    {
+      id: 6,
+      nav: "Videos",
+      link: "/videos",
+    },
+    {
+      id: 7,
+      nav: "About Us",
+      link: "/about",
+    },
+    {
+      id: 8,
+      nav: "Contact Us",
+      link: "/contact",
+    },
+  ];
+
   const userId =
     typeof window !== "undefined"
       ? localStorage.getItem("b2exclusiveuserid")
@@ -50,13 +94,40 @@ function Header() {
   return (
     <>
       <div className={`p-4 `}>
-        <div
-          className={`md:w-3/4 mx-auto flex items-center gap-4 flex-nowrap overflow-hidden`}
-        >
-          <div className="bg-primarycolor p-2 rounded-lg">
-            <p className={` text-[10px]`}>Breaking news</p>
+        <div className={`md:w-3/4 mx-auto flex items-center gap-2`}>
+          <div className="bg-primarycolor p-2 w-3/12 flex justify-center  ">
+            <p className={` text-[10px] text-white`}>Breaking News</p>
           </div>
-          <p className={`text-[10px]`}>Lorem ipsum,</p>
+          <div className="">
+            <marquee behavior="" direction="left">
+              <div className="flex gap-8">
+                <p className="text-sm">
+                  {" "}
+                  Wike Threatens PDP Govs Supporting Fubara, Vows to Instigate
+                  Crises in Their
+                </p>
+                <p className="text-sm">
+                  {" "}
+                  Again, police invite NLC president, secretary over terrorism
+                  claim
+                </p>
+                <p className="text-sm">
+                  {" "}
+                  Female travellers’ tales of sexual assault on Lagos bridges
+                </p>
+                <p className="text-sm">
+                  {" "}
+                  Nigeria building collapses: Why Lagos constructions keep
+                  crashing down
+                </p>
+                <p className="text-sm">
+                  {" "}
+                  Victor Osimhen humiliated by Chelsea transfer snub as Antonio
+                  Conte makes brutal decision{" "}
+                </p>
+              </div>{" "}
+            </marquee>
+          </div>{" "}
         </div>
       </div>
 
@@ -223,58 +294,17 @@ function Header() {
           </div>
 
           <div
-            className={` rounded-lg z-30 hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between backdrop-blur-lg`}
+            className={` z-30 hidden md:flex py-3 px-20 absolute left-0 right-0 -bottom-14 w-3/4 mx-auto justify-between bg-white`}
           >
-            <Link
-              className={` rounded-lg text-white text-sm py-1 px-2  hover:bg-primarycolor`}
-              href={"/"}
-            >
-              Home
-            </Link>
-            <Link
-              className={` text-sm py-1 px-2 text-white hover:bg-primarycolor rounded-lg`}
-              href={"blogs"}
-            >
-              Blogs
-            </Link>
-
-            <Link
-              className={` text-sm py-1 px-2 text-white  hover:bg-primarycolor rounded-lg`}
-              href={"/upcomingevents"}
-            >
-              Event
-            </Link>
-            <Link
-              className={` text-sm py-1 px-2 text-white  hover:bg-primarycolor rounded-lg`}
-              href={"/artists"}
-            >
-              Artists
-            </Link>
-            <Link
-              className={` text-sm py-1 px-2 text-white  hover:bg-primarycolor rounded-lg`}
-              href={"/musics"}
-            >
-              Musics
-            </Link>
-
-            <Link
-              className={`text-sm py-1 px-2 text-white hover:bg-primarycolor rounded-lg`}
-              href={"/videoshome"}
-            >
-              Videos
-            </Link>
-            <Link
-              className={`text-sm py-1 px-2 text-white  hover:bg-primarycolor rounded-lg`}
-              href={"/about"}
-            >
-              About Us
-            </Link>
-            <Link
-              className={`text-sm py-1 px-2 text-white  hover:bg-primarycolor rounded-lg`}
-              href={"/contact"}
-            >
-              Contact Us
-            </Link>
+            {navlinks.map((link) => (
+              <Link
+                key={link.id}
+                className={` text-black text-sm py-1 px-2  hover:bg-primarycolor hover:text-white cursor-pointer`}
+                href={link.link}
+              >
+                {link.nav}
+              </Link>
+            ))}{" "}
           </div>
         </div>
       </div>

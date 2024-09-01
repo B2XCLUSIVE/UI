@@ -77,61 +77,61 @@ export default function Home() {
       {/* </section> */}
       <HeroSection />
 
-      <section className="md:w-5/6 mx-auto grid grid-cols-3 gap-4  p-4">
-        <div className="w-full h-48 relative">
-          <Image
-            src={"/talk.jpeg"}
-            className="w-full h-full object-cover"
-            width={1000}
-            height={1000}
-            alt="music"
-          />
-
-          <div className="absolute top-6 left-2 md:left-6 flex flex-col">
-            <h1 className="font-bold  text-white text-sm md:text-xl">
-              The Top 50
-            </h1>
-            <p className="text-xs md:text-base text-white">
-              Trending Discussions
-            </p>
-            <FaBook className="text-white text-2xl" />
-          </div>
-        </div>
-        <div className="w-full h-48 relative">
-          <Image
-            src={"/pod.jpeg"}
-            className="w-full h-full object-cover"
-            width={1000}
-            height={1000}
-            alt="music"
-          />
-
-          <div className="absolute top-6 left-2 md:left-6 flex flex-col">
-            <h1 className="font-bold text-sm md:text-xl text-white">
-              Trending Discussions
-            </h1>
-            <p className="text-white text-xs md:text-base">Latests Gists</p>
-            <FaMicrophone className=" text-white text-2xl" />
-          </div>
-        </div>
-        <div className="w-full relative bg-black">
-          <Image
-            src={"/music.jpeg"}
-            className="w-full h-48 object-cover"
-            width={1000}
-            height={1000}
-            alt="music"
-          />
-
-          <div className="absolute top-6 left-2 md:left-6 flex flex-col">
-            <h1 className="font-bold text-sm md:text-xl text-white">
-              Trending Musics
-            </h1>
-            <p className="text-white text-xs md:text-base">Nigeria</p>
-            <FaMusic className="text-2xl text-white" />
-          </div>
-        </div>
-      </section>
+      {/* <section className="md:w-5/6 mx-auto grid grid-cols-3 gap-4  p-4"> */}
+      {/*   <div className="w-full h-48 relative"> */}
+      {/*     <Image */}
+      {/*       src={"/talk.jpeg"} */}
+      {/*       className="w-full h-full object-cover" */}
+      {/*       width={1000} */}
+      {/*       height={1000} */}
+      {/*       alt="music" */}
+      {/*     /> */}
+      {/**/}
+      {/*     <div className="absolute top-6 left-2 md:left-6 flex flex-col"> */}
+      {/*       <h1 className="font-bold  text-white text-sm md:text-xl"> */}
+      {/*         The Top 50 */}
+      {/*       </h1> */}
+      {/*       <p className="text-xs md:text-base text-white"> */}
+      {/*         Trending Discussions */}
+      {/*       </p> */}
+      {/*       <FaBook className="text-white text-2xl" /> */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/*   <div className="w-full h-48 relative"> */}
+      {/*     <Image */}
+      {/*       src={"/pod.jpeg"} */}
+      {/*       className="w-full h-full object-cover" */}
+      {/*       width={1000} */}
+      {/*       height={1000} */}
+      {/*       alt="music" */}
+      {/*     /> */}
+      {/**/}
+      {/*     <div className="absolute top-6 left-2 md:left-6 flex flex-col"> */}
+      {/*       <h1 className="font-bold text-sm md:text-xl text-white"> */}
+      {/*         Trending Discussions */}
+      {/*       </h1> */}
+      {/*       <p className="text-white text-xs md:text-base">Latests Gists</p> */}
+      {/*       <FaMicrophone className=" text-white text-2xl" /> */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/*   <div className="w-full relative bg-black"> */}
+      {/*     <Image */}
+      {/*       src={"/music.jpeg"} */}
+      {/*       className="w-full h-48 object-cover" */}
+      {/*       width={1000} */}
+      {/*       height={1000} */}
+      {/*       alt="music" */}
+      {/*     /> */}
+      {/**/}
+      {/*     <div className="absolute top-6 left-2 md:left-6 flex flex-col"> */}
+      {/*       <h1 className="font-bold text-sm md:text-xl text-white"> */}
+      {/*         Trending Musics */}
+      {/*       </h1> */}
+      {/*       <p className="text-white text-xs md:text-base">Nigeria</p> */}
+      {/*       <FaMusic className="text-2xl text-white" /> */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/* </section> */}
 
       <section className="w-full md:w-5/6 mx-auto md:flex p-4 gap-6">
         <div className="w-full md:w-3/4">
@@ -142,14 +142,13 @@ export default function Home() {
             <AlbumCover />
             <AlbumCover />
             <AlbumCover />
-            <AlbumCover />
           </div>
 
           <div className="flex items-end justify-between mb-10">
-            <div className="w-3/4 h-[3px] bg-primarycolor"></div>
+            <div className="w-[80%] h-[2px] bg-primarycolor"></div>
             <div className="flex gap-4">
-              <FaBackward className={`border w-12 h-12 p-2 `} />
-              <FaForward className={`border w-12 h-12 p-2 `} />
+              <FaBackward className={`border w-5 h-5 p-1  `} />
+              <FaForward className={`border w-5 h-5 p-1 `} />
             </div>
           </div>
 
@@ -167,10 +166,10 @@ export default function Home() {
           </div>
 
           <div className="flex items-end justify-between mb-10">
-            <div className="w-3/4 h-[3px] bg-primarycolor"></div>
+            <div className="w-[80%] h-[3px] bg-primarycolor"></div>
             <div className="flex gap-4">
-              <FaBackward className={`border w-12 h-12 p-2 `} />
-              <FaForward className={`border w-12 h-12 p-2 `} />
+              <FaBackward className={`border w-5 h-5 p-1  `} />
+              <FaForward className={`border w-5 h-5 p-1 `} />
             </div>
           </div>
 

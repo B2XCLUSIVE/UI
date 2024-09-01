@@ -6,24 +6,23 @@ function RecentPost({ id, title, image, updatedAt }) {
 
   return (
     <>
-      <div className={` p-3 md:p-4 flex gap-3 md:gap-4  items-center `}>
-        <div className="w-1/2 rounded-lg h-[100px]">
+      <div
+        className={` p-3 md:p-4 flex gap-3 md:gap-4  items-center bg-white hover:text-primarycolor transition `}
+      >
+        <div className="w-1/4  h-[100px]">
           <Image
             src={imageUrl}
             width={1000}
             height={1000}
             alt="all"
-            className="w-full h-full rounded-lg object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
 
         <div className="flex flex-col items-start">
-          <p className="text-white py-1 font-bold text-[10px]  px-3 bg-blue-500 rounded-full">
-            Trending
-          </p>
-          <h1 className={` font-bold text-[14px] md:text-xl`}>
+          <p className={` font-bold text-[14px] md:text-xl`}>
             {title?.split(" ").slice(0, 3).join(" ")}
-          </h1>
+          </p>
           <p className={` text-[14px]`}>{updatedAt?.split("T")[0]}</p>
         </div>
       </div>

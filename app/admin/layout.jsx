@@ -2,7 +2,7 @@
 import SideBar from "@/components/SideBar";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Layout({ children }) {
   const router = useRouter();
@@ -11,7 +11,7 @@ function Layout({ children }) {
     const token = localStorage.getItem("b2exclusiveadmin");
     const expirationTime = localStorage.getItem("tokenExpiration");
 
-    if (!token) {
+    if (!token || Date.now() > expirationTime) {
       // Token not found or expired, redirect to login
       localStorage.removeItem("b2exclusiveadmin");
 

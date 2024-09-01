@@ -1,8 +1,9 @@
 function CategoriesHeading({ title }) {
   return (
     <>
-      <div className={`p-4 bg-gray-50 mt-4 rounded-lg `}>
-        <h1 className={`font-bold `}>{title}</h1>
+      <div className={` flex items-center justify-between gap-4 `}>
+        <h1 className={` `}>{title}</h1>
+        <div className="w-[80%] h-[2px] bg-gray-300"></div>
       </div>
     </>
   );

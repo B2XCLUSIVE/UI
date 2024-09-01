@@ -31,7 +31,7 @@ function SideBar() {
         localStorage.setItem("b2exclusiveadmin", null);
         toast.success(`Admin Logout Successfull`, { position: "top-center" });
         setTimeout(() => {
-          router.push("/adminlogin");
+          router.push("/login");
         }, 2000);
       } else {
         toast.warn(`No user data found`, { position: "top-center" });
