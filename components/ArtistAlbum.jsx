@@ -7,6 +7,7 @@ import { FaDownload, FaHamburger, FaPlay, FaPlus } from "react-icons/fa";
 import ArtistSong from "./ArtistSong";
 import Link from "next/link";
 import pld from "@/public/pld.jpeg";
+import axios from "axios";
 function ArtistAlbum({
   id,
   title,
@@ -14,22 +15,32 @@ function ArtistAlbum({
   subTitle,
   audioUrl,
   createdAt,
+  publicId,
   artist,
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
+
   const handleDownload = async () => {
     try {
-      const response = await fetch(audioUrl);
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
+      const response = await axios.get(
+        `https://b2xclusive.onrender.com/api/v1/track/download?type=audio&publicId=${publicId}&id=${id}`,
+        {
+          responseType: "blob", // Ensure the response is a blob
+        },
+      );
 
-      const anchor = document.createElement("a");
-      anchor.href = url;
-      anchor.download = `${title}.mp3`;
-      anchor.click();
+      const url = window.URL.createObjectURL(new Blob([response.data]));
 
-      // Clean up by revoking the URL object
-      URL.revokeObjectURL(url);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.setAttribute("download", `${title}.mp3`); // You can change the extension based on file type
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      link.parentNode.removeChild(link);
     } catch (error) {
       console.error("Failed to download audio:", error);
       // Handle error
