@@ -133,7 +133,7 @@ export default function Home() {
       {/*   </div> */}
       {/* </section> */}
 
-      <section className="w-full md:w-5/6 mx-auto md:flex p-4 gap-6">
+      <section className="w-full md:w-9/12 mx-auto md:flex mt-8 gap-6">
         <div className="w-full md:w-3/4">
           {/* NEW ALBUM SECTION */}
           <CategoriesHeading title={"New Album releases"} />
@@ -196,7 +196,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full md:w-1/4">
+        <div className="w-full md:w-4/12">
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 6 Artists"} />
 
@@ -250,10 +250,10 @@ export default function Home() {
       </section>
 
       <section className="w-full p-4 md:w-5/6 mx-auto md:grid grid-cols-3 md:gap-4">
-        <div>
+        <div className="bg-white p-4">
           <CategoriesHeading title={"Music Soul"} />
 
-          <div className={`p-4 mt-4`}>
+          <div className={` mt-4 flex flex-col gap-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -276,10 +276,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
+        <div className="bg-white p-4">
           <CategoriesHeading title={"Live Concerts"} />
 
-          <div className={`p-4 mt-4`}>
+          <div className={` mt-4 flex flex-col gap-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -302,10 +302,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
+        <div className="bg-white p-4">
           <CategoriesHeading title={"New Albums"} />
 
-          <div className={` p-4 mt-4`}>
+          <div className={` mt-4 flex flex-col gap-4`}>
             <div className="h-[200px] relative">
               <Image
                 src={"/albumcover.jpeg"}
@@ -315,7 +315,7 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-0 p-4">
-                <h1 className="font-bold text-white text-2xl">
+                <h1 className="font-bold text-2xl text-white">
                   All red carpet looks 2018 music awards
                 </h1>
                 <p className="text-white">Arditta Colle -25 July, 2018</p>

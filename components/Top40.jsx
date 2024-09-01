@@ -2,23 +2,24 @@
 import { ThemeContext } from "@/context/ThemeContext";
 import Image from "next/image";
 import { useContext } from "react";
-import { FaArrowDown } from "react-icons/fa";
+
+import { LuCircleDot } from "react-icons/lu";
 
 function Top40() {
   const { theme } = useContext(ThemeContext);
   return (
     <>
       <div
-        className={`${theme}-bgg p-4 md:flex md:justify-between md:items-center`}
+        className={`${theme}-bgg p-4 md:flex md:justify-between md:items-center bg-white`}
       >
         <div className="md:flex md:items-center md:gap-4">
-          <div className="md:w-[200px] h-[100px]">
+          <div className="w-[100px] h-[100px]">
             <Image
               src={"/ol.jpeg"}
               width={1000}
               height={1000}
               alt="ol"
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-cover "
             />
           </div>
           <div>
@@ -36,7 +37,7 @@ function Top40() {
           <p className={`${theme}-text`}>10/4/16</p>
         </div>
         <div className="flex gap-2 items-center py-2 md:py-0">
-          <FaArrowDown className={`${theme}-text`} />
+          <LuCircleDot className={`${theme}-text`} />
           <p className={`${theme}-text text-[12px] md:text-sm md:hidden`}>
             Download
           </p>

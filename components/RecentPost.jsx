@@ -7,9 +7,9 @@ function RecentPost({ id, title, image, updatedAt }) {
   return (
     <>
       <div
-        className={` p-3 md:p-4 flex gap-3 md:gap-4  items-center bg-white hover:text-primarycolor transition `}
+        className={` flex gap-3 md:gap-4  items-center bg-white hover:text-primarycolor transition `}
       >
-        <div className="w-1/4  h-[100px]">
+        <div className="w-[100px]  h-[100px]">
           <Image
             src={imageUrl}
             width={1000}
@@ -21,9 +21,11 @@ function RecentPost({ id, title, image, updatedAt }) {
 
         <div className="flex flex-col items-start">
           <p className={` font-bold text-[14px] md:text-xl`}>
-            {title?.split(" ").slice(0, 3).join(" ")}
+            {title?.split(" ").slice(0, 3).join(" ") || "Test Title"}
           </p>
-          <p className={` text-[14px]`}>{updatedAt?.split("T")[0]}</p>
+          <p className={` text-[14px] text-gray-500`}>
+            {updatedAt?.split("T")[0] || "test date"}
+          </p>
         </div>
       </div>
     </>

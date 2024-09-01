@@ -73,7 +73,7 @@ function HeroSection() {
                 <h1 className="font-bold text-4xl md:text-5xl text-white uppercase">
                   {each.text}
                 </h1>
-                <p className="text-white text-2xl w-3/6 mx-auto text-center">
+                <p className="text-white text-xl w-3/6 mx-auto text-center">
                   {each.subtext}
                 </p>
                 <Link
