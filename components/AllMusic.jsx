@@ -68,7 +68,7 @@ function AllMusic() {
   return (
     <>
       <div>
-        <section className="w-full p-2 md:w-5/6 md:mx-auto  gap-4">
+        <section className="w-full p-2 md:w-5/6 md:mx-auto md:flex flex-col gap-2">
           {currentPosts?.map((music) => (
             <ArtistAlbum key={music.id} {...music} />
           ))}

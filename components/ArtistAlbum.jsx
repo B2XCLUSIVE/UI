@@ -49,9 +49,9 @@ function ArtistAlbum({
 
   return (
     <>
-      <div className="flex flex-col gap-4 ">
-        <section className={``}>
-          <div className="h-[300px] relative ">
+      <div className="flex flex-col gap-4 w-full ">
+        <section className={`flex w-full`}>
+          <div className="w-20 h-20 ">
             <Image
               src={image?.url || pld}
               width={1000}
@@ -59,28 +59,26 @@ function ArtistAlbum({
               alt="artist"
               className="w-full h-full object-cover"
             />
-            <div className="bg-[#0000009d] flex justify-between items-center p-4 absolute left-0 right-0 bottom-0">
-              <div>
-                <h1 className="font-bold text-white text-[12px] md:text-[16px]">
-                  {title}
-                </h1>
-                <p className="text-white md:text-bas text-[10px]">
-                  {artist.name}
-                </p>
-                <p className="text-white text-sm">
-                  {subTitle?.split(" ").slice(0, 5).join(" ")}
-                </p>
-              </div>
-              <div className="flex gap-3 w-1/6">
-                <FaPlay
-                  onClick={() => setShowPlayer(!showPlayer)}
-                  className="text-lg text-white cursor-pointer md:block "
-                />
-                <FaDownload
-                  onClick={handleDownload}
-                  className="text-lg cursor-pointer text-white md:block "
-                />
-              </div>
+          </div>
+          <div className="bg-white flex justify-between items-center p-2 w-full">
+            <div className="flex w-4/6">
+              <h1 className="font-bold text-[12px] md:text-[16px] w-3/6">
+                {title}
+              </h1>
+              <p className=" md:text-base text-[10px] w-2/6">{artist.name}</p>
+              <p className=" text-sm w-1/6">
+                {subTitle?.split(" ").slice(0, 5).join(" ")}
+              </p>
+            </div>
+            <div className="flex gap-3 px-4">
+              <FaPlay
+                onClick={() => setShowPlayer(!showPlayer)}
+                className="text-lg cursor-pointer md:block "
+              />
+              <FaDownload
+                onClick={handleDownload}
+                className="text-lg cursor-pointer  md:block "
+              />
             </div>
           </div>
         </section>

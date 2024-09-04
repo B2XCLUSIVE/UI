@@ -66,7 +66,7 @@ function AllBlogPosts() {
   return (
     <>
       <div>
-        <div className="p-4 grid gap-4">
+        <div className="p-4 md:p-0 grid gap-4">
           {currentPosts &&
             currentPosts.map((post) => <BlogPost key={post.id} {...post} />)}
         </div>

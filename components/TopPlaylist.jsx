@@ -9,7 +9,7 @@ function TopPlaylist() {
   return (
     <>
       <div
-        className={`${theme}-bgg p-4 flex flex-col md:flex-row md:flex gap-4 md:items-center justify-between`}
+        className={`bg-white p-4 flex flex-col md:flex-row md:flex gap-4 md:items-center justify-between`}
       >
         <div className="md:flex md:items-center gap-4">
           <div className="w-full md:w-[50px] h-[50px]">
