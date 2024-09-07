@@ -75,7 +75,7 @@ function Header() {
 
   const userId =
     typeof window !== "undefined"
-      ? localStorage.getItem("b2exclusiveuserid")
+      ? localStorage.getItem("b2exclusiveuserid")?.replace(/^"|"$/g, "")
       : null;
 
   const handleLogout = () => {
