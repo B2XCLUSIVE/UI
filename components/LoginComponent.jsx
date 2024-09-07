@@ -12,7 +12,7 @@ function AuthComponent() {
   const { theme, setUser, setUserId, setadminUser } = useContext(ThemeContext);
   const router = useRouter();
 
-  const [isLogin, setIsLogin] = useState(true); // Tab state: true = login, false = signup
+  const [isLogin, setIsLogin] = useState(false); // Tab state: true = login, false = signup
 
   // State for login and signup forms
   const [signInUser, setsignInUser] = useState({
