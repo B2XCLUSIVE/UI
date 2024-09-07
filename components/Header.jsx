@@ -16,12 +16,16 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
+import LoginComponent from "./LoginComponent";
+import { MdCancel } from "react-icons/md";
 function Header() {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
   function menushow() {
     setShowMenu(!showMenu);
   }
+
+  const [showLogin, setShowLogin] = useState(true);
 
   const { user, signin, profileOptions } = useContext(ThemeContext);
 
@@ -93,7 +97,21 @@ function Header() {
   };
   return (
     <>
-      <div className={`p-4 `}>
+      {showLogin ? (
+        <div className=" bg-[#00000090]  backdrop-blur-sm z-[99] flex items-center fixed left-0 right-0 top-0 bottom-0">
+          <div className=" relative w-3/6 mx-auto">
+            <MdCancel
+              onClick={() => setShowLogin(false)}
+              className="absolute right-32 top-10 z-[50] text-2xl cursor-pointer"
+            />
+            <LoginComponent />
+          </div>{" "}
+        </div>
+      ) : (
+        ""
+      )}
+
+      <div className={`p-4 relative bg-red `}>
         <div className={`md:w-3/4 mx-auto flex items-center gap-2`}>
           <div className="bg-primarycolor p-2 w-3/12 flex justify-center  ">
             <p className={` text-[10px] text-white`}>Breaking News</p>
@@ -170,10 +188,13 @@ function Header() {
                   <FaBlog />
                 </Link>
                 {user === null ? (
-                  <Link href={"/login"} className="flex items-center gap-2">
+                  <div
+                    onClick={() => setShowLogin(true)}
+                    className=" cursor-pointer flex items-center gap-2"
+                  >
                     <FaLock className={``} />
                     <p className={`md:text-base text-[11px]`}>Login</p>
-                  </Link>
+                  </div>
                 ) : (
                   <div onClick={profileOptions} className="relative z-50">
                     {signin ? (
