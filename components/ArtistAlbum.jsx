@@ -75,10 +75,11 @@ function ArtistAlbum({
                 onClick={() => setShowPlayer(!showPlayer)}
                 className="text-lg cursor-pointer md:block "
               />
-              <FaDownload
-                onClick={handleDownload}
-                className="text-lg cursor-pointer  md:block "
-              />
+              <Link
+                href={`https://b2xclusive.onrender.com/api/v1/track/download?type=audio&publicId=${publicId}&id=${id}`}
+              >
+                <FaDownload className="text-lg cursor-pointer  md:block " />
+              </Link>
             </div>
           </div>
         </section>

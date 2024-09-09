@@ -25,7 +25,7 @@ function Header() {
     setShowMenu(!showMenu);
   }
 
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
 
   const { user, signin, profileOptions } = useContext(ThemeContext);
 
