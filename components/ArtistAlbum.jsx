@@ -20,33 +20,7 @@ function ArtistAlbum({
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
 
-  const handleDownload = async () => {
-    try {
-      const response = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/track/download?type=audio&publicId=${publicId}&id=${id}`,
-        {
-          responseType: "blob", // Ensure the response is a blob
-        },
-      );
-
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-
-      const link = document.createElement("a");
-
-      link.href = url;
-      link.setAttribute("download", `${title}.mp3`); // You can change the extension based on file type
-
-      document.body.appendChild(link);
-
-      link.click();
-
-      link.parentNode.removeChild(link);
-    } catch (error) {
-      console.error("Failed to download audio:", error);
-      // Handle error
-    }
-  };
-
+  
   return (
     <>
       <div className="flex flex-col gap-4 w-full ">
