@@ -59,7 +59,7 @@ function Header() {
     {
       id: 6,
       nav: "Videos",
-      link: "/videos",
+      link: "/videoshome",
     },
     {
       id: 7,

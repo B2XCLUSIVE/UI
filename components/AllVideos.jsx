@@ -89,7 +89,7 @@ function AllVideos() {
               key={number}
               onClick={() => setCurrentPage(number)}
               className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
-                currentPage === number ? "bg-black" : ""
+                currentPage === number ? "bg-gray-100" : ""
               }`}
             >
               {number}

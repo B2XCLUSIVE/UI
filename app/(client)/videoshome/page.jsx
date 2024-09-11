@@ -39,7 +39,7 @@ function VideosHome() {
               placeholder="Search here"
               className={`  w-11/12 bg-transparent p-4 text-white outline-none `}
             />
-            <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
+            <button className="rounded-full text-white bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
               <FaSearch /> Search
             </button>
           </div>
@@ -58,12 +58,12 @@ function VideosHome() {
         </div>
       </section>
 
-      <section className=" md:w-5/6 p-4 md:p-8 mx-auto md:flex md:gap-8">
-        <div className=" w-full md:w-3/6">
+      <section className=" md:w-5/6 p-4 md:p-0 mx-auto md:flex md:gap-8">
+        <div className=" w-full md:w-4/6">
           <AllVideos />
         </div>
 
-        <div className=" p-4 md:w-2/5">
+        <div className=" md:w-2/5">
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 10 Artist"} />
 
