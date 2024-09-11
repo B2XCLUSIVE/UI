@@ -67,10 +67,11 @@ function AllEvent() {
   return (
     <>
       <div>
-        {currentPosts?.map((even) => (
-          <EventTicket key={even?.id} {...even} />
-        ))}
-
+        <div className="flex flex-col gap-4">
+          {currentPosts?.map((even) => (
+            <EventTicket key={even?.id} {...even} />
+          ))}
+        </div>
         <div className="flex justify-center mt-4">
           {/* Previous button */}
           <button
@@ -86,7 +87,7 @@ function AllEvent() {
               key={number}
               onClick={() => setCurrentPage(number)}
               className={`border border-gray-500 text-primarycolor md:text-base text-[10px] px-4 py-2 rounded-md mx-1 ${
-                currentPage === number ? "bg-black" : ""
+                currentPage === number ? "bg-gray-100" : ""
               }`}
             >
               {number}

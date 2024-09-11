@@ -20,7 +20,7 @@ function UpcomingEvent() {
               placeholder="Search here"
               className={`  w-11/12 bg-transparent p-4 text-white outline-none `}
             />
-            <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
+            <button className="rounded-full text-white bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
               <FaSearch /> Search
             </button>
           </div>

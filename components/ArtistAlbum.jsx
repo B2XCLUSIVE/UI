@@ -20,7 +20,6 @@ function ArtistAlbum({
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
 
-  
   return (
     <>
       <div className="flex flex-col gap-4 w-full ">
@@ -49,10 +48,14 @@ function ArtistAlbum({
                 onClick={() => setShowPlayer(!showPlayer)}
                 className="text-lg cursor-pointer md:block "
               />
+
               <Link
-                href={`https://b2xclusive.onrender.com/api/v1/track/download?type=audio&publicId=${publicId}&id=${id}`}
+                href={`https://b2xclusive.onrender.com/api/v1/track/download?type=audio&publicId=${publicId}&id=${id}`.replace(
+                  "http://",
+                  "https://",
+                )}
               >
-                <FaDownload className="text-lg cursor-pointer  md:block " />
+                <FaDownload className="text-lg cursor-pointer md:block" />
               </Link>
             </div>
           </div>

@@ -31,7 +31,7 @@ function Blogs() {
               placeholder="Search here"
               className={` w-11/12 bg-transparent p-4 text-white outline-none `}
             />
-            <button className="rounded-full bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
+            <button className="rounded-full text-white bg-primarycolor flex items-center md:text-base text-[12px] py-2 gap-1 px-4 mr-2">
               <FaSearch /> Search
             </button>
           </div>
@@ -51,47 +51,47 @@ function Blogs() {
       </section>
 
       <section className=" md:w-5/6 md:p-8 mx-auto md:flex md:gap-4">
-        <div className="w-full md:w-4/6">
+        <div className="w-full md:w-full">
           <div>
             <AllBlogPosts />
           </div>
         </div>
-        <div className=" p-4 md:w-2/5">
-          {/* TOP PLAYLIST SECTION */}
-          <CategoriesHeading title={"Top Playlists"} />
-
-          <div className="grid grid-cols-2 md:flex md:flex-col gap-2">
-            <TopPlaylist />
-            <TopPlaylist />
-            <TopPlaylist />
-            <TopPlaylist />
-          </div>
-
-          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-
-          {/* GET CONNECTED */}
-          <CategoriesHeading title={"Get Connected"} />
-
-          <div className="flex justify-between p-4">
-            <FaFacebook className={`text-3xl `} />
-            <FaTwitter className={` text-3xl `} />
-            <FaLinkedin className={`text-3xl `} />
-            <FaYoutube className={` text-3xl `} />
-            <FaInstagram className={` text-3xl `} />
-            <FaPinterest className={` text-3xl `} />
-          </div>
-
-          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
-
-          {/* Recent post section */}
-          <CategoriesHeading title={"Recent Posts"} />
-
-          <div className=" flex flex-col gap-1 pt-4 ">
-            <div>
-              <HomeRecentPost />
-            </div>{" "}
-          </div>
-        </div>
+        {/* <div className=" p-4 md:w-2/5"> */}
+        {/*   {/* TOP PLAYLIST SECTION */}
+        {/*   <CategoriesHeading title={"Top Playlists"} /> */}
+        {/**/}
+        {/*   <div className="grid grid-cols-2 md:flex md:flex-col gap-2"> */}
+        {/*     <TopPlaylist /> */}
+        {/*     <TopPlaylist /> */}
+        {/*     <TopPlaylist /> */}
+        {/*     <TopPlaylist /> */}
+        {/*   </div> */}
+        {/**/}
+        {/*   <div className="my-8 w-full h-[3px] bg-primarycolor"></div> */}
+        {/**/}
+        {/*   {/* GET CONNECTED */}
+        {/*   <CategoriesHeading title={"Get Connected"} /> */}
+        {/**/}
+        {/*   <div className="flex justify-between p-4"> */}
+        {/*     <FaFacebook className={`text-3xl `} /> */}
+        {/*     <FaTwitter className={` text-3xl `} /> */}
+        {/*     <FaLinkedin className={`text-3xl `} /> */}
+        {/*     <FaYoutube className={` text-3xl `} /> */}
+        {/*     <FaInstagram className={` text-3xl `} /> */}
+        {/*     <FaPinterest className={` text-3xl `} /> */}
+        {/*   </div> */}
+        {/**/}
+        {/*   <div className="my-8 w-full h-[3px] bg-primarycolor"></div> */}
+        {/**/}
+        {/*   {/* Recent post section */}
+        {/*   <CategoriesHeading title={"Recent Posts"} /> */}
+        {/**/}
+        {/*   <div className=" flex flex-col gap-1 pt-4 "> */}
+        {/*     <div> */}
+        {/*       <HomeRecentPost /> */}
+        {/*     </div>{" "} */}
+        {/*   </div> */}
+        {/* </div> */}
       </section>
     </>
   );

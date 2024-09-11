@@ -7,33 +7,33 @@ function EventTicket({ id, title, image, location, date }) {
     <>
       <Link
         href={`upcomingevents/${id}`}
-        className={`  p-4 md:p-0 md:flex gap-6 justify-between  cursor-pointer`}
+        className={`hover:bg-gray-200 hover:font-bold hover:text-primarycolor transition-all duration-500 bg-white rounded-xl p-4 md:p-0 md:flex gap-6 justify-between items-center  cursor-pointer`}
       >
         <div className="flex gap-6 items-center">
-          <div className="w-[250px] h-[100px] border-r-4 border-primarycolor hidden md:block">
+          <div className="w-[250px] h-[120px] hidden md:block">
             <Image
               src={image.length > 0 ? image[0]?.url : pld}
               width={1000}
               height={1000}
               alt="alb"
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-cover rounded-tl-xl rounded-bl-xl border-r-4 border-primarycolor "
             />
           </div>
 
           <div className="p-4 md:py-4 ">
-            <h1 className={`font-bold md:text-xl `}>{title}</h1>
+            <p className={` md:text-xl `}>{title}</p>
 
             <div className="flex gap-4">
-              <p className={` md:text-base text-[11px]`}>
+              <h1 className={` md:text-base text-[11px]`}>
                 Date: {date.split("T")[0]}
-              </p>
+              </h1>
             </div>
 
-            <p
+            <h1
               className={` md:text-base text-[11px] text-primarycolor font-bold`}
             >
               Location: {location}
-            </p>
+            </h1>
           </div>
         </div>
         <div className="md:p-4 px-4">

@@ -13,7 +13,7 @@ function BlogPost({ id, title, subtitle, image, updatedAt, author }) {
         href={`blogs/${id}`}
         className={` bg-white hover:text-primarycolor transition transition-all duration-500 `}
       >
-        <div className="hidden md:block w-full h-[150px] md:h-[350px]">
+        <div className="hidden md:block w-full h-[150px] md:h-[300px]">
           <Image
             src={imageUrl}
             width={1000}

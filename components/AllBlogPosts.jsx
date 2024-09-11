@@ -66,7 +66,7 @@ function AllBlogPosts() {
   return (
     <>
       <div>
-        <div className="p-4 md:p-0 grid gap-4">
+        <div className="p-4 md:p-0 grid grid-cols-2 gap-4">
           {currentPosts &&
             currentPosts.map((post) => <BlogPost key={post.id} {...post} />)}
         </div>
@@ -86,7 +86,7 @@ function AllBlogPosts() {
               key={number}
               onClick={() => setCurrentPage(number)}
               className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
-                currentPage === number ? "bg-black" : ""
+                currentPage === number ? "bg-gray-50" : ""
               }`}
             >
               {number}

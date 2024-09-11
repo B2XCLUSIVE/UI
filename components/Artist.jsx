@@ -24,7 +24,7 @@ function Artist({ id, name, image, bio }) {
             className="w-full h-full object-cover"
           />
           <div
-            className={`${showDetails ? "top-0" : "top-[80%]"} bg-[#00000060] flex justify-between items-center p-4 transition transition-all duration-500 absolute left-0 right-0 bottom-0 border-b-2 border-primarycolor`}
+            className={`${showDetails ? "top-0" : "top-[80%]"} bg-[#3f254c60] flex justify-between items-center p-4 transition transition-all duration-500 absolute left-0 right-0 bottom-0 border-b-2 border-primarycolor`}
           >
             <div>
               <h1 className=" text-white font-bold text-[11px] md:text-lg">

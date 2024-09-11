@@ -7,7 +7,7 @@ function Event({ id, title, image, location, date }) {
   return (
     <>
       <div
-        className={` flex justify-between hover:bg-[#ffa50080] bg-white transition cursor-pointer hover:text-white`}
+        className={` flex justify-between hover:bg-gray-100 bg-white transition-colors duration-500 cursor-pointer hover:text-primarycolor`}
       >
         <div className="h-[100px] w-2/12 hidden md:block">
           <Image
@@ -30,9 +30,9 @@ function Event({ id, title, image, location, date }) {
           </div>
           <Link
             href={`/upcomingevents/${id}`}
-            className="text-[14px] px-3 py-2 md:py-2 md:px-8 bg-black text-white"
+            className="text-[14px] px-3 py-2 md:py-2 md:px-8 bg-primarycolor text-white"
           >
-          View Event
+            View Event
           </Link>
         </div>
       </div>
