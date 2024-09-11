@@ -32,7 +32,7 @@ function Event({ id, title, image, location, date }) {
             href={`/upcomingevents/${id}`}
             className="text-[14px] px-3 py-2 md:py-2 md:px-8 bg-black text-white"
           >
-            Buy Ticket
+          View Event
           </Link>
         </div>
       </div>

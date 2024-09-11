@@ -18,7 +18,7 @@ function Footer() {
     <>
       <div className="bg-primarycolor p-20 ">
         <div className="flex flex-col items-center">
-          <p>© 2024 B2EXCLUSIVE. All Right Reserved. </p>
+          <p className="text-white">© 2024 B2EXCLUSIVE. All Right Reserved. </p>
           <div className="flex">
             <Link
               className="text-white  rounded-lg text-[11px] py-1 px-2  hover:bg-primarycolor"

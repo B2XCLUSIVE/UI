@@ -190,7 +190,8 @@ function SingleBlog({ params }) {
           <div
             className="text-2xl text-white"
             dangerouslySetInnerHTML={{
-              __html: blog.descriptionsplit(" ").slice(0, 20).join(" ") + "...",
+              __html:
+                blog?.description?.split(" ").slice(0, 20).join(" ") + "...",
             }}
           />{" "}
         </div>

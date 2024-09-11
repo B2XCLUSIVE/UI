@@ -153,17 +153,7 @@ export default function Home() {
           </div>
 
           {/* UPCOMING EVENTS SECTION*/}
-          <CategoriesHeading title={"Upcoming Events"} />
-          <div className="w-full flex justify-center flex-col">
-            <HomeEvents />
-
-            <Link
-              href={"/upcomingevents"}
-              className="text-primarycolor font-bold text-center cursor-pointer"
-            >
-              Read More
-            </Link>
-          </div>
+          <HomeEvents />
 
           <div className="flex items-end justify-between mb-10">
             <div className="w-[80%] h-[3px] bg-primarycolor"></div>
