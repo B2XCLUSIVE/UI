@@ -132,7 +132,7 @@ function VideoId({ params }) {
       />
 
       <section className=" md:w-5/6 md:p-8 p-4 mx-auto md:flex md:gap-8">
-        <div className="w-full p-4 md:w-3/5 flex flex-col gap-8">
+        <div className="w-full p-4 md:w-4/6 flex flex-col gap-8">
           <div>
             <div className="w-full">
               <video
@@ -298,7 +298,7 @@ function VideoId({ params }) {
             ""
           )}{" "}
         </div>
-        <div className=" p-4 md:w-2/5">
+        <div className=" p-4 md:w-2/6">
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 10 Artists"} />
           <div className="flex flex-col gap-2">
