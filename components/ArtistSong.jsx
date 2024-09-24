@@ -35,9 +35,9 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
     <>
       <div>
         <div
-          className={` flex md:flex-row flex-col gap-2 md:gap-4 md:items-center p-4 pr-8`}
+          className={` bg-white flex md:flex-row flex-col gap-4 md:items-center  border-b border-gray-50`}
         >
-          <div className={`bg-gray-50 md:block hidden p-4`}>
+          <div className={`bg-gray-50 md:block hidden p-3`}>
             <div className="w-[50px] h-[50px] rounded-full">
               <Image
                 src={image?.url || pld}
@@ -48,7 +48,7 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
               />
             </div>
           </div>
-          <div className={` flex gap-4 md:w-6/12 `}>
+          <div className={` flex gap-4 md:w-6/12 items-center `}>
             <FaPlay
               className="cursor-pointer "
               onClick={() => setShowPlayer(!showPlayer)}
@@ -70,11 +70,7 @@ function ArtistSong({ title, image, artist, createdAt, audioUrl, duration }) {
             )}
           </div>
         </div>
-        {showPlayer ? (
-          <audio className="bg-white" src={audioUrl} controls />
-        ) : (
-          ""
-        )}{" "}
+        {showPlayer ? <audio className="" src={audioUrl} controls /> : ""}{" "}
       </div>{" "}
     </>
   );

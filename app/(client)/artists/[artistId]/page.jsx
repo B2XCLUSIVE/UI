@@ -6,15 +6,25 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
   FaDownload,
+  FaFacebook,
   FaHamburger,
+  FaInstagram,
+  FaLinkedin,
+  FaPinterest,
   FaPlay,
   FaPlus,
   FaRegPlayCircle,
+  FaTwitter,
+  FaYoutube,
 } from "react-icons/fa";
 import axios from "axios";
 import pld from "@/public/pld.jpeg";
 import { VscLoading } from "react-icons/vsc";
 import AudioPlayer from "@/components/AudioPlayer";
+import HomeRecentPost from "@/components/HomeRecentPost";
+import CategoriesHeading from "@/components/CategoriesHeading";
+import TopPlaylist from "@/components/TopPlaylist";
+import TopMusic from "@/components/TopMusic";
 
 function SingleMusics({ params }) {
   const { artistId } = params;
@@ -71,66 +81,139 @@ function SingleMusics({ params }) {
 
   return (
     <>
-      <SectionHeader title={artist.name} desc={artist.bio} />
-
-      <section className={`  p-4 w-full md:w-5/6 md:mx-auto `}>
-        <div className="h-[300px] relative">
-          <Image
-            src={artist ? artist?.image?.url : pld}
-            width={1000}
-            height={1000}
-            alt="artist"
-            className="w-full h-full object-cover"
-          />
-          <div className="bg-[#0000009d] flex justify-between items-center p-4 absolute left-0 right-0 bottom-0">
-            <div>
-              <h1 className="font-bold text-2xl text-white">{artist.name}</h1>
-              <p className="text-white">
-                {artist?.bio?.split(" ").slice(0, 12).join(" ")}
-              </p>
-            </div>
-
-            <FaPlus className="text-lg text-white" />
+      <div className="relative">
+        <div className="relative">
+          <div className="h-[500px]">
+            <Image
+              src={artist ? artist?.image?.url : pld}
+              width={1000}
+              height={1000}
+              alt="artist"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute bg-[#3F254C80] w-full h-full top-0"></div>
+        </div>{" "}
+        <div className="absolute bottom-[30%] left-[10%] flex gap-8 items-center">
+          <div className="w-[150px] h-[150px]">
+            <Image
+              src={artist ? artist?.image?.url : pld}
+              width={1000}
+              height={1000}
+              alt="artist"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <p className="text-white text-md">Artist. View Profile</p>
+            <h1 className="text-white text-3xl font-bold">{artist.name}</h1>
+            <button className="bg-red-500 text-white px-4 py-2  text-sm rounded-full flex gap-1 items-center">
+              {" "}
+              <FaPlay /> Play All{" "}
+            </button>
           </div>
         </div>
-      </section>
-
-      <section className={` w-full md:w-5/6 md:mx-auto flex flex-col gap-2 `}>
-        {currentPosts.map((audio) => (
-          <div key={audio.id}>
-            <ArtistSong key={audio.id} {...audio} />
-          </div>
-        ))}
-
-        <div className="flex justify-center mt-4">
-          {/* Previous button */}
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
-          >
-            Previous
+        <div className=" bg-[#00000030] bottom-0 absolute w-full px-[10%] flex gap-10">
+          <button className="text-white border-b-4 p-4 border-red-500">
+            {" "}
+            All Songs{" "}
           </button>
-          {/* Page number buttons */}
-          {pageNumbers.map((number) => (
+
+          <button className="text-white"> Biography </button>
+        </div>
+      </div>
+
+      <section
+        className={` w-full md:w-5/6 md:mx-auto flex flex-col md:flex-row gap-2 py-8 `}
+      >
+        <div className="w-4/6">
+          <CategoriesHeading title={"Artist Songs"} />
+          <div className="py-4"></div>
+          <div className="flex flex-col gap-2">
+            {currentPosts.map((audio) => (
+              <div key={artistId}>
+                <ArtistSong key={audio.id} {...audio} />
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center mt-4">
+            {/* Previous button */}
             <button
-              key={number}
-              onClick={() => setCurrentPage(number)}
-              className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
-                currentPage === number ? "bg-black" : ""
-              }`}
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
             >
-              {number}
+              Previous
             </button>
-          ))}
-          {/* Next button */}
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
-          >
-            Next
-          </button>{" "}
+            {/* Page number buttons */}
+            {pageNumbers.map((number) => (
+              <button
+                key={number}
+                onClick={() => setCurrentPage(number)}
+                className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
+                  currentPage === number ? "bg-white" : ""
+                }`}
+              >
+                {number}
+              </button>
+            ))}
+            {/* Next button */}
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
+            >
+              Next
+            </button>{" "}
+          </div>
+        </div>
+        <div className="md:w-2/6">
+          {/* TOP ARTIST SECTION */}
+          <CategoriesHeading title={"Top 10 Artist"} />
+
+          <div className="grid grid-cols-2 py-4 md:flex flex-col gap-2">
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+            <TopMusic />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          {/* TOP PLAYLIST SECTION */}
+          <CategoriesHeading title={"Top Playlist"} />
+
+          <div className="grid grid-cols-2 py-4 md:flex flex-col gap-2">
+            <TopPlaylist />
+            <TopPlaylist />
+            <TopPlaylist />
+            <TopPlaylist />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          {/* GET CONNECTED */}
+          <CategoriesHeading title={"Get Connected"} />
+
+          <div className="flex justify-between p-4">
+            <FaFacebook className={`text-3xl `} />
+            <FaTwitter className={`text-3xl `} />
+            <FaLinkedin className={`text-3xl `} />
+            <FaYoutube className={`text-3xl `} />
+            <FaInstagram className={`text-3xl `} />
+            <FaPinterest className={`text-3xl `} />
+          </div>
+
+          <div className="my-8 w-full h-[3px] bg-primarycolor"></div>
+
+          {/* Recent post section */}
+          <CategoriesHeading title={"Recent Posts"} />
+
+          <div className=" flex flex-col gap-1 pt-4 ">
+            <HomeRecentPost />
+          </div>
         </div>
       </section>
     </>
