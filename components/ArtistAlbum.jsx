@@ -50,7 +50,7 @@ function ArtistAlbum({
               />
               <a
                 target="_blank"
-                download={audioUrl.replace("http://", "https://")}
+                download={audioUrl}
                 href={audioUrl.replace("http://", "https://")}
               >
                 <FaDownload className="text-lg cursor-pointer  md:block " />
