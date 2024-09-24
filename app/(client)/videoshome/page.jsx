@@ -63,7 +63,7 @@ function VideosHome() {
           <AllVideos />
         </div>
 
-        <div className=" md:w-2/5">
+        <div className=" md:w-2/5 pb-8">
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 10 Artist"} />
 

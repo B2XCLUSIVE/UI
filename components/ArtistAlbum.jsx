@@ -48,7 +48,11 @@ function ArtistAlbum({
                 onClick={() => setShowPlayer(!showPlayer)}
                 className="text-lg cursor-pointer md:block "
               />
-              <a target="_blank" download={audioUrl} href={audioUrl}>
+              <a
+                target="_blank"
+                download={audioUrl.replace("http://", "https://")}
+                href={audioUrl.replace("http://", "https://")}
+              >
                 <FaDownload className="text-lg cursor-pointer  md:block " />
               </a>
             </div>

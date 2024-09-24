@@ -73,7 +73,7 @@ function AllMusic() {
             <ArtistAlbum key={music.id} {...music} />
           ))}
         </section>
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center py-8">
           {/* Previous button */}
           <button
             onClick={handlePrevPage}
