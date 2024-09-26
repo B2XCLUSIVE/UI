@@ -42,7 +42,7 @@ function SingleMusics({ params }) {
 
       setArtist(response?.data?.data);
       const audiosresponse = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/track/audios?artistId=${artistId}&page=${currentPage}`,
+        `https://b2xclusive.onrender.com/api/v1/track/video/artist/${artistId}`,
       );
       setAudios(audiosresponse?.data?.data);
     };
