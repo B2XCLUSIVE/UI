@@ -1,4 +1,5 @@
 "use client";
+import Cookies from "js-cookie";
 
 const {
   FaChartBar,
@@ -27,11 +28,16 @@ function SideBar() {
 
   const handleLogout = () => {
     try {
-      if (localStorage.getItem("b2exclusiveadmin") !== null) {
-        localStorage.setItem("b2exclusiveadmin", null);
+      if (
+        localStorage.getItem("b2xclusiveadmin") &&
+        localStorage.getItem("b2xclusiveuser") &&
+        document.cookie.includes("b2xclusiveadmin") !== null
+      ) {
+        localStorage.setItem("b2xclusiveadmin", null);
+        Cookies.remove("b2xclusiveadmin");
         toast.success(`Admin Logout Successfull`, { position: "top-center" });
         setTimeout(() => {
-          router.push("/login");
+          router.push("/");
         }, 2000);
       } else {
         toast.warn(`No user data found`, { position: "top-center" });

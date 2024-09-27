@@ -56,7 +56,7 @@ function EditBlog({ params }) {
       const formData = new FormData(e.target);
       formData.append("description", singlePost.description);
 
-      const storedToken = localStorage.getItem("b2exclusiveadmin");
+      const storedToken = localStorage.getItem("b2xclusiveadmin");
       if (storedToken) {
         const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
         setToken(cleanedToken);

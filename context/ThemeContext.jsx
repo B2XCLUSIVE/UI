@@ -4,12 +4,10 @@ import { createContext, useState, useEffect } from "react";
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
- 
-
   const [user, setUser] = useState(() => {
     // Initialize user from localStorage or default to null
     if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("b2exclusiveuser");
+      const storedUser = localStorage.getItem("b2xclusiveuser");
       return storedUser ? JSON.parse(storedUser) : null;
     }
   });
@@ -17,7 +15,7 @@ export const ThemeContextProvider = ({ children }) => {
   const [userId, setUserId] = useState(() => {
     // Initialize user from localStorage or default to null
     if (typeof window !== "undefined") {
-      const storedUserId = localStorage.getItem("b2exclusiveuserid");
+      const storedUserId = localStorage.getItem("b2xclusiveuserid");
       return storedUserId ? JSON.parse(storedUserId) : null;
     }
   });
@@ -25,13 +23,10 @@ export const ThemeContextProvider = ({ children }) => {
   const [adminUser, setadminUser] = useState(() => {
     // Initialize user from localStorage or default to null
     if (typeof window !== "undefined") {
-      const storedadminUser = localStorage.getItem("b2exclusiveadmin");
+      const storedadminUser = localStorage.getItem("b2xclusiveadmin");
       return storedadminUser ? JSON.parse(storedadminUser) : null;
     }
   });
-
-
-
 
   const [signin, setSignin] = useState(false);
 
@@ -39,33 +34,30 @@ export const ThemeContextProvider = ({ children }) => {
     setSignin((prevSignin) => !prevSignin);
   };
 
- 
-
   useEffect(() => {
     // Store user in localStorage
     if (typeof window !== "undefined") {
-      localStorage.setItem("b2exclusiveuser", JSON.stringify(user));
+      localStorage.setItem("b2xclusiveuser", JSON.stringify(user));
     }
   }, [user]);
 
   useEffect(() => {
     // Store user in localStorage
     if (typeof window !== "undefined") {
-      localStorage.setItem("b2exclusiveuserid", JSON.stringify(userId));
+      localStorage.setItem("b2xclusiveuserid", JSON.stringify(userId));
     }
   }, [userId]);
 
   useEffect(() => {
     // Store user in localStorage
     if (typeof window !== "undefined") {
-      localStorage.setItem("b2exclusiveadmin", JSON.stringify(adminUser));
+      localStorage.setItem("b2xclusiveadmin", JSON.stringify(adminUser));
     }
   }, [adminUser]);
 
   return (
     <ThemeContext.Provider
       value={{
-        
         user,
         setUser,
         signin,

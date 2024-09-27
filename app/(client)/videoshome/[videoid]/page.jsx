@@ -1,11 +1,12 @@
 "use client";
 import Button from "@/components/Button";
 import CategoriesHeading from "@/components/CategoriesHeading";
-import Comments from "@/components/Comments";
-import RecentPost from "@/components/RecentPost";
+import { toast } from "react-toastify";
 import SectionHeader from "@/components/SectionHeader";
 import TopMusic from "@/components/TopMusic";
 import TopPlaylist from "@/components/TopPlaylist";
+
+import { usePostData } from "@/hooks/usePostData";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -36,6 +37,8 @@ function VideoId({ params }) {
   const [sendingComment, setsendingComment] = useState(false);
   const [comment, setComment] = useState("");
   const [token, setToken] = useState("");
+  const url = `https://b2xclusive.onrender.com/api/v1/track/video/${videoid}`;
+  const { isLoading, isError, data } = usePostData("video-comments", url);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -58,7 +61,7 @@ function VideoId({ params }) {
   }, [videoid]);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("b2exclusiveuser");
+    const storedToken = localStorage.getItem("b2xclusiveuser");
     if (storedToken) {
       const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
       setToken(cleanedToken);
@@ -67,22 +70,22 @@ function VideoId({ params }) {
     }
   }, []);
 
-  const handleDownload = async () => {
-    try {
-      const response = await fetch(video?.videoUrl);
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${video?.title}.mp4`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } catch (error) {
-      console.log("Error downloading video:", error.message);
-    }
-  };
+  // const handleDownload = async () => {
+  //   try {
+  //     const response = await fetch(video?.videoUrl);
+  //     const blob = await response.blob();
+  //     const url = URL.createObjectURL(blob);
+  //
+  //     const a = document.createElement("a");
+  //     a.href = url;
+  //     a.download = `${video?.title}.mp4`;
+  //     document.body.appendChild(a);
+  //     a.click();
+  //     document.body.removeChild(a);
+  //   } catch (error) {
+  //     console.log("Error downloading video:", error.message);
+  //   }
+  // };
   const { user } = useContext(ThemeContext);
   const [showComment, setShowComment] = useState(false);
 
@@ -141,7 +144,7 @@ function VideoId({ params }) {
                 controls
                 autoPlay
                 preload="none"
-                src={video?.videoUrl}
+                src={video?.videoUrl.replace("http://", "https://")}
                 type="video/mp4"
               />
             </div>
@@ -192,11 +195,16 @@ function VideoId({ params }) {
               <FaShare className={``} />
             </div>
             <div dangerouslySetInnerHTML={{ __html: video.description }} />{" "}
-            <Button
-              title={"Download Video"}
-              onclick={handleDownload}
-              className="bg-primarycolor text-white"
-            />
+            <div className="pt-10">
+              <a
+                className=" text-[14px] px-3 py-2 rounded-lg md:py-4 md:px-8 bg-primarycolor text-white"
+                target="_blank"
+                download={video?.videoUrl.replace("http://", "https://")}
+                href={`https://b2xclusive.onrender.com/api/v1/track/download?type=video&publicId=${video?.publicId}&id=${video?.id}`}
+              >
+                downloadddd
+              </a>
+            </div>{" "}
           </div>
           <CategoriesHeading title={"Related Videos"} />
           <div className="grid grid-cols-2 gap-4 py-4">
@@ -225,8 +233,8 @@ function VideoId({ params }) {
           </div>
           <CategoriesHeading title={"Comments"} />
           <div>
-            {video?.comments ? (
-              video?.comments.map((comment) => (
+            {data?.data?.data?.comments ? (
+              data?.data?.data?.comments.map((comment) => (
                 <div key={comment.id} className={`p-4 flex gap-4 `}>
                   <div className="w-[200px]  md:w-[50px] h-[50px]">
                     <Image
@@ -260,8 +268,16 @@ function VideoId({ params }) {
             )}
           </div>{" "}
           <div
-            onClick={() => setShowComment(true)}
-            className="text-primarycolor md:text-base text-[10px] cursor-pointer p-3 border rounded-md "
+            onClick={() => {
+              if (user === null) {
+                toast.error("Please login to drop a comment", {
+                  position: "top-center",
+                });
+              } else {
+                setShowComment(true);
+              }
+            }}
+            className="text-white w-fit md:text-base text-[10px] cursor-pointer p-3 border rounded-md bg-primarycolor"
           >
             Add Comment
           </div>

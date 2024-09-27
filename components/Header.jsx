@@ -80,9 +80,9 @@ function Header() {
 
   const handleLogout = () => {
     try {
-      if (localStorage.getItem("b2exclusiveuser") !== null) {
-        localStorage.setItem("b2exclusiveuser", null);
-        localStorage.setItem("b2exclusiveuserid", null);
+      if (localStorage.getItem("b2xclusiveuser") !== null) {
+        localStorage.setItem("b2xclusiveuser", null);
+        localStorage.setItem("b2xclusiveuserid", null);
         toast.success(`Logout Successfull`, { position: "top-center" });
         setTimeout(() => {
           window.location.reload();

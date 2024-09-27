@@ -256,43 +256,47 @@ function SingleBlog({ params }) {
             )}
           </div>{" "}
           <div
-            onClick={() => setShowComment(true)}
-            className="text-primarycolor md:text-base text-[10px] cursor-pointer p-3 border rounded-md "
+            onClick={() => {
+              if (user === null) {
+                toast.error("Please login to drop a comment", {
+                  position: "top-center",
+                });
+              } else {
+                setShowComment(true);
+              }
+            }}
+            className="text-white w-fit md:text-base text-[10px] cursor-pointer p-3 border rounded-md bg-primarycolor"
           >
             Add Comment
           </div>
-          {showComment ? (
-            user === null ? (
-              <Link href={"/login"}>Please login to drop a comment</Link>
-            ) : (
-              <form className="p-4" onSubmit={handleComment}>
-                <textarea
-                  name="comment"
-                  id=""
-                  value={comment}
-                  cols="10"
-                  onChange={(e) => setComment(e.target.value)}
-                  rows="10"
-                  className={`  w-full h-[100px] border my-2 p-4 bg-white`}
-                  placeholder="Type your comments"
-                ></textarea>
+          {showComment &&
+            user !==
+              null(
+                <form className="p-4" onSubmit={handleComment}>
+                  <textarea
+                    name="comment"
+                    id=""
+                    value={comment}
+                    cols="10"
+                    onChange={(e) => setComment(e.target.value)}
+                    rows="10"
+                    className={`  w-full h-[100px] border my-2 p-4 bg-white`}
+                    placeholder="Type your comments"
+                  ></textarea>
 
-                <button
-                  type="submit"
-                  // Use handlePost instead of handleingPost
-                  className={`${sendingComment ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 text-white`}
-                >
-                  {sendingComment ? (
-                    <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
-                  ) : (
-                    "send comment"
-                  )}
-                </button>
-              </form>
-            )
-          ) : (
-            ""
-          )}{" "}
+                  <button
+                    type="submit"
+                    // Use handlePost instead of handleingPost
+                    className={`${sendingComment ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 text-white`}
+                  >
+                    {sendingComment ? (
+                      <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
+                    ) : (
+                      "send comment"
+                    )}
+                  </button>
+                </form>,
+              )}
         </div>
         <div className="md:w-2/6">
           {/* TOP ARTIST SECTION */}

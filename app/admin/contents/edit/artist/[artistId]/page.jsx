@@ -39,7 +39,7 @@ function EditArtist({ params }) {
     };
     fetchSingleArtist();
 
-    const storedToken = localStorage.getItem("b2exclusiveadmin");
+    const storedToken = localStorage.getItem("b2xclusiveadmin");
     if (storedToken) {
       const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
       setToken(cleanedToken);

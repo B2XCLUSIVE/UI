@@ -8,7 +8,7 @@ function UpcomingEvent() {
   return (
     <>
       <SectionHeader
-        title={"Events Listenings"}
+        title={"Events Listings"}
         desc={"Find the latest events that suits your interest"}
       />
 

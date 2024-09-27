@@ -1,5 +1,5 @@
 "use client";
-
+import Cookies from "js-cookie";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { ThemeContext } from "@/context/ThemeContext";
@@ -32,6 +32,7 @@ function AuthComponent() {
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   // Handle sign-in request
+
   const handleSignin = async (e) => {
     e.preventDefault();
     setsigninLoading(true);
@@ -42,22 +43,22 @@ function AuthComponent() {
       );
 
       const userData = response?.data;
-      console.log(userData);
       setUser(userData?.data?.token);
       setUserId(userData?.data?.id);
       toast.success(userData.message, {
         position: "top-center",
       });
-      setTimeout(() => {
-        if (userData?.data?.role === "admin") {
-          setadminUser(userData?.data?.token);
-          setIsLogin(false);
-          router.push("/admin");
-        } else {
-          setIsLogin(false);
-          router.push("/");
-        }
-      }, 3000);
+
+      if (userData?.data?.role === "admin") {
+        setadminUser(userData?.data?.token);
+        Cookies.set("b2xclusiveadmin", userData?.data?.token, { expires: 7 });
+
+        setIsLogin(false);
+        router.push("/admin");
+      } else {
+        setIsLogin(false);
+        router.push("/");
+      }
     } catch (error) {
       console.log("unable to sign in", error.message);
       toast.error(error?.response?.data?.message || "Failed to sign in", {
