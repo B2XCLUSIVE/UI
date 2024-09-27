@@ -1,35 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PostContent from "./PostContent";
 
-import axios from "axios";
+import { usePostData } from "@/hooks/usePostData";
 function AllOverviewPost() {
-  const [allPosts, setallPosts] = useState([]);
+  const url = `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`;
   const [currentPage, setCurrentPage] = useState(1);
 
   const postsPerPage = 10;
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        const response = await axios.get(
-          `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`,
-        );
-        setallPosts(response?.data?.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.message);
-        setError(error.message || "Error fetching posts");
-        setIsLoading(false);
-      }
-    };
-    fetchdata();
-  }, [currentPage]);
-
-  if (error)
+  const { isLoading, isError, data } = usePostData("overview-post", url);
+  if (isError)
     return (
       <div>
         <p className="text-red-500 font-bold">Error Fetching Posts</p>
@@ -57,10 +39,13 @@ function AllOverviewPost() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = data?.data?.data?.slice(
+    indexOfFirstPost,
+    indexOfLastPost,
+  );
 
   // Calculate total number of pages
-  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  const totalPages = Math.ceil(data?.data?.data?.length / postsPerPage);
 
   // Generate an array of page numbers
   const pageNumbers = [];
