@@ -5,10 +5,9 @@ import { useState } from "react";
 import VideoOverview from "@/components/VideoOverview";
 import { usePostData } from "@/hooks/usePostData";
 function AllVideosOverview() {
-  const url = `https://b2xclusive.onrender.com/api/v1/track/videos?page=${currentPage}`;
-
   const [currentPage, setCurrentPage] = useState(1);
 
+  const url = `https://b2xclusive.onrender.com/api/v1/track/videos?page=${currentPage}`;
   const postsPerPage = 10;
 
   const { isLoading, isError, data } = usePostData("video-overview", url);

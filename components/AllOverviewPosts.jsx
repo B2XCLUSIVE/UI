@@ -5,9 +5,9 @@ import PostContent from "./PostContent";
 
 import { usePostData } from "@/hooks/usePostData";
 function AllOverviewPost() {
-  const url = `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`;
   const [currentPage, setCurrentPage] = useState(1);
 
+  const url = `https://b2xclusive.onrender.com/api/v1/post/posts?page=${currentPage}`;
   const postsPerPage = 10;
 
   const { isLoading, isError, data } = usePostData("overview-post", url);

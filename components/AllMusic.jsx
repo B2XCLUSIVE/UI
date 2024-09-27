@@ -4,8 +4,9 @@ import { useState } from "react";
 import ArtistAlbum from "./ArtistAlbum";
 import { usePostData } from "@/hooks/usePostData";
 function AllMusic() {
-  const url = `https://b2xclusive.onrender.com/api/v1/track/audios?page=${currentPage}`;
   const [currentPage, setCurrentPage] = useState(1);
+
+  const url = `https://b2xclusive.onrender.com/api/v1/track/audios?page=${currentPage}`;
   const postsPerPage = 8;
   const { isLoading, isError, data } = usePostData("all-music", url);
 

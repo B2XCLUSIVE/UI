@@ -5,9 +5,10 @@ import Artist from "./Artist";
 
 import { usePostData } from "@/hooks/usePostData";
 function AllArtists() {
-  const url = `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`;
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 8;
+
+  const url = `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`;
   const { isLoading, isError, data } = usePostData("artistss", url);
 
   if (isError)

@@ -4,8 +4,9 @@ import Videos from "./Videos";
 import { usePostData } from "@/hooks/usePostData";
 
 function AllVideos() {
-  const url = `https://b2xclusive.onrender.com/api/v1/track/videos?page=${currentPage}`;
   const [currentPage, setCurrentPage] = useState(1);
+
+  const url = `https://b2xclusive.onrender.com/api/v1/track/videos?page=${currentPage}`;
   const postsPerPage = 8;
 
   const { isLoading, isError, data } = usePostData("videos", url);

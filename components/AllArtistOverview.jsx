@@ -5,11 +5,10 @@ import { useState } from "react";
 import ArtistContent from "@/components/ArtistContent";
 import { usePostData } from "@/hooks/usePostData";
 function AllArtistOverview() {
-  const url = `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`;
-
   const { isLoading, isError, data } = usePostData("artist", url);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const url = `https://b2xclusive.onrender.com/api/v1/artist/artists?page=${currentPage}`;
   const postsPerPage = 10;
 
   if (isError)

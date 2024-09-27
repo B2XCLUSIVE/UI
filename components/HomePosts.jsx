@@ -1,31 +1,13 @@
 "use client";
-import axios from "axios";
-import useSWR from "swr";
+
 import RecentPost from "./RecentPost";
-import { useEffect, useState } from "react";
 
+import { usePostData } from "@/hooks/usePostData";
 function HomePost() {
-  const [allPost, setAllPost] = useState([]);
+  const url = "https://b2xclusive.onrender.com/api/v1/post/posts";
+  const { isLoading, isError, data } = usePostData("homeposts", url);
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        const response = await axios.get(
-          "https://b2xclusive.onrender.com/api/v1/post/posts",
-        );
-        setAllPost(response?.data?.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error.message || "Error fetching posts");
-        setIsLoading(false);
-      }
-    };
-    fetchdata();
-  }, []);
-
-  if (error)
+  if (isError)
     return (
       <div>
         <p className="text-red-500 font-bold">Error Fetching Posts</p>
@@ -41,10 +23,9 @@ function HomePost() {
   return (
     <>
       <div className="grid md:grid-cols-2 gap-4 py-4 w-full">
-        {allPost &&
-          allPost
-            ?.slice(0, 6)
-            .map((post) => <RecentPost key={post.id} {...post} />)}
+        {data?.data?.data?.slice(0, 6).map((post) => (
+          <RecentPost key={post.id} {...post} />
+        ))}
       </div>
     </>
   );
