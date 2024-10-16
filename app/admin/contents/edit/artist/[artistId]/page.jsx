@@ -137,14 +137,16 @@ function EditArtist({ params }) {
               <div className="w-full">
                 <div className="w-full h-[300px]">
                   <Image
-                    src={singleArtist.image[0].url}
+                    src={singleArtist?.image[0]?.url}
                     width={1000}
                     height={1000}
                     alt="post"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className={``}>Selected File: {singleArtist.image[0].url}</p>
+                <p className={``}>
+                  Selected File: {singleArtist?.image[0]?.url}
+                </p>
               </div>
             )
           )}

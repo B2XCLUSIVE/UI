@@ -29,7 +29,7 @@ function AddVideos() {
   const [isTokenExpired, setIsTokenExpired] = useState(false);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("b2exclusiveadmin");
+    const storedToken = localStorage.getItem("b2xclusiveadmin");
     if (storedToken) {
       const cleanedToken = storedToken.replace(/^['"](.*)['"]$/, "$1");
 
@@ -45,7 +45,7 @@ function AddVideos() {
 
           setIsTokenExpired(true);
           // Optionally, you can remove the expired token from localStorage
-          localStorage.removeItem("b2exclusiveadmin");
+          localStorage.removeItem("b2xclusiveadmin");
           router.push("/login");
         } else {
           setToken(cleanedToken);

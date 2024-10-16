@@ -38,7 +38,10 @@ function VideoId({ params }) {
   const [comment, setComment] = useState("");
   const [token, setToken] = useState("");
   const url = `https://b2xclusive.onrender.com/api/v1/track/video/${videoid}`;
-  const { isLoading, isError, data } = usePostData("video-comments", url);
+  const { isLoading, isError, data, refetch } = usePostData(
+    "video-comments",
+    url,
+  );
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -116,7 +119,7 @@ function VideoId({ params }) {
       );
 
       setComment("");
-      window.location.reload();
+      /* window.location.reload(); */
     } catch (error) {
       console.error("Failed to add comment", error.message);
       toast.error(error?.response?.data?.message || "Failed to add comment", {
@@ -233,8 +236,8 @@ function VideoId({ params }) {
           </div>
           <CategoriesHeading title={"Comments"} />
           <div>
-            {data?.data?.data?.comments ? (
-              data?.data?.data?.comments.map((comment) => (
+            {video?.comments ? (
+              video?.comments.map((comment) => (
                 <div key={comment.id} className={`p-4 flex gap-4 `}>
                   <div className="w-[200px]  md:w-[50px] h-[50px]">
                     <Image

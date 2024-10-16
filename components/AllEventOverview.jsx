@@ -5,10 +5,12 @@ import { useState } from "react";
 import EventOverview from "@/components/EventOverview";
 import { usePostData } from "@/hooks/usePostData";
 function AllEventOverview() {
-  const { isLoading, isError, data } = usePostData("events", url);
   const [currentPage, setCurrentPage] = useState(1);
 
   const url = `https://b2xclusive.onrender.com/api/v1/event/events?page=${currentPage}`;
+
+  const { isLoading, isError, data } = usePostData("events", url);
+
   const postsPerPage = 10;
 
   if (isError)

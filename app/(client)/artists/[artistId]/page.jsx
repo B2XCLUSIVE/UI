@@ -34,6 +34,8 @@ function SingleMusics({ params }) {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
 
+  const [activeTab, setActiveTab] = useState("tab1");
+
   useEffect(() => {
     const fetchdata = async () => {
       const response = await axios.get(
@@ -42,9 +44,10 @@ function SingleMusics({ params }) {
 
       setArtist(response?.data?.data);
       const audiosresponse = await axios.get(
-        `https://b2xclusive.onrender.com/api/v1/track/video/artist/${artistId}`,
+        `https://b2xclusive.onrender.com/api/v1/artist/${artistId}`,
       );
-      setAudios(audiosresponse?.data?.data);
+      setAudios(audiosresponse?.data?.data?.track);
+      console.log(audiosresponse?.data);
     };
 
     fetchdata();
@@ -114,59 +117,74 @@ function SingleMusics({ params }) {
           </div>
         </div>
         <div className=" bg-[#00000030] bottom-0 absolute w-full px-[10%] flex gap-10">
-          <button className="text-white border-b-4 p-4 border-red-500">
-            {" "}
-            All Songs{" "}
+          <button
+            onClick={() => setActiveTab("tab1")}
+            className={`text-white p-4 ${activeTab === "tab1" ? "border-red-500 border-b-4 " : " "}`}
+          >
+            All Songs
           </button>
 
-          <button className="text-white"> Biography </button>
+          <button
+            onClick={() => setActiveTab("tabs2")}
+            className={`text-white  p-4 ${activeTab !== "tab1" ? "border-red-500 border-b-4" : " "}`}
+          >
+            {" "}
+            Biography{" "}
+          </button>
         </div>
       </div>
 
       <section
         className={` w-full md:w-5/6 md:mx-auto flex flex-col md:flex-row gap-2 py-8 `}
       >
-        <div className="w-4/6">
-          <CategoriesHeading title={"Artist Songs"} />
-          <div className="py-4"></div>
-          <div className="flex flex-col gap-2">
-            {currentPosts.map((audio) => (
-              <div key={artistId}>
-                <ArtistSong key={audio.id} {...audio} />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center mt-4">
-            {/* Previous button */}
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-              className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
-            >
-              Previous
-            </button>
-            {/* Page number buttons */}
-            {pageNumbers.map((number) => (
+        {activeTab === "tab1" ? (
+          <div className="w-4/6">
+            <CategoriesHeading title={"Artist Songs"} />
+            <div className="py-4"></div>
+            <div className="flex flex-col gap-2">
+              {currentPosts.map((audio) => (
+                <div key={artistId}>
+                  <ArtistSong key={audio.id} {...audio} />
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center mt-4">
+              {/* Previous button */}
               <button
-                key={number}
-                onClick={() => setCurrentPage(number)}
-                className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
-                  currentPage === number ? "bg-white" : ""
-                }`}
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className="border border-gray-500 text-gray-500 px-4 py-2 rounded-md mr-2"
               >
-                {number}
+                Previous
               </button>
-            ))}
-            {/* Next button */}
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
-            >
-              Next
-            </button>{" "}
+              {/* Page number buttons */}
+              {pageNumbers.map((number) => (
+                <button
+                  key={number}
+                  onClick={() => setCurrentPage(number)}
+                  className={`border border-gray-500 text-primarycolor px-4 py-2 rounded-md mx-1 ${
+                    currentPage === number ? "bg-white" : ""
+                  }`}
+                >
+                  {number}
+                </button>
+              ))}
+              {/* Next button */}
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="bg-primarycolor text-white px-4 py-2 rounded-md ml-2"
+              >
+                Next
+              </button>{" "}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="w-4/6">
+            <CategoriesHeading title={"Description"} />
+            <p> {artist?.bio}</p>
+          </div>
+        )}
         <div className="md:w-2/6">
           {/* TOP ARTIST SECTION */}
           <CategoriesHeading title={"Top 10 Artist"} />
