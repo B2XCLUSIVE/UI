@@ -178,6 +178,7 @@ function SingleMusics({ params }) {
                 Next
               </button>{" "}
             </div>
+            <CategoriesHeading title={"Artist videos"} />
           </div>
         ) : (
           <div className="w-4/6">

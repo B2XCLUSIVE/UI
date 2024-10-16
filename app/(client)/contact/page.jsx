@@ -1,11 +1,53 @@
 "use client";
 
-import Button from "@/components/Button";
+import axios from "axios";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 import SectionHeader from "@/components/SectionHeader";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaEnvelope, FaMap, FaPhone } from "react-icons/fa";
 
 function Contact() {
+  const [uploadingPost, setuploadingPost] = useState(false);
+  const [contactData, setContactData] = useState({
+    name: "",
+    number: "",
+    email: "",
+    message: "",
+  });
+
+  const onSubmitContact = async (e) => {
+    e.preventDefault();
+    try {
+      setuploadingPost(true);
+      const formData = new FormData();
+      formData.append("firstName", contactData.name);
+      formData.append("message", contactData.message);
+      formData.append("email", contactData.email);
+      formData.append("phoneNumber", contactData.number);
+      console.log("Submitting with data:", contactData);
+      const postresponse = await axios.post(
+        "https://b2xclusive.onrender.com/api/v1/contactUs/message",
+        formData,
+      );
+
+      console.log(postresponse.data);
+      toast.success(postresponse.data.message, {
+        position: "top-center",
+      });
+    } catch (error) {
+      console.error("Failed to upload post", error.message);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.response?.data?.errorResponse?.message,
+        {
+          position: "top-center",
+        },
+      );
+    } finally {
+      setuploadingPost(false); // Reset uploadingPost state
+    }
+  };
   return (
     <>
       <section>
@@ -28,18 +70,26 @@ function Contact() {
             ></iframe>
           </div>
 
-          <div className="md:flex md:gap-4 md:items-center">
+          <div className="md:flex md:gap-4 ">
             <div className="w-full md:w-2/4">
               <h1 className={` font-bold text-4xl`}>Get In Touch</h1>
-              <form className="p-4">
+              <form className="p-4" onSubmit={onSubmitContact}>
                 <div className=" md:flex w-full gap-4 my-2">
                   <input
+                    value={contactData.name}
+                    onChange={(e) =>
+                      setContactData({ ...contactData, name: e.target.value })
+                    }
                     type="text"
                     className={`my-2 md:my-0 p-4  w-full`}
-                    placeholder="firstname"
+                    placeholder="name"
                   />
                   <input
                     type="phone"
+                    value={contactData.phone}
+                    onChange={(e) =>
+                      setContactData({ ...contactData, number: e.target.value })
+                    }
                     className={`my-2 md:my-0 p-4  w-full`}
                     placeholder="phonenumber"
                   />
@@ -47,26 +97,38 @@ function Contact() {
                 <div className="md:flex w-full gap-4 my-2">
                   <input
                     type="email"
+                    value={contactData.email}
+                    onChange={(e) =>
+                      setContactData({ ...contactData, email: e.target.value })
+                    }
                     className={`my-2 md:my-0 p-4  w-full`}
                     placeholder="Email Address"
-                  />
-                  <input
-                    type="text"
-                    className={` my-2 md:my-0 p-4  w-full`}
-                    placeholder="website"
                   />
                 </div>
 
                 <textarea
                   name=""
                   id=""
+                  value={contactData.message}
+                  onChange={(e) =>
+                    setContactData({ ...contactData, message: e.target.value })
+                  }
                   cols="30"
                   rows="10"
                   className={`  w-full h-[300px] my-2 p-4 bg-white`}
                   placeholder="Type your comments"
                 ></textarea>
 
-                <Button title={"Send Comments"} />
+                <button
+                  type="submit" // Use handlePost instead of handleingPost
+                  className={`${uploadingPost ? "bg-orange-100" : "bg-primarycolor"} text-[14px] flex justify-center px-3 py-2 rounded-lg md:py-4 md:px-8 text-white`}
+                >
+                  {uploadingPost ? (
+                    <AiOutlineLoading3Quarters className="text-primarycolor text-center text-xl font-bold animate-spin infinite" />
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
               </form>
             </div>
 
