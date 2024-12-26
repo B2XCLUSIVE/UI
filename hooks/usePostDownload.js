@@ -2,11 +2,11 @@ import { useQuery } from "react-query";
 
 import axios from "axios";
 
-export const usePostData = (key, url) => {
+export const usePostDownload = (key, url) => {
   return useQuery(
     key,
     async () => {
-      return await axios.get(url);
+      return await axios.post(url);
     },
     { refetchOnMount: false, refetchOnWindowFocus: true }
   );

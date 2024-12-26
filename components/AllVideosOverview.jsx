@@ -41,7 +41,7 @@ function AllVideosOverview() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = data?.data?.data?.slice(
     indexOfFirstPost,
-    indexOfLastPost,
+    indexOfLastPost
   );
 
   // Calculate total number of pages

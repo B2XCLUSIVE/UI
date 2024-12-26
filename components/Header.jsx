@@ -63,11 +63,16 @@ function Header() {
     },
     {
       id: 7,
+      nav: "Movies",
+      link: "/movieshome",
+    },
+    {
+      id: 8,
       nav: "About Us",
       link: "/about",
     },
     {
-      id: 8,
+      id: 9,
       nav: "Contact Us",
       link: "/contact",
     },
@@ -287,6 +292,15 @@ function Header() {
                       }}
                     >
                       Videos
+                    </div>
+                    <div
+                      className={` border-b-2  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
+                      onClick={() => {
+                        router.push("/movieshome");
+                        setShowMenu(false);
+                      }}
+                    >
+                      Movies
                     </div>
                     <div
                       className={` border-b-2  md:text-base text-[11px] p-4  hover:bg-primarycolor`}
