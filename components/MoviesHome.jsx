@@ -15,9 +15,9 @@ export default function AllMoviesHome({ movies }) {
   }
 
   return ( 
-    <section className="w-[90%] md:w-5/6 mx-auto my-10"> 
-      <p className="text-2xl font-bold">New Movies Uploads</p>
-      <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-4 py-8">
+    <section className="mb-10"> 
+       <h2 className="text-2xl font-semibold mb-4">Movies</h2>
+       <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-4">
         {movies.map((movie) => (
           <div key={movie.id}  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
             <Link href={`/movies-menu/${movie.id}`}> 
@@ -25,7 +25,7 @@ export default function AllMoviesHome({ movies }) {
                 <img
                   src={movie.key || "/placeholder.png"}
                   alt={movie.title}
-                 className="w-full h-48 object-cover"
+                 className="w-full h-full object-contain"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity flex items-center justify-center">
                   <p className="text-white font-bold text-lg hidden group-hover:block">
@@ -39,5 +39,7 @@ export default function AllMoviesHome({ movies }) {
         ))}
       </div>
     </section>
-  );
-}
+      )}
+
+  
+

@@ -1,6 +1,4 @@
-// // app/(client)/movieshome/page.jsx
-
-// export default MoviesHome;
+// app/(client)/movieshome/page.jsx
 
 import SectionHeader from "@/components/SectionHeader";
 import AllMoviesHome from "@/components/MoviesHome";
@@ -8,9 +6,12 @@ import AllSeriesHome from "@/components/SeriesHome";
 import SearchMoviesClient from "@/components/SearchMoviesClient";
 import { getMovies } from "@/lib/api";
 
+
 export default async function MoviesHome() {
   // Fetch all movies and series data on the server
+  
   const allMovies = await getMovies();
+
 
   // Separate movies and series based on their type
   const movies = allMovies.filter((movie) => movie.type === "SINGLE"); 
@@ -32,12 +33,12 @@ export default async function MoviesHome() {
         </div>
       </section>
 
-      {/* Client-Side Search */}
-      <SearchMoviesClient initialMovies={movies} />
+      {/* SearchMoviesClient handles conditional rendering */}
+      <SearchMoviesClient movies={movies} series={series} />
 
       {/* Server-Side Components */}
-      <AllMoviesHome movies={movies} /> 
-      <AllSeriesHome series={series} /> 
+      {/* <AllMoviesHome movies={movies} /> 
+      <AllSeriesHome series={series} />  */}
     </>
   );
 }
