@@ -13,8 +13,8 @@ export default async function MoviesHome() {
   const allMovies = await getMovies();
 
   // Separate movies and series based on their type
-  const movies = allMovies.filter((movie) => movie.type === "SINGLE"); // For movies
-  const series = allMovies.filter((movie) => movie.type === "SEASONAL"); // For series
+  const movies = allMovies.filter((movie) => movie.type === "SINGLE"); 
+  const series = allMovies.filter((movie) => movie.type === "SEASONAL"); 
 
   return (
     <>
