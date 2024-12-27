@@ -97,6 +97,7 @@ import { usePostData } from "@/hooks/usePostData";
 import { useState } from "react";
 
 const SingleMovie = ({ id }) => {
+  console.log(id)
   const [isDownloading, setIsDownloading] = useState(false);
   const url = `https://b2xclusive.onrender.com/api/v1/track/movie/${id}`;
   

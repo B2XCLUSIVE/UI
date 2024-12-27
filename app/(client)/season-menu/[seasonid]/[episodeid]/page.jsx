@@ -5,8 +5,9 @@ import { useParams } from "next/navigation";
 import { FaFileDownload } from "react-icons/fa";
 import SingleEpisode from "@/components/SingleEpisode";
 
-function SinglePageEpisode() {
+function SinglePageEpisode() { 
   const { episodeid } = useParams();
+ 
   return (
     <>
       <SectionHeader
@@ -17,7 +18,7 @@ function SinglePageEpisode() {
         bgWallpaper="/moviesWallpaper.webp"
       />
 
-      <SingleEpisode id={episodeid} />
+      <SingleEpisode id={episodeid} /> 
     </>
   );
 }
