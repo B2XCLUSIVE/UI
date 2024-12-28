@@ -1,3 +1,5 @@
+import { FaFileDownload } from "react-icons/fa";
+
 const SingleSeries = () => {
   return (
     <section className="w-[90%] md:w-5/6 mx-auto my-10 ">
